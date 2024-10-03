@@ -162,3 +162,4 @@ cython_debug/
 #.idea/
 /backend/host/obj/
 /backend/DataBase/
+/backend/host/bin/
