@@ -10,13 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83aec6cf-b938-47d9-9f6d-1191ef2e5f24" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../frontend/Business/tg_bot/ApiClient.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/Business/tg_bot/Models/Dish.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/Business/tg_bot/Models/Menu.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/Business/tg_bot/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MealMate.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MealMate.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/MenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/MenuController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Menu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/host.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/host.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/host.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/host.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/host.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/host.pdb" afterDir="false" />
@@ -28,9 +22,6 @@
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/host.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/host.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/host.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/ref/host.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/host.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/refint/host.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/Business/placeholder.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +117,8 @@
       <updated>1727949408666</updated>
       <workItem from="1727949409735" duration="985000" />
       <workItem from="1727950608406" duration="1465000" />
-      <workItem from="1727971887413" duration="7759000" />
+      <workItem from="1727971887413" duration="8947000" />
+      <workItem from="1728043321680" duration="5309000" />
     </task>
     <servers />
   </component>
