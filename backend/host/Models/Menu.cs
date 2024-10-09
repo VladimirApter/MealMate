@@ -5,11 +5,11 @@ namespace host.Models;
 
 public class Menu
 {
-    [JsonPropertyName("dish_list")]
-    public List<Dish> DishList { get; set; }
+    [JsonPropertyName("category_list")]
+    public List<Category> Categories { get; set; }
 
-    public Menu(List<Dish> dishList)
+    public Menu(List<Category> categories)
     {
-        DishList = dishList;
+        Categories = categories;
     } 
 }
