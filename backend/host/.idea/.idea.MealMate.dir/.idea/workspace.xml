@@ -9,20 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83aec6cf-b938-47d9-9f6d-1191ef2e5f24" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MealMate.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MealMate.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/host.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/host.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/host.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/host.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/host.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/host.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/host.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/host.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/host.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/host.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/host.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/host.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/host.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/host.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/host.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/host.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/host.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/ref/host.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/host.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/refint/host.dll" afterDir="false" />
-    </list>
+    <list default="true" id="83aec6cf-b938-47d9-9f6d-1191ef2e5f24" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,6 +106,7 @@
       <workItem from="1727950608406" duration="1465000" />
       <workItem from="1727971887413" duration="8947000" />
       <workItem from="1728043321680" duration="5309000" />
+      <workItem from="1728474290131" duration="2000" />
     </task>
     <servers />
   </component>
