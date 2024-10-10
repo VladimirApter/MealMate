@@ -5,6 +5,9 @@ namespace host.Models;
 public class Restaurant
 {
     public int Id { get; }
+    
+    [JsonPropertyName("owner_id")]
+    public int OwnerId { get; set; }
     public Owner Owner { get; set; }
     
     [JsonPropertyName("notification_getter")]
@@ -14,9 +17,10 @@ public class Restaurant
     public Menu Menu { get; set; }
     public List<Table> Tables { get; }
     
-    public Restaurant(Owner owner, NotificationGetter notificationGetter, string name, string address, Menu menu, List<Table> tables)
+    public Restaurant(int id, int ownerId, Owner owner, NotificationGetter notificationGetter, string name, string address, Menu menu, List<Table> tables)
     {
-        Id = 1;
+        Id = id;
+        OwnerId = ownerId;
         Owner = owner;
         NotificationGetter = notificationGetter;
         Name = name;

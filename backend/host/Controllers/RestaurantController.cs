@@ -10,25 +10,25 @@ namespace host.Controllers;
 public class RestaurantController : ControllerBase
 {
     //Пример
-    private static Restaurant restaurant = new Restaurant(
+    private static Restaurant restaurant = new Restaurant(1, 1,
         new Owner(1, "@Yuchik55"),
         new NotificationGetter(2, "@Stasyamba52"),
         "Клод моне",
         "ул. Спиридоновка, 25/20с1, Москва",
-        new Menu(new List<Category>()
+        new Menu(1, 1,new List<Category>()
             {
-                new Category("Супы", new List<Dish>()
+                new Category(1, 1, "Супы", new List<Dish>()
                 {
-                    new Dish(500, 200, "Буйабес", "Суп от шефа", 15)
+                    new Dish(1, 1, 500, 200, "Буйабес", "Суп от шефа", 15)
                 }),
-                new Category("Горячее", new List<Dish>()
+                new Category(2,1,"Горячее", new List<Dish>()
                 {
-                    new Dish(140, 1200, "Пюре", "Огузок навалил жиденькой пюрехи", 55)
+                    new Dish(2, 2, 140, 1200, "Пюре", "Огузок навалил жиденькой пюрехи", 55)
                 })
             }),
         new List<Table>()
         {
-            new Table(1), new Table(2), new Table(3)
+            new Table(1, 1, 1), new Table(2, 1, 17), new Table(3, 1, 3)
         });
         
     [HttpGet]
