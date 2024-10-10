@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List
 
-from Dish import Dish
+from Models.Dish import Dish
 
 
 class Category(BaseModel):

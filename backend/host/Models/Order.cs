@@ -4,7 +4,7 @@ namespace host.Models;
 
 public class Order
 {
-    public int Id { get; }
+    public int Id { get; set; }
     
     [JsonPropertyName("client_id")]
     public int ClientId { get; set; }

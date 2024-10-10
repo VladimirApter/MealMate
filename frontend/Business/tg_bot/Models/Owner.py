@@ -1,5 +1,6 @@
-from TgAccount import TgAccount
+from Models.TgAccount import TgAccount
+from typing import List
 
 
 class Owner(TgAccount):
-    pass
+    restaurant_ids: List[int]

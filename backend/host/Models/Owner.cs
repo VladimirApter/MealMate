@@ -1,8 +1,13 @@
+using System.Text.Json.Serialization;
+
 namespace host.Models;
 
 public class Owner : TgAccount
 {
-    public Owner(int id, string username) : base(id, username)
+    [JsonPropertyName("restaurant_ids")]
+    public List<int> RestaurantIds { get; set; }
+    public Owner(int id, string username, List<int> restaurantIds) : base(id, username)
     {
+        RestaurantIds = restaurantIds;
     }
 }

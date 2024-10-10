@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from Dish import Dish
+from Models.Dish import Dish
 
 
 class OrderItem(BaseModel):

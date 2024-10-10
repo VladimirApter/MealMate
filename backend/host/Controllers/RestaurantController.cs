@@ -11,7 +11,6 @@ public class RestaurantController : ControllerBase
 {
     //Пример
     private static Restaurant restaurant = new Restaurant(1, 1,
-        new Owner(1, "@Yuchik55"),
         new NotificationGetter(2, "@Stasyamba52"),
         "Клод моне",
         "ул. Спиридоновка, 25/20с1, Москва",
@@ -30,9 +29,9 @@ public class RestaurantController : ControllerBase
         {
             new Table(1, 1, 1), new Table(2, 1, 17), new Table(3, 1, 3)
         });
-        
+    
     [HttpGet]
-    public IActionResult GetMenu()
+    public IActionResult GetRestaurant()
     {
         return Ok(restaurant);
     }

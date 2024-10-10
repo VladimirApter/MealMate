@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List
 
-from Category import Category
+from Models.Category import Category
 
 
 class Menu(BaseModel):

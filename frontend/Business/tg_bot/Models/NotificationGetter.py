@@ -1,4 +1,4 @@
-from TgAccount import TgAccount
+from Models.TgAccount import TgAccount
 
 
 class NotificationGetter(TgAccount):
