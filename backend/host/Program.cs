@@ -1,3 +1,4 @@
+using host.DataBaseAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,5 +25,8 @@ app.UseSwaggerUI(c =>
 
 // Регистрация маршрутов на верхнем уровне
 app.MapControllers();
+
+TestDataBase.CreateDataBase();
+TestDataBase.AddDataToDataBase();
 
 app.Run();

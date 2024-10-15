@@ -6,7 +6,7 @@ public class Owner : TgAccount
 {
     [JsonPropertyName("restaurant_ids")]
     public List<int> RestaurantIds { get; set; }
-    public Owner(int id, string username, List<int> restaurantIds) : base(id, username)
+    public Owner(string username, List<int> restaurantIds) : base(username)
     {
         RestaurantIds = restaurantIds;
     }

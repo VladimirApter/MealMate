@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "yhwL1xtsk/EfikcMGXQ9lA9iUjihs6SMTfEn5BkYgSw=",
+  "Hash": "bFcy27JReOX3/21OWfF+oQasipZa4V+c7f0pY7IMjLA=",
   "Source": "site",
   "BasePath": "_content/site",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\host\\host.csproj",
+      "Version": 2,
+      "Source": "host",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
   "DiscoveryPatterns": [],
   "Assets": []
 }
