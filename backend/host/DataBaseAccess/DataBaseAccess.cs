@@ -1,9 +1,11 @@
 using System.Data.SQLite;
-namespace host.DataBase;
+
+namespace host.DataBaseAccess;
 
 public class DataBaseAccess
 {
-    private const string ConnectionString = "Data Source=DataBase/DataBase.bd3";
+    public const string PathDataBase = "../DataBase/DataBase.bd3";
+    private const string ConnectionString = $"Data Source={PathDataBase}";
 
     protected static SQLiteDataReader ExecuteReader(string itemQuery, (string, int) parameter)
     {

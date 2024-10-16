@@ -1,16 +1,13 @@
-
 using System.Data.SQLite;
 
 namespace host.DataBaseAccess;
 
 internal static class TestDataBase
 {
-    private const string BaseName = "DataBase/DataBase.bd3";
+    private const string BaseName = DataBaseAccess.PathDataBase;
 
     public static void CreateDataBase()
     {
-        
-        
         SQLiteConnection.CreateFile(BaseName);
         
         using var connection = new SQLiteConnection("Data Source=" + BaseName);
@@ -29,7 +26,7 @@ internal static class TestDataBase
         {
             command.CommandText = @"CREATE TABLE [notification_getters] (
                     [id] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-                    [email] char(100) NOT NULL
+                    [username] char(100) NOT NULL
                 );";
             command.ExecuteNonQuery();
         }
@@ -151,17 +148,17 @@ internal static class TestDataBase
         // Добавление данных в таблицу notification_getters
         var notificationGetters = new[]
         {
-            new { Email = "ivan@example.com" },
-            new { Email = "maria@example.com" }
+            new { UserName = "ivan@example.com" },
+            new { UserName = "maria@example.com" }
         };
 
         foreach (var notificationGetter in notificationGetters)
         {
             using var insertCommand = new SQLiteCommand(connection);
-            insertCommand.CommandText = @"INSERT INTO [notification_getters] (email) 
-                                                  VALUES (@email);";
+            insertCommand.CommandText = @"INSERT INTO [notification_getters] (username) 
+                                                  VALUES (@username);";
 
-            insertCommand.Parameters.AddWithValue("@email", notificationGetter.Email);
+            insertCommand.Parameters.AddWithValue("@username", notificationGetter.UserName);
             insertCommand.ExecuteNonQuery();
         }
 

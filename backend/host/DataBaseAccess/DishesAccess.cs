@@ -1,5 +1,5 @@
 using host.Models;
-namespace host.DataBase;
+namespace host.DataBaseAccess;
 
 public class DishesAccess : DataBaseAccess
 {

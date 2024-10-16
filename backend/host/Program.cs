@@ -26,7 +26,12 @@ app.UseSwaggerUI(c =>
 // Регистрация маршрутов на верхнем уровне
 app.MapControllers();
 
-TestDataBase.CreateDataBase();
-TestDataBase.AddDataToDataBase();
+if (!File.Exists(DataBaseAccess.PathDataBase))
+{
+    TestDataBase.CreateDataBase();
+    TestDataBase.AddDataToDataBase();
+}
+
+
 
 app.Run();

@@ -1,10 +1,9 @@
 using host.Models;
-
-namespace host.DataBase;
+namespace host.DataBaseAccess;
 
 public class NotificationGetterAccess : DataBaseAccess
 {
-    private const string NotificationGetterQuery = "SELECT email FROM notification_getters WHERE id = @notificationGetterId";
+    private const string NotificationGetterQuery = "SELECT username FROM notification_getters WHERE id = @notificationGetterId";
     public static NotificationGetter? GetNotificationGetter(int id)
     {
         using var notificationGetterReader = ExecuteReader(NotificationGetterQuery, ("@notificationGetterId", id));

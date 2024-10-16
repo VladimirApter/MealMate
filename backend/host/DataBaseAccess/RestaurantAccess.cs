@@ -1,14 +1,15 @@
 using host.Models;
-
-namespace host.DataBase;
+namespace host.DataBaseAccess;
 
 public class RestaurantAccess : DataBaseAccess
 {
     private const string RestaurantQuery = "SELECT id, name, address FROM restaurants WHERE id = @restaurantId";
-    private const string NotificationGetterQuery = @"SELECT ng.email
+
+    private const string NotificationGetterQuery = @"SELECT ng.username
                                            FROM restaurants r
                                            JOIN notification_getters ng ON r.notification_getter_id = ng.id
                                            WHERE r.id = @restaurantId";
+
     private const string ListTableQuery = "SELECT id FROM tables WHERE restaurant_id = @restaurantId";
     private const string MenuQuery = "SELECT id FROM menus WHERE restaurant_id = @restaurantId";
 
