@@ -8,7 +8,6 @@ from Models.Table import Table
 
 class Restaurant(BaseModel):
     id: int = None
-    owner_id: int = None
     notification_getter: NotificationGetter
     name: str
     address: str
