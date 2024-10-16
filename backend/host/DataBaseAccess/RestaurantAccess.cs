@@ -5,7 +5,7 @@ public class RestaurantAccess : DataBaseAccess
 {
     private const string RestaurantQuery = "SELECT id, name, address FROM restaurants WHERE id = @restaurantId";
 
-    private const string NotificationGetterQuery = @"SELECT ng.username
+    private const string NotificationGetterQuery = @"SELECT ng.username, ng.id
                                            FROM restaurants r
                                            JOIN notification_getters ng ON r.notification_getter_id = ng.id
                                            WHERE r.id = @restaurantId";
@@ -18,11 +18,11 @@ public class RestaurantAccess : DataBaseAccess
         using var restaurantReader = ExecuteReader(RestaurantQuery, ("@restaurantId", id));
         if (!restaurantReader.Read()) return null;
 
-        var restaurant = new Restaurant(null, restaurantReader.GetString(1), restaurantReader.GetString(2), null, []);
+        var restaurant = new Restaurant(null, restaurantReader.GetString(1), restaurantReader.GetString(2), null, [], id);
 
         using var notificationGetterReader = ExecuteReader(NotificationGetterQuery, ("@restaurantId", id));
         if (!notificationGetterReader.Read()) return null;
-        restaurant.NotificationGetter = new NotificationGetter(notificationGetterReader.GetString(0));
+        restaurant.NotificationGetter = new NotificationGetter(notificationGetterReader.GetString(0), notificationGetterReader.GetInt32(1));
 
         using var listTableReader = ExecuteReader(ListTableQuery, ("@restaurantId", id));
         while (listTableReader.Read())

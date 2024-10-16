@@ -4,7 +4,7 @@ namespace host.DataBaseAccess;
 
 public class TableAccess : DataBaseAccess
 {
-    private const string TableQuery = "SELECT number FROM tables WHERE id = @tableId";
+    private const string TableQuery = "SELECT number, id FROM tables WHERE id = @tableId";
     public static Table? GetTable(int id)
     {
         using var tableReader = ExecuteReader(TableQuery, ("@tableId", id));
@@ -12,7 +12,8 @@ public class TableAccess : DataBaseAccess
         if (!tableReader.Read()) return null;
 
         return new Table(
-            tableReader.GetInt32(0)
+            tableReader.GetInt32(0),
+            tableReader.GetInt32(1)
         );
     }
 }

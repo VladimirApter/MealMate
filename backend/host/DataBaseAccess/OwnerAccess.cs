@@ -11,7 +11,7 @@ public class OwnerAccess : DataBaseAccess
         
         if (!ownerReader.Read()) return null;
 
-        var owner = new Owner(ownerReader.GetString(0), []);
+        var owner = new Owner(ownerReader.GetString(0), id, []);
         
         using var restaurantIdsReader = ExecuteReader(RestaurantIdsQuery, ("@ownerId", id));
         while (restaurantIdsReader.Read())

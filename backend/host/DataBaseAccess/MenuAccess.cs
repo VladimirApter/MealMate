@@ -11,7 +11,7 @@ public class MenuAccess : DataBaseAccess
         using var menuReader = ExecuteReader(MenuQuery, ("@menuId", id));
         if (!menuReader.Read()) return null;
 
-        var menu = new Menu([]);
+        var menu = new Menu(id, []);
         using var listCategoryReader = ExecuteReader(ListCategoryQuery, ("@menuId", id));
         while (listCategoryReader.Read())
         {
