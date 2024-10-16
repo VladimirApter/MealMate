@@ -5,7 +5,7 @@ namespace host.DataBaseAccess;
 
 internal static class TestDataBase
 {
-    private const string BaseName = "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\host\\DataBase\\DataBase.bd3";
+    private const string BaseName = "DataBase/DataBase.bd3";
 
     public static void CreateDataBase()
     {

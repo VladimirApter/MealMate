@@ -3,8 +3,7 @@ namespace host.DataBase;
 
 public class DataBaseAccess
 {
-    private const string ConnectionString =
-        @"Data Source=C:\Users\yurar\RiderProjects\MealMate\backend\host\DataBase\DataBase.bd3;";
+    private const string ConnectionString = "Data Source=DataBase/DataBase.bd3";
 
     protected static SQLiteDataReader ExecuteReader(string itemQuery, (string, int) parameter)
     {
