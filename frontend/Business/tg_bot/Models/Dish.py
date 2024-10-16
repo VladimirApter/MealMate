@@ -2,8 +2,7 @@ from pydantic import BaseModel
 
 
 class Dish(BaseModel):
-    id: int = None
-    category_id: int = None
+    id: int
     price: float
     weight: float
     name: str

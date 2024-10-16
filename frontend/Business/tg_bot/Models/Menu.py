@@ -5,6 +5,5 @@ from Models.Category import Category
 
 
 class Menu(BaseModel):
-    id: int = None
-    restaurant_id: int = None
+    id: int
     categories: List[Category]
