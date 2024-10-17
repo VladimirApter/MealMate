@@ -1,5 +1,4 @@
 import httpx
-import json
 from threading import Lock
 
 from Config import *
@@ -26,7 +25,7 @@ class ApiClient:
                     obj = self.obj_class.parse_obj(data)
                     return obj
                 else:
-                    response.raise_for_status()
+                    return None
 
     def post(self, obj):
         with self.lock:
@@ -37,4 +36,4 @@ class ApiClient:
                     obj = self.obj_class.parse_obj(data)
                     return obj
                 else:
-                    response.raise_for_status()
+                    return None
