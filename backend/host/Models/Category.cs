@@ -1,17 +1,21 @@
 using System.Text.Json.Serialization;
+using host.DataBaseAccess;
 
 namespace host.Models;
 
-public class Category
+public class Category : ITableDataBase
 {
-    public int Id { get; set; }
+    [JsonPropertyName("menu_id")]
+    public int MenuId { get; set; }
+    public int? Id { get; set; }
     public string Name { get; set; }
-    public List<Dish?> Dishes { get; set; }
+    public List<Dish>? Dishes { get; set; }
 
-    public Category(string name, int id, List<Dish?> dishes)
+    public Category(string name, int? id, int menuId, List<Dish>? dishes)
     {
         Id = id;
         Name = name;
         Dishes = dishes;
+        MenuId = menuId;
     }
 }

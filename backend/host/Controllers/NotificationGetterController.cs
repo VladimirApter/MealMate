@@ -1,4 +1,5 @@
 using host.DataBaseAccess;
+using host.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace host.Controllers;
@@ -14,5 +15,13 @@ public class NotificationGetterController : ControllerBase
         if (notificationGetter == null) return NotFound();
 
         return Ok(notificationGetter);
+    }
+    [HttpPost]
+    public IActionResult PostNotificationGetter([FromBody] NotificationGetter? notificationGetter)
+    {
+        if (notificationGetter == null) return BadRequest("NotificationGetter is null.");
+        NotificationGetterAccess.AddOrUpdateNotificationGetter(notificationGetter);
+        
+        return Ok();
     }
 }

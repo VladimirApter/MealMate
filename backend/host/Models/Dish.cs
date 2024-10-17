@@ -1,8 +1,9 @@
 using System.Text.Json.Serialization;
+using host.DataBaseAccess;
 
 namespace host.Models;
 
-public class Dish
+public class Dish : ITableDataBase
 {
     public int? Id { get; set; }
     

@@ -1,4 +1,5 @@
 using host.DataBaseAccess;
+using host.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace host.Controllers;
@@ -15,5 +16,14 @@ public class TableController : ControllerBase
         if (table == null) return NotFound();
         
         return Ok(table);
+    }
+    
+    [HttpPost]
+    public IActionResult PostTable([FromBody] Table? table)
+    {
+        if (table == null) return BadRequest("Table is null.");
+        TableAccess.AddOrUpdateTable(table);
+        
+        return Ok();
     }
 }

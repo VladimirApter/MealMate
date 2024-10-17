@@ -1,4 +1,5 @@
 using host.DataBaseAccess;
+using host.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace host.Controllers;
@@ -14,5 +15,14 @@ public class CategoryController : ControllerBase
         if (category == null) return NotFound();
 
         return Ok(category);
+    }
+    
+    [HttpPost]
+    public IActionResult PostCategory([FromBody] Category? category)
+    {
+        if (category == null) return BadRequest("Category is null.");
+        CategoriesAccess.AddOrUpdateCategory(category);
+        
+        return Ok();
     }
 }
