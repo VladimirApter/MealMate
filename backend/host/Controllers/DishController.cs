@@ -19,11 +19,11 @@ public class DishController : ControllerBase
     }
     
     [HttpPost]
-    public IActionResult CreateDish([FromBody] Dish? dish)
+    public IActionResult PostDish([FromBody] Dish? dish)
     {
         if (dish == null) return BadRequest("Dish is null.");
         DishesAccess.AddOrUpdateDish(dish);
         
-        return CreatedAtAction(nameof(GetDish), new { id = dish.Id }, dish);
+        return Ok();
     }
 }

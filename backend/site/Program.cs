@@ -27,10 +27,10 @@ app.UseSwaggerUI(c =>
 // Регистрация маршрутов на верхнем уровне
 app.MapControllers();
 
-var dish= new Dish(null, 2.0, 3.0, "vova", "", 20, 3);
+var dish= new Dish(4, 2.0, 3.0, "vova3", "", 20, 3);
 var dishApi = new ApiClient<Dish>();
 
-await dishApi.Post(dish);
+dishApi.Post(dish);
 var getDish = dishApi.Get(100);
 
 

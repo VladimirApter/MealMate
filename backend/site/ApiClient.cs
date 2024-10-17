@@ -24,7 +24,7 @@ public class ApiClient<T> where T : class
         }
     }
 
-    public Task<T?> Post(T obj)
+    public void Post(T obj)
     {
         lock (@lock)
         {
@@ -32,12 +32,7 @@ public class ApiClient<T> where T : class
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             var response = HttpClient.PostAsync($"{RequestUri}", content).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonData = response.Content.ReadAsStringAsync().Result;
-                var createdObj = JsonSerializer.Deserialize<T>(jsonData);
-                return Task.FromResult(createdObj);
-            }
+            if (response.IsSuccessStatusCode) return;
 
             throw new HttpRequestException($"Error posting data: {response.StatusCode}");
         }
