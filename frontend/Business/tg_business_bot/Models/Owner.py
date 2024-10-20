@@ -1,4 +1,4 @@
-from Models.TgAccount import TgAccount
+from TgAccount import TgAccount
 from typing import List
 
 
