@@ -3,7 +3,7 @@ from typing import List
 from datetime import datetime
 from enum import Enum
 
-from Models.OrderItem import OrderItem
+from OrderItem import OrderItem
 
 
 class OrderStatus(Enum):
