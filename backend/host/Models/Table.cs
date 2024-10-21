@@ -6,6 +6,8 @@ namespace host.Models;
 public class Table : ITableDataBase
 {
     public int? Id { get; set; }
+    
+    [JsonPropertyName("restaurant_id")]
     public int RestaurantId { get; set; }
     public int Number { get; set; }
     public Table(int number, int? id, int restaurantId)

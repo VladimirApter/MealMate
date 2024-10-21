@@ -12,17 +12,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfc80ca0-845b-4a85-b989-2cc119720e19" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+    <list default="true" id="cfc80ca0-845b-4a85-b989-2cc119720e19" name="Changes" comment="Relocate database folder, update gitignore, fix libraries references">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/host/DataBaseAccess/DataBaseAccess.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/DataBaseAccess/DataBaseAccess.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/host/Models/Order.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/Order.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/host/Models/Owner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/Owner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/host/Models/Restaurant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/Restaurant.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/host/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/host/host.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/host/host.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/site/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/Models/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/Menu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/Models/NotificationGetter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/NotificationGetter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/Models/Table.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/Table.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/ApiClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/ApiClient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/DataValidationAndPost.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/DataValidationAndPost.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Category.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Category.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Dish.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Dish.py" afterDir="false" />
@@ -60,9 +56,12 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/211e6f3b24fa438a92f1815153647ce2c8f908/ff/917e7648/StringSyntaxAttribute.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/88c7a427477d90d85c789d9e332236a86a7f5a58549b65c37c5af73529f6d8ac/HttpMethodAttribute.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c59a6f62bf176cfd6fef0e1271a615c3d713edf32ca954785c28cc66b9395d/HttpPostAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/DataBaseAccess/DataBaseAccess.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Order.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Owner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Restaurant.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/site/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -197,7 +196,7 @@
       <workItem from="1728474817815" duration="136000" />
       <workItem from="1729318339979" duration="384000" />
       <workItem from="1729446329787" duration="11766000" />
-      <workItem from="1729511124526" duration="1129000" />
+      <workItem from="1729511124526" duration="2914000" />
     </task>
     <task id="LOCAL-00001" summary="Add reference to host">
       <option name="closed" value="true" />
@@ -207,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728474939518</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Relocate database folder, update gitignore, fix libraries references">
+      <option name="closed" value="true" />
+      <created>1729512450970</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729512450970</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,7 +225,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Add reference to host" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add reference to host" />
+    <MESSAGE value="Relocate database folder, update gitignore, fix libraries references" />
+    <option name="LAST_COMMIT_MESSAGE" value="Relocate database folder, update gitignore, fix libraries references" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
