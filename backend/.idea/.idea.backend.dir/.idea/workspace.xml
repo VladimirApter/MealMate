@@ -8,23 +8,131 @@
     <projectFile profileName="http">site/site.csproj</projectFile>
     <projectFile profileName="https">site/site.csproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfc80ca0-845b-4a85-b989-2cc119720e19" name="Changes" comment="" />
+    <list default="true" id="cfc80ca0-845b-4a85-b989-2cc119720e19" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/.idea/.idea.MealMate.dir/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/host/.idea/.idea.MealMate.dir/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/.idea/.idea.MealMate.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/host/.idea/.idea.MealMate.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/Models/Order.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/Order.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/Models/Owner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/Owner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/Models/Restaurant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/Restaurant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/Microsoft.OpenApi.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/host.deps.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/host.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/host.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/host.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/bin/Debug/net8.0/host.runtimeconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/host.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/host/host.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/apphost.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.GlobalUsings.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.MvcApplicationPartsAssemblyInfo.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.csproj.CoreCompileInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.csproj.FileListAbsolute.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.csproj.Up2Date" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.genruntimeconfig.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/host.sourcelink.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/ref/host.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/refint/host.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/staticwebassets.build.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/staticwebassets/msbuild.build.host.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.host.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.host.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/host.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/host.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/host.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/rider.project.model.nuget.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/host/obj/rider.project.restore.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/bin/Debug/net8.0/host.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/bin/Debug/net8.0/host.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/bin/Debug/net8.0/site.dll" beforeDir="false" afterPath="$PROJECT_DIR$/site/bin/Debug/net8.0/site.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/bin/Debug/net8.0/site.exe" beforeDir="false" afterPath="$PROJECT_DIR$/site/bin/Debug/net8.0/site.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/Debug/net8.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/Debug/net8.0/ref/site.dll" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/Debug/net8.0/ref/site.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/Debug/net8.0/refint/site.dll" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/Debug/net8.0/refint/site.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.dll" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/Debug/net8.0/site.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/site.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/site.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/site.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/site.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/obj/site.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/site/obj/site.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/ApiClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/ApiClient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/DataValidationAndPost.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/DataValidationAndPost.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Category.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Category.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Dish.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Dish.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/NotificationGetter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/NotificationGetter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/OrderItem.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/OrderItem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Owner.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Owner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Restaurant.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Restaurant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Table.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/TgAccount.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/TgAccount.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Registration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/testt.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;VladimirApter&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/VladimirApter/MealMate.git&quot;,
+    &quot;accountId&quot;: &quot;30a399fa-1a85-4a10-b7a5-f18faee4c885&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/obj/Debug/net8.0/host.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/211e6f3b24fa438a92f1815153647ce2c8f908/ff/917e7648/StringSyntaxAttribute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/88c7a427477d90d85c789d9e332236a86a7f5a58549b65c37c5af73529f6d8ac/HttpMethodAttribute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c59a6f62bf176cfd6fef0e1271a615c3d713edf32ca954785c28cc66b9395d/HttpPostAttribute.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2nCQwYz2dB5rfO6ePAsFKsV8QE0" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -32,18 +140,22 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Launch Settings Profile.host: http.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/admin/Desktop/fiit/MealMate/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\admin\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\admin\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\admin\\AppData\\Local\\Symbols\\src"
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
 }]]></component>
@@ -148,6 +260,8 @@
       <option name="presentableId" value="Default" />
       <updated>1728474816778</updated>
       <workItem from="1728474817815" duration="136000" />
+      <workItem from="1729318339979" duration="384000" />
+      <workItem from="1729446329787" duration="11766000" />
     </task>
     <task id="LOCAL-00001" summary="Add reference to host">
       <option name="closed" value="true" />
@@ -164,9 +278,29 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Add reference to host" />
     <option name="LAST_COMMIT_MESSAGE" value="Add reference to host" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/host/Controllers/RestaurantController.cs</url>
+          <line>22</line>
+          <properties documentPath="C:\Users\admin\Desktop\fiit\MealMate\backend\host\Controllers\RestaurantController.cs" containingFunctionPresentation="Method 'PostRestaurant'">
+            <startOffsets>
+              <option value="535" />
+            </startOffsets>
+            <endOffsets>
+              <option value="558" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
