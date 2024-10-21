@@ -5,11 +5,11 @@ namespace host.DataBaseAccess;
 public class NotificationGetterAccess : DataBaseAccess
 {
     private const string NotificationGetterQuery =
-        "SELECT username, id FROM notification_getters WHERE id = @notificationGetterId";
+        "SELECT username, id, restaurant_id FROM notification_getters WHERE id = @notificationGetterId";
 
     private const string InsertCommand =
-        @"INSERT INTO [notification_getters] (username) 
-             VALUES (@username);";
+        @"INSERT INTO [notification_getters] (username, restaurant_id) 
+             VALUES (@username, @restaurantId);";
 
     private const string UpdateCommand = @"UPDATE [notification_getters] 
              SET username = @username 
@@ -23,7 +23,8 @@ public class NotificationGetterAccess : DataBaseAccess
 
         return new NotificationGetter(
             notificationGetterReader.GetString(0),
-            notificationGetterReader.GetInt32(1)
+            notificationGetterReader.GetInt32(1),
+            notificationGetterReader.GetInt32(2)
         );
     }
 
@@ -33,6 +34,7 @@ public class NotificationGetterAccess : DataBaseAccess
             (notificationGetterObj, insertOrUpdateCommand) =>
             {
                 insertOrUpdateCommand.Parameters.AddWithValue("@username", notificationGetterObj.Username);
+                insertOrUpdateCommand.Parameters.AddWithValue("@restaurantId", notificationGetterObj.RestaurantId);
             });
     }
 }

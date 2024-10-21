@@ -1,4 +1,5 @@
 using System.Data.SQLite;
+using host.Models;
 
 namespace host.DataBaseAccess;
 
@@ -26,7 +27,8 @@ internal static class TestDataBase
         {
             command.CommandText = @"CREATE TABLE [notification_getters] (
                     [id] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-                    [username] char(100) NOT NULL
+                    [username] char(100) NOT NULL,
+                    [restaurant_id] int NOT NULL
                 );";
             command.ExecuteNonQuery();
         }
@@ -36,11 +38,9 @@ internal static class TestDataBase
             command.CommandText = @"CREATE TABLE [restaurants] (
                     [id] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
                     [owner_id] int NOT NULL,
-                    [notification_getter_id] int NOT NULL,
                     [name] char(100) NOT NULL,
                     [address] char(200) NOT NULL,
-                    FOREIGN KEY (owner_id) REFERENCES owners (id),
-                    FOREIGN KEY (notification_getter_id) REFERENCES notification_getters (id)
+                    FOREIGN KEY (owner_id) REFERENCES owners (id)
                 );";
             command.ExecuteNonQuery();
         }
@@ -148,35 +148,35 @@ internal static class TestDataBase
         // Добавление данных в таблицу notification_getters
         var notificationGetters = new[]
         {
-            new { UserName = "ivan@example.com" },
-            new { UserName = "maria@example.com" }
+            new { UserName = "ivan@example.com", RestaurantId = 1 },
+            new { UserName = "maria@example.com", RestaurantId = 2 }
         };
 
         foreach (var notificationGetter in notificationGetters)
         {
             using var insertCommand = new SQLiteCommand(connection);
-            insertCommand.CommandText = @"INSERT INTO [notification_getters] (username) 
-                                                  VALUES (@username);";
+            insertCommand.CommandText = @"INSERT INTO [notification_getters] (username, restaurant_id) 
+                                                  VALUES (@username, @restaurantId);";
 
             insertCommand.Parameters.AddWithValue("@username", notificationGetter.UserName);
+            insertCommand.Parameters.AddWithValue("@restaurantId", notificationGetter.RestaurantId);
             insertCommand.ExecuteNonQuery();
         }
 
         // Добавление данных в таблицу restaurants
         var restaurants = new[]
         {
-            new { OwnerId = 1, NotificationGetterId = 1, Name = "Ресторан А", Address = "Улица 1, дом 1" },
-            new { OwnerId = 2, NotificationGetterId = 2, Name = "Ресторан Б", Address = "Улица 2, дом 2" }
+            new { OwnerId = 1, Name = "Ресторан А", Address = "Улица 1, дом 1" },
+            new { OwnerId = 2, Name = "Ресторан Б", Address = "Улица 2, дом 2" }
         };
 
         foreach (var restaurant in restaurants)
         {
             using var insertCommand = new SQLiteCommand(connection);
-            insertCommand.CommandText = @"INSERT INTO [restaurants] (owner_id, notification_getter_id, name, address) 
-                                                  VALUES (@ownerId, @notificationGetterId, @name, @address);";
+            insertCommand.CommandText = @"INSERT INTO [restaurants] (owner_id, name, address) 
+                                                  VALUES (@ownerId, @name, @address);";
 
             insertCommand.Parameters.AddWithValue("@ownerId", restaurant.OwnerId);
-            insertCommand.Parameters.AddWithValue("@notificationGetterId", restaurant.NotificationGetterId);
             insertCommand.Parameters.AddWithValue("@name", restaurant.Name);
             insertCommand.Parameters.AddWithValue("@address", restaurant.Address);
             insertCommand.ExecuteNonQuery();

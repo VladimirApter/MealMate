@@ -5,8 +5,8 @@ namespace host.Models;
 
 public class Restaurant : ITableDataBase
 {
+    [JsonPropertyName("owner_id")]
     public int OwnerId { get; set; }
-    public int NotificationGetterId { get; set; }
     public int? Id { get; set; }
 
     [JsonPropertyName("notification_getter")]
@@ -18,7 +18,7 @@ public class Restaurant : ITableDataBase
     public List<Table>? Tables { get; set; }
 
     public Restaurant(NotificationGetter? notificationGetter, string name, string address, Menu? menu,
-        List<Table>? tables, int? id, int ownerId, int notificationGetterId)
+        List<Table>? tables, int? id, int ownerId)
     {
         NotificationGetter = notificationGetter;
         Name = name;
@@ -27,6 +27,5 @@ public class Restaurant : ITableDataBase
         Tables = tables;
         Id = id;
         OwnerId = ownerId;
-        NotificationGetterId = notificationGetterId;
     }
 }
