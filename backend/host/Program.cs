@@ -1,3 +1,4 @@
+using System.IO;
 using host.DataBaseAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,12 +27,16 @@ app.UseSwaggerUI(c =>
 // Регистрация маршрутов на верхнем уровне
 app.MapControllers();
 
+var databaseFolder = "Database";
+if (!Directory.Exists(databaseFolder))
+{
+    Directory.CreateDirectory(databaseFolder);
+}
+
 if (!File.Exists(DataBaseAccess.PathDataBase))
 {
     TestDataBase.CreateDataBase();
     TestDataBase.AddDataToDataBase();
 }
-
-
 
 app.Run();

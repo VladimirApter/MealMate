@@ -8,7 +8,7 @@ public interface ITableDataBase
 }
 public class DataBaseAccess
 {
-    public const string PathDataBase = "../DataBase/DataBase.bd3";
+    public const string PathDataBase = "./DataBase/DataBase.bd3";
     private const string ConnectionString = $"Data Source={PathDataBase}";
 
     protected static (SQLiteCommand, SQLiteConnection) OpenDataBase(string itemQuery)
