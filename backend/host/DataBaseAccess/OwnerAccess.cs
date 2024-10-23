@@ -8,8 +8,8 @@ public class OwnerAccess : DataBaseAccess
     private const string RestaurantIdsQuery = "SELECT id FROM restaurants WHERE owner_id = @ownerId";
 
     private const string InsertCommand =
-        @"INSERT INTO [owners] (name) 
-             VALUES (@name);";
+        @"INSERT INTO [owners] (id, name) 
+             VALUES (@id, @name);";
 
     private const string UpdateCommand = @"UPDATE [owners] 
              SET name = @name

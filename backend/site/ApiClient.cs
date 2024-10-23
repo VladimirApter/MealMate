@@ -7,7 +7,7 @@ public class ApiClient<T> where T : class
 {
     private readonly object @lock = new();
     private static readonly HttpClient HttpClient = new();
-    private static readonly string RequestUri = $"http://localhost:5211/api/{typeof(T).Name.ToLower()}";
+    private static readonly string RequestUri = $"http://localhost:5051/api/{typeof(T).Name.ToLower()}";
     private static readonly JsonSerializerOptions OptionsDeserializer = new() { PropertyNameCaseInsensitive = true };
 
     public T? Get(int id)
