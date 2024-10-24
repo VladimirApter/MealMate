@@ -10,7 +10,7 @@ class ApiClient:
         self.endpoint = obj_class.__name__.lower()
         self.lock = Lock()
 
-    def get_url(self, id=None):
+    def _get_url(self, id=None):
         if id is None:
             return f"{api_base_url}/api/{self.endpoint}"
         else:
@@ -19,7 +19,7 @@ class ApiClient:
     def get(self, id: int):
         with self.lock:
             with httpx.Client() as client:
-                response = client.get(self.get_url(id))
+                response = client.get(self._get_url(id))
                 if response.status_code == 200:
                     data = response.json()
                     obj = self.obj_class.parse_obj(data)
@@ -30,10 +30,8 @@ class ApiClient:
     def post(self, obj):
         with self.lock:
             with httpx.Client() as client:
-                response = client.post(self.get_url(), json=obj.dict(by_alias=True), headers={'Content-Type': 'application/json'})
+                response = client.post(self._get_url(), json=obj.dict(by_alias=True), headers={'Content-Type': 'application/json'})
                 if response.status_code == 201:
-                    data = response.json()
-                    obj = self.obj_class.parse_obj(data)
-                    return obj
-                else:
                     return None
+                else:
+                    response.raise_for_status()
