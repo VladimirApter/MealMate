@@ -32,6 +32,7 @@ class ApiClient:
             with httpx.Client() as client:
                 response = client.post(self._get_url(), json=obj.dict(by_alias=True), headers={'Content-Type': 'application/json'})
                 if response.status_code == 201:
-                    return None
+                    obj_id = int(response.json())
+                    return obj_id
                 else:
                     response.raise_for_status()
