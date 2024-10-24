@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace host.Controllers;
 
 [ApiController]
-[Route("api/notification_getter")]
+[Route("api/[controller]")]
 public class NotificationGetterController : ControllerBase
 {
     [HttpGet("{id}")]
