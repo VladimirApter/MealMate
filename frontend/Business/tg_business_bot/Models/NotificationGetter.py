@@ -6,9 +6,9 @@ class NotificationGetter(TgAccount):
     restaurant_id: int
 
     def __init__(self,
+                 id: int,
+                 username: str,
                  restaurant_id: int,
-                 id: Optional[int] = None,
-                 username: Optional[str] = None,
                  **kwargs):
         super().__init__(id=id,
                          username=username,

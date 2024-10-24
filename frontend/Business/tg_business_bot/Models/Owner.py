@@ -6,8 +6,8 @@ class Owner(TgAccount):
     restaurant_ids: Optional[List[int]]
 
     def __init__(self,
+                 id: int,
                  username: str,
-                 id: Optional[int] = None,
                  restaurant_ids: Optional[List[int]] = None,
                  **kwargs):
         super().__init__(id=id,

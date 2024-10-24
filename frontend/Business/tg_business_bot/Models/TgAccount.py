@@ -3,12 +3,12 @@ from pydantic import BaseModel
 
 
 class TgAccount(BaseModel):
-    id: Optional[int]
+    id: int
     username: str
 
     def __init__(self,
+                 id: int,
                  username: str,
-                 id: Optional[int] = None,
                  **kwargs):
         super().__init__(id=id,
                          username=username,
