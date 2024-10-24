@@ -1,7 +1,5 @@
 import re
 from telebot import types
-import asyncio
-from telethon import TelegramClient
 
 import Geocoder
 from Config import *
@@ -12,33 +10,43 @@ from Models.NotificationGetter import NotificationGetter
 
 
 def _get_yes_no_markup():
-    markup = types.ReplyKeyboardMarkup()
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     markup.add(*[types.KeyboardButton('да'), types.KeyboardButton('нет')])
     return markup
 
 
-def validate_and_post_restaurant_name(message: types.Message, restaurant: Restaurant):
+def validate_and_post_restaurant_name(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
+    name = message.text.strip()
+
     api_client = ApiClient(Owner)
     owner = api_client.get(message.chat.id)
-
     restaurant_ids = owner.restaurant_ids
-    api_client = ApiClient(Restaurant)
-    restaurants = [api_client.get(rest_id) for rest_id in restaurant_ids]
+    if restaurant_ids is not None:
+        api_client = ApiClient(Restaurant)
+        restaurants = [api_client.get(rest_id) for rest_id in restaurant_ids]
 
-    name = message.text
-    if name in [rest.name for rest in restaurants]:
-        bot.send_message('Ресторан с таким именем у Вас уже подключен, введите другое имя')
-        bot.register_next_step_handler(message.chat.id, validate_and_post_restaurant_name, restaurant)
+        if name in [rest.name for rest in restaurants]:
+            bot.send_message(message.chat.id, 'Ресторан с таким названием у Вас уже подключен, введите другое')
+            bot.register_next_step_handler(message, validate_and_post_restaurant_name, restaurant, func_to_return_after_post, is_registration)
+            return
+    if name == '':
+        bot.send_message(message.chat.id, 'Название ресторана должно быть не пустым, введите другое')
+        bot.register_next_step_handler(message, validate_and_post_restaurant_name, restaurant, func_to_return_after_post, is_registration)
         return
 
     restaurant.name = name
-    api_client = ApiClient(Restaurant)
-    api_client.post(restaurant)
+    if not is_registration:
+        api_client = ApiClient(Restaurant)
+        api_client.post(restaurant)
 
-    bot.send_message(message.chat.id, f'Имя ресторана изменено на: {restaurant.name}')
+    bot.send_message(message.chat.id, f'Название ресторана сохранено')
+
+    if func_to_return_after_post is not None:
+        func_to_return_after_post(message, restaurant)
+        return
 
 
-def validate_and_post_address(message: types.Message, restaurant: Restaurant):
+def validate_and_post_address(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
     address = message.text
     parsed_coordinates = _parse_coordinates(address)
     if parsed_coordinates is not None:
@@ -54,14 +62,14 @@ def validate_and_post_address(message: types.Message, restaurant: Restaurant):
         formatted_text = text.replace("Яндекс картах", '<a href="https://yandex.ru/maps">Яндекс картах</a>')
         bot.send_message(message.chat.id, formatted_text, parse_mode='HTML', disable_web_page_preview=True)
 
-        bot.register_next_step_handler(message, validate_and_post_address, restaurant)
+        bot.register_next_step_handler(message, validate_and_post_address, restaurant, func_to_return_after_post, is_registration)
         return
 
     latitude, longitude = coordinates
     bot.send_location(message.chat.id, latitude, longitude)
 
     bot.send_message(message.chat.id, "Ваш ресторан находится здесь, верно?", reply_markup=_get_yes_no_markup())
-    bot.register_next_step_handler(message, _accept_address, restaurant, coordinates)
+    bot.register_next_step_handler(message, _accept_address, restaurant, coordinates, func_to_return_after_post, is_registration)
 
 
 def _parse_coordinates(coord_str):
@@ -73,45 +81,56 @@ def _parse_coordinates(coord_str):
         return None
 
 
-def _accept_address(message: types.Message, restaurant: Restaurant, coordinates):
+def _accept_address(message: types.Message, restaurant: Restaurant, coordinates, func_to_return_after_post, is_registration):
     if message.text == 'да':
         restaurant.address = str(coordinates)
-        api_client = ApiClient(Restaurant)
-        api_client.post(restaurant)
+        if not is_registration:
+            api_client = ApiClient(Restaurant)
+            api_client.post(restaurant)
 
-        bot.send_message(message.chat.id, f'Адрес ресторана сохранен')
+        bot.send_message(message.chat.id, f'Адрес ресторана сохранен', reply_markup=types.ReplyKeyboardRemove())
+
+        if func_to_return_after_post is not None:
+            func_to_return_after_post(message, restaurant)
+            return
+
     elif message.text == 'нет':
         text = 'Тогда попробуйте записать адрес в более ' \
                'подробной форме или отправьте координаты, их можно найти на ' \
                'Яндекс картах'
 
         formatted_text = text.replace("Яндекс картах", '<a href="https://yandex.ru/maps">Яндекс картах</a>')
-        bot.send_message(message.chat.id, formatted_text, parse_mode='HTML', disable_web_page_preview=True)
+        bot.send_message(message.chat.id, formatted_text, parse_mode='HTML', disable_web_page_preview=True, reply_markup=types.ReplyKeyboardRemove())
 
-        bot.register_next_step_handler(message, validate_and_post_address(message, restaurant))
+        bot.register_next_step_handler(message, validate_and_post_address, restaurant, func_to_return_after_post, is_registration)
+
     else:
         bot.send_message(message.chat.id, 'Для выбора нажмите на одну из кнопок ниже')
-        bot.register_next_step_handler(message, _accept_address, restaurant, coordinates)
+        bot.register_next_step_handler(message, _accept_address, restaurant, coordinates, func_to_return_after_post, is_registration)
 
 
-def validate_and_post_notification_getter(message: types.Message, restaurant: Restaurant):
-    username = message.text.strip()
-    if not username.startswith('@'):
-        bot.send_message(message.chat.id, 'Имя пользователя должно начинаться с @, попробуйте еще раз')
-        bot.register_next_step_handler(message, validate_and_post_notification_getter, restaurant)
+def validate_and_post_notification_getter(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
+    if message.text == 'назначить себя':
+        new_notification_getter = NotificationGetter(restaurant_id=restaurant.id, id=message.chat.id, username=message.from_user.username)
+    elif message.users_shared is not None:
+        user = message.users_shared.users[0]
+        username = user.username if user.username is not None else ''
+        new_notification_getter = NotificationGetter(restaurant_id=restaurant.id, id=user.user_id, username=username)
+    else:
+        bot.send_message(message.chat.id, 'Для выбора нажмите на одну из кнопок ниже')
+        bot.register_next_step_handler(message, validate_and_post_notification_getter, restaurant, func_to_return_after_post, is_registration)
         return
-    elif len(username) > 32:
-        bot.send_message(message.chat.id, 'Имя пользователя должно быть короче 32 символов, попробуйте еще раз')
-        bot.register_next_step_handler(message, validate_and_post_notification_getter, restaurant)
+
+    if restaurant.notification_getter is None or restaurant.notification_getter.id != new_notification_getter.id:
+        restaurant.notification_getter = new_notification_getter
+
+    if not is_registration:
+        api_client = ApiClient(NotificationGetter)
+        api_client.post(new_notification_getter)
+
+    bot.send_message(message.chat.id, f'Получатель уведомлений сохранен', reply_markup=types.ReplyKeyboardMarkup())
+
+    if func_to_return_after_post is not None:
+        func_to_return_after_post(message, restaurant)
         return
-
-    new_notification_getter = NotificationGetter()
-    new_notification_getter.tg_id = None
-    new_notification_getter.username = username
-    new_notification_getter.restaurant_id = restaurant.id
-
-    api_client = ApiClient(NotificationGetter)
-    api_client.post(new_notification_getter)
-
-    bot.send_message(message.chat.id, f'Получатель уведомлений изменен на {restaurant.notification_getter.username}')
 

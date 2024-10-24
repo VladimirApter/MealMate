@@ -1,3 +1,6 @@
+from telebot.types import ReplyKeyboardMarkup, KeyboardButton, \
+    KeyboardButtonRequestUsers
+
 from DataValidationAndPost import *
 
 
@@ -41,8 +44,26 @@ def get_restaurant(message: types.Message, restaurants):
         bot.register_next_step_handler(message, get_restaurant, restaurants)
 
     markup = get_update_parts_markup()
-    bot.send_message(message.chat.id, 'Что Вы хотели бы изменить?', reply_markup=markup)
+    bot.send_message(message.chat.id, 'Что вы хотели бы изменить?', reply_markup=markup)
     bot.register_next_step_handler(message, get_update_part, restaurant)
+
+
+def get_notification_getter_markup():
+    markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
+    owner_self_button = KeyboardButton(text='назначить себя')
+    request_user_button = KeyboardButton(
+        text='выбрать человека',
+        request_users=KeyboardButtonRequestUsers(
+            request_id=1,
+            user_is_bot=False,
+            request_username=True,
+            max_quantity=1
+        )
+    )
+
+    markup.add(*[owner_self_button, request_user_button])
+    return markup
 
 
 def get_update_parts_markup():
