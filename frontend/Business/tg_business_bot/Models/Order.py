@@ -1,9 +1,9 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 from enum import Enum
 
-from OrderItem import OrderItem
+from Models.OrderItem import OrderItem
 
 
 class OrderStatus(Enum):
@@ -13,11 +13,28 @@ class OrderStatus(Enum):
 
 
 class Order(BaseModel):
-    id: int = None
-    client_id: int = None
-    restaurant_id: int = None
+    id: Optional[int]
+    client_id: int
+    restaurant_id: int
     order_items: List[OrderItem]
     comment: str
     date_time: datetime
-    status: OrderStatus = OrderStatus.IN_ASSEMBLY
+    status: OrderStatus
 
+    def __init__(self,
+                 client_id: int,
+                 restaurant_id: int,
+                 order_items: List[OrderItem],
+                 comment: str,
+                 date_time: datetime,
+                 status: OrderStatus,
+                 id: Optional[int] = None):
+        super().__init__(
+            id=id,
+            client_id=client_id,
+            restaurant_id=restaurant_id,
+            order_items=order_items,
+            comment=comment,
+            date_time=date_time,
+            status=status
+        )

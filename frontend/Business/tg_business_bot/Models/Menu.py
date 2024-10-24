@@ -1,9 +1,20 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
-from Category import Category
+from Models.Category import Category
 
 
 class Menu(BaseModel):
-    id: int
-    categories: List[Category]
+    id: Optional[int]
+    restaurant_id: int
+    categories: Optional[List[Category]]
+
+    def __init__(self,
+                 restaurant_id: int,
+                 id: Optional[int] = None,
+                 categories: Optional[List[Category]] = None):
+        super().__init__(
+            id=id,
+            restaurant_id=restaurant_id,
+            categories=categories
+        )

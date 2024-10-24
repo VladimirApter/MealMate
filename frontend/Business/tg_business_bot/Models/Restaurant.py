@@ -1,15 +1,34 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
-from NotificationGetter import NotificationGetter
-from Menu import Menu
-from Table import Table
+from Models.NotificationGetter import NotificationGetter
+from Models.Menu import Menu
+from Models.Table import Table
 
 
 class Restaurant(BaseModel):
-    id: int = None
-    notification_getter: NotificationGetter
+    id: Optional[int]
+    owner_id: int
+    notification_getter: Optional[NotificationGetter]
     name: str
     address: str
-    menu: Menu
-    tables: List[Table]
+    menu: Optional[Menu]
+    tables: Optional[List[Table]]
+
+    def __init__(self,
+                 owner_id: int,
+                 name: str,
+                 address: str,
+                 id: Optional[int] = None,
+                 notification_getter: Optional[NotificationGetter] = None,
+                 menu: Optional[Menu] = None,
+                 tables: Optional[List[Table]] = None):
+        super().__init__(
+            id=id,
+            owner_id=owner_id,
+            notification_getter=notification_getter,
+            name=name,
+            address=address,
+            menu=menu,
+            tables=tables
+        )
