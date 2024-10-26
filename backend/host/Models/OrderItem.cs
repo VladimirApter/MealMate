@@ -9,18 +9,16 @@ public class OrderItem
     [JsonPropertyName("order_id")]
     public int OrderId { get; set; }
     
-    [JsonPropertyName("dish_id")]
-    public int DishId { get; set; }
-    public Dish Dish { get; set; }
+    [JsonPropertyName("menu_item")]
+    public MenuItem MenuItem { get; set; }
     public int Count { get; set; }
     public double Price { get; set; }
-
-    public OrderItem(int id, int orderId, int dishId, Dish dish, int count, double price)
+    
+    public OrderItem(int id, int orderId, MenuItem menuItem, int count, double price)
     {
         Id = id;
         OrderId = orderId;
-        DishId = dishId;
-        Dish = dish;
+        MenuItem = menuItem;
         Count = count;
         Price = price;
     }

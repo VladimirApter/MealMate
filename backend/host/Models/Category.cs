@@ -9,13 +9,15 @@ public class Category : ITableDataBase
     public int MenuId { get; set; }
     public int? Id { get; set; }
     public string Name { get; set; }
-    public List<Dish>? Dishes { get; set; }
+    
+    [JsonPropertyName("menu_items")]
+    public List<MenuItem>? MenuItems { get; set; }
 
-    public Category(string name, int? id, int menuId, List<Dish>? dishes)
+    public Category(string name, int? id, int menuId, List<MenuItem>? menuItems)
     {
         Id = id;
         Name = name;
-        Dishes = dishes;
+        MenuItems = menuItems;
         MenuId = menuId;
     }
 }
