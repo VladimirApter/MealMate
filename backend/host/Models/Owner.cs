@@ -9,7 +9,6 @@ public class Owner : TgAccount, ITableDataBase
     public List<int>? RestaurantIds { get; set; }
     public Owner(string username, int? id, List<int>? restaurantIds) : base(username, id)
     {
-        Id = id;
         RestaurantIds = restaurantIds;
     }
 }

@@ -22,6 +22,6 @@ public class NotificationGetterController : ControllerBase
         if (notificationGetter == null) return BadRequest("NotificationGetter is null.");
         NotificationGetterAccess.AddOrUpdateNotificationGetter(notificationGetter);
         
-        return Ok();
+        return Ok(notificationGetter.Id);
     }
 }

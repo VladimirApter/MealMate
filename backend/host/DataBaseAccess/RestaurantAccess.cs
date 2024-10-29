@@ -34,9 +34,10 @@ public class RestaurantAccess : DataBaseAccess
             id, restaurantReader.GetInt32(3));
 
         using var notificationGetterReader = ExecuteReader(NotificationGetterQuery, ("@restaurantId", id));
-        if (!notificationGetterReader.Read()) return null;
-        restaurant.NotificationGetter =
-            new NotificationGetter(notificationGetterReader.GetString(0), notificationGetterReader.GetInt32(1), notificationGetterReader.GetInt32(2));
+        if (notificationGetterReader.Read())
+            restaurant.NotificationGetter =
+                new NotificationGetter(notificationGetterReader.GetString(0), notificationGetterReader.GetInt32(1),
+                    notificationGetterReader.GetInt32(2));
 
         using var listTableReader = ExecuteReader(ListTableQuery, ("@restaurantId", id));
         while (listTableReader.Read())
@@ -46,8 +47,8 @@ public class RestaurantAccess : DataBaseAccess
         }
 
         using var menuReader = ExecuteReader(MenuQuery, ("@restaurantId", id));
-        if (!menuReader.Read()) return null;
-        restaurant.Menu = MenuAccess.GetMenu(menuReader.GetInt32(0));
+        if (menuReader.Read())
+            restaurant.Menu = MenuAccess.GetMenu(menuReader.GetInt32(0));
 
         return restaurant;
     }
