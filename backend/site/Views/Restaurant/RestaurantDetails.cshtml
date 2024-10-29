@@ -17,7 +17,7 @@
             <div class="row">
                 @foreach (var cell in category.Dishes)
                 {
-                    <a href="/@cell.Id" class="cell">
+                    <div class="cell">
                         <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
                         <div class="content">
                             <h2 class="cost">@cell.Price₽</h2>
@@ -27,7 +27,7 @@
                                 <span class="text">Добавить</span>
                             </button>
                         </div>
-                    </a>
+                    </div>
                 }
             </div>
         </div>
