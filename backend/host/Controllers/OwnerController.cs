@@ -23,6 +23,6 @@ public class OwnerController : ControllerBase
         if (owner == null) return BadRequest("Owner is null.");
         OwnerAccess.AddOrUpdateOwner(owner);
         
-        return Ok();
+        return Ok(owner.Id);
     }
 }

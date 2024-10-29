@@ -24,6 +24,6 @@ public class MenuController : ControllerBase
         if (menu == null) return BadRequest("Menu is null.");
         MenuAccess.AddOrUpdateMenu(menu);
         
-        return Ok();
+        return Ok(menu.Id);
     }
 }

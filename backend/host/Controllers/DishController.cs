@@ -24,6 +24,6 @@ public class DishController : ControllerBase
         if (dish == null) return BadRequest("Dish is null.");
         DishesAccess.AddOrUpdateDish(dish);
         
-        return Ok();
+        return Ok(dish.Id);
     }
 }
