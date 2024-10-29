@@ -1,3 +1,5 @@
+@model host.Models.Restaurant
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -8,86 +10,28 @@
 </head>
 <body>
 <div class="container">
-    <div class="category">Горячие блюда</div>
-    <div class="row">
-        <div class="cell">
-            <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
-            <div class="content">
-                <h2 class="cost">100₽</h2>
-                <p class="desc">Описание товара на карточке</p>
-                <button class="add-button">
-                    <span class="plus">+</span>
-                    <span class="text">Добавить</span>
-                </button>
+    @foreach (var category in Model.Menu.Categories)
+    {
+        <div class="block">
+            <div class="category">@category.Name</div>
+            <div class="row">
+                @foreach (var cell in category.Dishes)
+                {
+                    <div class="cell">
+                        <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
+                        <div class="content">
+                            <h2 class="cost">@cell.Price</h2>
+                            <p class="desc">@cell.Name</p>
+                            <button class="add-button">
+                                <span class="plus">+</span>
+                                <span class="text">Добавить</span>
+                            </button>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
-        <div class="cell">
-            <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
-            <div class="content">
-                <h2 class="cost">100₽</h2>
-                <p class="desc">Описание товара на карточке</p>
-                <button class="add-button">
-                    <span class="plus">+</span>
-                    <span class="text">Добавить</span>
-                </button>
-            </div>
-        </div>
-        <div class="cell">
-            <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
-            <div class="content">
-                <h2 class="cost">100₽</h2>
-                <p class="desc">Описание товара на карточке</p>
-                <button class="add-button">
-                    <span class="plus">+</span>
-                    <span class="text">Добавить</span>
-                </button>
-            </div>
-        </div>
-        <div class="cell">
-            <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
-            <div class="content">
-                <h2 class="cost">100₽</h2>
-                <p class="desc">Описание товара на карточке</p>
-                <button class="add-button">
-                    <span class="plus">+</span>
-                    <span class="text">Добавить</span>
-                </button>
-            </div>
-        </div>
-        <div class="cell">
-            <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
-            <div class="content">
-                <h2 class="cost">100₽</h2>
-                <p class="desc">Описание товара на карточке</p>
-                <button class="add-button">
-                    <span class="plus">+</span>
-                    <span class="text">Добавить</span>
-                </button>
-            </div>
-        </div>
-        <div class="cell">
-            <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
-            <div class="content">
-                <h2 class="cost">100₽</h2>
-                <p class="desc">Описание товара на карточке</p>
-                <button class="add-button">
-                    <span class="plus">+</span>
-                    <span class="text">Добавить</span>
-                </button>
-            </div>
-        </div>
-        <div class="cell">
-            <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
-            <div class="content">
-                <h2 class="cost">100₽</h2>
-                <p class="desc">Описание товара на карточке</p>
-                <button class="add-button">
-                    <span class="plus">+</span>
-                    <span class="text">Добавить</span>
-                </button>
-            </div>
-        </div>
-    </div>
+    }
 </div>
 </body>
 </html>
