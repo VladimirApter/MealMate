@@ -101,11 +101,9 @@ internal static class TestDataBase
             command.CommandText = @"CREATE TABLE [order_items] (
                     [id] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
                     [order_id] int NOT NULL,
-                    [dish_id] int NOT NULL,
                     [count] int NOT NULL,
                     [price] real NOT NULL,
-                    FOREIGN KEY (order_id) REFERENCES orders (id),
-                    FOREIGN KEY (dish_id) REFERENCES dishes (id)
+                    FOREIGN KEY (order_id) REFERENCES orders (id)
                 );";
             command.ExecuteNonQuery();
         }
@@ -270,19 +268,18 @@ internal static class TestDataBase
         // Добавление данных в таблицу order_items
         var orderItems = new[]
         {
-            new { OrderId = 1, DishId = 1, Count = 2, Price = 200.00 },
-            new { OrderId = 1, DishId = 2, Count = 1, Price = 500.00 },
-            new { OrderId = 2, DishId = 3, Count = 1, Price = 250.00 }
+            new { OrderId = 1, Count = 2, Price = 200.00 },
+            new { OrderId = 1, Count = 1, Price = 500.00 },
+            new { OrderId = 2, Count = 1, Price = 250.00 }
         };
 
         foreach (var orderItem in orderItems)
         {
             using var insertCommand = new SQLiteCommand(connection);
-            insertCommand.CommandText = @"INSERT INTO [order_items] (order_id, dish_id, count, price) 
-                                                  VALUES (@orderId, @dishId, @count, @price);";
+            insertCommand.CommandText = @"INSERT INTO [order_items] (order_id, count, price) 
+                                                  VALUES (@orderId, @count, @price);";
 
             insertCommand.Parameters.AddWithValue("@orderId", orderItem.OrderId);
-            insertCommand.Parameters.AddWithValue("@dishId", orderItem.DishId);
             insertCommand.Parameters.AddWithValue("@count", orderItem.Count);
             insertCommand.Parameters.AddWithValue("@price", orderItem.Price);
             insertCommand.ExecuteNonQuery();

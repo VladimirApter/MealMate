@@ -9,8 +9,8 @@ public class Order
     [JsonPropertyName("client_id")]
     public int ClientId { get; set; }
     
-    [JsonPropertyName("restaurant_id")]
-    public int RestaurantId { get; set; }
+    [JsonPropertyName("table_id")]
+    public int TableId { get; set; }
     
     [JsonPropertyName("order_items")]
     public List<OrderItem> OrderItems { get; set; }
@@ -20,11 +20,11 @@ public class Order
     public DateTime DateTime { get; set; }
     public OrderStatus Status { get; set; }
 
-    public Order(int id, int clientId, int restaurantId, List<OrderItem> orderItems, string comment, DateTime dateTime)
+    public Order(int id, int clientId, int tableId, List<OrderItem> orderItems, string comment, DateTime dateTime)
     {
         Id = id;
         ClientId = clientId;
-        RestaurantId = restaurantId;
+        TableId = tableId;
         OrderItems = orderItems;
         Comment = comment;
         DateTime = dateTime;

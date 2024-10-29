@@ -23,6 +23,6 @@ public class RestaurantController : ControllerBase
         if (restaurant == null) return BadRequest("Restaurant is null.");
         RestaurantAccess.AddOrUpdateRestaurant(restaurant);
 
-        return Ok();
+        return Ok(restaurant.Id);
     }
 }

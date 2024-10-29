@@ -15,7 +15,7 @@ class OrderStatus(Enum):
 class Order(BaseModel):
     id: Optional[int]
     client_id: int
-    restaurant_id: int
+    table_id: int
     order_items: List[OrderItem]
     comment: str
     date_time: datetime
@@ -23,7 +23,7 @@ class Order(BaseModel):
 
     def __init__(self,
                  client_id: int,
-                 restaurant_id: int,
+                 table_id: int,
                  order_items: List[OrderItem],
                  comment: str,
                  date_time: datetime,
@@ -32,7 +32,7 @@ class Order(BaseModel):
         super().__init__(
             id=id,
             client_id=client_id,
-            restaurant_id=restaurant_id,
+            table_id=table_id,
             order_items=order_items,
             comment=comment,
             date_time=date_time,

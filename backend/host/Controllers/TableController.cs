@@ -24,6 +24,6 @@ public class TableController : ControllerBase
         if (table == null) return BadRequest("Table is null.");
         TableAccess.AddOrUpdateTable(table);
         
-        return Ok();
+        return Ok(table.Id);
     }
 }

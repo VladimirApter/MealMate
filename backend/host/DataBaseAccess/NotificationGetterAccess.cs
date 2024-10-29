@@ -8,8 +8,8 @@ public class NotificationGetterAccess : DataBaseAccess
         "SELECT username, id, restaurant_id FROM notification_getters WHERE id = @notificationGetterId";
 
     private const string InsertCommand =
-        @"INSERT INTO [notification_getters] (username, restaurant_id) 
-             VALUES (@username, @restaurantId);";
+        @"INSERT INTO [notification_getters] (id, username, restaurant_id) 
+             VALUES (@id, @username, @restaurantId);";
 
     private const string UpdateCommand = @"UPDATE [notification_getters] 
              SET username = @username 

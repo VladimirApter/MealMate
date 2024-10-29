@@ -1,23 +1,23 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-from Models.Dish import Dish
+from Models.MenuItem import MenuItem
 
 
 class Category(BaseModel):
     id: Optional[int]
     menu_id: int
     name: str
-    dishes: Optional[List[Dish]]
+    menu_items: Optional[List[MenuItem]]
 
     def __init__(self,
                  menu_id: int,
                  name: str,
                  id: Optional[int] = None,
-                 dishes: Optional[List[Dish]] = None):
+                 menu_items: Optional[List[MenuItem]] = None):
         super().__init__(
             id=id,
             menu_id=menu_id,
             name=name,
-            dishes=dishes
+            menu_items=menu_items
         )

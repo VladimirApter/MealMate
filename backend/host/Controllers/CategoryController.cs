@@ -23,6 +23,6 @@ public class CategoryController : ControllerBase
         if (category == null) return BadRequest("Category is null.");
         CategoriesAccess.AddOrUpdateCategory(category);
         
-        return Ok();
+        return Ok(category.Id);
     }
 }

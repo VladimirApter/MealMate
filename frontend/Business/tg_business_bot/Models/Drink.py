@@ -4,13 +4,13 @@ from typing import Optional
 from Models.MenuItem import MenuItem
 
 
-class Dish(MenuItem):
-    weight: float
+class Drink(MenuItem):
+    volume: float
 
     def __init__(self,
                  category_id: int,
                  price: float,
-                 weight: float,
+                 volume: float,
                  name: str,
                  description: str,
                  cooking_time_minutes: int,
@@ -22,5 +22,5 @@ class Dish(MenuItem):
             name=name,
             description=description,
             cooking_time_minutes=cooking_time_minutes,
-            weight=weight
+            weight=volume
         )
