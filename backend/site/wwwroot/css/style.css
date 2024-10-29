@@ -60,6 +60,7 @@ body {
 }
 
 .image {
+    user-select: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -80,6 +81,7 @@ body {
 }
 
 .cost {
+    user-select: none;
     font-family: Yandex Sans Display;
     font-weight: bold;
     font-size: 24px;
@@ -87,6 +89,7 @@ body {
 }
 
 .desc {
+    user-select: none;
     font-family: Yandex Sans Display;
     font-weight: normal;
     font-size: 18px;
@@ -95,6 +98,8 @@ body {
 }
 
 .add-button {
+    cursor: pointer;
+    user-select: none;
     position: absolute;
     bottom: 0;
     right: 4%;
@@ -113,16 +118,31 @@ body {
 .add-button .plus {
     font-family: Yandex Sans Display;
     font-size: 24px;
+    cursor: pointer;
+    user-select: none;
     font-weight: normal;
     margin-right: 10px;
 }
 
 .add-button .text {
+    width: 100px;
     font-family: Yandex Sans Display;
     font-size: 18px;
+    cursor: pointer;
+    user-select: none;
     font-weight: normal;
+    text-align: center;
 }
-
+.action1 {
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-family: Yandex Sans Display;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0px 10px;
+}
 .category 
 {
     font-family: Yandex Sans Display;

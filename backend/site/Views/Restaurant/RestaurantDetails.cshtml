@@ -22,7 +22,7 @@
                         <div class="content">
                             <h2 class="cost">@cell.Price₽</h2>
                             <p class="desc">@cell.Name</p>
-                            <button class="add-button">
+                            <button class="add-button" data-item-id="@cell.Id" data-count="0">
                                 <span class="plus">+</span>
                                 <span class="text">Добавить</span>
                             </button>
@@ -33,5 +33,78 @@
         </div>
     }
 </div>
+
+<script>
+const addButton = document.querySelectorAll('.add-button');
+
+addButton.forEach(button => {
+  button.addEventListener('click', () => {
+    const currentCount = parseInt(button.getAttribute('data-count'), 10);
+    const newCount = currentCount + 1;
+    
+    const div = document.createElement('div');
+    div.className = 'add-button';
+    div.setAttribute('data-item-id', button.getAttribute('data-item-id'));
+    div.setAttribute('data-count', newCount);
+    
+    div.innerHTML = `
+    <span class="action1" onclick="minus('${button.getAttribute('data-item-id')}')">-</span>
+    <span class="text">${newCount}</span>
+    <span class="action1" onclick="plus('${button.getAttribute('data-item-id')}')">+</span>`;
+    
+    button.replaceWith(div);
+  });
+});
+
+function plus(id) {
+    const button = document.querySelector(`.add-button[data-item-id="${id}"]`);
+    if (button) {
+        const currentCount = parseInt(button.getAttribute('data-count'), 10);
+        const newCount = currentCount + 1;
+        button.setAttribute('data-count', newCount);
+        button.querySelector('span:nth-child(2)').textContent = newCount; // Используем nth-child(2) для второго span
+        console.log(`Plus: New count for item ${id} is ${newCount}`); // Отладочное сообщение
+    }
+}
+
+function minus(id) {
+    const button = document.querySelector(`.add-button[data-item-id="${id}"]`);
+    if (button) {
+        const currentCount = parseInt(button.getAttribute('data-count'), 10);
+        const newCount = currentCount - 1;
+        if (newCount === 0) {
+            const originalButton = document.createElement('button');
+            originalButton.className = 'add-button';
+            originalButton.setAttribute('data-item-id', button.getAttribute('data-item-id'));
+            originalButton.setAttribute('data-count', '0');
+            originalButton.innerHTML = `
+                <span class="plus">+</span>
+                <span class="text">Добавить</span>
+            `;
+            originalButton.addEventListener('click', () => {
+                const currentCount = parseInt(originalButton.getAttribute('data-count'), 10);
+                const newCount = currentCount + 1;
+                
+                const div = document.createElement('div');
+                div.className = 'add-button';
+                div.setAttribute('data-item-id', originalButton.getAttribute('data-item-id'));
+                div.setAttribute('data-count', newCount);
+                
+                div.innerHTML = `
+                <span class="action1" onclick="minus('${originalButton.getAttribute('data-item-id')}')">-</span>
+                <span class="text">${newCount}</span>
+                <span class="action1" onclick="plus('${originalButton.getAttribute('data-item-id')}')">+</span>`;
+                
+                originalButton.replaceWith(div);
+            });
+            button.replaceWith(originalButton);
+        } else {
+            button.setAttribute('data-count', newCount);
+            button.querySelector('span:nth-child(2)').textContent = newCount; 
+        }
+    }
+}
+</script>
+
 </body>
 </html>
