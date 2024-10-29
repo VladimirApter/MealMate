@@ -17,17 +17,17 @@
             <div class="row">
                 @foreach (var cell in category.Dishes)
                 {
-                    <div class="cell">
+                    <a href="/@cell.Id" class="cell">
                         <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
                         <div class="content">
-                            <h2 class="cost">@cell.Price</h2>
+                            <h2 class="cost">@cell.Price₽</h2>
                             <p class="desc">@cell.Name</p>
                             <button class="add-button">
                                 <span class="plus">+</span>
                                 <span class="text">Добавить</span>
                             </button>
                         </div>
-                    </div>
+                    </a>
                 }
             </div>
         </div>
