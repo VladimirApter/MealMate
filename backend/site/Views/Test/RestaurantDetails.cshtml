@@ -1,0 +1,27 @@
+@model host.Models.Restaurant
+
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Restaurant Information</title>
+</head>
+<body>
+<h1>Restaurant Information</h1>
+<p><strong>Ресторан:</strong> @Model.Name</p>
+<p><strong>Меню:</strong></p>
+<ul>
+    @foreach (var category in Model.Menu.Categories)
+    {
+        <li>
+            <strong>@category.Name</strong>
+            <ul>
+                @foreach (var dish in category.Dishes)
+                {
+                    <li>@dish.Name - @dish.Price руб.</li>
+                }
+            </ul>
+        </li>
+    }
+</ul>
+</body>
+</html>

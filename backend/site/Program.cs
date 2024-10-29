@@ -7,7 +7,7 @@ using site;
 var builder = WebApplication.CreateBuilder(args);
 
 // Добавление контроллеры
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 
 // Добавление Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -35,8 +35,5 @@ restaurant.Menu = new Menu(null, listCategory, 2);
 restaurant.Tables = new List<Table>() { new Table(5, null, 4) };
 var restaurantApi = new ApiClient<Restaurant>();
 restaurantApi.Post(restaurant);
-
-//var menuApi = new ApiClient<Menu>();
-//menuApi.Post(restaurant.Menu);
 
 app.Run();

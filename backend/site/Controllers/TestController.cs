@@ -1,15 +1,23 @@
+using host.DataBaseAccess;
+using host.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace site.Controllers;
     
 
 [ApiController]
-[Route("[controller]")]
-public class TestController : ControllerBase
+[Route("restaurant")]
+public class TestController : Controller
 {
-    [HttpGet]
-    public IActionResult GetMenu()
+    [HttpGet("{id}")]
+    public IActionResult GetRestaurant(int id)
     {
-        return Ok("Эти странные глаза\nСмотрят на тебя, скрббяяя\nЧто это за кринж?\nЧто за Джигурда?\nАааа ага ага ага ага\nЭто Джига Дрыга\nДжига Джигурда!\nЭй Джига-Дрыга!\nОджибудда Джига\nДжига джига дрыга\nДжига Джигурда упс-а!\nДжига джига дрыга\nОджибудда буда\nДжик аджи аджика\nОджибудда Джиган!\nЭй Джига-Дрыга!\nОджибудда Джига\nДжига джига дрыга\nДжига Джигурда упс-а!\nДжига джига дрыга\nОджибудда буда\nДжик аджи аджика\nОджибудда Джиган!");
+        var apiClient = new ApiClient<Restaurant>();
+        var restaurant = apiClient.Get(id);
+        if (restaurant == null)
+            return NotFound();
+        
+
+        return View("RestaurantDetails", restaurant);
     }
 }
