@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using host.DataBaseAccess;
 
@@ -9,8 +10,8 @@ public class Category : ITableDataBase
     public int MenuId { get; set; }
     public int? Id { get; set; }
     public string Name { get; set; }
-    public List<Dish>? Dishes { get; set; }
-
+    [NotMapped] public List<Dish>? Dishes { get; set; }
+    public Category(){}
     public Category(string name, int? id, int menuId, List<Dish>? dishes)
     {
         Id = id;

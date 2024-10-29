@@ -11,7 +11,7 @@ public class CategoryController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult GetCategory(int id)
     {
-        var category = CategoriesAccess.GetCategory(id);
+        var category = CategoriesAccess.GetCategoryAsync(id).Result;
         if (category == null) return NotFound();
 
         return Ok(category);

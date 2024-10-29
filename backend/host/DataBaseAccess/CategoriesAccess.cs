@@ -1,37 +1,26 @@
 using host.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace host.DataBaseAccess;
 
 public class CategoriesAccess : DataBaseAccess
 {
-    private const string CategoryQuery = "SELECT name, id, menu_id FROM categories WHERE id = @categoryId";
-    private const string ListDishQuery = "SELECT id FROM dishes WHERE category_id = @categoryId";
-
-    private const string InsertCommand =
-        @"INSERT INTO [categories] (menu_id, name) 
-             VALUES (@menuId, @name);";
-
-    private const string UpdateCommand = @"UPDATE [categories] 
-             SET menu_id = @menuId, name = @name 
-             WHERE Id = @id;";
-
-    public static Category? GetCategory(int id)
+    public static async Task<Category?> GetCategoryAsync(int id)
     {
-        using var categoryReader = ExecuteReader(CategoryQuery, ("@categoryId", id));
-        if (!categoryReader.Read()) return null;
-        var category = new Category(categoryReader.GetString(0), categoryReader.GetInt32(1), categoryReader.GetInt32(2),
-            []);
+        await using var context = new ApplicationDbContext();
 
-        using var listDishReader = ExecuteReader(ListDishQuery, ("@categoryId", id));
-        while (listDishReader.Read())
+        var category = await context.Categories.FindAsync(id);
+        
+        var dishes = await context.Dishes
+            .Where(d => d.CategoryId == id)
+            .ToListAsync();
+        if (category != null)
         {
-            var dish = DishesAccess.GetDish(listDishReader.GetInt32(0));
-            if (dish != null) category.Dishes?.Add(dish);
+            category.Dishes = dishes;
         }
-
         return category;
     }
-
+    
     public static void AddOrUpdateCategory(Category category)
     {
         if (category.Dishes != null)
@@ -42,10 +31,8 @@ public class CategoriesAccess : DataBaseAccess
             }
         }
 
-        AddOrUpdateObject(category, InsertCommand, UpdateCommand, (categoryObj, insertOrUpdateCommand) =>
-        {
-            insertOrUpdateCommand.Parameters.AddWithValue("@menuId", categoryObj.MenuId);
-            insertOrUpdateCommand.Parameters.AddWithValue("@name", categoryObj.Name);
-        });
+        using var context = new ApplicationDbContext();
+        context.Categories.Add(category);
+        context.SaveChanges();
     }
 }

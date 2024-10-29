@@ -27,14 +27,18 @@ app.UseSwaggerUI(c =>
 // Регистрация маршрутов на верхнем уровне
 app.MapControllers();
 
-var restaurant = new Restaurant(null, "ShaurmaEKB", "fonvizina", null, null, 2, 1);
-restaurant.NotificationGetter = new NotificationGetter("yura", null, 2);
-var listCategory = new List<Category>()
-    { new Category("sok", 2, 1, new List<Dish>() { new Dish(null, 20, 100, "sopli", "vovini", 5, 1) }) };
-restaurant.Menu = new Menu(null, listCategory, 2);
-restaurant.Tables = new List<Table>() { new Table(5, null, 4) };
-var restaurantApi = new ApiClient<Restaurant>();
-restaurantApi.Post(restaurant);
+
+/*var dish = new Dish(1488, 20, 200, "dd", "vovini", 2, 3);
+var dishApi = new ApiClient<Dish>();
+dishApi.Post(dish);*/
+var dish = new Dish(1, 20, 200, "puk", "vovini", 2, 1);
+
+
+var dish2 = new Dish(null, 20, 200, "kak", "vovini", 2, 1);
+
+var category = new Category("first", 2, 2, new List<Dish>(){dish, dish2});
+var categoryApi = new ApiClient<Category>();
+categoryApi.Post(category);
 
 //var menuApi = new ApiClient<Menu>();
 //menuApi.Post(restaurant.Menu);

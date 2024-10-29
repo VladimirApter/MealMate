@@ -12,7 +12,7 @@ public class DishController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult GetDish(int id)
     {
-        var dish = DishesAccess.GetDish(id);
+        var dish = DishesAccess.GetDishAsync(id).Result;
         if (dish == null) return NotFound();
         
         return Ok(dish);
@@ -23,7 +23,6 @@ public class DishController : ControllerBase
     {
         if (dish == null) return BadRequest("Dish is null.");
         DishesAccess.AddOrUpdateDish(dish);
-        
         return Ok();
     }
 }

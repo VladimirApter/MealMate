@@ -68,6 +68,7 @@ internal static class TestDataBase
         
         using (var command = new SQLiteCommand(connection))
         {
+            
             command.CommandText = @"CREATE TABLE [dishes] (
                     [id] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
                     [category_id] int NOT NULL,

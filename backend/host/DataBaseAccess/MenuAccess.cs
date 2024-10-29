@@ -24,7 +24,7 @@ public class MenuAccess : DataBaseAccess
         using var listCategoryReader = ExecuteReader(ListCategoryQuery, ("@menuId", id));
         while (listCategoryReader.Read())
         {
-            var category = CategoriesAccess.GetCategory(listCategoryReader.GetInt32(0));
+            var category = CategoriesAccess.GetCategoryAsync(listCategoryReader.GetInt32(0)).Result;
             if (category != null) menu.Categories?.Add(category);
         }
 
