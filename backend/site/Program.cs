@@ -17,6 +17,8 @@ var app = builder.Build();
 
 app.UseRouting();
 
+app.UseStaticFiles(); // Добавление поддержки статических файлов
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {

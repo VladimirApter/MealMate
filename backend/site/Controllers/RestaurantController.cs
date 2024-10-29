@@ -3,11 +3,10 @@ using host.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace site.Controllers;
-    
 
 [ApiController]
 [Route("restaurant")]
-public class TestController : Controller
+public class RestaurantController : Controller
 {
     [HttpGet("{id}")]
     public IActionResult GetRestaurant(int id)
@@ -17,7 +16,6 @@ public class TestController : Controller
         if (restaurant == null)
             return NotFound();
         
-
         return View("RestaurantDetails", restaurant);
     }
 }

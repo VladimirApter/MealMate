@@ -1,0 +1,131 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+html{height:100%}
+body{line-height:1}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+table{border-collapse:collapse;border-spacing:0}
+
+@font-face {
+    font-family: 'Yandex Sans Display';
+    src: url('YandexSansDisplay-Regular.eot');
+    src: local('Yandex Sans Display Regular'), local('YandexSansDisplay-Regular'),
+        url('YandexSansDisplay-Regular.eot?#iefix') format('embedded-opentype'),
+        url('YandexSansDisplay-Regular.woff2') format('woff2'),
+        url('YandexSansDisplay-Regular.woff') format('woff'),
+        url('YandexSansDisplay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Yandex Sans Display';
+    src: url('YandexSansDisplay-Bold.eot');
+    src: local('Yandex Sans Display Bold'), local('YandexSansDisplay-Bold'),
+        url('YandexSansDisplay-Bold.eot?#iefix') format('embedded-opentype'),
+        url('YandexSansDisplay-Bold.woff2') format('woff2'),
+        url('YandexSansDisplay-Bold.woff') format('woff'),
+        url('YandexSansDisplay-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    background-color: #F5F4F2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 12px 0;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cell {
+    width: 300px;
+    height: 400px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    margin: 12px;
+    position: relative;
+}
+
+.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45%; 
+    object-fit: cover;
+    border-radius: 30px 30px 0 0;
+    opacity: 80%; 
+}
+
+.content {
+    position: absolute;
+    top: 45%; 
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+}
+
+.cost {
+    font-family: Yandex Sans Display;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 10px 0px;
+}
+
+.desc {
+    font-family: Yandex Sans Display;
+    font-weight: normal;
+    font-size: 18px;
+    margin: 10px 0px;
+
+}
+
+.add-button {
+    position: absolute;
+    bottom: 0;
+    right: 4%;
+    left: 4%;
+    width: 92%;
+    height: 65px;
+    background-color: #F5F4F2;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-button .plus {
+    font-family: Yandex Sans Display;
+    font-size: 24px;
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+.add-button .text {
+    font-family: Yandex Sans Display;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.category 
+{
+    font-family: Yandex Sans Display;
+    font-weight: bold;
+    font-size: 28px;
+    margin: 24px;
+}

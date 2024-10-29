@@ -15,4 +15,8 @@
     <ProjectReference Include="..\host\host.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+
 </Project>
