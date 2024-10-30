@@ -134,3 +134,6 @@ def validate_and_post_notification_getter(message: types.Message, restaurant: Re
         func_to_return_after_post(message, restaurant)
         return
 
+
+def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
+    pass

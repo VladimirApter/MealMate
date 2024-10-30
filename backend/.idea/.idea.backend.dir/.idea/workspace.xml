@@ -12,25 +12,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfc80ca0-845b-4a85-b989-2cc119720e19" name="Changes" comment="Relocate database folder, update gitignore, fix libraries references">
+    <list default="true" id="cfc80ca0-845b-4a85-b989-2cc119720e19" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/exel_tables_work/create_table_template.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/parse_table.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/host/Models/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/Menu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/host/Models/NotificationGetter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/NotificationGetter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/host/Models/Table.cs" beforeDir="false" afterPath="$PROJECT_DIR$/host/Models/Table.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/ApiClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/ApiClient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/.idea/Business.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/.idea/Business.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/DataValidationAndPost.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/DataValidationAndPost.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Category.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Category.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Dish.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Dish.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/NotificationGetter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/NotificationGetter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/OrderItem.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/OrderItem.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Owner.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Owner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Restaurant.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Restaurant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Table.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/TgAccount.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/TgAccount.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Registration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +29,11 @@
     <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -56,12 +49,13 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/DataBaseAccess/DataBaseAccess.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/211e6f3b24fa438a92f1815153647ce2c8f908/87/f91f80f8/ValueTuple`2.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Category.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Dish.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Order.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Owner.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Restaurant.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/site/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Order.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/OrderItem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/OrderItem.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -72,27 +66,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.host: http.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/admin/Desktop/fiit/MealMate/backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.host: http.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/admin/Desktop/fiit/MealMate/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.host: http">
     <configuration name="host: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/host/host.csproj" />
@@ -197,6 +191,9 @@
       <workItem from="1729318339979" duration="384000" />
       <workItem from="1729446329787" duration="11766000" />
       <workItem from="1729511124526" duration="2914000" />
+      <workItem from="1729855450109" duration="9324000" />
+      <workItem from="1730203723909" duration="1592000" />
+      <workItem from="1730265401172" duration="8264000" />
     </task>
     <task id="LOCAL-00001" summary="Add reference to host">
       <option name="closed" value="true" />
@@ -214,7 +211,23 @@
       <option name="project" value="LOCAL" />
       <updated>1729512450970</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Change notification getter controller url">
+      <option name="closed" value="true" />
+      <created>1729797616837</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729797616837</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add MenuItem">
+      <option name="closed" value="true" />
+      <created>1729925076036</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729925076036</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,27 +235,55 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Add reference to host" />
     <MESSAGE value="Relocate database folder, update gitignore, fix libraries references" />
-    <option name="LAST_COMMIT_MESSAGE" value="Relocate database folder, update gitignore, fix libraries references" />
+    <MESSAGE value="Change notification getter controller url" />
+    <MESSAGE value="Add MenuItem" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add MenuItem" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/host/Controllers/RestaurantController.cs</url>
-          <line>22</line>
-          <properties documentPath="C:\Users\admin\Desktop\fiit\MealMate\backend\host\Controllers\RestaurantController.cs" containingFunctionPresentation="Method 'PostRestaurant'">
+          <line>13</line>
+          <properties documentPath="C:\Users\admin\Desktop\fiit\MealMate\backend\host\Controllers\RestaurantController.cs" containingFunctionPresentation="Method 'GetRestaurant'">
             <startOffsets>
-              <option value="535" />
+              <option value="288" />
             </startOffsets>
             <endOffsets>
-              <option value="558" />
+              <option value="340" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
