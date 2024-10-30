@@ -26,7 +26,7 @@ public class CategoriesAccess : DataBaseAccess
         while (listDishReader.Read())
         {
             var dish = DishesAccess.GetDish(listDishReader.GetInt32(0));
-            if (dish != null) category.MenuItems?.Add(dish);
+            if (dish != null) category.Dishes?.Add(dish);
         }
 
         return category;
@@ -34,9 +34,9 @@ public class CategoriesAccess : DataBaseAccess
 
     public static void AddOrUpdateCategory(Category category)
     {
-        if (category.MenuItems != null)
+        if (category.Dishes != null)
         {
-            foreach (var dish in category.MenuItems)
+            foreach (var dish in category.Dishes)
             {
                 if (dish is Dish dish1)
                 {

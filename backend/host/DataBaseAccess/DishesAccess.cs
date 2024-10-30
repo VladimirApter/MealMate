@@ -25,11 +25,11 @@ public class DishesAccess : DataBaseAccess
         return new Dish(
             dishReader.GetInt32(5),
             dishReader.GetDouble(0),
+            dishReader.GetDouble(1),
             dishReader.GetString(2),
             dishReader.GetString(3),
             dishReader.GetInt32(4),
-            dishReader.GetInt32(6),
-            dishReader.GetDouble(1)
+            dishReader.GetInt32(6)
         );
     }
 
