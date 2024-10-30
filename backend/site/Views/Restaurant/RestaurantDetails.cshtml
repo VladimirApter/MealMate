@@ -7,6 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MealMate</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <style>
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 610px;
+            width: 90%;
+            height: 90%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 30px;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 50px;
+            color: #4c4c4c;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -17,7 +40,7 @@
             <div class="row">
                 @foreach (var cell in category.Dishes)
                 {
-                    <div class="cell">
+                    <div class="cell" data-cell='{"name": "@cell.Name", "image": "https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg", "price": "@cell.Price", "desc": "@cell.Description", "weight": "@cell.Weight"}' onclick="handleCellClick(event, this)">
                         <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
                         <div class="content">
                             <h2 class="cost">@cell.Price₽</h2>
@@ -32,6 +55,18 @@
             </div>
         </div>
     }
+</div>
+
+<div id="popup">
+    <img src="#" alt="image" class="image" id="popup-image">
+    <span class="close-button" onclick="hidePopup()">×</span>
+    <div class="content">
+        <div id="popup-cost" class="cost"></div>
+        <div id="popup-desc" class="desc"></div>
+        <div id="popup-weight" class="weight"></div>
+        <div id="popup-full-desc" class="desc"></div>
+    </div>
+    
 </div>
 
 <script>
@@ -62,8 +97,8 @@ function plus(id) {
         const currentCount = parseInt(button.getAttribute('data-count'), 10);
         const newCount = currentCount + 1;
         button.setAttribute('data-count', newCount);
-        button.querySelector('span:nth-child(2)').textContent = newCount; // Используем nth-child(2) для второго span
-        console.log(`Plus: New count for item ${id} is ${newCount}`); // Отладочное сообщение
+        button.querySelector('span:nth-child(2)').textContent = newCount;
+        console.log(`Plus: New count for item ${id} is ${newCount}`); 
     }
 }
 
@@ -103,6 +138,33 @@ function minus(id) {
             button.querySelector('span:nth-child(2)').textContent = newCount; 
         }
     }
+}
+
+function handleCellClick(event, cellElement) {
+    if (!event.target.closest('.add-button')) {
+        const cellData = JSON.parse(cellElement.getAttribute('data-cell'));
+        showPopup(cellData);
+    }
+}
+
+function showPopup(cellData) {
+    const popup = document.getElementById('popup');
+    const popupImage = document.getElementById('popup-image');
+    const popupName = document.getElementById('popup-desc');
+    const popupCost = document.getElementById('popup-cost')
+    const popupDesc = document.getElementById('popup-full-desc')
+    const popupWeight = document.getElementById('popup-weight')
+    popupImage.src = cellData.image;
+    popupCost.textContent = cellData.price + "₽";
+    popupName.textContent = cellData.name;
+    popupDesc.textContent = cellData.desc;
+    popupWeight.textContent = cellData.weight + "г";
+    popup.style.display = 'block';
+}
+
+function hidePopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none';
 }
 </script>
 
