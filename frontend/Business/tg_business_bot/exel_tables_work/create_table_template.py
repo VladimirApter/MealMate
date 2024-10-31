@@ -1,3 +1,4 @@
+import os
 import openpyxl
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Font
@@ -9,16 +10,18 @@ class TableTemplate(Enum):
     drinks = "drinks"
 
 
-def create_menu_template(template_type):
-    filename = f"{template_type}_template.xlsx"
-
+def _create_menu_part_template(template_type, wb):
     grams_str = "(гр)"
     mls_str = "(мл)"
 
     if template_type is TableTemplate.dishes:
         weight_or_volume_header = f"Вес {grams_str}"
+        image_header = "Изображение блюда"
+        sheet_title = "Блюда"
     elif template_type is TableTemplate.drinks:
         weight_or_volume_header = f"Объем {mls_str}"
+        sheet_title = "Напитки"
+        image_header = "Изображение напитка"
     else:
         raise ValueError(f"Unlnown template type: {template_type}. Possible types in TableTemplate")
 
@@ -34,11 +37,10 @@ def create_menu_template(template_type):
         f"Жиры {grams_str}",
         f"Углеводы {grams_str}",
         "Время приготовления (в минутах)",
-        "Изображение блюда"
+        image_header
     ]
 
-    wb = openpyxl.Workbook()
-    ws = wb.active
+    ws = wb.create_sheet(title=sheet_title)
 
     for col_num, header in enumerate(common_headers, 1):
         cell = ws.cell(row=1, column=col_num, value=header)
@@ -67,4 +69,15 @@ def create_menu_template(template_type):
     for row_num in range(2, 101):
         ws.row_dimensions[row_num].height = image_row_height
 
-    wb.save(filename)
+
+def create_menu_template():
+    wb = openpyxl.Workbook()
+    wb.remove(wb.active)
+
+    _create_menu_part_template(TableTemplate.dishes, wb)
+    _create_menu_part_template(TableTemplate.drinks, wb)
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    result_path = os.path.join(current_dir, "menu_template.xlsx")
+    wb.save(result_path)
+

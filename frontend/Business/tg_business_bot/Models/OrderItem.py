@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
-from Models.Dish import Dish
+from tg_business_bot.Models.Dish import Dish
 
 
 class OrderItem(BaseModel):

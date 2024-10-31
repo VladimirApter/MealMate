@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-from Models.Dish import Dish
+from tg_business_bot.Models.Dish import Dish
 
 
 class Category(BaseModel):
