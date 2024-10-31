@@ -66,107 +66,20 @@
         <div id="popup-weight" class="weight"></div>
         <div id="popup-full-desc" class="desc"></div>
     </div>
-    
 </div>
 
-<script>
-const addButton = document.querySelectorAll('.add-button');
+<div class="cart">
+    <h2>Корзина</h2>
+    <div id="cart-items">
+        <!-- Сюда будут добавляться выбранные блюда -->
+    </div>
+    <div id="cart-total">
+        <strong>Итого:</strong> <span id="total-price">0</span> ₽
+    </div>
+    <button id="order-button" onclick="placeOrder()">Заказать</button>
+</div>
 
-addButton.forEach(button => {
-  button.addEventListener('click', () => {
-    const currentCount = parseInt(button.getAttribute('data-count'), 10);
-    const newCount = currentCount + 1;
-    
-    const div = document.createElement('div');
-    div.className = 'add-button';
-    div.setAttribute('data-item-id', button.getAttribute('data-item-id'));
-    div.setAttribute('data-count', newCount);
-    
-    div.innerHTML = `
-    <span class="action1" onclick="minus('${button.getAttribute('data-item-id')}')">-</span>
-    <span class="text">${newCount}</span>
-    <span class="action1" onclick="plus('${button.getAttribute('data-item-id')}')">+</span>`;
-    
-    button.replaceWith(div);
-  });
-});
-
-function plus(id) {
-    const button = document.querySelector(`.add-button[data-item-id="${id}"]`);
-    if (button) {
-        const currentCount = parseInt(button.getAttribute('data-count'), 10);
-        const newCount = currentCount + 1;
-        button.setAttribute('data-count', newCount);
-        button.querySelector('span:nth-child(2)').textContent = newCount;
-        console.log(`Plus: New count for item ${id} is ${newCount}`); 
-    }
-}
-
-function minus(id) {
-    const button = document.querySelector(`.add-button[data-item-id="${id}"]`);
-    if (button) {
-        const currentCount = parseInt(button.getAttribute('data-count'), 10);
-        const newCount = currentCount - 1;
-        if (newCount === 0) {
-            const originalButton = document.createElement('button');
-            originalButton.className = 'add-button';
-            originalButton.setAttribute('data-item-id', button.getAttribute('data-item-id'));
-            originalButton.setAttribute('data-count', '0');
-            originalButton.innerHTML = `
-                <span class="plus">+</span>
-                <span class="text">Добавить</span>
-            `;
-            originalButton.addEventListener('click', () => {
-                const currentCount = parseInt(originalButton.getAttribute('data-count'), 10);
-                const newCount = currentCount + 1;
-                
-                const div = document.createElement('div');
-                div.className = 'add-button';
-                div.setAttribute('data-item-id', originalButton.getAttribute('data-item-id'));
-                div.setAttribute('data-count', newCount);
-                
-                div.innerHTML = `
-                <span class="action1" onclick="minus('${originalButton.getAttribute('data-item-id')}')">-</span>
-                <span class="text">${newCount}</span>
-                <span class="action1" onclick="plus('${originalButton.getAttribute('data-item-id')}')">+</span>`;
-                
-                originalButton.replaceWith(div);
-            });
-            button.replaceWith(originalButton);
-        } else {
-            button.setAttribute('data-count', newCount);
-            button.querySelector('span:nth-child(2)').textContent = newCount; 
-        }
-    }
-}
-
-function handleCellClick(event, cellElement) {
-    if (!event.target.closest('.add-button')) {
-        const cellData = JSON.parse(cellElement.getAttribute('data-cell'));
-        showPopup(cellData);
-    }
-}
-
-function showPopup(cellData) {
-    const popup = document.getElementById('popup');
-    const popupImage = document.getElementById('popup-image');
-    const popupName = document.getElementById('popup-desc');
-    const popupCost = document.getElementById('popup-cost')
-    const popupDesc = document.getElementById('popup-full-desc')
-    const popupWeight = document.getElementById('popup-weight')
-    popupImage.src = cellData.image;
-    popupCost.textContent = cellData.price + "₽";
-    popupName.textContent = cellData.name;
-    popupDesc.textContent = cellData.desc;
-    popupWeight.textContent = cellData.weight + "г";
-    popup.style.display = 'block';
-}
-
-function hidePopup() {
-    const popup = document.getElementById('popup');
-    popup.style.display = 'none';
-}
-</script>
+<script src="/js/order.js"></script>
 
 </body>
 </html>

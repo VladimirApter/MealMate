@@ -1,6 +1,8 @@
+using System.Text.Json;
 using host.DataBaseAccess;
 using host.Models;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace site.Controllers;
 
@@ -17,5 +19,19 @@ public class RestaurantController : Controller
             return NotFound();
         
         return View("RestaurantDetails", restaurant);
+    }
+    
+    [HttpPost("placeOrder")]
+    public IActionResult PlaceOrder([FromBody] Order order)
+    {
+        Console.WriteLine("Received order:");
+
+        foreach (var item in order.OrderItems)
+        {
+            Console.WriteLine($"Dish ID: {item.DishId}, Count: {item.Count}, Price: {item.Price}");
+        }
+
+        // Возвращаем ID заказа (в данном случае, это просто пример)
+        return Ok(new { id = order.Id });
     }
 }

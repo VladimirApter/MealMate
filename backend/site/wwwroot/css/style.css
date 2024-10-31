@@ -181,3 +181,24 @@ body {
     font-size: 50px;
     color: #4c4c4c;
 }
+
+.cart {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+#cart-items {
+    margin-top: 10px;
+}
+
+#cart-total {
+    margin-top: 20px;
+    font-size: 18px;
+}
