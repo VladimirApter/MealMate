@@ -14,7 +14,8 @@ class Drink(MenuItem):
                  name: str,
                  description: str,
                  cooking_time_minutes: int,
-                 id: Optional[int] = None):
+                 id: Optional[int] = None,
+                 **kwargs):
         super().__init__(
             id=id,
             category_id=category_id,
@@ -22,5 +23,6 @@ class Drink(MenuItem):
             name=name,
             description=description,
             cooking_time_minutes=cooking_time_minutes,
-            weight=volume
+            volume=volume,
+            **kwargs
         )
