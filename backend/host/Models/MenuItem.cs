@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 
 namespace host.Models;
-
+[JsonConverter(typeof(MenuItemConverter))]
 public class MenuItem
 {
     public int? Id { get; set; }

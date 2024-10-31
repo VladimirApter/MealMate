@@ -4,7 +4,7 @@ namespace host.Models;
 
 public class Drink : MenuItem, ITableDataBase
 {
-    public double Volume;
+    public double Volume { get; set; }
     
     public Drink(int? id, 
         double price,
