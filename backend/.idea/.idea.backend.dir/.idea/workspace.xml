@@ -12,12 +12,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfc80ca0-845b-4a85-b989-2cc119720e19" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/exel_tables_work/create_table_template.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/parse_table.py" afterDir="false" />
+    <list default="true" id="cfc80ca0-845b-4a85-b989-2cc119720e19" name="Changes" comment="Add notificationGetter id in site example">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/.idea/Business.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/.idea/Business.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/DataValidationAndPost.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/DataValidationAndPost.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Restaurant.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Restaurant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Registration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/exel_tables_work/create_table_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/excel_tables_work/create_table_template.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/exel_tables_work/parse_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/excel_tables_work/parse_table.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="90578c7cfda9493e7ffb9cb2f01fcb11918010a7" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -50,12 +51,17 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/211e6f3b24fa438a92f1815153647ce2c8f908/87/f91f80f8/ValueTuple`2.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Category.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/DataBaseAccess/CategoriesAccess.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/DataBaseAccess/DishesAccess.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/DataBaseAccess/DishesAccess.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/DataBaseAccess/DishesAccess.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/DataBaseAccess/DishesAccess.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/DataBaseAccess/DishesAccess.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Dish.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Order.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Order.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/Dish.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/OrderItem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/host/Models/OrderItem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/admin/Desktop/fiit/MealMate/backend/site/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -69,6 +75,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.host: http.executor": "Run",
+    ".NET Launch Settings Profile.site: http.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -193,7 +200,7 @@
       <workItem from="1729511124526" duration="2914000" />
       <workItem from="1729855450109" duration="9324000" />
       <workItem from="1730203723909" duration="1592000" />
-      <workItem from="1730265401172" duration="8264000" />
+      <workItem from="1730265401172" duration="23571000" />
     </task>
     <task id="LOCAL-00001" summary="Add reference to host">
       <option name="closed" value="true" />
@@ -227,7 +234,23 @@
       <option name="project" value="LOCAL" />
       <updated>1729925076036</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Adjust api fixes from model-editing">
+      <option name="closed" value="true" />
+      <created>1730300426312</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730300426312</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add notificationGetter id in site example">
+      <option name="closed" value="true" />
+      <created>1730352290243</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730352290243</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,7 +290,9 @@
     <MESSAGE value="Relocate database folder, update gitignore, fix libraries references" />
     <MESSAGE value="Change notification getter controller url" />
     <MESSAGE value="Add MenuItem" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add MenuItem" />
+    <MESSAGE value="Adjust api fixes from model-editing" />
+    <MESSAGE value="Add notificationGetter id in site example" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add notificationGetter id in site example" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

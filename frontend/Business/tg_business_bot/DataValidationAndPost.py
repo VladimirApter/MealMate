@@ -1,3 +1,4 @@
+import os
 import re
 from telebot import types
 
@@ -5,8 +6,10 @@ import Geocoder
 from Config import *
 from ApiClient import ApiClient
 from Models.Restaurant import Restaurant
+from Models.Menu import Menu
 from Models.Owner import Owner
 from Models.NotificationGetter import NotificationGetter
+from excel_tables_work.parse_table import parse_menu_from_excel
 
 
 def _get_yes_no_markup():
@@ -128,7 +131,7 @@ def validate_and_post_notification_getter(message: types.Message, restaurant: Re
         api_client = ApiClient(NotificationGetter)
         api_client.post(new_notification_getter)
 
-    bot.send_message(message.chat.id, f'Получатель уведомлений сохранен', reply_markup=types.ReplyKeyboardMarkup())
+    bot.send_message(message.chat.id, f'Получатель уведомлений сохранен', reply_markup=types.ReplyKeyboardRemove())
 
     if func_to_return_after_post is not None:
         func_to_return_after_post(message, restaurant)
@@ -136,4 +139,35 @@ def validate_and_post_notification_getter(message: types.Message, restaurant: Re
 
 
 def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
-    pass
+    if not message.document:
+        bot.send_message(message.chat.id, 'Заполните и отправьте документ, который я высылал вам ранее')
+        bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
+        return
+    elif message.document.mime_type != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        bot.reply_to(message, 'Кажется это не эксель документ, заполните и отправьте документ, который я высылал вам ранее')
+        bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
+        return
+
+    file_info = bot.get_file(message.document.file_id)
+    downloaded_file = bot.download_file(file_info.file_path)
+
+    temp_excel_file_path = os.path.join(current_dir, "excel_tables_work", f'{message.chat.id}_temp.xlsx')
+    with open(temp_excel_file_path, 'wb') as new_file:
+        new_file.write(downloaded_file)
+
+    menu = Menu(restaurant_id=restaurant.id)
+    menu = parse_menu_from_excel(temp_excel_file_path, menu)
+    os.remove(temp_excel_file_path)
+
+    restaurant.menu = menu
+
+    if not is_registration:
+        api_client = ApiClient(Menu)
+        api_client.post(menu)
+
+    bot.send_message(message.chat.id, "Меню сохранено", reply_markup=types.ReplyKeyboardRemove())
+
+    if func_to_return_after_post is not None:
+        func_to_return_after_post(message, restaurant)
+        return
+

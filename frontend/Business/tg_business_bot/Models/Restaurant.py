@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-from Models.NotificationGetter import NotificationGetter
-from Models.Menu import Menu
-from Models.Table import Table
+from tg_business_bot.Models.NotificationGetter import NotificationGetter
+from tg_business_bot.Models.Menu import Menu
+from tg_business_bot.Models.Table import Table
 
 
 class Restaurant(BaseModel):

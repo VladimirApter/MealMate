@@ -1,6 +1,8 @@
+from time import sleep
+
 from DataValidationAndPost import *
 from RestaurantUpdate import get_notification_getter_markup
-
+from Config import current_dir
 
 def register_commands():
     @bot.message_handler(commands=['register'])
@@ -47,7 +49,20 @@ def register_notification_getter(message: types.Message, restaurant: Restaurant)
 
 
 def register_restaurant_menu(message: types.Message, restaurant: Restaurant):
-    restaurant_register_finish(message, restaurant)
+    bot.send_message(message.chat.id, 'Перейдем к созданию меню. Сейчас я '
+                                      'вышлю файл, в нем есть 2 эксель '
+                                      'таблицы (Блюда и Напитки), которые '
+                                      'нужно заполнить')
+
+    set_pause_between_messages(message, 1)
+
+    exel_tables_dir = os.path.join(current_dir, "excel_tables_work")
+    menu_template = os.path.join(exel_tables_dir, "menu_template.xlsx")
+
+    with open(menu_template, 'rb') as file:
+        bot.send_document(message.chat.id, file, caption="Файл с шаблонами таблиц, заполните его в соответствии с Вашим меню и отправьте мне")
+
+    bot.register_next_step_handler(message, validate_and_post_menu, restaurant, restaurant_register_finish, True)
 
 
 def restaurant_register_finish(message: types.Message, restaurant: Restaurant):
@@ -56,3 +71,7 @@ def restaurant_register_finish(message: types.Message, restaurant: Restaurant):
 
     bot.send_message(message.chat.id, "Ресторан добавлен!")
 
+
+def set_pause_between_messages(message, sleep_time):
+    bot.send_chat_action(message.chat.id, 'typing')
+    sleep(sleep_time)
