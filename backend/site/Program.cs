@@ -30,7 +30,7 @@ app.UseSwaggerUI(c =>
 app.MapControllers();
 
 var restaurant = new Restaurant(null, "ShaurmaEKB", "fonvizina", null, null, 2, 1);
-restaurant.NotificationGetter = new NotificationGetter("yura", null, 2);
+restaurant.NotificationGetter = new NotificationGetter("yura", 1488, 2);
 var listCategory = new List<Category>()
     { new Category("sok", 2, 1, new List<Dish>() { new Dish(null, 20, 100, "sopli", "vovini", 5, 1) }) };
 restaurant.Menu = new Menu(null, listCategory, 2);
