@@ -10,6 +10,9 @@ from tg_business_bot.ApiClient import ApiClient
 def parse_menu_from_excel(file_path: str, menu: Menu) -> Menu:
     wb = openpyxl.load_workbook(file_path)
 
+    menu_api_client = ApiClient(Menu)
+    menu.id = menu_api_client.post(menu)
+
     category_api_client = ApiClient(Category)
 
     categories = {}
@@ -21,7 +24,7 @@ def parse_menu_from_excel(file_path: str, menu: Menu) -> Menu:
         is_drinks = sheet_name == "Напитки"
         is_dishes = sheet_name == "Блюда"
 
-        for row in ws.iter_rows(min_row=2, values_only=True):
+        for row in ws.iter_rows(min_row=3, values_only=True):
             row_has_info = any(row[1:12])
             if not row_has_info:
                 continue
@@ -34,7 +37,7 @@ def parse_menu_from_excel(file_path: str, menu: Menu) -> Menu:
             cooking_time_minutes = row[10]
 
             if category_name not in categories:
-                category = Category(menu_id=menu.restaurant_id, name=category_name)
+                category = Category(menu_id=menu.id, name=category_name)
                 category.id = category_api_client.post(category)
                 categories[category_name] = category
 

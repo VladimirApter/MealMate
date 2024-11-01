@@ -12,14 +12,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfc80ca0-845b-4a85-b989-2cc119720e19" name="Changes" comment="Add notificationGetter id in site example">
+    <list default="true" id="cfc80ca0-845b-4a85-b989-2cc119720e19" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.backend.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/DataValidationAndPost.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/DataValidationAndPost.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Restaurant.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Models/Restaurant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/Registration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/exel_tables_work/create_table_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/excel_tables_work/create_table_template.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/exel_tables_work/parse_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/excel_tables_work/parse_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/excel_tables_work/parse_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/Business/tg_business_bot/excel_tables_work/parse_table.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +89,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.host: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.site: http">
     <configuration name="host: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/host/host.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -200,7 +195,7 @@
       <workItem from="1729511124526" duration="2914000" />
       <workItem from="1729855450109" duration="9324000" />
       <workItem from="1730203723909" duration="1592000" />
-      <workItem from="1730265401172" duration="23571000" />
+      <workItem from="1730265401172" duration="28982000" />
     </task>
     <task id="LOCAL-00001" summary="Add reference to host">
       <option name="closed" value="true" />
@@ -309,6 +304,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/site/Controllers/RestaurantController.cs</url>
+          <line>15</line>
+          <properties documentPath="C:\Users\admin\Desktop\fiit\MealMate\backend\site\Controllers\RestaurantController.cs" containingFunctionPresentation="Method 'GetRestaurant'">
+            <startOffsets>
+              <option value="303" />
+            </startOffsets>
+            <endOffsets>
+              <option value="347" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
