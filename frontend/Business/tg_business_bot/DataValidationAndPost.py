@@ -1,5 +1,5 @@
-import os
 import re
+import pydantic_core
 from telebot import types
 
 import Geocoder
@@ -10,6 +10,12 @@ from Models.Menu import Menu
 from Models.Owner import Owner
 from Models.NotificationGetter import NotificationGetter
 from excel_tables_work.parse_table import parse_menu_from_excel
+from excel_tables_work.validate_menu_template import *
+
+
+INCORRECT_EXCEL_TABLE_MESSAGE = "Файл заполнен некорректно. Попробуйте еще " \
+                                "раз заполнить шаблон, который я высылал вам " \
+                                "ранее, и отправьте корректную версию файла"
 
 
 def _get_yes_no_markup():
@@ -155,8 +161,31 @@ def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_
     with open(temp_excel_file_path, 'wb') as new_file:
         new_file.write(downloaded_file)
 
+    try:
+        valid, invalid_cells_dishes, invalid_cells_drinks = validate_menu_template(temp_excel_file_path)
+    except:
+        bot.send_message(message.chat.id, "Пожалуйста, заполните именно тот шаблон, который я высылал вам ранее. Я могу обработать только его", reply_markup=types.ReplyKeyboardRemove())
+        bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
+        os.remove(temp_excel_file_path)
+        return
+
+    if not valid:
+        text = get_validation_error_messages(invalid_cells_dishes, invalid_cells_drinks)
+        bot.send_message(message.chat.id, f"{text}\n\nПожалуйста, исправьте ошибки и отправьте корректную версию файла",
+                         reply_markup=types.ReplyKeyboardRemove())
+        bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
+        os.remove(temp_excel_file_path)
+        return
+
     menu = Menu(restaurant_id=restaurant.id)
-    menu = parse_menu_from_excel(temp_excel_file_path, menu)
+    try:
+        menu = parse_menu_from_excel(temp_excel_file_path, menu)
+    except pydantic_core._pydantic_core.ValidationError:
+        bot.send_message(message.chat.id, INCORRECT_EXCEL_TABLE_MESSAGE, reply_markup=types.ReplyKeyboardRemove())
+        bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
+        os.remove(temp_excel_file_path)
+        return
+
     os.remove(temp_excel_file_path)
 
     restaurant.menu = menu
@@ -170,4 +199,3 @@ def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_
     if func_to_return_after_post is not None:
         func_to_return_after_post(message, restaurant)
         return
-
