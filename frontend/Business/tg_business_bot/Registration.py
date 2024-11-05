@@ -1,8 +1,9 @@
 from time import sleep
 
 from DataValidationAndPost import *
-from RestaurantUpdate import get_notification_getter_markup
+from Update import get_notification_getter_markup
 from Config import current_dir
+
 
 def register_commands():
     @bot.message_handler(commands=['register'])
@@ -23,7 +24,7 @@ def register_commands():
         owner = api_client.get(message.chat.id)
 
         if owner is None:
-            bot.send_message("Для начала вам нужно зарегестрироваться, используйте /register")
+            bot.send_message(message.chat.id, "Для начала вам нужно зарегестрироваться, используйте /register")
             return
 
         restaurant = Restaurant(address='', name='', owner_id=owner.id)
@@ -49,18 +50,12 @@ def register_notification_getter(message: types.Message, restaurant: Restaurant)
 
 
 def register_restaurant_menu(message: types.Message, restaurant: Restaurant):
-    bot.send_message(message.chat.id, 'Перейдем к созданию меню. Сейчас я '
-                                      'вышлю файл, в нем есть 2 эксель '
-                                      'таблицы (Блюда и Напитки), которые '
-                                      'нужно заполнить')
+    bot.send_message(message.chat.id, 'Перейдем к созданию меню')
 
-    set_pause_between_messages(message, 1)
-
-    exel_tables_dir = os.path.join(current_dir, "excel_tables_work")
-    menu_template = os.path.join(exel_tables_dir, "menu_template.xlsx")
-
-    with open(menu_template, 'rb') as file:
-        bot.send_document(message.chat.id, file, caption="Файл с шаблонами таблиц, заполните его в соответствии с Вашим меню и отправьте мне")
+    menu_template_path = os.path.join(current_dir, "excel_tables_work", "menu_template.xlsx")
+    with open(menu_template_path, 'rb') as file:
+        bot.send_document(message.chat.id, file, caption="Этот файл - шаблон меню, в нем есть две таблицы: Блюда и Напитки. "
+                                                         "Заполните таблицы в соответствии с Вашим меню и отправьте мне файл")
 
     bot.register_next_step_handler(message, validate_and_post_menu, restaurant, restaurant_register_finish, True)
 

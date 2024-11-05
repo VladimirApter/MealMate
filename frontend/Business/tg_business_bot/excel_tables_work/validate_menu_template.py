@@ -22,8 +22,6 @@ class InvalidCell:
 
 
 def validate_menu_template(file_path):
-    is_valid = True
-
     wb = openpyxl.load_workbook(file_path)
 
     invalid_cells_dishes = []
@@ -90,14 +88,11 @@ def validate_menu_template(file_path):
             invalid_cells_list.append(empty_table_cell)
 
     if any(cell.error != CellError.EmptyTable for cell in invalid_cells_dishes) \
-            or any(
-        cell.error != CellError.EmptyTable for cell in invalid_cells_drinks):
+            or any(cell.error != CellError.EmptyTable for cell in invalid_cells_drinks):
         is_valid = False
     else:
-        if any(cell.error == CellError.EmptyTable for cell in
-               invalid_cells_dishes) \
-                and any(cell.error == CellError.EmptyTable for cell in
-                        invalid_cells_drinks):
+        if any(cell.error == CellError.EmptyTable for cell in invalid_cells_dishes) \
+                and any(cell.error == CellError.EmptyTable for cell in invalid_cells_drinks):
             is_valid = False
         else:
             is_valid = True

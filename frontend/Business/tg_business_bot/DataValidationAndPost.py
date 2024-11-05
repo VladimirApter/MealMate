@@ -1,5 +1,4 @@
 import re
-import pydantic_core
 from telebot import types
 
 import Geocoder
@@ -119,6 +118,11 @@ def _accept_address(message: types.Message, restaurant: Restaurant, coordinates,
 
 
 def validate_and_post_notification_getter(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
+    if not message.text and message.users_shared is None:
+        bot.send_message(message.chat.id, 'Для выбора нажмите на одну из кнопок ниже')
+        bot.register_next_step_handler(message, validate_and_post_notification_getter, restaurant, func_to_return_after_post, is_registration)
+        return
+
     if message.text == 'назначить себя':
         new_notification_getter = NotificationGetter(restaurant_id=restaurant.id, id=message.chat.id, username=message.from_user.username)
     elif message.users_shared is not None:
@@ -146,11 +150,11 @@ def validate_and_post_notification_getter(message: types.Message, restaurant: Re
 
 def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
     if not message.document:
-        bot.send_message(message.chat.id, 'Заполните и отправьте документ, который я высылал вам ранее')
+        bot.send_message(message.chat.id, 'Заполните и отправьте файл, который я высылал вам ранее')
         bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
         return
     elif message.document.mime_type != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-        bot.reply_to(message, 'Кажется это не эксель документ, заполните и отправьте документ, который я высылал вам ранее')
+        bot.reply_to(message, 'Кажется это не эксель файл, заполните и отправьте файл, который я высылал вам ранее')
         bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
         return
 
@@ -164,7 +168,7 @@ def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_
     try:
         valid, invalid_cells_dishes, invalid_cells_drinks = validate_menu_template(temp_excel_file_path)
     except:
-        bot.send_message(message.chat.id, "Пожалуйста, заполните именно тот шаблон, который я высылал вам ранее. Я могу обработать только его", reply_markup=types.ReplyKeyboardRemove())
+        bot.send_message(message.chat.id, "Пожалуйста, заполните именно тот файл, который я высылал вам ранее. Я могу обработать только его", reply_markup=types.ReplyKeyboardRemove())
         bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
         os.remove(temp_excel_file_path)
         return
@@ -177,18 +181,15 @@ def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_
         os.remove(temp_excel_file_path)
         return
 
-    menu = Menu(restaurant_id=restaurant.id)
-    try:
-        menu = parse_menu_from_excel(temp_excel_file_path, menu)
-    except pydantic_core._pydantic_core.ValidationError:
-        bot.send_message(message.chat.id, INCORRECT_EXCEL_TABLE_MESSAGE, reply_markup=types.ReplyKeyboardRemove())
-        bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
-        os.remove(temp_excel_file_path)
-        return
+    menu = restaurant.menu
+    if menu is None:
+        menu = Menu(restaurant_id=restaurant.id)
+    '''else:
+        api_client = ApiClient(Menu)
+        api_client.delete(menu)'''
+    restaurant.menu = parse_menu_from_excel(temp_excel_file_path, menu)
 
     os.remove(temp_excel_file_path)
-
-    restaurant.menu = menu
 
     if not is_registration:
         api_client = ApiClient(Menu)
