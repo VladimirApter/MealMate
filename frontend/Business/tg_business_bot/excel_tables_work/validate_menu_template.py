@@ -89,12 +89,18 @@ def validate_menu_template(file_path):
         if all_empty:
             invalid_cells_list.append(empty_table_cell)
 
-    if invalid_cells_dishes or invalid_cells_drinks:
+    if any(cell.error != CellError.EmptyTable for cell in invalid_cells_dishes) \
+            or any(
+        cell.error != CellError.EmptyTable for cell in invalid_cells_drinks):
         is_valid = False
-    if empty_table_cell in invalid_cells_dishes or empty_table_cell in invalid_cells_drinks:
-        is_valid = True
-    if empty_table_cell in invalid_cells_dishes and empty_table_cell in invalid_cells_drinks:
-        is_valid = False
+    else:
+        if any(cell.error == CellError.EmptyTable for cell in
+               invalid_cells_dishes) \
+                and any(cell.error == CellError.EmptyTable for cell in
+                        invalid_cells_drinks):
+            is_valid = False
+        else:
+            is_valid = True
 
     return is_valid, invalid_cells_dishes, invalid_cells_drinks
 
