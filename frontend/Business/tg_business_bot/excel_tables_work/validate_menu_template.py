@@ -28,7 +28,7 @@ def validate_menu_template(file_path):
     invalid_cells_drinks = []
 
     def validate_cell(cell, expected_type, allow_empty=False, invalid_cells_list=None):
-        if cell.value is None and expected_type:
+        if cell.value is None:
             if not allow_empty:
                 invalid_cells_list.append(InvalidCell(cell, CellError.RequiredEmpty))
         else:
@@ -39,6 +39,9 @@ def validate_menu_template(file_path):
                 if not isinstance(cell.value, (int, float)):
                     invalid_cells_list.append(InvalidCell(cell, CellError.InvalidType, expected_type))
                 elif cell.value < 0:
+                    invalid_cells_list.append(InvalidCell(cell, CellError.InvalidType, expected_type))
+            elif expected_type == "image":
+                if cell.value != "#VALUE!":
                     invalid_cells_list.append(InvalidCell(cell, CellError.InvalidType, expected_type))
 
     column_types = [
@@ -52,6 +55,7 @@ def validate_menu_template(file_path):
         ("number", True),   # Жиры
         ("number", True),   # Углеводы
         ("number", False),  # Время приготовления
+        ("image", True)     # Изображение
     ]
 
     for sheet_name, invalid_cells_list in [("Блюда", invalid_cells_dishes), ("Напитки", invalid_cells_drinks)]:
@@ -121,6 +125,8 @@ def get_validation_error_messages(invalid_cells_dishes, invalid_cells_drinks):
             return "строка"
         elif expected_type == "number":
             return "число"
+        elif expected_type == "image":
+            return "изображение в ячейке"
         return expected_type
 
     dishes_required_empty, dishes_invalid_type, dishes_empty_table = get_error_messages(invalid_cells_dishes)

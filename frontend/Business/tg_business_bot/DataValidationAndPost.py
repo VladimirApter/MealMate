@@ -134,9 +134,6 @@ def validate_and_post_notification_getter(message: types.Message, restaurant: Re
         bot.register_next_step_handler(message, validate_and_post_notification_getter, restaurant, func_to_return_after_post, is_registration)
         return
 
-    if restaurant.notification_getter is None or restaurant.notification_getter.id != new_notification_getter.id:
-        restaurant.notification_getter = new_notification_getter
-
     if not is_registration:
         api_client = ApiClient(NotificationGetter)
         api_client.post(new_notification_getter)
@@ -149,15 +146,19 @@ def validate_and_post_notification_getter(message: types.Message, restaurant: Re
 
 
 def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
+    bot.send_chat_action(message.chat.id, 'typing')
+
     if not message.document:
         bot.send_message(message.chat.id, 'Заполните и отправьте файл, который я высылал вам ранее')
         bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
         return
     elif message.document.mime_type != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-        bot.reply_to(message, 'Кажется это не эксель файл, заполните и отправьте файл, который я высылал вам ранее')
+        bot.reply_to(message, 'Кажется это не эксель файл, заполните и отправьте именно тот файл, который я высылал вам ранее')
         bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
         return
 
+    bot.send_message(message.chat.id, "Скачиваю файл...")
+    bot.send_chat_action(message.chat.id, 'typing')
     file_info = bot.get_file(message.document.file_id)
     downloaded_file = bot.download_file(file_info.file_path)
 
@@ -184,9 +185,6 @@ def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_
     menu = restaurant.menu
     if menu is None:
         menu = Menu(restaurant_id=restaurant.id)
-    '''else:
-        api_client = ApiClient(Menu)
-        api_client.delete(menu)'''
     restaurant.menu = parse_menu_from_excel(temp_excel_file_path, menu)
 
     os.remove(temp_excel_file_path)

@@ -11,3 +11,4 @@ geocoder_api_key = "47ff557b-d013-4f66-8d62-11de6da89ad1"
 api_base_url = "http://localhost:5051"
 
 current_dir = os.getcwd()
+database_dir = os.path.join('..', '..', '..', 'backend', 'host', 'DataBase')

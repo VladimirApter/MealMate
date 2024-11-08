@@ -69,9 +69,15 @@ def get_update_part(message: types.Message, restaurant: Restaurant):
         bot.register_next_step_handler(message, validate_and_post_address, restaurant)
         return
     elif part == 'меню':
+        bot.send_chat_action(message.chat.id, 'typing')
+
         menu_template_path = os.path.join(current_dir, "excel_tables_work", "menu_template.xlsx")
         filled_menu_temp_path = os.path.join(f'excel_tables_work', f'{hash(message.chat.id) + hash(time())}.xlsx')
         fill_menu_template(menu_template_path, filled_menu_temp_path, restaurant.menu)
+
+        bot.send_message(message.chat.id, "Отправляю текущую версию меню...")
+        bot.send_chat_action(message.chat.id, 'typing')
+
         with open(filled_menu_temp_path, 'rb') as file:
             bot.send_document(message.chat.id, file,
                               caption="В этом файле текущая версия вашего "
