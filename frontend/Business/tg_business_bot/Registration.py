@@ -54,16 +54,18 @@ def register_restaurant_menu(message: types.Message, restaurant: Restaurant):
 
     menu_template_path = os.path.join(current_dir, "excel_tables_work", "menu_template.xlsx")
     with open(menu_template_path, 'rb') as file:
-        bot.send_document(message.chat.id, file, caption="Этот файл - шаблон меню, в нем есть две таблицы: Блюда и Напитки. "
+        bot.send_document(message.chat.id, file, visible_file_name="шаблон_меню.xlsx", caption="Этот файл - шаблон меню, в нем есть две таблицы: Блюда и Напитки. "
                                                          "Заполните таблицы в соответствии с Вашим меню и отправьте мне файл")
 
-    bot.register_next_step_handler(message, validate_and_post_menu, restaurant, restaurant_register_finish, True)
+    bot.register_next_step_handler(message, validate_and_post_menu, restaurant, register_tables, True)
+
+
+def register_tables(message: types.Message, restaurant: Restaurant):
+    bot.send_message(message.chat.id, 'Сколько столиков в вашем ресторане?')
+    bot.register_next_step_handler(message, validate_and_post_tables, restaurant, restaurant_register_finish, True)
 
 
 def restaurant_register_finish(message: types.Message, restaurant: Restaurant):
-    api_client = ApiClient(Restaurant)
-    api_client.post(restaurant)
-
     bot.send_message(message.chat.id, "Ресторан добавлен!")
 
 
