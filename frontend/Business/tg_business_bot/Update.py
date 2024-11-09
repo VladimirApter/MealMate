@@ -79,7 +79,7 @@ def get_update_part(message: types.Message, restaurant: Restaurant):
         bot.send_chat_action(message.chat.id, 'typing')
 
         with open(filled_menu_temp_path, 'rb') as file:
-            bot.send_document(message.chat.id, file,
+            bot.send_document(message.chat.id, file, visible_file_name="меню.xlsx",
                               caption="В этом файле текущая версия вашего "
                                       "меню. Отредактируйте его и отправьте "
                                       "мне новую версию")
@@ -87,7 +87,8 @@ def get_update_part(message: types.Message, restaurant: Restaurant):
         bot.register_next_step_handler(message, validate_and_post_menu, restaurant)
         return
     elif part == 'столы':
-        pass
+        bot.send_message(message.chat.id, 'Введите новое число столов')
+        bot.register_next_step_handler(message, validate_and_post_tables, restaurant)
     elif part == 'название':
         bot.send_message(message.chat.id, 'Введите название ресторана')
         bot.register_next_step_handler(message, validate_and_post_restaurant_name, restaurant)

@@ -8,6 +8,7 @@ from Models.Restaurant import Restaurant
 from Models.Menu import Menu
 from Models.Owner import Owner
 from Models.NotificationGetter import NotificationGetter
+from Models.Table import Table
 from excel_tables_work.parse_table import parse_menu_from_excel
 from excel_tables_work.validate_menu_template import *
 
@@ -24,6 +25,11 @@ def _get_yes_no_markup():
 
 
 def validate_and_post_restaurant_name(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
+    if not message.text:
+        bot.send_message(message.chat.id, 'В вашем сообщении нет текста, попробуйте еще раз')
+        bot.register_next_step_handler(message, validate_and_post_restaurant_name, restaurant, func_to_return_after_post, is_registration)
+        return
+
     name = message.text.strip()
 
     api_client = ApiClient(Owner)
@@ -55,7 +61,13 @@ def validate_and_post_restaurant_name(message: types.Message, restaurant: Restau
 
 
 def validate_and_post_address(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
-    address = message.text
+    if not message.text:
+        bot.send_message(message.chat.id, 'В вашем сообщении нет текста, попробуйте еще раз')
+        bot.register_next_step_handler(message, validate_and_post_address, restaurant, func_to_return_after_post, is_registration)
+        return
+
+    address = message.text.strip()
+
     parsed_coordinates = _parse_coordinates(address)
     if parsed_coordinates is not None:
         coordinates = parsed_coordinates
@@ -118,12 +130,7 @@ def _accept_address(message: types.Message, restaurant: Restaurant, coordinates,
 
 
 def validate_and_post_notification_getter(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
-    if not message.text and message.users_shared is None:
-        bot.send_message(message.chat.id, 'Для выбора нажмите на одну из кнопок ниже')
-        bot.register_next_step_handler(message, validate_and_post_notification_getter, restaurant, func_to_return_after_post, is_registration)
-        return
-
-    if message.text == 'назначить себя':
+    if message.text is not None and message.text == 'назначить себя':
         new_notification_getter = NotificationGetter(restaurant_id=restaurant.id, id=message.chat.id, username=message.from_user.username)
     elif message.users_shared is not None:
         user = message.users_shared.users[0]
@@ -134,9 +141,10 @@ def validate_and_post_notification_getter(message: types.Message, restaurant: Re
         bot.register_next_step_handler(message, validate_and_post_notification_getter, restaurant, func_to_return_after_post, is_registration)
         return
 
-    if not is_registration:
-        api_client = ApiClient(NotificationGetter)
-        api_client.post(new_notification_getter)
+    restaurant.notification_getter = new_notification_getter
+
+    api_client = ApiClient(NotificationGetter)
+    api_client.post(restaurant.notification_getter)
 
     bot.send_message(message.chat.id, f'Получатель уведомлений сохранен', reply_markup=types.ReplyKeyboardRemove())
 
@@ -189,12 +197,62 @@ def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_
 
     os.remove(temp_excel_file_path)
 
-    if not is_registration:
-        api_client = ApiClient(Menu)
-        api_client.post(menu)
+    api_client = ApiClient(Menu)
+    api_client.post(restaurant.menu)
 
     bot.send_message(message.chat.id, "Меню сохранено", reply_markup=types.ReplyKeyboardRemove())
 
     if func_to_return_after_post is not None:
         func_to_return_after_post(message, restaurant)
         return
+
+
+def validate_and_post_tables(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
+    valid = False
+    tables_count = 0
+    try:
+        tables_count = int(message.text.strip(' ,!.стол(ов/а)'))
+    except (ValueError, AttributeError):
+        pass
+    else:
+        if 1 <= tables_count:
+            valid = True
+
+    if not valid:
+        bot.send_message(message.chat.id, 'Количество столов должно быть положительным числом, попробуйте еще раз', reply_markup=types.ReplyKeyboardRemove())
+        bot.register_next_step_handler(message, validate_and_post_tables, restaurant, func_to_return_after_post, is_registration)
+        return
+
+    api_client = ApiClient(Table)
+
+    current_tables_count = 0
+    if restaurant.tables is None:
+        restaurant.tables = []
+    else:
+        current_tables_count = len(restaurant.tables)
+
+    if tables_count == current_tables_count:
+        bot.send_message(message.chat.id, f"Количество столов не изменилось, сейчас их {current_tables_count}", reply_markup=types.ReplyKeyboardRemove())
+    elif tables_count > current_tables_count:
+        for i in range(tables_count - current_tables_count):
+            table = Table(restaurant_id=restaurant.id, number=(current_tables_count + i + 1))
+            table_id = api_client.post(table)  # generate qr while post
+            table = api_client.get(table_id)  # get table with qr
+            restaurant.tables.append(table)
+            '''[[[[[[[[[[[[[[[[[[[[[[[[[[отправить qr коды добавленных столов]]]]]]]]]]]]]]]]]]]]]]]]]]'''
+            bot.send_message(message.chat.id, f"qr код стола номер {table.number}: <qr code>")
+    else:
+        sorted_tables = sorted(restaurant.tables, key=lambda table: table.number, reverse=True)
+        tables_to_delete = sorted_tables[:current_tables_count - tables_count]
+        for table in tables_to_delete:
+            #api_client.delete(table.id)
+            pass
+        if len(tables_to_delete) > 1:
+            bot.send_message(message.chat.id, f"Удалены столы с номерами: {', '.join([str(table.number) for table in tables_to_delete[::-1]])}. Их qr коды больше не действительны")
+        else:
+            bot.send_message(message.chat.id, f"Стол номер {tables_to_delete[0].number} удален. Его qr код больше не действителен")
+
+    if func_to_return_after_post is not None:
+        func_to_return_after_post(message, restaurant)
+        return
+
