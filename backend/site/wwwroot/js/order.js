@@ -5,15 +5,7 @@ addButton.forEach(button => {
         const currentCount = parseInt(button.getAttribute('data-count'), 10);
         const newCount = currentCount + 1;
 
-        const div = document.createElement('div');
-        div.className = 'add-button';
-        div.setAttribute('data-item-id', button.getAttribute('data-item-id'));
-        div.setAttribute('data-count', newCount);
-
-        div.innerHTML = `
-            <span class="action1" onclick="minus('${button.getAttribute('data-item-id')}')">-</span>
-            <span class="text">${newCount}</span>
-            <span class="action1" onclick="plus('${button.getAttribute('data-item-id')}')">+</span>`;
+        const div = createButtonDiv(button, newCount);
 
         const itemId = button.getAttribute('data-item-id');
         const itemName = button.closest('.cell').querySelector('.desc').textContent;
@@ -25,14 +17,26 @@ addButton.forEach(button => {
     });
 });
 
+function createButtonDiv(button, newCount) {
+    const div = document.createElement('div');
+    div.className = 'add-button';
+    div.setAttribute('data-item-id', button.getAttribute('data-item-id'));
+    div.setAttribute('data-count', newCount);
+
+    div.innerHTML = `
+        <span class="action1" onclick="minus('${button.getAttribute('data-item-id')}')">-</span>
+        <span class="text">${newCount}</span>
+        <span class="action1" onclick="plus('${button.getAttribute('data-item-id')}')">+</span>`;
+
+    return div;
+}
+
 function plus(id) {
     const button = document.querySelector(`.add-button[data-item-id="${id}"]`);
     if (button) {
         const currentCount = parseInt(button.getAttribute('data-count'), 10);
         const newCount = currentCount + 1;
-        button.setAttribute('data-count', newCount);
-        button.querySelector('span:nth-child(2)').textContent = newCount;
-        console.log(`Plus: New count for item ${id} is ${newCount}`);
+        updateButtonCount(button, newCount);
 
         const itemId = button.getAttribute('data-item-id');
         const itemName = button.closest('.cell').querySelector('.desc').textContent;
@@ -46,46 +50,55 @@ function minus(id) {
     if (button) {
         const currentCount = parseInt(button.getAttribute('data-count'), 10);
         const newCount = currentCount - 1;
-        if (newCount === 0) {
-            const originalButton = document.createElement('button');
-            originalButton.className = 'add-button';
-            originalButton.setAttribute('data-item-id', button.getAttribute('data-item-id'));
-            originalButton.setAttribute('data-count', '0');
-            originalButton.innerHTML = `
-                <span class="plus">+</span>
-                <span class="text">Добавить</span>
-            `;
-            originalButton.addEventListener('click', () => {
-                const currentCount = parseInt(originalButton.getAttribute('data-count'), 10);
-                const newCount = currentCount + 1;
-
-                const div = document.createElement('div');
-                div.className = 'add-button';
-                div.setAttribute('data-item-id', originalButton.getAttribute('data-item-id'));
-                div.setAttribute('data-count', newCount);
-
-                div.innerHTML = `
-                <span class="action1" onclick="minus('${originalButton.getAttribute('data-item-id')}')">-</span>
-                <span class="text">${newCount}</span>
-                <span class="action1" onclick="plus('${originalButton.getAttribute('data-item-id')}')">+</span>`;
-
-                originalButton.replaceWith(div);
-            });
-            const itemId = button.getAttribute('data-item-id');
-            const itemName = button.closest('.cell').querySelector('.desc').textContent;
-            const itemPrice = parseFloat(button.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
-            removeFromCart(itemId, itemName, itemPrice);
-            button.replaceWith(originalButton);
-        } else {
-            button.setAttribute('data-count', newCount);
-            button.querySelector('span:nth-child(2)').textContent = newCount;
-        }
-
         const itemId = button.getAttribute('data-item-id');
         const itemName = button.closest('.cell').querySelector('.desc').textContent;
         const itemPrice = parseFloat(button.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
-        removeFromCart(itemId, itemName, itemPrice);
+
+        if (newCount === 0) {
+            const originalButton = createOriginalButton(button);
+            button.replaceWith(originalButton);
+            removeFromCart(itemId, itemName, itemPrice);
+        } else {
+            updateButtonCount(button, newCount);
+            removeFromCart(itemId, itemName, itemPrice);
+        }
     }
+}
+
+
+function createOriginalButton(button) {
+    const originalButton = document.createElement('button');
+    originalButton.className = 'add-button'; // или другие необходимые классы
+    originalButton.setAttribute('data-item-id', button.getAttribute('data-item-id'));
+    originalButton.setAttribute('data-count', '0');
+    originalButton.innerHTML = `
+        <span class="plus">+</span>
+        <span class="text">Добавить</span>
+    `;
+
+    // Привязываем обработчик события 'click' к новой кнопке
+    originalButton.addEventListener('click', () => {
+        const currentCount = parseInt(originalButton.getAttribute('data-count'), 10) || 0;
+        const newCount = currentCount + 1;
+
+        const div = createButtonDiv(originalButton, newCount);
+
+        const itemId = originalButton.getAttribute('data-item-id');
+        const itemName = originalButton.closest('.cell').querySelector('.desc').textContent;
+        const itemPrice = parseFloat(originalButton.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
+
+        addToCart(itemId, itemName, itemPrice);
+
+        originalButton.replaceWith(div);
+    });
+
+    return originalButton;
+}
+
+
+function updateButtonCount(button, newCount) {
+    button.setAttribute('data-count', newCount);
+    button.querySelector('span:nth-child(2)').textContent = newCount;
 }
 
 function handleCellClick(event, cellElement) {
