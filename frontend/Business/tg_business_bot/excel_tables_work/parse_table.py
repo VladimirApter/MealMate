@@ -5,7 +5,6 @@ from tg_business_bot.Models.Category import Category
 from tg_business_bot.Models.Dish import Dish
 #from tg_business_bot.Models.Drink import Drink
 from tg_business_bot.ApiClient import ApiClient
-from tg_business_bot.excel_tables_work.generate_image_tokens import generate_table_image_tokens
 from tg_business_bot.excel_tables_work.extract_images import extract_and_save_images
 
 
@@ -13,8 +12,7 @@ def parse_menu_from_excel(file_path: str, menu: Menu) -> Menu:
     menu_api_client = ApiClient(Menu)
     menu.id = menu_api_client.post(menu)
 
-    image_tokens = generate_table_image_tokens(file_path, menu.id)
-    extract_and_save_images(file_path, image_tokens)
+    images_paths = extract_and_save_images(file_path)
 
     wb = openpyxl.load_workbook(file_path)
 
@@ -58,7 +56,7 @@ def parse_menu_from_excel(file_path: str, menu: Menu) -> Menu:
                     name=name,
                     description=description,
                     cooking_time_minutes=cooking_time_minutes,
-                    image_token=image_tokens[image_token_index]
+                    image_path=images_paths[image_token_index]
                 )'''
             elif is_dishes:
                 menu_item = Dish(
@@ -68,7 +66,7 @@ def parse_menu_from_excel(file_path: str, menu: Menu) -> Menu:
                     name=name,
                     description=description,
                     cooking_time_minutes=cooking_time_minutes,
-                    #image_token=image_tokens[image_token_index]
+                    #image_path=images_paths[image_token_index]
                 )
             else:
                 raise ValueError("Sheet name must be 'Блюда' or 'Напитки'")
