@@ -1,5 +1,8 @@
+using System.Drawing.Imaging;
 using System.IO;
 using host.DataBaseAccess;
+using host.Logic;
+using host.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,10 +31,12 @@ app.UseSwaggerUI(c =>
 app.MapControllers();
 
 var databaseFolder = "Database";
+var menuItemImagesFolder = Path.Combine(databaseFolder, "MenuItemImages");
 if (!Directory.Exists(databaseFolder))
-{
     Directory.CreateDirectory(databaseFolder);
-}
+if (!Directory.Exists(menuItemImagesFolder))
+    Directory.CreateDirectory(menuItemImagesFolder);
+
 
 if (!File.Exists(DataBaseAccess.PathDataBase))
 {
