@@ -43,7 +43,7 @@
                     <div class="cell" data-cell='{"name": "@cell.Name", "image": "https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg", "price": "@cell.Price", "desc": "@cell.Description", "weight": "@cell.Weight"}' onclick="handleCellClick(event, this)">
                         <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
                         <div class="content">
-                            <h2 class="cost">@cell.Price₽</h2>
+                            <p class="cost">@cell.Price₽</p>
                             <p class="desc">@cell.Name</p>
                             <button class="add-button" data-item-id="@cell.Id" data-count="0">
                                 <span class="plus">+</span>
@@ -55,7 +55,23 @@
             </div>
         </div>
     }
+    <div class="cart">
+        <div class="category">Корзина</div>
+        <div class="basket">
+            <div id="cart-items"></div>
+            <div id="cart-total">
+                <span class="desc">Итого: </span><span class="desc" id="total-price">0</span><span class="desc">₽</span>
+            </div>
+            <textarea id="input" placeholder="Оставьте комментарий к заказу..."></textarea>
+        </div>
+        
+    </div>
+    
 </div>
+
+<button class="send-button" id="order-button" onclick="placeOrder()">
+    <span class="text">Сделать заказ</span><span class="arrow"><img src="/img/arrow.svg" alt="arrow"></span>
+</button>
 
 <div id="popup">
     <img src="#" alt="image" class="image" id="popup-image">
@@ -68,16 +84,9 @@
     </div>
 </div>
 
-<div class="cart">
-    <h2>Корзина</h2>
-    <div id="cart-items">
-        <!-- Сюда будут добавляться выбранные блюда -->
-    </div>
-    <div id="cart-total">
-        <strong>Итого:</strong> <span id="total-price">0</span> ₽
-    </div>
-    <button id="order-button" onclick="placeOrder()">Заказать</button>
-</div>
+<button id="scrollToBottomBtn" title="Перейти вниз">
+    <span class="arrow-down"></span>
+</button>
 
 <script src="/js/order.js"></script>
 

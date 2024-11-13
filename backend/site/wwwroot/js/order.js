@@ -17,6 +17,13 @@ addButton.forEach(button => {
     });
 });
 
+document.getElementById('scrollToBottomBtn').addEventListener('click', function() {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
+});
+
 function createButtonDiv(button, newCount) {
     const div = document.createElement('div');
     div.className = 'add-button';
@@ -157,7 +164,8 @@ function updateCart() {
 
     Object.values(cartItems).forEach(item => {
         const itemElement = document.createElement('div');
-        itemElement.innerHTML = `${item.name} x${item.count} - ${item.price * item.count} ₽`;
+        itemElement.className = 'desc';
+        itemElement.innerHTML = `${item.name} ${item.count}шт. - ${item.price * item.count}₽`;
         cartElement.appendChild(itemElement);
         totalPrice += item.price * item.count;
     });
