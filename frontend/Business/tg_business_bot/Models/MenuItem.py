@@ -1,21 +1,26 @@
-from pydantic import BaseModel
 from typing import Optional
 
-from Models.MenuItem import MenuItem
+from pydantic import BaseModel
 from Models.Nutrients import Nutrients
 
-class Dish(MenuItem):
-    weight: float
+class MenuItem(BaseModel):
+    id: Optional[int]
+    category_id: int
+    cooking_time_minutes: int
+    price: float
+    name: str
+    description: str
+    image_path: Optional[str]
+    nutrients_of_100_grams: Optional[Nutrients]
 
     def __init__(self,
                  category_id: int,
                  price: float,
-                 weight: float,
                  name: str,
                  description: str,
                  cooking_time_minutes: int,
                  image_path: Optional[str] = None,
-                 nutrients: Optional[Nutrients] = None,
+                 nutrients_of_100_grams: Optional[Nutrients] = None,
                  id: Optional[int] = None,
                  **kwargs):
         super().__init__(
@@ -26,7 +31,6 @@ class Dish(MenuItem):
             description=description,
             image_path=image_path,
             cooking_time_minutes=cooking_time_minutes,
-            weight=weight,
-            nutrients=nutrients,
+            nutrients_of_100_grams=nutrients_of_100_grams,
             **kwargs
         )

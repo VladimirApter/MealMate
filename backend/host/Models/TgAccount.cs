@@ -5,9 +5,9 @@ public class TgAccount
     public int? Id { get; set; }
     public string Username { get; set; }
 
-    protected TgAccount(string username, int? id)
+    protected TgAccount(int? id, string username)
     {
-        Username = username;
         Id = id;
+        Username = username;
     }
 }
