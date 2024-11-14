@@ -8,7 +8,7 @@ public class NotificationGetter : TgAccount, ITableDataBase
 {
     [JsonPropertyName("restaurant_id")]
     public int RestaurantId { get; set; }
-    public NotificationGetter(string username, int? id, int restaurantId) : base(username, id)
+    public NotificationGetter(string username, int? id, int restaurantId) : base(id, username)
     {
         RestaurantId = restaurantId;
     }

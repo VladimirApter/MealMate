@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import Optional
 
 from Models.MenuItem import MenuItem
-
+from Models.Client import Client
 
 class OrderItem(BaseModel):
     id: Optional[int]
@@ -22,5 +22,5 @@ class OrderItem(BaseModel):
             order_id=order_id,
             menu_item=menu_item,
             count=count,
-            price=price
+            price=price,
         )

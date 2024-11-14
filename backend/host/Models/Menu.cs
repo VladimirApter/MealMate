@@ -13,10 +13,10 @@ public class Menu : ITableDataBase
     [JsonPropertyName("categories")]
     public List<Category>? Categories { get; set; }
 
-    public Menu(int? id, List<Category>? categories, int restaurantId)
+    public Menu(int? id, int restaurantId, List<Category>? categories)
     {
         Id = id;
-        Categories = categories;
         RestaurantId = restaurantId;
+        Categories = categories;
     } 
 }

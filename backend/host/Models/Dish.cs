@@ -7,13 +7,15 @@ public class Dish : MenuItem, ITableDataBase
 {
     public double Weight { get; set; }
     
-    public Dish(int? id, 
+    public Dish(int? id,
+        int categoryId,
+        int cookingTimeMinutes,
         double price, 
+        double weight,
         string name, 
-        string description, 
-        int cookingTimeMinutes, 
-        int categoryId, 
-        double weight) : base(id, price, name, description, cookingTimeMinutes, categoryId)
+        string description,
+        string? imagePath,
+        Nutrients? nutrients) : base(id, categoryId, cookingTimeMinutes,price, name, description, imagePath, nutrients)
     {
         Weight = weight;
     }
