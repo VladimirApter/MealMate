@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using JsonSerializerOptions = System.Text.Json.JsonSerializerOptions;
 using System.Text;
 using System.Text.Json;
+using host.Logic;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace host.Controllers
@@ -28,6 +29,9 @@ namespace host.Controllers
                 "owner" => await GetPostEntity(id, DeserializeEntity<Owner>(entity)),
                 "table" => await GetPostEntity(id, DeserializeEntity<Table>(entity)),
                 "restaurant" => await GetPostEntity(id, DeserializeEntity<Restaurant>(entity)),
+                "drink" => await GetPostEntity(id, DeserializeEntity<Drink>(entity)),
+                "geocoordinates" => await GetPostEntity(id, DeserializeEntity<GeoCoordinates>(entity)),
+                "nutrients" => await GetPostEntity(id, DeserializeEntity<GeoCoordinates>(entity)),
                 //"orderitem" => await GetPostEntity(id, DeserializeEntity<OrderItem>(entity)),
                 _ => BadRequest("Invalid entity type.")
             };

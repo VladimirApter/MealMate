@@ -15,6 +15,8 @@ public class Table : ITableDataBase
     
     [JsonPropertyName("qr_code_image_path")]
     public string? QRCodeImagePath { get; set; }
+    
+    public Table(){}
     public Table(int? id, int restaurantId, int number, string? qrCodeImagePath)
     {
         Id = id;

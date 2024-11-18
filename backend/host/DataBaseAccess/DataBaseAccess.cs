@@ -2,7 +2,8 @@ using System.Collections;
 using System.Linq;
 using System.Reflection;
 using System.ComponentModel.DataAnnotations.Schema;
-using host.DataBaseAccess; // Не забудьте подключить этот неймспейс
+using host.DataBaseAccess;
+using host.Models;
 
 public class DataBaseAccess<T> where T : class, ITableDataBase
 {
@@ -13,9 +14,7 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
         var obj = await context.Set<T>().FindAsync(id);
 
         if (obj is ITakeRelatedData relatedDataLoader)
-        {
             await relatedDataLoader.TakeRelatedData(context);
-        }
 
         return obj;
     }
@@ -23,15 +22,47 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
     public static void AddOrUpdate(T obj)
     {
         using var context = new ApplicationDbContext();
+        
+        if (obj is Dish or Drink && (obj.Id == null || IsIdDuplicate(context, obj.Id.Value))) 
+            obj.Id = GetNextUniqueId(context);
+        
         var existingObj = context.Set<T>().Find(obj.Id);
-
         if (existingObj != null)
+        {
+            Remove(obj);
             context.Entry(existingObj).CurrentValues.SetValues(obj);
-
+        }
         else
             context.Set<T>().Add(obj);
+
         AddOrUpdateNotMappedProperties(obj);
         context.SaveChanges();
+    }
+
+    private static void Remove(T obj)
+    {
+        using var context = new ApplicationDbContext();
+        if (obj is IDeleteRelatedData relatedDataDelete) 
+            relatedDataDelete.DeleteRelatedData(context);
+    }
+    
+
+    private static bool IsIdDuplicate(ApplicationDbContext context, int id)
+    {
+        var allIds = context.Dishes.Select(d => d.Id)
+            .Union(context.Drinks.Select(d => d.Id));
+        return allIds.Contains(id);
+    }
+
+    private static int GetNextUniqueId(ApplicationDbContext context)
+    {
+        var maxDishId = context.Dishes.Any() ? context.Dishes.Max(d => d.Id) : 0;
+        var maxDrinkId = context.Drinks.Any() ? context.Drinks.Max(d => d.Id) : 0;
+
+        maxDishId ??= 0;
+        maxDrinkId ??= 0;
+        
+        return Math.Max(maxDishId.Value, maxDrinkId.Value) + 1;
     }
 
     private static void AddOrUpdateNotMappedProperties(T obj)
@@ -41,32 +72,31 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
 
         foreach (var property in properties)
         {
-            var notMappedAttribute = property.GetCustomAttribute<NotMappedAttribute>();
-            if (notMappedAttribute == null) continue;
+            if (property.GetCustomAttribute<NotMappedAttribute>() == null) continue;
+
             var propertyValue = property.GetValue(obj);
             if (propertyValue == null) continue;
-            
-            InvokeAddOrUpdate(propertyValue);
-            
-            if (propertyValue is IEnumerable enumerable and not string)
-            {
-                foreach (var item in enumerable)
-                {
-                    InvokeAddOrUpdate(item);
-                }
-            }
+
+            ProcessValue(propertyValue);
         }
     }
 
-    private static void InvokeAddOrUpdate(object item)
+    private static void ProcessValue(object propertyValue)
     {
-        if (item is ITableDataBase)
-        {
-            var genericMethod = typeof(DataBaseAccess<>)
-                .MakeGenericType(item.GetType())
-                .GetMethod("AddOrUpdate", [item.GetType()]);
+        if (propertyValue is ITableDataBase tableData)
+            InvokeAddOrUpdate(tableData);
+        else if (propertyValue is IEnumerable enumerable and not string)
+            foreach (var item in enumerable)
+                if (item is ITableDataBase tableDataItem) 
+                    InvokeAddOrUpdate(tableDataItem);
+    }
 
-            genericMethod?.Invoke(null, [item]);
-        }
+    private static void InvokeAddOrUpdate(ITableDataBase item)
+    {
+        var genericMethod = typeof(DataBaseAccess<>)
+            .MakeGenericType(item.GetType())
+            .GetMethod(nameof(AddOrUpdate), BindingFlags.Public | BindingFlags.Static);
+
+        genericMethod?.Invoke(null, new object[] { item });
     }
 }

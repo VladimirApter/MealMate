@@ -1,12 +1,17 @@
+using host.DataBaseAccess;
+
 namespace host.Logic;
 
-public class GeoCoordinates
+public class GeoCoordinates : ITableDataBase
 {
+    public int? Id { get; set; }
+    public int RestaurantId { get; set; }
     public double Latitude { get; set; }
     public double Longitude { get; set; }
 
-    public GeoCoordinates(double latitude, double longitude)
+    public GeoCoordinates(int restaurantId, double latitude, double longitude)
     {
+        RestaurantId = restaurantId;
         Latitude = latitude;
         Longitude = longitude;
     }

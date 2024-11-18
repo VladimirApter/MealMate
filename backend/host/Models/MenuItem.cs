@@ -1,8 +1,11 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using host.DataBaseAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace host.Models;
 [JsonConverter(typeof(MenuItemConverter))]
-public class MenuItem
+public class MenuItem : ITakeRelatedData, IDeleteRelatedData
 {
     public int? Id { get; set; }
     
@@ -19,8 +22,9 @@ public class MenuItem
     public string Description { get; set; }
     
     [JsonPropertyName("nutrients_of_100_grams")]
-    public Nutrients? NutrientsOf100grams { get; set; }
-
+    [NotMapped] public Nutrients? NutrientsOf100grams { get; set; }
+    
+    public MenuItem(){}
     public MenuItem(int? id, int categoryId, int cookingTimeMinutes, double price, string name, string description,
         string? imagePath, Nutrients? nutrientsOf100grams)
     {
@@ -32,5 +36,18 @@ public class MenuItem
         ImagePath = imagePath;
         Description = description;
         NutrientsOf100grams = nutrientsOf100grams;
+    }
+
+    public async Task TakeRelatedData(ApplicationDbContext context)
+    {
+        NutrientsOf100grams = await context.Nutrients.FirstOrDefaultAsync(n => n.MenuItemId == Id);
+    }
+
+    public void DeleteRelatedData(ApplicationDbContext context)
+    {
+        var nutrient = context.Nutrients.FirstOrDefault(n => n.MenuItemId == Id);
+        if (nutrient == null) return;
+        context.Nutrients.Remove(nutrient);
+        context.SaveChanges();
     }
 }

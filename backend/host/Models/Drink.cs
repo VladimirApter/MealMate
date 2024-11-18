@@ -6,6 +6,7 @@ public class Drink : MenuItem, ITableDataBase
 {
     public double Volume { get; set; }
     
+    public Drink(){}
     public Drink(int? id,
         int categoryId, 
         int cookingTimeMinutes,

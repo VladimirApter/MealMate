@@ -13,12 +13,12 @@ public class MenuItemConverter : JsonConverter<MenuItem>
             JsonElement root = document.RootElement;
 
             // Определяем, какой тип использовать, проверяя поля
-            if (root.TryGetProperty("weight", out JsonElement weightProperty))
+            if (root.TryGetProperty("Weight", out JsonElement weightProperty))
             {
                 // Это объект Dish, десериализуем его
                 return JsonSerializer.Deserialize<Dish>(root.GetRawText(), options);
             }
-            else if (root.TryGetProperty("volume", out JsonElement volumeProperty))
+            else if (root.TryGetProperty("Volume", out JsonElement volumeProperty))
             {
                 // Это объект Drink, десериализуем его
                 return JsonSerializer.Deserialize<Drink>(root.GetRawText(), options);

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace host.Models;
 
-public class Menu : ITableDataBase, ITakeRelatedData
+public class Menu : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
     public int? Id { get; set; }
     
@@ -29,13 +29,21 @@ public class Menu : ITableDataBase, ITakeRelatedData
         Categories = await context.Categories
             .Where(c => c.MenuId == Id)
             .ToListAsync();
-           
-        foreach (var category in Categories)
+
+        foreach (var category in Categories.OfType<ITakeRelatedData>())
         {
-            if (category is ITakeRelatedData relatedDataLoader)
-            {
-                await relatedDataLoader.TakeRelatedData(context);
-            }
+            await category.TakeRelatedData(context);
+        }
+    }
+
+    public void DeleteRelatedData(ApplicationDbContext context)
+    {
+        foreach (var category in context.Categories
+                     .Where(c => c.MenuId == Id))
+        {
+            context.Categories.Remove(category);
+            context.SaveChanges();
+            category.DeleteRelatedData(context);
         }
     }
 }

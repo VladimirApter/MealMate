@@ -6,16 +6,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace host.Models;
 
-public class Category : ITableDataBase, ITakeRelatedData
+public class Category : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
     public int? Id { get; set; }
-    [JsonPropertyName("menu_id")]
-    public int MenuId { get; set; }
+    [JsonPropertyName("menu_id")] public int MenuId { get; set; }
     public string Name { get; set; }
-    
+
     [JsonPropertyName("menu_items")]
     [NotMapped] public List<MenuItem>? MenuItems { get; set; }
-
+    
+    public Category() {}
     public Category(int? id, int menuId, string name, List<MenuItem>? menuItems)
     {
         Id = id;
@@ -26,9 +26,36 @@ public class Category : ITableDataBase, ITakeRelatedData
 
     public async Task TakeRelatedData(ApplicationDbContext context)
     {
-        MenuItems = await context.Dishes
-            .Where(d => d.CategoryId == Id)
-            .ToListAsync();
-        
+        MenuItems = new List<MenuItem>();
+
+        foreach (var dish in await context.Dishes
+                     .Where(d => d.CategoryId == Id).ToListAsync())
+        {
+            await dish.TakeRelatedData(context);
+            MenuItems.Add(dish);
+        }
+
+        foreach (var drink in await context.Drinks
+                     .Where(d => d.CategoryId == Id).ToListAsync())
+        {
+            await drink.TakeRelatedData(context);
+            MenuItems.Add(drink);
+        }
+    }
+
+    public void DeleteRelatedData(ApplicationDbContext context)
+    {
+        foreach (var dish in context.Dishes
+                     .Where(d => d.CategoryId == Id))
+        {
+            context.Dishes.Remove(dish);
+            context.SaveChanges();
+        }
+        foreach (var drink in context.Drinks
+                     .Where(d => d.CategoryId == Id))
+        {
+            context.Drinks.Remove(drink);
+            context.SaveChanges();
+        }
     }
 }
