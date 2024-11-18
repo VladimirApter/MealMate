@@ -1,72 +1,72 @@
-using System.Data.SQLite;
-using host.Models;
+using System.Collections;
+using System.Linq;
+using System.Reflection;
+using System.ComponentModel.DataAnnotations.Schema;
+using host.DataBaseAccess; // Не забудьте подключить этот неймспейс
 
-namespace host.DataBaseAccess;
-
-public interface ITableDataBase
+public class DataBaseAccess<T> where T : class, ITableDataBase
 {
-    public int? Id { get; set; }
-}
-
-public class DataBaseAccess
-{
-    public const string PathDataBase = "./DataBase/DataBase.bd3";
-    private const string ConnectionString = $"Data Source={PathDataBase}";
-
-    protected static (SQLiteCommand, SQLiteConnection) OpenDataBase(string itemQuery)
+    public static async Task<T?> GetAsync(int id)
     {
-        var connection = new SQLiteConnection(ConnectionString);
-        connection.Open();
-        return (new SQLiteCommand(itemQuery, connection), connection);
-    }
+        await using var context = new ApplicationDbContext();
 
-    protected static SQLiteDataReader ExecuteReader(string itemQuery, (string, int) parameter)
-    {
-        var command = OpenDataBase(itemQuery).Item1;
-        command.Parameters.AddWithValue(parameter.Item1, parameter.Item2);
-        return command.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-    }
+        var obj = await context.Set<T>().FindAsync(id);
 
-    protected static void AddOrUpdateObject<T>(T obj, string insertCommand, string updateCommand,
-        Action<T, SQLiteCommand> addParameters) where T : ITableDataBase
-    {
-        var (insertOrUpdateCommand, connection) = OpenDataBase(obj.Id == null ? insertCommand : updateCommand);
-
-        if (obj is TgAccount)
+        if (obj is ITakeRelatedData relatedDataLoader)
         {
-            var checkCommand = new SQLiteCommand();
-            if (obj is Owner)
-            {
-                checkCommand = new SQLiteCommand($"SELECT COUNT({obj.Id}) FROM owners WHERE id = @id", connection);
-            }
-
-            if (obj is NotificationGetter)
-            {
-                checkCommand = new SQLiteCommand($"SELECT COUNT({obj.Id}) FROM notification_getters WHERE id = @id", connection);
-            }
-            
-            checkCommand.Parameters.AddWithValue("@id", obj.Id);
-
-            var exists = (long)checkCommand.ExecuteScalar() > 0; 
-
-            if (exists)
-            {
-                insertOrUpdateCommand.CommandText = updateCommand;
-            }
-            else
-            {
-                insertOrUpdateCommand.CommandText = insertCommand;
-            }
+            await relatedDataLoader.TakeRelatedData(context);
         }
 
+        return obj;
+    }
 
-        if (obj.Id != null)
-            insertOrUpdateCommand.Parameters.AddWithValue("@id", obj.Id);
-        addParameters(obj, insertOrUpdateCommand);
-        insertOrUpdateCommand.ExecuteNonQuery();
+    public static void AddOrUpdate(T obj)
+    {
+        using var context = new ApplicationDbContext();
+        var existingObj = context.Set<T>().Find(obj.Id);
 
-        if (obj.Id != null) return;
+        if (existingObj != null)
+            context.Entry(existingObj).CurrentValues.SetValues(obj);
 
-        obj.Id = (int)(long)new SQLiteCommand("SELECT last_insert_rowid()", connection).ExecuteScalar();
+        else
+            context.Set<T>().Add(obj);
+        AddOrUpdateNotMappedProperties(obj);
+        context.SaveChanges();
+    }
+
+    private static void AddOrUpdateNotMappedProperties(T obj)
+    {
+        var type = obj.GetType();
+        var properties = type.GetProperties();
+
+        foreach (var property in properties)
+        {
+            var notMappedAttribute = property.GetCustomAttribute<NotMappedAttribute>();
+            if (notMappedAttribute == null) continue;
+            var propertyValue = property.GetValue(obj);
+            if (propertyValue == null) continue;
+            
+            InvokeAddOrUpdate(propertyValue);
+            
+            if (propertyValue is IEnumerable enumerable and not string)
+            {
+                foreach (var item in enumerable)
+                {
+                    InvokeAddOrUpdate(item);
+                }
+            }
+        }
+    }
+
+    private static void InvokeAddOrUpdate(object item)
+    {
+        if (item is ITableDataBase)
+        {
+            var genericMethod = typeof(DataBaseAccess<>)
+                .MakeGenericType(item.GetType())
+                .GetMethod("AddOrUpdate", [item.GetType()]);
+
+            genericMethod?.Invoke(null, [item]);
+        }
     }
 }

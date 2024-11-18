@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Добавление контроллеры
@@ -37,11 +38,9 @@ if (!Directory.Exists(databaseFolder))
 if (!Directory.Exists(menuItemImagesFolder))
     Directory.CreateDirectory(menuItemImagesFolder);
 
+using var context = new ApplicationDbContext();
+context.Database.EnsureCreated();
 
-if (!File.Exists(DataBaseAccess.PathDataBase))
-{
-    TestDataBase.CreateDataBase();
-    TestDataBase.AddDataToDataBase();
-}
+
 
 app.Run();
