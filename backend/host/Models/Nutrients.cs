@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using host.DataBaseAccess;
 
 namespace host.Models;
@@ -5,7 +6,7 @@ namespace host.Models;
 public class Nutrients : ITableDataBase
 {
     public int? Id { get; set; }
-    public int MenuItemId { get; set; }
+    [JsonPropertyName("menu_item_id")] public int MenuItemId { get; set; }
     public int? Kilocalories { get; set; }
     public int? Proteins { get; set; }
     public int? Fats { get; set; }

@@ -9,14 +9,10 @@ namespace host.Models;
 public class Restaurant : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
     public int? Id { get; set; }
-
     [JsonPropertyName("owner_id")] public int OwnerId { get; set; }
     public string Name { get; set; }
     [NotMapped] public GeoCoordinates? Coordinates { get; set; }
-
-    [JsonPropertyName("notification_getter")]
-    [NotMapped] public NotificationGetter? NotificationGetter { get; set; }
-
+    [JsonPropertyName("notification_getter")] [NotMapped] public NotificationGetter? NotificationGetter { get; set; }
     [NotMapped] public Menu? Menu { get; set; }
     [NotMapped] public List<Table>? Tables { get; set; }
 

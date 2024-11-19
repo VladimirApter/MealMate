@@ -11,9 +11,7 @@ public class Category : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
     public int? Id { get; set; }
     [JsonPropertyName("menu_id")] public int MenuId { get; set; }
     public string Name { get; set; }
-
-    [JsonPropertyName("menu_items")]
-    [NotMapped] public List<MenuItem>? MenuItems { get; set; }
+    [JsonPropertyName("menu_items")] [NotMapped] public List<MenuItem>? MenuItems { get; set; }
     
     public Category() {}
     public Category(int? id, int menuId, string name, List<MenuItem>? menuItems)

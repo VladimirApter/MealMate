@@ -9,11 +9,8 @@ namespace host.Models;
 public class Menu : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
     public int? Id { get; set; }
-    
-    [JsonPropertyName("restaurant_id")]
-    public int RestaurantId { get; set; }
-    [JsonPropertyName("categories")]
-    [NotMapped] public List<Category>? Categories { get; set; }
+    [JsonPropertyName("restaurant_id")] public int RestaurantId { get; set; }
+    [JsonPropertyName("categories")] [NotMapped] public List<Category>? Categories { get; set; }
 
     public Menu(){}
     public Menu(int? id, List<Category>? categories, int restaurantId)

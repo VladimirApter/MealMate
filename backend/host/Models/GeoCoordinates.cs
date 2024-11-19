@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using host.DataBaseAccess;
 
 namespace host.Logic;
@@ -5,7 +6,7 @@ namespace host.Logic;
 public class GeoCoordinates : ITableDataBase
 {
     public int? Id { get; set; }
-    public int RestaurantId { get; set; }
+    [JsonPropertyName("restaurant_id")] public int RestaurantId { get; set; }
     public double Latitude { get; set; }
     public double Longitude { get; set; }
 
