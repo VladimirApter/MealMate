@@ -116,9 +116,9 @@ var menu = new Menu(
 // Создаем список столов в ресторане
 var tables = new List<Table>
 {
-    new Table(id: 1, restaurantId: 1, number: 1, qrCodeImagePath: "qrcodes/table1.png"),
-    new Table(id: 2, restaurantId: 1, number: 2, qrCodeImagePath: "qrcodes/table2.png"),
-    new Table(id: 3, restaurantId: 1, number: 3, qrCodeImagePath: "qrcodes/table3.png")
+    new Table(id: 1, restaurantId: 1, number: 1),
+    new Table(id: 2, restaurantId: 1, number: 2),
+    new Table(id: 3, restaurantId: 1, number: 3)
 };
 
 // Задаем географические координаты ресторана
@@ -242,9 +242,9 @@ var menu2 = new Menu(
 // Создаем список столов в ресторане
 var tables2 = new List<Table>
 {
-    new Table(id: 4, restaurantId: 2, number: 1, qrCodeImagePath: "qrcodes/table4.png"),
-    new Table(id: 5, restaurantId: 2, number: 2, qrCodeImagePath: "qrcodes/table5.png"),
-    new Table(id: 6, restaurantId: 2, number: 3, qrCodeImagePath: "qrcodes/table6.png")
+    new Table(id: 4, restaurantId: 2, number: 1),
+    new Table(id: 5, restaurantId: 2, number: 2),
+    new Table(id: 6, restaurantId: 2, number: 3)
 };
 
 // Задаем географические координаты ресторана

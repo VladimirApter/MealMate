@@ -1,9 +1,6 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
-using host.Models;
 using QRCoder;
 
 namespace host.Logic;
@@ -12,17 +9,20 @@ namespace host.Logic;
 public static class TableQrCode
 {
     private static readonly string siteBaseUrl;
-    private static readonly string qrcodeDataBasePath = "Database\\QRCodeImages";
+    private static readonly string qrcodeDataBasePath;
     
     static TableQrCode()
     {
         siteBaseUrl = HostsUrlGetter.GetHostUrl("site.http");
+        
+        var databasePath = DataBasePathGetter.GetAbsoluteDataBasePath();
+        qrcodeDataBasePath = Path.Combine(databasePath, "QRCodeImages");
     }
 
-    public static string GenerateAndSaveQrCode(Table table)
+    public static string GenerateAndSaveQrCode(int tableNumber, string tableToken)
     {
-        var url = $"{siteBaseUrl}/{table.Id}"; // table.Id поменять на table.token
-        var logo = NumberImageGenerator.Generate(table.Number);
+        var url = $"{siteBaseUrl}/{tableToken}";
+        var logo = NumberImageGenerator.Generate(tableNumber);
         
         
         var qrGenerator = new QRCodeGenerator();
