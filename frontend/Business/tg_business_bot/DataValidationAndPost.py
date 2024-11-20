@@ -3,13 +3,13 @@ from telebot import types
 
 import Geocoder
 from Config import *
-from ApiClient import ApiClient
-from Models.Restaurant import Restaurant
-from Models.Menu import Menu
-from Models.Owner import Owner
-from Models.NotificationGetter import NotificationGetter
-from Models.Table import Table
-from Models.GeoCoordinates import GeoCoordinates
+from ApiClient.ApiClient import ApiClient
+from Model.Restaurant import Restaurant
+from Model.Menu import Menu
+from Model.Owner import Owner
+from Model.NotificationGetter import NotificationGetter
+from Model.Table import Table
+from Model.GeoCoordinates import GeoCoordinates
 from excel_tables_work.parse_table import parse_menu_from_excel
 from excel_tables_work.validate_menu_template import *
 

@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-from tg_business_bot.Models.Category import Category
+from Model.Category import Category
 
 
 class Menu(BaseModel):

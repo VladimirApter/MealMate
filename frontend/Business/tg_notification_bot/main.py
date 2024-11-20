@@ -1,9 +1,17 @@
-from Config import bot
+from Config import *
 
 
-@bot.message_handler(commands=['start'])
-def start(message):
-    bot.send_message(message.chat.id, 'Привет!')
+async def main():
+    await client.start()
+
+    user_name = None
+    user = await client.get_entity(user_name)
+
+    await client.send_message(user, 'Привет! Это сообщение от бота.')
 
 
-bot.polling()
+with client:
+    try:
+        client.loop.run_until_complete(main())
+    except Exception as e:
+        print(e)

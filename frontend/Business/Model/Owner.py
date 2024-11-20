@@ -1,5 +1,5 @@
 from typing import List, Optional
-from tg_business_bot.Models.TgAccount import TgAccount
+from Model.TgAccount import TgAccount
 
 
 class Owner(TgAccount):
