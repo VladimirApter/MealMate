@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using host.DataBaseAccess;
 using Microsoft.EntityFrameworkCore;
@@ -48,12 +47,14 @@ public class Category : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
         {
             context.Dishes.Remove(dish);
             context.SaveChanges();
+            dish.DeleteRelatedData(context);
         }
         foreach (var drink in context.Drinks
                      .Where(d => d.CategoryId == Id))
         {
             context.Drinks.Remove(drink);
             context.SaveChanges();
+            drink.DeleteRelatedData(context);
         }
     }
 }

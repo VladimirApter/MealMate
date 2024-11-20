@@ -16,10 +16,12 @@ public class ApplicationDbContext : DbContext
     public DbSet<GeoCoordinates> GeoCoordinates { get; set; }
     public DbSet<Nutrients> Nutrients { get; set; }
     public DbSet<Drink> Drinks { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<Client> Clients { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         options.UseSqlite("Data Source=./DataBase/DataBase.bd3");
     }
-    
 }
