@@ -1,10 +1,11 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-from Models.NotificationGetter import NotificationGetter
-from Models.Menu import Menu
-from Models.Table import Table
-from Models.GeoCoordinates import GeoCoordinates
+from Model.NotificationGetter import NotificationGetter
+from Model.Menu import Menu
+from Model.Table import Table
+from Model.GeoCoordinates import GeoCoordinates
+
 
 class Restaurant(BaseModel):
     id: Optional[int]

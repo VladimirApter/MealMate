@@ -1,11 +1,11 @@
 import openpyxl
 
-from tg_business_bot.Models.Menu import Menu
-from tg_business_bot.Models.Category import Category
-from tg_business_bot.Models.Dish import Dish
-from tg_business_bot.Models.Drink import Drink
-from tg_business_bot.Models.Nutrients import Nutrients
-from tg_business_bot.ApiClient import ApiClient
+from Model.Menu import Menu
+from Model.Category import Category
+from Model.Dish import Dish
+from Model.Drink import Drink
+from Model.Nutrients import Nutrients
+from ApiClient.ApiClient import ApiClient
 from tg_business_bot.excel_tables_work.extract_images import extract_and_save_images
 
 

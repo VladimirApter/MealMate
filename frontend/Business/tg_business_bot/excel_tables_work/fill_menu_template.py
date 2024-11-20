@@ -1,8 +1,7 @@
 import openpyxl
-from openpyxl.drawing.image import Image
-from tg_business_bot.Models.Menu import Menu
-from tg_business_bot.Models.Dish import Dish
-from tg_business_bot.Models.Drink import Drink
+from Model.Menu import Menu
+from Model.Dish import Dish
+from Model.Drink import Drink
 
 
 def fill_menu_template(template_path, output_file_path, menu: Menu):
