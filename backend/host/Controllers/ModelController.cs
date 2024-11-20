@@ -31,7 +31,7 @@ namespace host.Controllers
                 "restaurant" => await GetPostEntity(id, DeserializeEntity<Restaurant>(entity)),
                 "drink" => await GetPostEntity(id, DeserializeEntity<Drink>(entity)),
                 "geocoordinates" => await GetPostEntity(id, DeserializeEntity<GeoCoordinates>(entity)),
-                "nutrients" => await GetPostEntity(id, DeserializeEntity<GeoCoordinates>(entity)),
+                "nutrients" => await GetPostEntity(id, DeserializeEntity<Nutrients>(entity)),
                 //"orderitem" => await GetPostEntity(id, DeserializeEntity<OrderItem>(entity)),
                 _ => BadRequest("Invalid entity type.")
             };

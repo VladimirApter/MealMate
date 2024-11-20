@@ -17,7 +17,7 @@ public class Restaurant : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
     [NotMapped] public List<Table>? Tables { get; set; }
 
     public Restaurant(){}
-    public Restaurant(int? id, int ownerId, string name, GeoCoordinates coordinates, NotificationGetter? notificationGetter,
+    public Restaurant(int? id, int ownerId, string name, GeoCoordinates? coordinates, NotificationGetter? notificationGetter,
         Menu? menu, List<Table>? tables)
     {
         Id = id;

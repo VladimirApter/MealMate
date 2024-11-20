@@ -1,5 +1,6 @@
 import httpx
 from threading import Lock
+from typing import Any
 
 from Config import *
 
@@ -30,9 +31,20 @@ class ApiClient:
     def post(self, obj):
         with self.lock:
             with httpx.Client() as client:
-                response = client.post(self._get_url(), json=obj.dict(by_alias=True), headers={'Content-Type': 'application/json'})
+                response = client.post(self._get_url(), json=ApiClient._to_dict(obj), headers={'Content-Type': 'application/json'})
                 if response.status_code == 200:
                     obj_id = int(response.json())
                     return obj_id
                 else:
                     response.raise_for_status()
+
+    @staticmethod
+    def _to_dict(obj: Any) -> Any:
+        if isinstance(obj, list):
+            return [ApiClient._to_dict(item) for item in obj]
+        elif isinstance(obj, dict):
+            return {key: ApiClient._to_dict(value) for key, value in obj.items()}
+        elif hasattr(obj, '__dict__'):
+            return {key: ApiClient._to_dict(value) for key, value in obj.__dict__.items()}
+        else:
+            return obj
