@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 using JsonSerializerOptions = System.Text.Json.JsonSerializerOptions;
 using System.Text;
 using System.Text.Json;
-using Domen.DataBaseAccess;
-using Domen.Logic;
-using Domen.Models;
+using Domain.DataBaseAccess;
+using Domain.Logic;
+using Domain.Models;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Domen.Controllers

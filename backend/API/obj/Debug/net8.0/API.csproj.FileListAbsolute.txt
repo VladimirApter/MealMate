@@ -240,8 +240,6 @@ D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1
 D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\Domen.dll
-D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\Domen.pdb
 D:\MealMAte\MealMate\backend\API\obj\Debug\net8.0\API.csproj.AssemblyReference.cache
 D:\MealMAte\MealMate\backend\API\obj\Debug\net8.0\API.GeneratedMSBuildEditorConfig.editorconfig
 D:\MealMAte\MealMate\backend\API\obj\Debug\net8.0\API.AssemblyInfoInputs.cache
@@ -264,3 +262,5 @@ D:\MealMAte\MealMate\backend\API\obj\Debug\net8.0\refint\API.dll
 D:\MealMAte\MealMate\backend\API\obj\Debug\net8.0\API.pdb
 D:\MealMAte\MealMate\backend\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 D:\MealMAte\MealMate\backend\API\obj\Debug\net8.0\ref\API.dll
+D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\Domain.dll
+D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\Domain.pdb

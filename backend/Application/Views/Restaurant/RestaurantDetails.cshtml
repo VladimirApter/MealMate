@@ -1,4 +1,5 @@
-@model Domen.Models.Restaurant
+@using System.Globalization
+@model Domain.Models.Restaurant
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -44,7 +45,7 @@
                     <div class="cell" data-cell='@dataCell' onclick="handleCellClick(event, this)">
                         <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
                         <div class="content">
-                            <p class="cost">@cell.Price₽</p>
+                            <p class="cost">@cell.Price.ToString(CultureInfo.InvariantCulture)₽</p>
                             <p class="desc">@cell.Name</p>
                             <button class="add-button" data-item-id="@cell.Id" data-count="0">
                                 <span class="plus">+</span>

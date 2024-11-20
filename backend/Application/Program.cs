@@ -1,5 +1,5 @@
-using Domen.Logic;
-using Domen.Models;
+using Domain.Logic;
+using Domain.Models;
 using site;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -123,7 +123,7 @@ function showPopup(cellData) {
     const popupDesc = document.getElementById('popup-full-desc');
     const popupWeight = document.getElementById('popup-weight');
     popupImage.src = cellData.image;
-    popupCost.textContent = cellData.price + "₽";
+    popupCost.textContent = parseFloat(cellData.price).toFixed(2) + "₽"; // Округляем до двух знаков после запятой
     popupName.textContent = cellData.name;
     popupDesc.textContent = cellData.desc;
     popupWeight.textContent = cellData.weight + "г";
@@ -142,7 +142,7 @@ function addToCart(itemId, itemName, itemPrice) {
     if (cartItems[itemId]) {
         cartItems[itemId].count += 1;
     } else {
-        cartItems[itemId] = { name: itemName, price: itemPrice, count: 1 };
+        cartItems[itemId] = { name: itemName, price: parseFloat(itemPrice).toFixed(2), count: 1 };
     }
     updateCart();
 }
@@ -165,19 +165,20 @@ function updateCart() {
     Object.values(cartItems).forEach(item => {
         const itemElement = document.createElement('div');
         itemElement.className = 'desc';
-        itemElement.innerHTML = `${item.name} ${item.count}шт. - ${item.price * item.count}₽`;
+        const totalItemPrice = (item.price * item.count).toFixed(2); // Округляем до двух знаков после запятой
+        itemElement.innerHTML = `${item.name} ${item.count}шт. - ${totalItemPrice}₽`;
         cartElement.appendChild(itemElement);
-        totalPrice += item.price * item.count;
+        totalPrice += parseFloat(totalItemPrice); // Добавляем округленную цену к общей сумме
     });
 
-    document.getElementById('total-price').textContent = totalPrice;
+    document.getElementById('total-price').textContent = totalPrice.toFixed(2); // Округляем общую сумму до двух знаков после запятой
 }
 
 function placeOrder() {
     const orderItems = Object.entries(cartItems).map(([id, item]) => ({
         dish_id: id,
         count: item.count,
-        price: item.price * item.count,
+        price: parseFloat((item.price * item.count).toFixed(2)),
     }));
     const order = {
         client_id: 1,  // заменить на реальный ID клиента
@@ -197,5 +198,5 @@ function placeOrder() {
         .catch(error => console.error('Ошибка:', error));
 
     console.log('Order Items:', orderItems);
-    console.log('Total Price:', totalPrice);
+    console.log('Total Price:', totalPrice.toFixed(2));
 }

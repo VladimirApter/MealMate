@@ -1,6 +1,6 @@
 using System.Text.Json;
-using Domen.DataBaseAccess;
-using Domen.Models;
+using Domain.DataBaseAccess;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 

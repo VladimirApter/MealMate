@@ -60,8 +60,6 @@ D:\MealMAte\MealMate\backend\Application\bin\Debug\net8.0\runtimes\win-arm64\nat
 D:\MealMAte\MealMate\backend\Application\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\MealMAte\MealMate\backend\Application\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
 D:\MealMAte\MealMate\backend\Application\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
-D:\MealMAte\MealMate\backend\Application\bin\Debug\net8.0\Domen.dll
-D:\MealMAte\MealMate\backend\Application\bin\Debug\net8.0\Domen.pdb
 D:\MealMAte\MealMate\backend\Application\obj\Debug\net8.0\Application.csproj.AssemblyReference.cache
 D:\MealMAte\MealMate\backend\Application\obj\Debug\net8.0\Application.GeneratedMSBuildEditorConfig.editorconfig
 D:\MealMAte\MealMate\backend\Application\obj\Debug\net8.0\Application.AssemblyInfoInputs.cache
@@ -86,3 +84,5 @@ D:\MealMAte\MealMate\backend\Application\obj\Debug\net8.0\refint\Application.dll
 D:\MealMAte\MealMate\backend\Application\obj\Debug\net8.0\Application.pdb
 D:\MealMAte\MealMate\backend\Application\obj\Debug\net8.0\Application.genruntimeconfig.cache
 D:\MealMAte\MealMate\backend\Application\obj\Debug\net8.0\ref\Application.dll
+D:\MealMAte\MealMate\backend\Application\bin\Debug\net8.0\Domain.dll
+D:\MealMAte\MealMate\backend\Application\bin\Debug\net8.0\Domain.pdb

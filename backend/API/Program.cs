@@ -1,8 +1,8 @@
 using System.Drawing.Imaging;
 using System.IO;
-using Domen.DataBaseAccess;
-using Domen.Logic;
-using Domen.Models;
+using Domain.DataBaseAccess;
+using Domain.Logic;
+using Domain.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

@@ -1947,7 +1947,7 @@
           }
         }
       },
-      "Domen/1.0.0": {
+      "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -1957,10 +1957,10 @@
           "System.Drawing.Common": "9.0.0-rc.2.24474.1"
         },
         "compile": {
-          "bin/placeholder/Domen.dll": {}
+          "bin/placeholder/Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Domen.dll": {}
+          "bin/placeholder/Domain.dll": {}
         }
       }
     }
@@ -5512,15 +5512,15 @@
         "version.txt"
       ]
     },
-    "Domen/1.0.0": {
+    "Domain/1.0.0": {
       "type": "project",
-      "path": "../Domen/Domen.csproj",
-      "msbuildProject": "../Domen/Domen.csproj"
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Domen >= 1.0.0",
+      "Domain >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 8.0.8",
       "Microsoft.EntityFrameworkCore.Sqlite >= 9.0.0-rc.2.24474.1",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.0-rc.2.24474.1",
@@ -5560,8 +5560,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\MealMAte\\MealMate\\backend\\Domen\\Domen.csproj": {
-              "projectPath": "D:\\MealMAte\\MealMate\\backend\\Domen\\Domen.csproj"
+            "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj"
             }
           }
         }
