@@ -11,15 +11,15 @@ class Restaurant(BaseModel):
     owner_id: int
     notification_getter: Optional[NotificationGetter]
     name: str
-    coordinates: GeoCoordinates
+    coordinates: Optional[GeoCoordinates]
     menu: Optional[Menu]
     tables: Optional[List[Table]]
 
     def __init__(self,
                  owner_id: int,
                  name: str,
-                 coordinates: GeoCoordinates,
                  id: Optional[int] = None,
+                 coordinates: Optional[GeoCoordinates] = None,
                  notification_getter: Optional[NotificationGetter] = None,
                  menu: Optional[Menu] = None,
                  tables: Optional[List[Table]] = None):

@@ -7,6 +7,7 @@ from tg_business_bot.Config import database_dir
 
 def extract_and_save_images(file_path):
     output_folder = database_dir
+
     temp_folder = 'temp_extracted_files'
     image_paths = []
 
@@ -25,7 +26,7 @@ def extract_and_save_images(file_path):
                     dst_path = os.path.join(output_folder, unique_filename)
                     shutil.move(src_path, dst_path)
 
-                    image_paths.append(dst_path)
+                    image_paths.append(os.path.abspath(dst_path))
 
     shutil.rmtree(temp_folder)
     return image_paths
