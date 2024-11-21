@@ -5,6 +5,8 @@ from typing import List, Optional
 class GeoCoordinates(BaseModel):
     id: Optional[int]
     restaurant_id: int
+    latitude: float
+    longitude: float
 
     def __init__(self,
                  latitude: float,
