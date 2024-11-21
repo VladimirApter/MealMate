@@ -67,7 +67,14 @@ namespace host.Controllers
             }
 
             var table = new Table(entityTable.Id, entityTable.RestaurantId, entityTable.Number);
-            DataBaseAccess<T>.AddOrUpdateTable(table);
+            if (entityTable.Id == null)
+            {
+                DataBaseAccess<T>.AddOrUpdateTable(table, true);
+                var tableNew = new Table(table.Id, table.RestaurantId, table.Number);
+                DataBaseAccess<T>.AddOrUpdateTable(tableNew, true);
+            }
+            else
+                DataBaseAccess<T>.AddOrUpdateTable(table, false);
 
             return Ok(table.Id);
         }

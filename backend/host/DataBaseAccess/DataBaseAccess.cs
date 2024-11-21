@@ -123,15 +123,21 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
         context.SaveChanges();
     }
 
-    public static void AddOrUpdateTable<TTable>(TTable table) where TTable : Table
+    public static void AddOrUpdateTable<TTable>(TTable table, bool isNew) where TTable : Table
     {
         using var context = new ApplicationDbContext();
         var existingTable = context.Set<Table>().Find(table.Id);
 
         if (existingTable != null)
+        {
             context.Entry(existingTable).CurrentValues.SetValues(table);
-        else
-            context.Set<Table>().Add(table);
+            if (!isNew)
+            {
+                context.Entry(existingTable).Property(nameof(Table.QRCodeImagePath)).IsModified = false;
+                context.Entry(existingTable).Property(nameof(Table.Token)).IsModified = false;
+            }
+        }
+        else if (table.Id == null) context.Set<Table>().Add(table);
 
         context.SaveChanges();
     }
