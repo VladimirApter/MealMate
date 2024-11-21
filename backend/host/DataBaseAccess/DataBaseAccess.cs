@@ -97,7 +97,7 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
             else if (obj is Dish or Drink)
             {
                 MenuItem? objMenuItem = obj is Drink ? obj as Drink : obj as Dish;
-                if (objMenuItem.NutrientsOf100grams != null) 
+                if (objMenuItem.NutrientsOf100grams != null)
                     objMenuItem.NutrientsOf100grams.MenuItemId = objMenuItem.Id;
                 AddOrUpdateNotMappedProperties(obj);
 
@@ -114,18 +114,25 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
             }
             else
             {
-                if (obj is Table objTable)
-                {
-                    var table = new Table(objTable.Id, objTable.RestaurantId, objTable.Number, null, null);
-                    context.Set<Table>().Add(table);
-                }
-                else
-                    context.Set<T>().Add(obj);
+                context.Set<T>().Add(obj);
             }
         }
 
         //if (obj is not OrderItem && obj is not Order && obj is not MenuItem) AddOrUpdateNotMappedProperties(obj);
         AddOrUpdateNotMappedProperties(obj);
+        context.SaveChanges();
+    }
+
+    public static void AddOrUpdateTable<TTable>(TTable table) where TTable : Table
+    {
+        using var context = new ApplicationDbContext();
+        var existingTable = context.Set<Table>().Find(table.Id);
+
+        if (existingTable != null)
+            context.Entry(existingTable).CurrentValues.SetValues(table);
+        else
+            context.Set<Table>().Add(table);
+
         context.SaveChanges();
     }
 
