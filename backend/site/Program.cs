@@ -29,6 +29,7 @@ app.MapControllers();
 // Создаем объекты Nutrients для блюд и напитков
 var pastaNutrients = new Nutrients(
     id: null,
+    //menuItemId: 1,
     kilocalories: 520,
     proteins: 15,
     fats: 12,
@@ -37,6 +38,7 @@ var pastaNutrients = new Nutrients(
 
 var pizzaNutrients = new Nutrients(
     id: null,
+    //menuItemId: 2,
     kilocalories: 680,
     proteins: 20,
     fats: 20,
@@ -45,6 +47,7 @@ var pizzaNutrients = new Nutrients(
 
 var wineNutrients = new Nutrients(
     id: null,
+    //menuItemId: 3,
     kilocalories: 150,
     proteins: 0,
     fats: 0,
@@ -135,7 +138,7 @@ var notificationGetter = new NotificationGetter(
 // Создаем объект ресторана
 var restaurant = new Restaurant(
     id: 1,
-    ownerId: 456,
+    ownerId: 1,
     name: "La Bella Italia",
     coordinates: coordinates,
     notificationGetter: notificationGetter,
@@ -152,6 +155,7 @@ restaurantApi.Post(restaurant);
 // Создаем объекты Nutrients для блюд и напитков
 var sushiNutrients = new Nutrients(
     id: null,
+    //menuItemId: 4,
     kilocalories: 300,
     proteins: 25,
     fats: 10,
@@ -160,6 +164,7 @@ var sushiNutrients = new Nutrients(
 
 var ramenNutrients = new Nutrients(
     id: null,
+    //menuItemId: 5,
     kilocalories: 550,
     proteins: 20,
     fats: 15,
@@ -168,6 +173,7 @@ var ramenNutrients = new Nutrients(
 
 var sakeNutrients = new Nutrients(
     id: null,
+    //menuItemId: 6,
     kilocalories: 120,
     proteins: 0,
     fats: 0,
@@ -226,10 +232,17 @@ var drinksCategory2 = new Category(
     menuItems: new List<MenuItem> { japaneseSake }
 );
 
+var beerCategory = new Category(
+    id: 5,
+    menuId: 2,
+    name: "К пиву",
+    menuItems: new List<MenuItem> { japaneseSake, californiaRoll }
+);
+
 // Создаем меню ресторана
 var menu2 = new Menu(
     id: 2,
-    categories: new List<Category> { sushiCategory, drinksCategory2 },
+    categories: new List<Category> { sushiCategory, drinksCategory2, beerCategory },
     restaurantId: 2
 );
 
@@ -257,8 +270,8 @@ var notificationGetter2 = new NotificationGetter(
 
 // Создаем объект ресторана
 var restaurant2 = new Restaurant(
-    id: 2,
-    ownerId: 789,
+    id: 4,
+    ownerId: 1,
     name: "Tokyo Sushi Bar",
     coordinates: coordinates2,
     notificationGetter: notificationGetter2,
@@ -269,6 +282,65 @@ var restaurant2 = new Restaurant(
 // Отправляем ресторан через API-клиент
 var restaurantApi2 = new ApiClient<Restaurant>();
 restaurantApi2.Post(restaurant2);
+
+
+
+var orderItem = new OrderItem(1 , 1, 2, 500, californiaRoll);
+//var orderItem = new OrderItem(1, 1, 20, 20);
+var orderItemApi = new ApiClient<OrderItem>();
+//orderItemApi.Post(orderItem);
+
+var orderItem2 = new OrderItem(1, 2, 3, 1000, margheritaPizza);
+//orderItemApi.Post(orderItem2);
+//orderItemApi.Post(orderItem2);
+
+var categoryApi = new ApiClient<Category>();
+//categoryApi.Post(sushiCategory);
+
+var table = new Table(id: 3, restaurantId: 4, number: 2);
+table.Token = null;
+table.QRCodeImagePath = null;
+//var table2 = new Table(id: 2, restaurantId: 2, number: 2);
+
+var tableApi = new ApiClient<Table>();
+//tableApi.Post(table);
+var table3 =tableApi.Get(1);
+//tableApi.Post(table2);
+
+var owner = new Owner(1, "yura");
+var ownerApi = new ApiClient<Owner>();
+ownerApi.Post(owner);
+
+var order = new Order(2, 1, "fsdf", DateTime.Now, new Client(null, "0.0.0.2"), [orderItem2]);
+var orderApi = new ApiClient<Order>();
+//orderApi.Post(order);
+//orderApi.Post(order);
+
+var menuItem = japaneseSake;
+var sakeNutrients2 = new Nutrients(
+    id: null,
+    kilocalories: 120,
+    proteins: 2,
+    fats: 0,
+    carbohydrates: 5
+);
+var japaneseSake2 = new Drink(
+    id: null,
+    categoryId: 4,
+    cookingTimeMinutes: 0,
+    price: 8.50,
+    volume: 180,
+    name: "Японское саке",
+    description: "Традиционный японский алкогольный напиток из риса.",
+    imagePath: "images/japanese_sake.jpg",
+    nutrients: sakeNutrients2
+);
+
+var menuItemApi = new ApiClient<Drink>();
+//menuItemApi.Post(japaneseSake2);
+var drinkApi = new ApiClient<Drink>();
+//drinkApi.Post(japaneseSake2);
+//drinkApi.Post(japaneseSake2);
 
 
 app.Run();

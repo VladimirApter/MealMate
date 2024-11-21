@@ -60,21 +60,9 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
                 AddOrUpdateNotMappedProperties(obj);
                 context.Entry(existingObj).CurrentValues.SetValues(objNew);
             }
-            else if (existingObj is Owner)
-            {
-                var objOwner = obj as Owner;
-                objOwner.RestaurantIds = context.Restaurants.Where(r => r.OwnerId == objOwner.Id)
-                    .Select(r => r.Id.Value).ToList();
-                context.Entry(existingObj).CurrentValues.SetValues(objOwner);
-            }
             else
             {
                 context.Entry(existingObj).CurrentValues.SetValues(obj);
-                if (existingObj is Table)
-                {
-                    context.Entry(existingObj).Property(nameof(Table.QRCodeImagePath)).IsModified = false;
-                    context.Entry(existingObj).Property(nameof(Table.Token)).IsModified = false;
-                }
             }
         }
         else
@@ -105,12 +93,6 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
                     context.Set<Drink>().Add(objDrink);
                 else if (objMenuItem is Dish objDish)
                     context.Set<Dish>().Add(objDish);
-            }
-            else if (obj is Owner objOwner)
-            {
-                objOwner.RestaurantIds = context.Restaurants.Where(r => r.OwnerId == objOwner.Id)
-                    .Select(r => r.Id.Value).ToList();
-                context.Set<Owner>().Add(objOwner);
             }
             else
             {
