@@ -96,7 +96,7 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
             }
             else if (obj is Dish or Drink)
             {
-                MenuItem? objMenuItem = existingObj is Drink ? obj as Drink : obj as Dish;
+                MenuItem? objMenuItem = obj is Drink ? obj as Drink : obj as Dish;
                 objMenuItem.NutrientsOf100grams.MenuItemId = objMenuItem.Id;
                 AddOrUpdateNotMappedProperties(obj);
 
@@ -114,7 +114,13 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
             }
             else
             {
-                context.Set<T>().Add(obj);
+                if (obj is Table objTable)
+                {
+                    var table = new Table(objTable.Id, objTable.RestaurantId, objTable.Number, null, null);
+                    context.Set<Table>().Add(table);
+                }
+                else
+                    context.Set<T>().Add(obj);
             }
         }
 
