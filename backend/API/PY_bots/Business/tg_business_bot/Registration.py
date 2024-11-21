@@ -27,7 +27,7 @@ def register_commands():
             bot.send_message(message.chat.id, "Для начала вам нужно зарегестрироваться, используйте /register")
             return
 
-        restaurant = Restaurant(address='', name='', owner_id=owner.id)
+        restaurant = Restaurant(name='', owner_id=owner.id)
         register_restaurant_name(message, restaurant)
 
 
@@ -37,14 +37,14 @@ def register_restaurant_name(message: types.Message, restaurant: Restaurant):
 
 
 def register_restaurant_address(message: types.Message, restaurant: Restaurant):
+    api_client = ApiClient(Restaurant)
+    restaurant.id = api_client.post(restaurant)
+
     bot.send_message(message.chat.id, 'Теперь введите адрес заведения (в свободной форме)')
     bot.register_next_step_handler(message, validate_and_post_address, restaurant, register_notification_getter, True)
 
 
 def register_notification_getter(message: types.Message, restaurant: Restaurant):
-    api_client = ApiClient(Restaurant)
-    restaurant.id = api_client.post(restaurant)
-
     bot.send_message(message.chat.id, 'Сейчас нужно назначить человека, которому будут приходить уведомления о заказах', reply_markup=get_notification_getter_markup())
     bot.register_next_step_handler(message, validate_and_post_notification_getter, restaurant, register_restaurant_menu, True)
 

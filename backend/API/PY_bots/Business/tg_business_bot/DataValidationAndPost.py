@@ -3,12 +3,13 @@ from telebot import types
 
 import Geocoder
 from Config import *
-from ApiClient import ApiClient
-from Models.Restaurant import Restaurant
-from Models.Menu import Menu
-from Models.Owner import Owner
-from Models.NotificationGetter import NotificationGetter
-from Models.Table import Table
+from ApiClient.ApiClient import ApiClient
+from Model.Restaurant import Restaurant
+from Model.Menu import Menu
+from Model.Owner import Owner
+from Model.NotificationGetter import NotificationGetter
+from Model.Table import Table
+from Model.GeoCoordinates import GeoCoordinates
 from excel_tables_work.parse_table import parse_menu_from_excel
 from excel_tables_work.validate_menu_template import *
 
@@ -103,10 +104,11 @@ def _parse_coordinates(coord_str):
 
 def _accept_address(message: types.Message, restaurant: Restaurant, coordinates, func_to_return_after_post, is_registration):
     if message.text == 'да':
-        restaurant.address = str(coordinates)
-        if not is_registration:
-            api_client = ApiClient(Restaurant)
-            api_client.post(restaurant)
+        latitude, longitude = coordinates
+        restaurant.coordinates = GeoCoordinates(latitude, longitude, restaurant.id)
+
+        api_client = ApiClient(GeoCoordinates)
+        api_client.post(restaurant.coordinates)
 
         bot.send_message(message.chat.id, f'Адрес ресторана сохранен', reply_markup=types.ReplyKeyboardRemove())
 
@@ -239,8 +241,9 @@ def validate_and_post_tables(message: types.Message, restaurant: Restaurant, fun
             table_id = api_client.post(table)  # generate qr while post
             table = api_client.get(table_id)  # get table with qr
             restaurant.tables.append(table)
-            '''[[[[[[[[[[[[[[[[[[[[[[[[[[отправить qr коды добавленных столов]]]]]]]]]]]]]]]]]]]]]]]]]]'''
-            bot.send_message(message.chat.id, f"qr код стола номер {table.number}: <qr code>")
+
+            with open(table.qr_code_image_path, 'rb') as photo:
+                bot.send_photo(message.chat.id, photo, caption=f"#qr код стола номер {table.number}")
     else:
         sorted_tables = sorted(restaurant.tables, key=lambda table: table.number, reverse=True)
         tables_to_delete = sorted_tables[:current_tables_count - tables_count]

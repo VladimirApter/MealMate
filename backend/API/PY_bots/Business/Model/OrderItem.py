@@ -1,8 +1,9 @@
 from pydantic import BaseModel
 from typing import Optional
 
-from Models.MenuItem import MenuItem
-from Models.Client import Client
+from Model.MenuItem import MenuItem
+from Model.Client import Client
+
 
 class OrderItem(BaseModel):
     id: Optional[int]

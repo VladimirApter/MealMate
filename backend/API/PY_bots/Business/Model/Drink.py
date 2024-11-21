@@ -1,8 +1,9 @@
 from pydantic import BaseModel
 from typing import Optional
 
-from Models.MenuItem import MenuItem
-from Models.Nutrients import Nutrients
+from Model.MenuItem import MenuItem
+from Model.Nutrients import Nutrients
+
 
 class Drink(MenuItem):
     volume: float

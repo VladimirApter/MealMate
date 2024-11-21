@@ -3,8 +3,9 @@ from typing import List, Optional
 from datetime import datetime
 from enum import Enum
 
-from Models.OrderItem import OrderItem
-from Models.Client import Client
+from Model.OrderItem import OrderItem
+from Model.Client import Client
+
 
 class OrderStatus(Enum):
     IN_ASSEMBLY = "InAssembly"

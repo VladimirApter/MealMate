@@ -2,7 +2,7 @@ import httpx
 from threading import Lock
 from typing import Any
 
-from Config import *
+api_base_url = "http://localhost:5051"
 
 
 class ApiClient:

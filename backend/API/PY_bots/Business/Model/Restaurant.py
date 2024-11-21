@@ -1,25 +1,26 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-from Models.NotificationGetter import NotificationGetter
-from Models.Menu import Menu
-from Models.Table import Table
-from Models.GeoCoordinates import GeoCoordinates
+from Model.NotificationGetter import NotificationGetter
+from Model.Menu import Menu
+from Model.Table import Table
+from Model.GeoCoordinates import GeoCoordinates
+
 
 class Restaurant(BaseModel):
     id: Optional[int]
     owner_id: int
     notification_getter: Optional[NotificationGetter]
     name: str
-    coordinates: GeoCoordinates
+    coordinates: Optional[GeoCoordinates]
     menu: Optional[Menu]
     tables: Optional[List[Table]]
 
     def __init__(self,
                  owner_id: int,
                  name: str,
-                 coordinates: GeoCoordinates,
                  id: Optional[int] = None,
+                 coordinates: Optional[GeoCoordinates] = None,
                  notification_getter: Optional[NotificationGetter] = None,
                  menu: Optional[Menu] = None,
                  tables: Optional[List[Table]] = None):
