@@ -30,6 +30,7 @@ public static class TokenEncryptor
     // Метод для дешифрования URL-friendly токена
     public static (int TableId, int RestaurantId) DecryptToken(string token)
     {
+        
         return Decrypt(FromUrlSafeBase64(token));
     }
 

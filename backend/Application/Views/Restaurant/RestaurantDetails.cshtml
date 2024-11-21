@@ -1,11 +1,12 @@
 @using System.Globalization
-@model Domain.Models.Restaurant
+@model Domain.Models.RestaurantDetailsViewModel
 
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="@Model.Restaurant.Id, @Model.Table.Id">
     <title>MealMate</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <style>
@@ -34,7 +35,7 @@
 </head>
 <body>
 <div class="container">
-    @foreach (var category in Model.Menu.Categories)
+    @foreach (var category in Model.Restaurant.Menu.Categories)
     {
         <div class="block">
             <div class="category">@category.Name</div>

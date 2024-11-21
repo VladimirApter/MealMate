@@ -1896,19 +1896,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\shabu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MealMAte\\MealMate\\backend\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\shabu\\Desktop\\Project\\MealMate\\backend\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "D:\\MealMAte\\MealMate\\backend\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\MealMAte\\MealMate\\backend\\Application\\obj\\",
+      "projectPath": "C:\\Users\\shabu\\Desktop\\Project\\MealMate\\backend\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\shabu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\shabu\\Desktop\\Project\\MealMate\\backend\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\shabu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1916,15 +1916,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj"
+            "C:\\Users\\shabu\\Desktop\\Project\\MealMate\\backend\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\shabu\\Desktop\\Project\\MealMate\\backend\\Domain\\Domain.csproj"
             }
           }
         }
@@ -1933,6 +1932,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {

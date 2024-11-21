@@ -2,7 +2,7 @@ using System.Text.Json;
 using Domain.DataBaseAccess;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Domain.Logic;
 
 namespace site.Controllers;
 
@@ -10,31 +10,53 @@ namespace site.Controllers;
 [Route("restaurant")]
 public class RestaurantController : Controller
 {
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetRestaurant(int id)
+    // [HttpGet("{id}")]
+    // public async Task<IActionResult> GetRestaurant(int id)
+    // {
+    //     var apiClient = new ApiClient<Restaurant>();
+    //     var restaurant = apiClient.Get(id);
+    //     if (restaurant == null)
+    //         return NotFound();
+
+    //     // Загрузка связанных данных
+    //     await restaurant.TakeRelatedData(new ApplicationDbContext());
+
+    //     return View("RestaurantDetails", restaurant);
+    // }
+
+    [HttpGet("{token}")]
+    public IActionResult GetRestaurant(string token)
     {
-        var apiClient = new ApiClient<Restaurant>();
-        var restaurant = apiClient.Get(id);
-        if (restaurant == null)
+        var (TableId, RestaurantId) = TokenEncryptor.DecryptToken(token);
+        var apiRestaurantClient = new ApiClient<Restaurant>();
+        var apiTableClient = new ApiClient<Table>();
+        var restaurant = apiRestaurantClient.Get(RestaurantId);
+        var table = apiTableClient.Get(TableId);
+
+        if (restaurant == null || table == null)
             return NotFound();
+        
+        var restaurantDetails = new RestaurantDetailsViewModel()
+        {
+            Restaurant = restaurant,
+            Table = table
+        };
 
-        // Загрузка связанных данных
-        await restaurant.TakeRelatedData(new ApplicationDbContext());
-
-        return View("RestaurantDetails", restaurant);
+        return View("RestaurantDetails", restaurantDetails);
     }
     
-    [HttpPost("placeOrder")]
-    public IActionResult PlaceOrder([FromBody] Order order)
-    {
-        Console.WriteLine("Received order:");
+    
+    // [HttpPost("placeOrder")]
+    // public IActionResult PlaceOrder([FromBody] Order order)
+    // {
+    //     Console.WriteLine("Received order:");
 
-        foreach (var item in order.OrderItems)
-        {
-            Console.WriteLine($"Dish ID: {item.Id}, Count: {item.Count}, Price: {item.Price}");
-        }
+    //     foreach (var item in order.OrderItems)
+    //     {
+    //         Console.WriteLine($"Dish ID: {item.Id}, Count: {item.Count}, Price: {item.Price}");
+    //     }
 
-        // Возвращаем ID заказа (в данном случае, это просто пример)
-        return Ok(new { id = order.Id });
-    }
+    //     // Возвращаем ID заказа (в данном случае, это просто пример)
+    //     return Ok(new { id = order.Id });
+    //}
 }

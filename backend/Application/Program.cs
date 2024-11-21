@@ -126,6 +126,8 @@ var tables = new List<Table>
     new Table(id: 3, restaurantId: 1, number: 3)
 };
 
+Console.WriteLine(tables[0].Token);
+
 // Задаем географические координаты ресторана
 var coordinates = new GeoCoordinates(
     restaurantId: 1,
