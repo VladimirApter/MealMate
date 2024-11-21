@@ -1,0 +1,13 @@
+D:\MealMAte\MealMate\backend\Domen\bin\Debug\net8.0\Domen.deps.json
+D:\MealMAte\MealMate\backend\Domen\bin\Debug\net8.0\Domen.dll
+D:\MealMAte\MealMate\backend\Domen\bin\Debug\net8.0\Domen.pdb
+D:\MealMAte\MealMate\backend\Domen\obj\Debug\net8.0\Domen.csproj.AssemblyReference.cache
+D:\MealMAte\MealMate\backend\Domen\obj\Debug\net8.0\Domen.GeneratedMSBuildEditorConfig.editorconfig
+D:\MealMAte\MealMate\backend\Domen\obj\Debug\net8.0\Domen.AssemblyInfoInputs.cache
+D:\MealMAte\MealMate\backend\Domen\obj\Debug\net8.0\Domen.AssemblyInfo.cs
+D:\MealMAte\MealMate\backend\Domen\obj\Debug\net8.0\Domen.csproj.CoreCompileInputs.cache
+D:\MealMAte\MealMate\backend\Domen\obj\Debug\net8.0\Domen.sourcelink.json
+D:\MealMAte\MealMate\backend\Domen\obj\Debug\net8.0\Domen.dll
+D:\MealMAte\MealMate\backend\Domen\obj\Debug\net8.0\refint\Domen.dll
+D:\MealMAte\MealMate\backend\Domen\obj\Debug\net8.0\Domen.pdb
+D:\MealMAte\MealMate\backend\Domen\obj\Debug\net8.0\ref\Domen.dll

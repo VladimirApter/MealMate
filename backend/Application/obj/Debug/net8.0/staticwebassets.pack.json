@@ -1,0 +1,213 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.eot",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Bold.eot"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Bold.ttf"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.woff",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Bold.woff"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.woff2",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Bold.woff2"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.eot",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Light.eot"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Light.ttf"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.woff",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Light.woff"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.woff2",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Light.woff2"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.eot",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Regular.eot"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Regular.ttf"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.woff",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Regular.woff"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.woff2",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Regular.woff2"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.eot",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-RegularItalic.eot"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-RegularItalic.ttf"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.woff",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-RegularItalic.woff"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.woff2",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-RegularItalic.woff2"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.eot",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Thin.eot"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Thin.ttf"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.woff",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Thin.woff"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.woff2",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansDisplay-Thin.woff2"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.eot",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Bold.eot"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Bold.ttf"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.woff",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Bold.woff"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.woff2",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Bold.woff2"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.eot",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Light.eot"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Light.ttf"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.woff",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Light.woff"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.woff2",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Light.woff2"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.eot",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Medium.eot"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Medium.ttf"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.woff",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Medium.woff"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.woff2",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Medium.woff2"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.eot",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Regular.eot"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Regular.ttf"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.woff",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Regular.woff"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.woff2",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Regular.woff2"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.eot",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-RegularItalic.eot"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-RegularItalic.ttf"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.woff",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-RegularItalic.woff"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.woff2",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-RegularItalic.woff2"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.eot",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Thin.eot"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Thin.ttf"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.woff",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Thin.woff"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.woff2",
+      "PackagePath": "staticwebassets\\css\\fonts\\YandexSansText-Thin.woff2"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\stylesheet.css",
+      "PackagePath": "staticwebassets\\css\\fonts\\stylesheet.css"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\img\\arrow.svg",
+      "PackagePath": "staticwebassets\\img\\arrow.svg"
+    },
+    {
+      "Id": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\js\\order.js",
+      "PackagePath": "staticwebassets\\js\\order.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Application.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Application.props",
+      "PackagePath": "build\\Application.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Application.props",
+      "PackagePath": "buildMultiTargeting\\Application.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Application.props",
+      "PackagePath": "buildTransitive\\Application.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
