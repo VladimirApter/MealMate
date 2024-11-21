@@ -1,33 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\API\\API.csproj": {}
+    "D:\\MealMAte\\MealMate\\backend\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\API\\API.csproj": {
+    "D:\\MealMAte\\MealMate\\backend\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\API\\API.csproj",
+        "projectUniqueName": "D:\\MealMAte\\MealMate\\backend\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\yurar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\API\\obj\\",
+        "projectPath": "D:\\MealMAte\\MealMate\\backend\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "D:\\MealMAte\\MealMate\\backend\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\yurar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\Domain\\Domain.csproj"
+              "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj"
               }
             }
           }
@@ -100,26 +103,29 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23463.5/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\Domain\\Domain.csproj": {
+    "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\yurar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\Domain\\obj\\",
+        "projectPath": "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "D:\\MealMAte\\MealMate\\backend\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\yurar\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -138,6 +144,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.5.1, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[9.0.0-rc.2.24474.1, )"
@@ -173,7 +183,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23463.5/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

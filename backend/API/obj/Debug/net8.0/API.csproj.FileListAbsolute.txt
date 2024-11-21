@@ -237,9 +237,7 @@ D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\win-x64\native\SQLite
 D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\win-x86\native\SQLite.Interop.dll
 D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
-D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 D:\MealMAte\MealMate\backend\API\obj\Debug\net8.0\API.csproj.AssemblyReference.cache
 D:\MealMAte\MealMate\backend\API\obj\Debug\net8.0\API.GeneratedMSBuildEditorConfig.editorconfig
 D:\MealMAte\MealMate\backend\API\obj\Debug\net8.0\API.AssemblyInfoInputs.cache
@@ -1062,3 +1060,5 @@ C:\Users\yurar\RiderProjects\MealMate\backend\API\obj\Debug\net8.0\refint\API.dl
 C:\Users\yurar\RiderProjects\MealMate\backend\API\obj\Debug\net8.0\API.pdb
 C:\Users\yurar\RiderProjects\MealMate\backend\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Users\yurar\RiderProjects\MealMate\backend\API\obj\Debug\net8.0\ref\API.dll
+D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\MealMAte\MealMate\backend\API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
