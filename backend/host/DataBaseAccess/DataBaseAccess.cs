@@ -96,13 +96,13 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
             }
             else if (obj is Dish or Drink)
             {
-                MenuItem? objMenuItem = existingObj is Drink ? obj as Drink : obj as Dish;
-                objMenuItem.NutrientsOf100grams.MenuItemId = objMenuItem.Id;
+                MenuItem? objMenuItem = obj is Drink ? obj as Drink : obj as Dish;
+                if (objMenuItem.NutrientsOf100grams != null) 
+                    objMenuItem.NutrientsOf100grams.MenuItemId = objMenuItem.Id;
                 AddOrUpdateNotMappedProperties(obj);
 
                 if (objMenuItem is Drink objDrink)
                     context.Set<Drink>().Add(objDrink);
-
                 else if (objMenuItem is Dish objDish)
                     context.Set<Dish>().Add(objDish);
             }

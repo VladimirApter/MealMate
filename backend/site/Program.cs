@@ -29,7 +29,6 @@ app.MapControllers();
 // Создаем объекты Nutrients для блюд и напитков
 var pastaNutrients = new Nutrients(
     id: null,
-    menuItemId: 1,
     kilocalories: 520,
     proteins: 15,
     fats: 12,
@@ -38,7 +37,6 @@ var pastaNutrients = new Nutrients(
 
 var pizzaNutrients = new Nutrients(
     id: null,
-    menuItemId: 2,
     kilocalories: 680,
     proteins: 20,
     fats: 20,
@@ -47,7 +45,6 @@ var pizzaNutrients = new Nutrients(
 
 var wineNutrients = new Nutrients(
     id: null,
-    menuItemId: 3,
     kilocalories: 150,
     proteins: 0,
     fats: 0,
@@ -155,7 +152,6 @@ restaurantApi.Post(restaurant);
 // Создаем объекты Nutrients для блюд и напитков
 var sushiNutrients = new Nutrients(
     id: null,
-    menuItemId: 4,
     kilocalories: 300,
     proteins: 25,
     fats: 10,
@@ -164,7 +160,6 @@ var sushiNutrients = new Nutrients(
 
 var ramenNutrients = new Nutrients(
     id: null,
-    menuItemId: 5,
     kilocalories: 550,
     proteins: 20,
     fats: 15,
@@ -173,7 +168,6 @@ var ramenNutrients = new Nutrients(
 
 var sakeNutrients = new Nutrients(
     id: null,
-    menuItemId: 6,
     kilocalories: 120,
     proteins: 0,
     fats: 0,
