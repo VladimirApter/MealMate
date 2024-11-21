@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
 using System.Text.Json.Serialization;
 using Domain.DataBaseAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
