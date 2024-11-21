@@ -7,7 +7,7 @@ using Domain.Logic;
 namespace site.Controllers;
 
 [ApiController]
-[Route("restaurant")]
+[Route("order")]
 public class RestaurantController : Controller
 {
     // [HttpGet("{id}")]

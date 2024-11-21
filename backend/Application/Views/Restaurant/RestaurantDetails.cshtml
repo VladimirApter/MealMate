@@ -1,4 +1,5 @@
 @using System.Globalization
+@using System.Text.Json
 @model Domain.Models.RestaurantDetailsViewModel
 
 <!DOCTYPE html>
@@ -43,8 +44,9 @@
                 @foreach (var cell in category.MenuItems)
                 {
                     var dataCell = cell.ToString();
+                    var doc = JsonDocument.Parse(dataCell);
                     <div class="cell" data-cell='@dataCell' onclick="handleCellClick(event, this)">
-                        <img src="https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg" alt="image" class="image">
+                        <img src=@doc.RootElement.GetProperty("image").GetString() alt="image" class="image">
                         <div class="content">
                             <p class="cost">@cell.Price.ToString(CultureInfo.InvariantCulture)₽</p>
                             <p class="desc">@cell.Name</p>

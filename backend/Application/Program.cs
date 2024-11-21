@@ -1,5 +1,6 @@
 using Domain.Logic;
 using Domain.Models;
+using Microsoft.Extensions.FileProviders;
 using site;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,13 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+var databasePath = Path.GetFullPath(Path.Combine(builder.Environment.ContentRootPath, "..", "Domain", "Database", "MenuItemImages"));
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(databasePath),
+    RequestPath = "/Domain/Database/MenuItemImages"
+});
 
 app.UseRouting();
 
@@ -68,7 +76,7 @@ var spaghettiCarbonara = new Dish(
     weight: 350,
     name: "Спагетти Карбонара",
     description: "Классическое итальянское блюдо с беконом, яйцами и сыром.",
-    imagePath: "images/spaghetti_carbonara.jpg",
+    imagePath: "/Domain/Database/MenuItemImages/1.jpeg",
     nutrients: pastaNutrients
 );
 
@@ -80,7 +88,7 @@ var margheritaPizza = new Dish(
     weight: 450,
     name: "Пицца Маргарита",
     description: "Традиционная пицца с томатным соусом, моцареллой и базиликом.",
-    imagePath: "images/margherita_pizza.jpg",
+    imagePath: "https://lh3.googleusercontent.com/-F7-f2RyixFJ_0-MIGehlz7lp08CkWuy7Y64qDx8zcSrAyHA_uWVnJx1XOVAHg_qoFD7fW34aWScKlOz7tlHx8LeBxDoB64vaZ6LCKKMAPPnr8-QTpPpQVVK-xGPWFZomSVkVZXW",
     nutrients: pizzaNutrients
 );
 
@@ -92,7 +100,7 @@ var italianRedWine = new Drink(
     volume: 150,
     name: "Итальянское красное вино",
     description: "Бокал изысканного красного вина из региона Тоскана.",
-    imagePath: "images/italian_red_wine.jpg",
+    imagePath: "https://www.klenmarket.ru/upload/shop_1/3/2/6/item_326671/shop_property_file_326671_525318.jpg",
     nutrients: wineNutrients
 );
 

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shabu\\Desktop\\Project\\MealMate\\backend\\Domain\\Domain.csproj": {}
+    "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shabu\\Desktop\\Project\\MealMate\\backend\\Domain\\Domain.csproj": {
+    "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shabu\\Desktop\\Project\\MealMate\\backend\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\shabu\\Desktop\\Project\\MealMate\\backend\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\shabu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shabu\\Desktop\\Project\\MealMate\\backend\\Domain\\obj\\",
+        "projectPath": "D:\\MealMAte\\MealMate\\backend\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "D:\\MealMAte\\MealMate\\backend\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\shabu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,11 +35,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
