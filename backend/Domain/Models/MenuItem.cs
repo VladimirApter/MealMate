@@ -27,7 +27,7 @@ public class MenuItem : ITakeRelatedData, IDeleteRelatedData
         CookingTimeMinutes = cookingTimeMinutes;
         Price = price;
         Name = name;
-        ImagePath = MakeRelativePath(imagePath);
+        ImagePath = imagePath;
         Description = description;
         NutrientsOf100grams = nutrientsOf100grams;
     }
@@ -57,15 +57,5 @@ public class MenuItem : ITakeRelatedData, IDeleteRelatedData
         };
         
         return JsonSerializer.Serialize(jsonObj);
-    }
-
-    private string MakeRelativePath(string? fullPath)
-    {
-        //var test = "D:\\MealMAte\\MealMate\\backend\\DataBase\\MenuItemImages\\1.jpeg";
-        if (fullPath == null)
-            return new string(fullPath);
-        var parts = fullPath.Split('\\');
-        var relativePath = $"/{parts[^2]}/{parts[^1]}";
-        return relativePath;
     }
 }

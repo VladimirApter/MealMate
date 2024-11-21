@@ -46,7 +46,7 @@
                     var dataCell = cell.ToString();
                     var doc = JsonDocument.Parse(dataCell);
                     <div class="cell" data-cell='@dataCell' onclick="handleCellClick(event, this)">
-                        <img src=@doc.RootElement.GetProperty("image").GetString() alt="image" class="image">
+                        <img src="/MenuItemImages/@cell.ImagePath" alt="image" class="image">
                         <div class="content">
                             <p class="cost">@cell.Price.ToString(CultureInfo.InvariantCulture)₽</p>
                             <p class="desc">@cell.Name</p>

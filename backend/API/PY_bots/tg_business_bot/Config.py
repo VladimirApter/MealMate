@@ -9,4 +9,4 @@ bot = telebot.TeleBot(bot_token, state_storage=StateMemoryStorage())
 geocoder_api_key = "47ff557b-d013-4f66-8d62-11de6da89ad1"
 
 current_dir = os.getcwd()
-database_dir = os.path.join('..', '..', '..', 'backend', 'host', 'DataBase', 'MenuItemImages')
+menu_item_images_dir = os.path.join('..', '..', '..', 'Application', 'wwwroot', 'MenuItemImages')

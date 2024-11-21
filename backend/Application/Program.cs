@@ -20,28 +20,6 @@ app.UseStaticFiles();
 DataBasePathGetter.Setup();
 HostsUrlGetter.Setup();
 
-/*var imagesFolderPath = Path.Combine(DataBasePathGetter.DataBasePath, "MenuItemImages");
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(imagesFolderPath),
-    RequestPath = $"/MenuItemImages"
-});*/
-
-/*
-var databasePath = Path.GetFullPath(Path.Combine(builder.Environment.ContentRootPath, "..", "Database", "MenuItemImages"));
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(databasePath),
-    RequestPath = "/Database/MenuItemImages"
-});*/
-
-
-var imagesFolderPath = Path.Combine(DataBasePathGetter.DataBasePath, "MenuItemImages");
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(imagesFolderPath),
-    RequestPath = "/MenuItemImages"
-});
 
 app.UseRouting();
 
@@ -95,7 +73,7 @@ var spaghettiCarbonara = new Dish(
     weight: 350,
     name: "Спагетти Карбонара",
     description: "Классическое итальянское блюдо с беконом, яйцами и сыром.",
-    imagePath: "D:\\MealMAte\\MealMate\\backend\\DataBase\\MenuItemImages\\1.jpeg",
+    imagePath: "1.jpeg",
     nutrients: pastaNutrients
 );
 
@@ -107,7 +85,7 @@ var margheritaPizza = new Dish(
     weight: 450,
     name: "Пицца Маргарита",
     description: "Традиционная пицца с томатным соусом, моцареллой и базиликом.",
-    imagePath: "D:\\MealMAte\\MealMate\\backend\\DataBase\\MenuItemImages\\2.jpeg",
+    imagePath: "2.jpeg",
     nutrients: pizzaNutrients
 );
 
@@ -119,7 +97,7 @@ var italianRedWine = new Drink(
     volume: 150,
     name: "Итальянское красное вино",
     description: "Бокал изысканного красного вина из региона Тоскана.",
-    imagePath: "D:\\MealMAte\\MealMate\\backend\\DataBase\\MenuItemImages\\3.jpeg",
+    imagePath: "3.jpeg",
     nutrients: wineNutrients
 );
 
@@ -223,7 +201,7 @@ var californiaRoll = new Dish(
     weight: 200,
     name: "Калифорнийский ролл",
     description: "Ролл с крабом, авокадо и икрой тобико.",
-    imagePath: "D:\\MealMAte\\MealMate\\backend\\DataBase\\MenuItemImages\\2.jpg",
+    imagePath: "2.jpg",
     nutrients: sushiNutrients
 );
 
@@ -235,7 +213,7 @@ var spicyRamen = new Dish(
     weight: 400,
     name: "Острый Рамен",
     description: "Сытный рамен с пряным бульоном и кусочками свинины.",
-    imagePath: "D:\\MealMAte\\MealMate\\backend\\DataBase\\MenuItemImages\\2.jpg",
+    imagePath: "2.jpg",
     nutrients: ramenNutrients
 );
 
@@ -247,7 +225,7 @@ var japaneseSake = new Drink(
     volume: 180,
     name: "Японское саке",
     description: "Традиционный японский алкогольный напиток из риса.",
-    imagePath: "D:\\MealMAte\\MealMate\\backend\\DataBase\\MenuItemImages\\2.jpg",
+    imagePath: "2.jpg",
     nutrients: sakeNutrients
 );
 
@@ -366,7 +344,7 @@ var japaneseSake2 = new Drink(
     volume: 180,
     name: "Японское саке",
     description: "Традиционный японский алкогольный напиток из риса.",
-    imagePath: "D:\\MealMAte\\MealMate\\backend\\DataBase\\MenuItemImages\\2.jpg",
+    imagePath: "2.jpg",
     nutrients: sakeNutrients2
 );
 

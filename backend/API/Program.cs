@@ -35,11 +35,8 @@ DataBasePathGetter.Setup();
 HostsUrlGetter.Setup();
 
 var databaseFolder = DataBasePathGetter.DataBasePath;
-var menuItemImagesFolder = Path.Combine(databaseFolder, "MenuItemImages");
 if (!Directory.Exists(databaseFolder))
     Directory.CreateDirectory(databaseFolder);
-if (!Directory.Exists(menuItemImagesFolder))
-    Directory.CreateDirectory(menuItemImagesFolder);
 
 using var context = new ApplicationDbContext();
 
