@@ -17,12 +17,24 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-var databasePath = Path.GetFullPath(Path.Combine(builder.Environment.ContentRootPath, "..", "Domain", "Database", "MenuItemImages"));
+DataBasePathGetter.Setup();
+HostsUrlGetter.Setup();
+
+/*var imagesFolderPath = Path.Combine(DataBasePathGetter.DataBasePath, "MenuItemImages");
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(imagesFolderPath),
+    RequestPath = $"/MenuItemImages"
+});*/
+
+
+var databasePath = Path.GetFullPath(Path.Combine(builder.Environment.ContentRootPath, "..", "Database", "MenuItemImages"));
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(databasePath),
-    RequestPath = "/Domain/Database/MenuItemImages"
+    RequestPath = "/Database/MenuItemImages"
 });
+
 
 app.UseRouting();
 
@@ -76,7 +88,7 @@ var spaghettiCarbonara = new Dish(
     weight: 350,
     name: "Спагетти Карбонара",
     description: "Классическое итальянское блюдо с беконом, яйцами и сыром.",
-    imagePath: "/Domain/Database/MenuItemImages/1.jpeg",
+    imagePath: "/Database/MenuItemImages/1.jpeg",
     nutrients: pastaNutrients
 );
 
@@ -318,7 +330,7 @@ table.QRCodeImagePath = null;
 //var table2 = new Table(id: 2, restaurantId: 2, number: 2);
 
 var tableApi = new ApiClient<Table>();
-//tableApi.Post(table);
+tableApi.Post(table);
 var table3 =tableApi.Get(1);
 //tableApi.Post(table2);
 

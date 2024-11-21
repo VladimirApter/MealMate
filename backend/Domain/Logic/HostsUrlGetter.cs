@@ -5,26 +5,27 @@ namespace Domain.Logic;
 
 public static partial class HostsUrlGetter
 {
-    public static string GetHostUrl(string hostDataFileName, [CallerFilePath] string callerFilePath = "")
+    public static string ApiUrl;
+    public static string ApplicationUrl;
+
+    public static void Setup()
     {
-        var currentDirectory = Path.GetDirectoryName(callerFilePath);
-        var hostDataFilePath = hostDataFileName switch
-        {
-            "API.http" => Path.GetFullPath(Path.Combine(currentDirectory, $"../../API/{hostDataFileName}")),
-            "Application.http" => Path.GetFullPath(Path.Combine(currentDirectory, $"../../Application/{hostDataFileName}")),
-            _ => throw new ArgumentException($"Unknown API data file name: {hostDataFileName}")
-        };
+        var currentDirectory = Directory.GetCurrentDirectory();
 
-        if (!File.Exists(hostDataFilePath))
-            throw new FileNotFoundException($"File not found: {hostDataFilePath}");
+        var apiPath = Path.GetFullPath(Path.Combine(currentDirectory, "../API/API.http"));
+        var applicationPath = Path.GetFullPath(Path.Combine(currentDirectory, "../Application/Application.http"));
 
-        var content = File.ReadAllText(hostDataFilePath);
-        var match = MyRegex().Match(content);
+        var apiContent = File.ReadAllText(apiPath);
+        var apiMatch = MyRegex().Match(apiContent);
 
-        if (match.Success)
-            return match.Groups[1].Value.Trim();
+        if (apiMatch.Success)
+            ApiUrl = apiMatch.Groups[1].Value.Trim();
 
-        throw new InvalidOperationException($"No valid API address found in the file {hostDataFilePath}");
+        var applicationContent = File.ReadAllText(applicationPath);
+        var applicationMatch = MyRegex().Match(applicationContent);
+
+        if (applicationMatch.Success)
+            ApplicationUrl = applicationMatch.Groups[1].Value.Trim();
     }
 
     [GeneratedRegex(@"@\w+_HostAddress\s*=\s*(.+)")]

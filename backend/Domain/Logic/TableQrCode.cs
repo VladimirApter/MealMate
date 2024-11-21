@@ -9,20 +9,20 @@ namespace Domain.Logic;
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public static class TableQrCode
 {
-    private static readonly string siteBaseUrl;
+    private static readonly string applicationBaseUrl;
     private static readonly string qrcodeDataBasePath;
     
     static TableQrCode()
     {
-        siteBaseUrl = HostsUrlGetter.GetHostUrl("Application.http");
-        
-        var databasePath = DataBasePathGetter.GetAbsoluteDataBasePath();
+        applicationBaseUrl = HostsUrlGetter.ApplicationUrl;
+
+        var databasePath = DataBasePathGetter.DataBasePath;
         qrcodeDataBasePath = Path.Combine(databasePath, "QRCodeImages");
     }
 
     public static string GenerateAndSaveQrCode(int tableNumber, string tableToken)
     {
-        var url = $"{siteBaseUrl}/{tableToken}";
+        var url = $"{applicationBaseUrl}/{tableToken}";
         var logo = NumberImageGenerator.Generate(tableNumber);
         
         

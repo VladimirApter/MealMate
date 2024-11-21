@@ -31,7 +31,10 @@ app.UseSwaggerUI(c =>
 // Регистрация маршрутов на верхнем уровне
 app.MapControllers();
 
-var databaseFolder = "Database";
+DataBasePathGetter.Setup();
+HostsUrlGetter.Setup();
+
+var databaseFolder = DataBasePathGetter.DataBasePath;
 var menuItemImagesFolder = Path.Combine(databaseFolder, "MenuItemImages");
 if (!Directory.Exists(databaseFolder))
     Directory.CreateDirectory(databaseFolder);
@@ -39,6 +42,7 @@ if (!Directory.Exists(menuItemImagesFolder))
     Directory.CreateDirectory(menuItemImagesFolder);
 
 using var context = new ApplicationDbContext();
+
 context.Database.EnsureCreated();
 
 

@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Domain\\Domain.csproj": {}
+    "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Domain\\Domain.csproj": {
+    "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\yurar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yurar\\RiderProjects\\MealMate\\backend\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\yurar\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -80,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23463.5/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
