@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+tOdAuCt6xIrVoqzruTpqIwwQ5wygIKGd5UitNGofNM=",
+  "Hash": "+2+yQq6kTgJq+88MQcY6sgEmL+1WTf3rP/NhiuG/Wr4=",
   "Source": "Application",
   "BasePath": "_content/Application",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Application\\wwwroot",
       "Source": "Application",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\stylesheet.css",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\stylesheet.css",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/stylesheet.css",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\stylesheet.css"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.eot",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.eot",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Bold.eot",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Bold.eot"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.ttf",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.ttf",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Bold.ttf",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Bold.ttf"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.woff",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.woff",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Bold.woff",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Bold.woff"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.woff2",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Bold.woff2",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Bold.woff2",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Bold.woff2"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.eot",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.eot",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Light.eot",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Light.eot"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.ttf",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.ttf",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Light.ttf",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Light.ttf"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.woff",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.woff",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Light.woff",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Light.woff"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.woff2",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Light.woff2",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Light.woff2",
       "AssetKind": "All",
@@ -188,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Light.woff2"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.eot",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.eot",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Regular.eot",
       "AssetKind": "All",
@@ -207,10 +207,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Regular.eot"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.ttf",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.ttf",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Regular.ttf",
       "AssetKind": "All",
@@ -226,10 +226,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Regular.ttf"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.woff",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.woff",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Regular.woff",
       "AssetKind": "All",
@@ -245,10 +245,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Regular.woff"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.woff2",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Regular.woff2",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Regular.woff2",
       "AssetKind": "All",
@@ -264,10 +264,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Regular.woff2"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.eot",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.eot",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-RegularItalic.eot",
       "AssetKind": "All",
@@ -283,10 +283,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.eot"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.ttf",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.ttf",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-RegularItalic.ttf",
       "AssetKind": "All",
@@ -302,10 +302,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.ttf"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.woff",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.woff",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-RegularItalic.woff",
       "AssetKind": "All",
@@ -321,10 +321,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.woff"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.woff2",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.woff2",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-RegularItalic.woff2",
       "AssetKind": "All",
@@ -340,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-RegularItalic.woff2"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.eot",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.eot",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Thin.eot",
       "AssetKind": "All",
@@ -359,10 +359,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Thin.eot"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.ttf",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.ttf",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Thin.ttf",
       "AssetKind": "All",
@@ -378,10 +378,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Thin.ttf"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.woff",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.woff",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Thin.woff",
       "AssetKind": "All",
@@ -397,10 +397,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Thin.woff"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.woff2",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansDisplay-Thin.woff2",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansDisplay-Thin.woff2",
       "AssetKind": "All",
@@ -416,10 +416,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansDisplay-Thin.woff2"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.eot",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.eot",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Bold.eot",
       "AssetKind": "All",
@@ -435,10 +435,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Bold.eot"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.ttf",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.ttf",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Bold.ttf",
       "AssetKind": "All",
@@ -454,10 +454,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Bold.ttf"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.woff",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.woff",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Bold.woff",
       "AssetKind": "All",
@@ -473,10 +473,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Bold.woff"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.woff2",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Bold.woff2",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Bold.woff2",
       "AssetKind": "All",
@@ -492,10 +492,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Bold.woff2"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.eot",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.eot",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Light.eot",
       "AssetKind": "All",
@@ -511,10 +511,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Light.eot"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.ttf",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.ttf",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Light.ttf",
       "AssetKind": "All",
@@ -530,10 +530,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Light.ttf"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.woff",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.woff",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Light.woff",
       "AssetKind": "All",
@@ -549,10 +549,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Light.woff"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.woff2",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Light.woff2",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Light.woff2",
       "AssetKind": "All",
@@ -568,10 +568,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Light.woff2"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.eot",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.eot",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Medium.eot",
       "AssetKind": "All",
@@ -587,10 +587,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Medium.eot"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.ttf",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.ttf",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Medium.ttf",
       "AssetKind": "All",
@@ -606,10 +606,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Medium.ttf"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.woff",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.woff",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Medium.woff",
       "AssetKind": "All",
@@ -625,10 +625,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Medium.woff"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.woff2",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Medium.woff2",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Medium.woff2",
       "AssetKind": "All",
@@ -644,10 +644,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Medium.woff2"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.eot",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.eot",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Regular.eot",
       "AssetKind": "All",
@@ -663,10 +663,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Regular.eot"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.ttf",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.ttf",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Regular.ttf",
       "AssetKind": "All",
@@ -682,10 +682,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Regular.ttf"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.woff",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.woff",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Regular.woff",
       "AssetKind": "All",
@@ -701,10 +701,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Regular.woff"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.woff2",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Regular.woff2",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Regular.woff2",
       "AssetKind": "All",
@@ -720,10 +720,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Regular.woff2"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.eot",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.eot",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-RegularItalic.eot",
       "AssetKind": "All",
@@ -739,10 +739,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-RegularItalic.eot"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.ttf",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.ttf",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-RegularItalic.ttf",
       "AssetKind": "All",
@@ -758,10 +758,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-RegularItalic.ttf"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.woff",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.woff",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-RegularItalic.woff",
       "AssetKind": "All",
@@ -777,10 +777,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-RegularItalic.woff"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.woff2",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-RegularItalic.woff2",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-RegularItalic.woff2",
       "AssetKind": "All",
@@ -796,10 +796,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-RegularItalic.woff2"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.eot",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.eot",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Thin.eot",
       "AssetKind": "All",
@@ -815,10 +815,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Thin.eot"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.ttf",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.ttf",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Thin.ttf",
       "AssetKind": "All",
@@ -834,10 +834,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Thin.ttf"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.woff",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.woff",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Thin.woff",
       "AssetKind": "All",
@@ -853,10 +853,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Thin.woff"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.woff2",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\fonts\\YandexSansText-Thin.woff2",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/fonts/YandexSansText-Thin.woff2",
       "AssetKind": "All",
@@ -872,10 +872,10 @@
       "OriginalItemSpec": "wwwroot\\css\\fonts\\YandexSansText-Thin.woff2"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\css\\style.css",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\css\\style.css",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "css/style.css",
       "AssetKind": "All",
@@ -891,10 +891,10 @@
       "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\img\\arrow.svg",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\img\\arrow.svg",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "img/arrow.svg",
       "AssetKind": "All",
@@ -910,10 +910,10 @@
       "OriginalItemSpec": "wwwroot\\img\\arrow.svg"
     },
     {
-      "Identity": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\js\\order.js",
+      "Identity": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\js\\order.js",
       "SourceId": "Application",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\MealMAte\\MealMate\\backend\\Application\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\admin\\Desktop\\fiit\\MealMate\\backend\\Application\\wwwroot\\",
       "BasePath": "_content/Application",
       "RelativePath": "js/order.js",
       "AssetKind": "All",
