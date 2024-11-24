@@ -22,7 +22,7 @@ public static class TableQrCode
 
     public static string GenerateAndSaveQrCode(int tableNumber, string tableToken)
     {
-        var url = $"{applicationBaseUrl}/{tableToken}";
+        var url = $"{applicationBaseUrl}/order/{tableToken}";
         var logo = NumberImageGenerator.Generate(tableNumber);
         
         
@@ -63,6 +63,6 @@ public static class TableQrCode
 
         bitmap.Save(filePath, ImageFormat.Png);
 
-        return filePath;
+        return uniqueFileName;
     }
 }

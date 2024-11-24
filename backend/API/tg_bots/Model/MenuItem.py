@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 from Model.Nutrients import Nutrients
 
 
@@ -35,3 +35,14 @@ class MenuItem(BaseModel):
             nutrients_of_100_grams=nutrients_of_100_grams,
             **kwargs
         )
+
+    @field_validator('__all__', mode='before', check_fields=False)
+    def determine_type(cls, values):
+        from Model.Dish import Dish
+        from Model.Drink import Drink
+
+        if 'weight' in values:
+            return Dish(**values)
+        elif 'volume' in values:
+            return Drink(**values)
+        return values

@@ -49,6 +49,7 @@ def validate_and_post_restaurant_name(message: types.Message, restaurant: Restau
         bot.register_next_step_handler(message, validate_and_post_restaurant_name, restaurant, func_to_return_after_post, is_registration)
         return
 
+    print(restaurant)
     restaurant.name = name
     if not is_registration:
         api_client = ApiClient(Restaurant)
@@ -242,7 +243,8 @@ def validate_and_post_tables(message: types.Message, restaurant: Restaurant, fun
             table = api_client.get(table_id)  # get table with qr
             restaurant.tables.append(table)
 
-            with open(table.qr_code_image_path, 'rb') as photo:
+            qr_code_image_path = os.path.join(qr_images_dir, table.qr_code_image_path)
+            with open(qr_code_image_path, 'rb') as photo:
                 bot.send_photo(message.chat.id, photo, caption=f"#qr код стола номер {table.number}")
     else:
         sorted_tables = sorted(restaurant.tables, key=lambda table: table.number, reverse=True)
