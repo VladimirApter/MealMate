@@ -105,6 +105,19 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
         context.SaveChanges();
     }
 
+    public static void Delete(int id)
+    {
+        using var context = new ApplicationDbContext();
+
+        var obj = context.Set<T>().Find(id);
+
+        if (obj == null) return;
+
+        RemoveRelatedData(obj);
+        context.Set<T>().Remove(obj);
+        context.SaveChanges();
+    }
+
     public static void AddOrUpdateTable<TTable>(TTable table, bool isNew) where TTable : Table
     {
         using var context = new ApplicationDbContext();

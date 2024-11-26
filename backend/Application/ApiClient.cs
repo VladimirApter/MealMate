@@ -37,4 +37,16 @@ public class ApiClient<T> where T : class
             throw new HttpRequestException($"Error posting data: {response.StatusCode}");
         }
     }
+
+    public void Delete(int id)
+    {
+        lock (@lock)
+        {
+            var response = HttpClient.DeleteAsync($"{RequestUri}/{id}").Result;
+
+            if (response.IsSuccessStatusCode) return;
+
+            throw new HttpRequestException($"Error deleting data: {response.StatusCode}");
+        }
+    }
 }

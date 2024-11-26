@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using JsonSerializerOptions = System.Text.Json.JsonSerializerOptions;
-using System.Text;
-using System.Text.Json;
 using Domain.DataBaseAccess;
 using Domain.Logic;
 using Domain.Models;
@@ -50,7 +47,7 @@ namespace Domen.Controllers
         {
             if (entity == null)
             {
-                var o = (object?)await DataBaseAccess<T>.GetAsync(id);
+                var o = await DataBaseAccess<T>.GetAsync(id);
                 return o == null ? NotFound() : Ok(o);
             }
 
@@ -62,7 +59,7 @@ namespace Domen.Controllers
         {
             if (entityTable == null)
             {
-                var o = (object?)await DataBaseAccess<T>.GetAsync(id);
+                var o = await DataBaseAccess<T>.GetAsync(id);
                 return o == null ? NotFound() : Ok(o);
             }
 
@@ -77,6 +74,37 @@ namespace Domen.Controllers
                 DataBaseAccess<T>.AddOrUpdateTable(table, false);
 
             return Ok(table.Id);
+        }
+        
+        [HttpDelete("{entityType}/{id}")]
+        public async Task<IActionResult> DeleteEntity(string entityType, int id)
+        {
+            return entityType.ToLower() switch
+            {
+                "dish" => await DeleteEntity<Dish>(id),
+                "category" => await DeleteEntity<Category>(id),
+                "menu" => await DeleteEntity<Menu>(id),
+                "notificationgetter" => await DeleteEntity<NotificationGetter>(id),
+                "owner" => await DeleteEntity<Owner>(id),
+                "table" => await DeleteEntity<Table>(id),
+                "restaurant" => await DeleteEntity<Restaurant>(id),
+                "drink" => await DeleteEntity<Drink>(id),
+                "geocoordinates" => await DeleteEntity<GeoCoordinates>(id),
+                "nutrients" => await DeleteEntity<Nutrients>(id),
+                "orderitem" => await DeleteEntity<OrderItem>(id),
+                "client" => await DeleteEntity<Client>(id),
+                "order" => await DeleteEntity<Order>(id),
+                _ => BadRequest("Invalid entity type.")
+            };
+        }
+
+        private async Task<IActionResult> DeleteEntity<T>(int id) where T : class, ITableDataBase
+        {
+            var entity = await DataBaseAccess<T>.GetAsync(id);
+            if (entity == null) return NotFound();
+
+            DataBaseAccess<T>.Delete(id);
+            return Ok();
         }
     }
 }
