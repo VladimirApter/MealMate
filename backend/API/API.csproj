@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="PY_bots\" />
+    <Folder Include="tg_bots\" />
   </ItemGroup>
 
 </Project>

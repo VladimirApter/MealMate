@@ -1,10 +1,9 @@
 from pydantic import BaseModel
 from typing import Optional, Union
 
-from Model.MenuItem import MenuItem
+
 from Model.Drink import Drink
 from Model.Dish import Dish
-from Model.Client import Client
 
 
 class OrderItem(BaseModel):

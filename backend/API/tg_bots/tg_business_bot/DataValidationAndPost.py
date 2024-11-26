@@ -49,7 +49,6 @@ def validate_and_post_restaurant_name(message: types.Message, restaurant: Restau
         bot.register_next_step_handler(message, validate_and_post_restaurant_name, restaurant, func_to_return_after_post, is_registration)
         return
 
-    print(restaurant)
     restaurant.name = name
     if not is_registration:
         api_client = ApiClient(Restaurant)
@@ -108,8 +107,8 @@ def _accept_address(message: types.Message, restaurant: Restaurant, coordinates,
         latitude, longitude = coordinates
         restaurant.coordinates = GeoCoordinates(latitude, longitude, restaurant.id)
 
-        api_client = ApiClient(GeoCoordinates)
-        api_client.post(restaurant.coordinates)
+        api_client = ApiClient(Restaurant)
+        api_client.post(restaurant)
 
         bot.send_message(message.chat.id, f'Адрес ресторана сохранен', reply_markup=types.ReplyKeyboardRemove())
 
@@ -146,8 +145,8 @@ def validate_and_post_notification_getter(message: types.Message, restaurant: Re
 
     restaurant.notification_getter = new_notification_getter
 
-    api_client = ApiClient(NotificationGetter)
-    api_client.post(restaurant.notification_getter)
+    api_client = ApiClient(Restaurant)
+    api_client.post(restaurant)
 
     bot.send_message(message.chat.id, f'Получатель уведомлений сохранен', reply_markup=types.ReplyKeyboardRemove())
 
@@ -200,8 +199,8 @@ def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_
 
     os.remove(temp_excel_file_path)
 
-    api_client = ApiClient(Menu)
-    api_client.post(restaurant.menu)
+    api_client = ApiClient(Restaurant)
+    api_client.post(restaurant)
 
     bot.send_message(message.chat.id, "Меню сохранено", reply_markup=types.ReplyKeyboardRemove())
 
