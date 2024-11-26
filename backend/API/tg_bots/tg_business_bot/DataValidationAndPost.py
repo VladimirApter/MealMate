@@ -243,13 +243,13 @@ def validate_and_post_tables(message: types.Message, restaurant: Restaurant, fun
             restaurant.tables.append(table)
 
             qr_code_image_path = os.path.join(qr_images_dir, table.qr_code_image_path)
-            with open(qr_code_image_path, 'rb') as photo:
-                bot.send_photo(message.chat.id, photo, caption=f"#qr код стола номер {table.number}")
+            with open(qr_code_image_path, 'rb') as qr_image:
+                bot.send_document(message.chat.id, qr_image, caption=f"#qr код стола номер {table.number}", visible_file_name=f"стол_{table.number}_qr.png")
     else:
         sorted_tables = sorted(restaurant.tables, key=lambda table: table.number, reverse=True)
         tables_to_delete = sorted_tables[:current_tables_count - tables_count]
         for table in tables_to_delete:
-            #api_client.delete(table.id)
+            api_client.delete(table.id)
             pass
         if len(tables_to_delete) > 1:
             bot.send_message(message.chat.id, f"Удалены столы с номерами: {', '.join([str(table.number) for table in tables_to_delete[::-1]])}. Их qr коды больше не действительны")

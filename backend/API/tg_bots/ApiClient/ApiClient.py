@@ -1,5 +1,4 @@
 import httpx
-import json
 from threading import Lock
 from typing import Any
 
@@ -36,6 +35,15 @@ class ApiClient:
                 if response.status_code == 200:
                     obj_id = int(response.json())
                     return obj_id
+                else:
+                    response.raise_for_status()
+
+    def delete(self, id: int):
+        with self.lock:
+            with httpx.Client() as client:
+                response = client.delete(self._get_url(id))
+                if response.status_code in {200, 204}:
+                    return True
                 else:
                     response.raise_for_status()
 
