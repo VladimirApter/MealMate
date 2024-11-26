@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from Model.MenuItem import MenuItem
+from API.tg_bots.Model.MenuItem import MenuItem
 
 
 class Drink(MenuItem, BaseModel):

@@ -3,8 +3,8 @@ from typing import List, Optional
 from datetime import datetime
 from enum import Enum
 
-from Model.OrderItem import OrderItem
-from Model.Client import Client
+from API.tg_bots.Model.OrderItem import OrderItem
+from API.tg_bots.Model.Client import Client
 
 
 class OrderStatus(Enum):

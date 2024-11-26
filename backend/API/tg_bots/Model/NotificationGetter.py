@@ -1,4 +1,4 @@
-from Model.TgAccount import TgAccount
+from API.tg_bots.Model.TgAccount import TgAccount
 
 
 class NotificationGetter(TgAccount):
