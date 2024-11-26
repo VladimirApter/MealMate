@@ -8,8 +8,11 @@ public class NotificationGetter : TgAccount, ITableDataBase
 {
     [JsonPropertyName("restaurant_id")] public int RestaurantId { get; set; }
     
-    public NotificationGetter(string username, int? id, int restaurantId) : base(id, username)
+    [JsonPropertyName("is_blocked")] public bool IsBlocked { get; set; }
+    
+    public NotificationGetter(string username, int? id, int restaurantId, bool isBlocked) : base(id, username)
     {
         RestaurantId = restaurantId;
+        IsBlocked = isBlocked;
     }
 }
