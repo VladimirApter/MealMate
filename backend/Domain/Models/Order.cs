@@ -10,15 +10,15 @@ public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
     public int? Id { get; set; }
     [JsonPropertyName("client_id")] public int? ClientId { get; set; }
     [JsonPropertyName("table_id")] public int TableId { get; set; }
-    [JsonPropertyName("cooking_time")] public double CookingTime { get; set; }
+    [JsonPropertyName("cooking_time")] public double CookingTimeMinutes { get; set; }
     public string? Comment { get; set; }
     [JsonPropertyName("date_time")] public DateTime DateTime { get; set; }
     public OrderStatus Status { get; set; }
-    [NotMapped] public Client Client { get; set; }
+    [NotMapped] public Client? Client { get; set; }
     [JsonPropertyName("order_items")] [NotMapped] public List<OrderItem> OrderItems { get; set; }
 
     public Order(){}
-    public Order(int? id, int tableId, string? comment, DateTime dateTime, Client client, List<OrderItem> orderItems)
+    public Order(int? id, int tableId, string? comment, DateTime dateTime, Client? client, List<OrderItem> orderItems)
     {
         Id = id;
         TableId = tableId;
@@ -26,14 +26,20 @@ public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
         DateTime = dateTime;
         Status = OrderStatus.InAssembly;
         Client = client;
-        CookingTime = orderItems.Max(item => item.MenuItem.CookingTimeMinutes);
+        CookingTimeMinutes = orderItems.Max(item => item.MenuItem.CookingTimeMinutes);
         OrderItems = orderItems;
     }
 
     public async Task TakeRelatedData(ApplicationDbContext context)
     {
         Client = await context.Clients.FirstOrDefaultAsync(c => c.Id == ClientId);
-        OrderItems = await context.OrderItems.Where(oi => oi.OrderId == Id).ToListAsync();
+        OrderItems = await context.OrderItems
+            .Where(c => c.OrderId == Id)
+            .ToListAsync();
+        foreach (var category in OrderItems.OfType<ITakeRelatedData>())
+        {
+            await category.TakeRelatedData(context);
+        }
     }
 
     public void DeleteRelatedData(ApplicationDbContext context)
