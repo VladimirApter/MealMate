@@ -135,7 +135,7 @@ function hidePopup() {
     popup.style.display = 'none';
 }
 
-const cartItems = {};
+let cartItems = {};
 let totalPrice = 0.0
 
 function addToCart(itemId, itemName, itemPrice) {
@@ -174,29 +174,71 @@ function updateCart() {
     document.getElementById('total-price').textContent = totalPrice.toFixed(2); // Округляем общую сумму до двух знаков после запятой
 }
 
-function placeOrder() {
+async function getUserContext() {
+    const response = await fetch('/api/context');
+    return await response.json(); 
+}
+
+async function placeOrder() {
+    const contextElement = document.getElementById('order-context');
+    const tableId = parseInt(contextElement.getAttribute('data-table-id'), 10);
+    const restaurantId = parseInt(contextElement.getAttribute('data-restaurant-id'), 10);
+    const clientId = parseInt(contextElement.getAttribute('data-client-id'), 10);
+    const comment = document.getElementById('input').value;
+    const orderId = (tableId * 17) ^ (restaurantId * 11) ^ (clientId * 7);
+
     const orderItems = Object.entries(cartItems).map(([id, item]) => ({
-        dish_id: id,
+        id: parseInt(id, 10),
         count: item.count,
         price: parseFloat((item.price * item.count).toFixed(2)),
     }));
-    const order = {
-        client_id: 1,  // заменить на реальный ID клиента
-        restaurant_id: 1,  // заменить на реальный ID ресторана
-        order_items: orderItems,
-        comment: '',
-        datetime: new Date().toISOString()
+
+    const client = {
+        Id: clientId,
+        Ip: "2131232"
     };
 
-    fetch('/restaurant/placeOrder', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(order)
-    })
-        .then(response => response.json())
-        .then(data => alert(`Заказ создан! ID заказа: ${data.id}`))
-        .catch(error => console.error('Ошибка:', error));
+    const order = {
+        "Id": orderId,
+        "client_id": clientId,
+        "table_id": tableId,
+        "cooking_time": 123,
+        "Comment": comment,
+        "date_time": new Date().toISOString(),
+        "Status": 0,
+        "Client": client,
+        "order_items": orderItems
+    };
 
-    console.log('Order Items:', orderItems);
-    console.log('Total Price:', totalPrice.toFixed(2));
+    console.log('Order', order);
+
+    try {
+        const response = await fetch('/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(order),
+        });
+
+        if (response.ok) {
+            clearCart();
+            const data = await response.json();
+            console.log('Response from server:', data); // Лог для проверки
+            const orderUrl = data.url;
+            if (orderUrl) {
+                clearCart();
+                window.location.href = orderUrl;
+            }} else {
+            alert('Ошибка при отправке заказа');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Ошибка при отправке заказа');
+    }
+}
+
+function clearCart() {
+    cartItems = {};
+    updateCart();
 }

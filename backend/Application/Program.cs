@@ -35,6 +35,8 @@ app.UseSwaggerUI(c =>
 // Регистрация маршрутов на верхнем уровне
 app.MapControllers();
 
+
+
 //ресторан 1
 // Создаем объекты Nutrients для блюд и напитков
 var pastaNutrients = new Nutrients(
@@ -66,7 +68,7 @@ var wineNutrients = new Nutrients(
 
 // Создаем объекты блюд (Dish) и напитков (Drink)
 var spaghettiCarbonara = new Dish(
-    id: null,
+    id: 1,
     categoryId: 1,
     cookingTimeMinutes: 15,
     price: 12.99,
@@ -78,7 +80,7 @@ var spaghettiCarbonara = new Dish(
 );
 
 var margheritaPizza = new Dish(
-    id: null,
+    id: 2,
     categoryId: 1,
     cookingTimeMinutes: 20,
     price: 10.99,
@@ -90,7 +92,7 @@ var margheritaPizza = new Dish(
 );
 
 var italianRedWine = new Drink(
-    id: null,
+    id: 3,
     categoryId: 2,
     cookingTimeMinutes: 0,
     price: 7.50,
@@ -144,7 +146,8 @@ var coordinates = new GeoCoordinates(
 var notificationGetter = new NotificationGetter(
     username: "manager_bellaitalia",
     id: null,
-    restaurantId: 1
+    restaurantId: 1,
+    isBlocked: false
 );
 
 // Создаем объект ресторана
@@ -277,7 +280,8 @@ var coordinates2 = new GeoCoordinates(
 var notificationGetter2 = new NotificationGetter(
     username: "manager_tokyosushi",
     id: null,
-    restaurantId: 2
+    restaurantId: 2,
+    isBlocked: false
 );
 
 // Создаем объект ресторана

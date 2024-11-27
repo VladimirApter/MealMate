@@ -1,0 +1,27 @@
+﻿@model Domain.Models.Order
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали заказа</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Детали заказа #@Model.Id</h1>
+    <p>Дата и время: @Model.DateTime</p>
+    <p>Комментарий: @Model.Comment</p>
+    <p>Статус: @Model.Status</p>
+    <p>Клиент: @Model.Client.Ip</p>
+    <h2>Товары:</h2>
+    <ul>
+        @foreach (var item in Model.OrderItems)
+        {
+        <li>@item.MenuItem.Name - @item.Count шт. - @item.Price ₽</li>
+        }
+    </ul>
+</div>
+</body>
+</html>
