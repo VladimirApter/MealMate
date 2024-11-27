@@ -10,7 +10,7 @@ public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
     public int? Id { get; set; }
     [JsonPropertyName("client_id")] public int? ClientId { get; set; }
     [JsonPropertyName("table_id")] public int TableId { get; set; }
-    [JsonPropertyName("cooking_time")] public double CookingTimeMinutes { get; set; }
+    [JsonPropertyName("cooking_time_minutes")] public double CookingTimeMinutes { get; set; }
     public string? Comment { get; set; }
     [JsonPropertyName("date_time")] public DateTime DateTime { get; set; }
     public OrderStatus Status { get; set; }
