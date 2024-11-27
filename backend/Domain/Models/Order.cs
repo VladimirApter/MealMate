@@ -11,6 +11,7 @@ public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
     [JsonPropertyName("client_id")] public int? ClientId { get; set; }
     [JsonPropertyName("table_id")] public int TableId { get; set; }
     [JsonPropertyName("cooking_time_minutes")] public double CookingTimeMinutes { get; set; }
+    [NotMapped] public double Price { get; set; }
     public string? Comment { get; set; }
     [JsonPropertyName("date_time")] public DateTime DateTime { get; set; }
     public OrderStatus Status { get; set; }
@@ -36,9 +37,11 @@ public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
         OrderItems = await context.OrderItems
             .Where(c => c.OrderId == Id)
             .ToListAsync();
-        foreach (var category in OrderItems.OfType<ITakeRelatedData>())
+        Price = 0;
+        foreach (var orderItem in OrderItems)
         {
-            await category.TakeRelatedData(context);
+            await orderItem.TakeRelatedData(context);
+            Price += orderItem.Price;
         }
     }
 
