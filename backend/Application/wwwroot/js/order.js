@@ -180,13 +180,9 @@ async function generateOrderId(data) {
     const encoder = new TextEncoder();
     const dataBuffer = encoder.encode(text);
     const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
-    
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const orderId = hashArray.slice(0, 8).reduce((acc, byte, index) => {
-        return acc + (byte << (index * 8));
-    }, 0);
-    
-    return Math.abs(orderId);
+    const hashArray = new Uint8Array(hashBuffer);
+    const orderId = (hashArray[0] << 24) | (hashArray[1] << 16) | (hashArray[2] << 8) | hashArray[3];
+    return orderId & 0x7FFFFFFF;
 }
 
 
@@ -254,7 +250,11 @@ async function placeOrder() {
             const orderUrl = data.url;
             if (orderUrl) {
                 clearCart();
-                window.location.href = orderUrl;
+                if (window.location.href.at(-1) === '/') {
+                    window.location.href += orderUrl;
+                } else {
+                    window.location.href += '/' + orderUrl;
+                }
             }} else {
             alert('Ошибка при отправке заказа');
         }
