@@ -237,21 +237,21 @@ async function placeOrder() {
     }));
 
     const client = {
-        Id: clientId,
-        Ip: "zaglushka"
+        id: clientId,
+        ip: "zaglushka"
     };
 
     const order = {
-        "Id": orderId,
+        "id": orderId,
         "client_id": clientId,
         "table_id": tableId,
         "cooking_time_minutes": cartCookingTime,
-        "Comment": comment || "",
+        "comment": comment || "",
         "date_time": new Date().toISOString(),
-        "Status": 0,
-        "Client": client,
+        "status": 0,
+        "client": client,
         "order_items": orderItems,
-        "Price": totalPrice
+        "price": totalPrice
     };
 
     console.log('Order', order);
