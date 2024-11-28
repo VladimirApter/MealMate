@@ -18,6 +18,7 @@ addButton.forEach(button => {
     });
 });
 
+
 document.getElementById('scrollToBottomBtn').addEventListener('click', function() {
     window.scrollTo({
         top: document.body.scrollHeight,
@@ -45,7 +46,7 @@ function plus(id) {
         const currentCount = parseInt(button.getAttribute('data-count'), 10);
         const newCount = currentCount + 1;
         updateButtonCount(button, newCount);
-        
+
         const itemId = button.getAttribute('data-item-id');
         const itemName = button.closest('.cell').querySelector('.desc').textContent;
         const itemPrice = parseFloat(button.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
@@ -105,6 +106,7 @@ function createOriginalButton(button) {
 }
 
 
+
 function updateButtonCount(button, newCount) {
     button.setAttribute('data-count', newCount);
     button.querySelector('span:nth-child(2)').textContent = newCount;
@@ -124,11 +126,16 @@ function showPopup(cellData) {
     const popupCost = document.getElementById('popup-cost');
     const popupDesc = document.getElementById('popup-full-desc');
     const popupWeight = document.getElementById('popup-weight');
-    popupImage.src = cellData.image;
+    const popupCtm = document.getElementById('popup-ctm');
+
+    console.log(cellData)
+    popupImage.src = "/MenuItemImages/" + cellData.image;
     popupCost.textContent = parseFloat(cellData.price).toFixed(2) + "₽"; // Округляем до двух знаков после запятой
     popupName.textContent = cellData.name;
     popupDesc.textContent = cellData.desc;
-    popupWeight.textContent = cellData.weight + "г";
+    popupWeight.textContent = "Белки " + cellData.nutrients.Proteins + "г, " + "Жиры " + cellData.nutrients.Fats + "г, " + "Углеводы " + cellData.nutrients.Carbohydrates + "г";
+    popupCtm.textContent = "Время приготовления: " + cellData.cooking_time + " минут";
+
     popup.style.display = 'block';
 }
 
@@ -149,6 +156,7 @@ function addToCart(itemId, itemName, itemPrice, itemCookingTime = 0) {
     updateCart();
 }
 
+
 function removeFromCart(itemId, itemName, itemPrice) {
     if (cartItems[itemId]) {
         cartItems[itemId].count -= 1;
@@ -158,6 +166,7 @@ function removeFromCart(itemId, itemName, itemPrice) {
     }
     updateCart();
 }
+
 
 function updateCart() {
     const cartElement = document.getElementById('cart-items');
@@ -185,6 +194,7 @@ function updateCart() {
 }
 
 
+
 async function generateOrderId(data) {
     const text = JSON.stringify(data);
     const encoder = new TextEncoder();
@@ -194,7 +204,6 @@ async function generateOrderId(data) {
     const orderId = (hashArray[0] << 24) | (hashArray[1] << 16) | (hashArray[2] << 8) | hashArray[3];
     return orderId & 0x7FFFFFFF;
 }
-
 
 async function placeOrder() {
     const contextElement = document.getElementById('order-context');
@@ -209,7 +218,7 @@ async function placeOrder() {
         clientId,
         cartItems: Object.entries(cartItems),
         comment: comment || "",
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
     };
 
     console.log("Input for hash:", data); 
@@ -224,7 +233,7 @@ async function placeOrder() {
         menu_item_id: parseInt(id, 10),
         count: item.count,
         price: parseFloat((item.price * item.count).toFixed(2)),
-        order_id: orderId
+        order_id: orderId,
     }));
 
     const client = {

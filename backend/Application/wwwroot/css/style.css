@@ -97,11 +97,11 @@ body {
 }
 
 .weight {
-    font-size: 12px;
-      user-select: none;
-     font-family: Yandex Sans Display;
-     font-weight: normal;
-     margin: 10px 0px;
+    font-size: 14px;
+    user-select: none;
+    font-family: Yandex Sans Display;
+    font-weight: normal;
+    margin: 10px 0px;
  }
 
 .add-button {
@@ -260,4 +260,65 @@ body {
     border-top: 12px solid white;
 }
 
-.cooking-time{display: none}
+.information {
+    user-select: none;
+    font-family: Yandex Sans Display;
+    font-size: 18;
+    margin: 24px;
+}
+
+.information b {
+    font-weight: bold;
+}
+
+.table-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 3px 24px;
+}
+
+.table-row div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #D9D9D9;
+    height: 50px;
+}
+
+.table-row .a {
+    justify-content: start;
+}
+
+.table-row p {
+    font-family: Yandex Sans Display;
+    font-size: 16px;
+}
+
+.table-row .a p {
+    margin-left: 20px;
+}
+
+.table-row .b {
+    width: 115px;
+    background-color: #BBBBBB;
+}
+
+.table-row .c {
+    width: 115px;
+}
+
+.table-row-bold p{
+    font-weight: bold;
+}
+
+.table-row .d {
+    background-color: #D9D9D9;
+}
+
+.cooking-time {
+    display: none;
+}
