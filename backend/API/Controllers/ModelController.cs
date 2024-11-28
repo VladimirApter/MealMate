@@ -58,19 +58,23 @@ namespace Domen.Controllers
 
             if (entity is Order order)
             {
-                if (order.Id != null)
+                if (order.Id == null) return NotFound(order.Id);
+                var o = await DataBaseAccess<T>.GetAsync(order.Id.Value);
+                DataBaseAccess<T>.AddOrUpdate(entity);
+                if (o == null) await ForwardObject(order, "http://localhost:5059/order", "Python");
+            }
+            else if (entity is NotificationGetter notificationGetter)
+            {
+                if (notificationGetter.Id == null)
                 {
-                    var o = await DataBaseAccess<T>.GetAsync(order.Id.Value);
-                    if (o == null)
-                    {
-                        DataBaseAccess<T>.AddOrUpdate(entity);
-                        await ForwardOrder(order, "http://localhost:5059/order", "Python");
-                    }
-                    else
-                    {
-                        DataBaseAccess<T>.AddOrUpdate(entity);
-                        //await ForwardOrder(entity as Order, "http://localhost:5011", "Site");
-                    }
+                    DataBaseAccess<T>.AddOrUpdate(entity);
+                    await ForwardObject(entity, "http://localhost:5059/notificationgetter", "Python");
+                }
+                else
+                {
+                    var o = await DataBaseAccess<T>.GetAsync(notificationGetter.Id.Value);
+                    DataBaseAccess<T>.AddOrUpdate(entity);
+                    if (o == null) await ForwardObject(entity, "http://localhost:5059/notificationgetter", "Python");
                 }
             }
             else
@@ -80,11 +84,11 @@ namespace Domen.Controllers
 
             return Ok(entity.Id);
         }
-        private static async Task ForwardOrder(Order? order, string url, string location)
+        private static async Task ForwardObject<T>(T? obj, string url, string location)
         {
-            if (order == null) return;
+            if (obj == null) return;
 
-            var jsonContent = JsonSerializer.Serialize(order, OptionsSerializer);
+            var jsonContent = JsonSerializer.Serialize(obj, OptionsSerializer);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             using var client = new HttpClient();
@@ -92,7 +96,7 @@ namespace Domen.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new HttpRequestException($"Failed to forward Order to {location}: {response.StatusCode}");
+                throw new HttpRequestException($"Failed to forward {nameof(T)} to {location}: {response.StatusCode}");
             }
         }
 
