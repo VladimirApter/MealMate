@@ -209,13 +209,11 @@ async function placeOrder() {
     console.log("orderId", orderId)
     
 
-    const orderItems = Object.entries(cartItems).map(([id, item]) => ({
-        id: parseInt(id, 10),
+    const orderItems = Object.entries(cartItems).map(([id, item], index) => ({
+        id: index + 1,
+        menu_item_id: parseInt(id, 10),
         count: item.count,
         price: parseFloat((item.price * item.count).toFixed(2)),
-        menuItem: {
-            id: parseInt(id, 10)
-        }
     }));
 
     const client = {
