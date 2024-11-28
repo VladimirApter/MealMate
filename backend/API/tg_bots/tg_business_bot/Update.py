@@ -7,28 +7,6 @@ from DataValidationAndPost import *
 from excel_tables_work.fill_menu_template import *
 
 
-def get_restaurant(message: types.Message, restaurants):
-    if not message.text:
-        bot.send_message(message.chat.id, 'Чтобы выбрать ресторан нажмите на одну из кнопок ниже')
-        bot.register_next_step_handler(message, get_restaurant, restaurants)
-        return
-
-    restaurant = None
-    user_rest_name = message.text.strip()
-    for rest in restaurants:
-        if rest.name == user_rest_name:
-            restaurant = rest
-
-    if restaurant is None:
-        bot.send_message(message.chat.id, 'Чтобы выбрать ресторан нажмите на одну из кнопок ниже')
-        bot.register_next_step_handler(message, get_restaurant, restaurants)
-        return
-
-    markup = get_update_parts_markup()
-    bot.send_message(message.chat.id, 'Что вы хотели бы изменить?', reply_markup=markup)
-    bot.register_next_step_handler(message, get_update_part, restaurant)
-
-
 def get_update_part(message: types.Message, restaurant: Restaurant):
     if not message.text:
         bot.send_message(message.chat.id, 'Для выбора части, которую вы хотели бы изменить, нажмите на одну из кнопок ниже')

@@ -1,13 +1,13 @@
 from telebot import types
-
 from ApiClient.ApiClient import ApiClient
 from Config import bot
 from Model.Owner import Owner
 from Model.Restaurant import Restaurant
-from tg_business_bot.SendQr import get_restaurant, send_qrs
+from tg_business_bot.SendQr import send_qrs
 from tg_business_bot.Registration import register_restaurant_name
-from tg_business_bot.Update import get_restaurants_markup, \
-    get_update_parts_markup, get_update_part
+from tg_business_bot.Update import get_restaurants_markup, get_update_parts_markup, get_update_part
+from tg_business_bot.DeleteRestaurant import delete_restaurant
+from DataValidationAndPost import get_yes_no_markup
 
 
 def register_commands():
@@ -37,51 +37,126 @@ def register_commands():
 
     @bot.message_handler(commands=['qr'])
     def qr(message: types.Message):
-        api_client = ApiClient(Owner)
-        owner = api_client.get(message.chat.id)
-
-        restaurant_ids = owner.restaurant_ids
-
-        if len(restaurant_ids) == 0 or owner is None:
-            bot.send_message(message.chat.id, "У вас пока нет ресторанов, создайте первый при помощи /new_rest")
+        owner, restaurants = get_owner_and_restaurants(message)
+        if not owner or not restaurants:
             return
-        elif len(restaurant_ids) == 1:
-            api_client = ApiClient(Restaurant)
-            restaurant = api_client.get(restaurant_ids[0])
-            send_qrs(message, restaurant)
-            return
-        elif len(restaurant_ids) > 1:
-            api_client = ApiClient(Restaurant)
-            restaurants = [api_client.get(rest_id) for rest_id in restaurant_ids]
 
+        if len(restaurants) == 1:
+            send_qrs(message, restaurants[0])
+        else:
             markup = get_restaurants_markup(restaurants)
             bot.send_message(message.chat.id, 'Выберите ресторан', reply_markup=markup)
-            bot.register_next_step_handler(message, get_restaurant, restaurants)
+            bot.register_next_step_handler(message, get_restaurant_for_send_qr, restaurants)
 
     @bot.message_handler(commands=['update'])
-    def update_start(message: types.Message):
-        api_client = ApiClient(Owner)
-        owner = api_client.get(message.chat.id)
-
-        restaurant_ids = owner.restaurant_ids
-
-        if len(restaurant_ids) == 0 or owner is None:
-            bot.send_message(message.chat.id, "У вас пока нет ресторанов, создайте первый при помощи /new_rest")
+    def update(message: types.Message):
+        owner, restaurants = get_owner_and_restaurants(message)
+        if not owner or not restaurants:
             return
-        elif len(restaurant_ids) == 1:
-            api_client = ApiClient(Restaurant)
-            restaurant = api_client.get(restaurant_ids[0])
 
+        if len(restaurants) == 1:
             markup = get_update_parts_markup()
             bot.send_message(message.chat.id,
-                             f'Что вы хотели бы изменить в ресторане {restaurant.name}?',
+                             f'Что вы хотели бы изменить в ресторане {restaurants[0].name}?',
                              reply_markup=markup)
-            bot.register_next_step_handler(message, get_update_part, restaurant)
-            return
-        elif len(restaurant_ids) > 1:
-            api_client = ApiClient(Restaurant)
-            restaurants = [api_client.get(rest_id) for rest_id in restaurant_ids]
-
+            bot.register_next_step_handler(message, get_update_part, restaurants[0])
+        else:
             markup = get_restaurants_markup(restaurants)
             bot.send_message(message.chat.id, 'Выберите ресторан', reply_markup=markup)
-            bot.register_next_step_handler(message, get_restaurant, restaurants)
+            bot.register_next_step_handler(message, get_restaurant_for_update, restaurants)
+
+    @bot.message_handler(commands=['delete'])
+    def delete(message: types.Message):
+        owner, restaurants = get_owner_and_restaurants(message)
+        if not owner or not restaurants:
+            return
+
+        if len(restaurants) == 1:
+            markup = get_update_parts_markup()
+            restaurant = restaurants[0]
+            bot.send_message(message.chat.id,
+                             f'Вы уверены что хотите удалить ресторан {restaurant.name}?',
+                             reply_markup=markup)
+            bot.register_next_step_handler(message, delete_restaurant, restaurant)
+        else:
+            markup = get_restaurants_markup(restaurants)
+            bot.send_message(message.chat.id, 'Выберите ресторан', reply_markup=markup)
+            bot.register_next_step_handler(message, get_restaurant_for_delete, restaurants)
+
+
+def get_owner_and_restaurants(message: types.Message):
+    api_client = ApiClient(Owner)
+    owner = api_client.get(message.chat.id)
+
+    if not owner or not owner.restaurant_ids:
+        bot.send_message(message.chat.id, "У вас пока нет ресторанов, создайте первый при помощи /new_rest")
+        return None, None
+
+    api_client = ApiClient(Restaurant)
+    restaurants = [api_client.get(rest_id) for rest_id in owner.restaurant_ids]
+
+    return owner, restaurants
+
+
+def get_restaurant_for_update(message: types.Message, restaurants):
+    if not message.text:
+        bot.send_message(message.chat.id, 'Чтобы выбрать ресторан нажмите на одну из кнопок ниже')
+        bot.register_next_step_handler(message, get_restaurant_for_update, restaurants)
+        return
+
+    restaurant = None
+    user_rest_name = message.text.strip()
+    for rest in restaurants:
+        if rest.name == user_rest_name:
+            restaurant = rest
+
+    if restaurant is None:
+        bot.send_message(message.chat.id, 'Чтобы выбрать ресторан нажмите на одну из кнопок ниже')
+        bot.register_next_step_handler(message, get_restaurant_for_update, restaurants)
+        return
+
+    markup = get_update_parts_markup()
+    bot.send_message(message.chat.id, 'Что вы хотели бы изменить?', reply_markup=markup)
+    bot.register_next_step_handler(message, get_update_part, restaurant)
+
+
+def get_restaurant_for_delete(message: types.Message, restaurants):
+    if not message.text:
+        bot.send_message(message.chat.id, 'Чтобы выбрать ресторан нажмите на одну из кнопок ниже')
+        bot.register_next_step_handler(message, get_restaurant_for_delete, restaurants)
+        return
+
+    restaurant = None
+    user_rest_name = message.text.strip()
+    for rest in restaurants:
+        if rest.name == user_rest_name:
+            restaurant = rest
+
+    if restaurant is None:
+        bot.send_message(message.chat.id, 'Чтобы выбрать ресторан нажмите на одну из кнопок ниже')
+        bot.register_next_step_handler(message, get_restaurant_for_delete, restaurants)
+        return
+
+    markup = get_yes_no_markup()
+    bot.send_message(message.chat.id, f'Вы уверены что хотите удалить ресторан {restaurant.name}?', reply_markup=markup)
+    bot.register_next_step_handler(message, delete_restaurant, restaurant)
+
+
+def get_restaurant_for_send_qr(message: types.Message, restaurants):
+    if not message.text:
+        bot.send_message(message.chat.id, 'Чтобы выбрать ресторан нажмите на одну из кнопок ниже')
+        bot.register_next_step_handler(message, get_restaurant_for_send_qr, restaurants)
+        return
+
+    restaurant = None
+    user_rest_name = message.text.strip()
+    for rest in restaurants:
+        if rest.name == user_rest_name:
+            restaurant = rest
+
+    if restaurant is None:
+        bot.send_message(message.chat.id, 'Чтобы выбрать ресторан нажмите на одну из кнопок ниже')
+        bot.register_next_step_handler(message, get_restaurant_for_send_qr, restaurants)
+        return
+
+    send_qrs(message, restaurant)

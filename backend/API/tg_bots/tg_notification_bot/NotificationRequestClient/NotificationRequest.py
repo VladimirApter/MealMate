@@ -23,9 +23,7 @@ async def send_notification_request(notification_getter: NotificationGetter):
             user = await client.get_entity(notification_getter.username)
             await client.send_message(user, message)
         except UserPrivacyRestrictedError:
-            notification_getter.is_blocked = True
-            api_client = ApiClient(NotificationGetter)
-            api_client.post(notification_getter)
+            pass
         except Exception as e:
             print(f"An error occurred: {e}")
 

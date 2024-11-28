@@ -19,7 +19,7 @@ INCORRECT_EXCEL_TABLE_MESSAGE = "Файл заполнен некорректн�
                                 "ранее, и отправьте корректную версию файла"
 
 
-def _get_yes_no_markup():
+def get_yes_no_markup():
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     markup.add(*[types.KeyboardButton('да'), types.KeyboardButton('нет')])
     return markup
@@ -89,7 +89,7 @@ def validate_and_post_address(message: types.Message, restaurant: Restaurant, fu
     latitude, longitude = coordinates
     bot.send_location(message.chat.id, latitude, longitude)
 
-    bot.send_message(message.chat.id, "Ваш ресторан находится здесь, верно?", reply_markup=_get_yes_no_markup())
+    bot.send_message(message.chat.id, "Ваш ресторан находится здесь, верно?", reply_markup=get_yes_no_markup())
     bot.register_next_step_handler(message, _accept_address, restaurant, coordinates, func_to_return_after_post, is_registration)
 
 
