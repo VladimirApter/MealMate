@@ -44,7 +44,7 @@ function plus(id) {
         const currentCount = parseInt(button.getAttribute('data-count'), 10);
         const newCount = currentCount + 1;
         updateButtonCount(button, newCount);
-
+        
         const itemId = button.getAttribute('data-item-id');
         const itemName = button.closest('.cell').querySelector('.desc').textContent;
         const itemPrice = parseFloat(button.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
@@ -214,7 +214,7 @@ async function placeOrder() {
         count: item.count,
         price: parseFloat((item.price * item.count).toFixed(2)),
         menuItem: {
-            id: item.Id
+            id: parseInt(id, 10)
         }
     }));
 
