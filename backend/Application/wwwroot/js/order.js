@@ -174,10 +174,21 @@ function updateCart() {
     document.getElementById('total-price').textContent = totalPrice.toFixed(2); // Округляем общую сумму до двух знаков после запятой
 }
 
-async function getUserContext() {
-    const response = await fetch('/api/context');
-    return await response.json(); 
+
+async function generateOrderId(data) {
+    const text = JSON.stringify(data);
+    const encoder = new TextEncoder();
+    const dataBuffer = encoder.encode(text);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
+    
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const orderId = hashArray.slice(0, 8).reduce((acc, byte, index) => {
+        return acc + (byte << (index * 8));
+    }, 0);
+    
+    return Math.abs(orderId);
 }
+
 
 async function placeOrder() {
     const contextElement = document.getElementById('order-context');
@@ -185,7 +196,22 @@ async function placeOrder() {
     const restaurantId = parseInt(contextElement.getAttribute('data-restaurant-id'), 10);
     const clientId = parseInt(contextElement.getAttribute('data-client-id'), 10);
     const comment = document.getElementById('input').value;
-    const orderId = (tableId * 17) ^ (restaurantId * 11) ^ (clientId * 7);
+
+    const data = {
+        tableId,
+        restaurantId,
+        clientId,
+        cartItems: Object.entries(cartItems),
+        comment: comment || "", // Убедитесь, что comment не равен undefined
+        timestamp: new Date().toISOString()
+    };
+
+    console.log("Input for hash:", data); // Лог данных для хэш-функции
+
+
+    const orderId = await generateOrderId(data);
+    console.log("orderId", orderId)
+    
 
     const orderItems = Object.entries(cartItems).map(([id, item]) => ({
         id: parseInt(id, 10),
