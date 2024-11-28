@@ -68,7 +68,7 @@ var wineNutrients = new Nutrients(
 
 // Создаем объекты блюд (Dish) и напитков (Drink)
 var spaghettiCarbonara = new Dish(
-    id: 1,
+    id: 228,
     categoryId: 1,
     cookingTimeMinutes: 15,
     price: 12.99,
@@ -80,7 +80,7 @@ var spaghettiCarbonara = new Dish(
 );
 
 var margheritaPizza = new Dish(
-    id: 2,
+    id: 552,
     categoryId: 1,
     cookingTimeMinutes: 20,
     price: 10.99,
@@ -92,7 +92,7 @@ var margheritaPizza = new Dish(
 );
 
 var italianRedWine = new Drink(
-    id: 3,
+    id: 1423,
     categoryId: 2,
     cookingTimeMinutes: 0,
     price: 7.50,

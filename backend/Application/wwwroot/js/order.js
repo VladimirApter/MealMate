@@ -44,7 +44,7 @@ function plus(id) {
         const currentCount = parseInt(button.getAttribute('data-count'), 10);
         const newCount = currentCount + 1;
         updateButtonCount(button, newCount);
-
+        
         const itemId = button.getAttribute('data-item-id');
         const itemName = button.closest('.cell').querySelector('.desc').textContent;
         const itemPrice = parseFloat(button.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
@@ -137,6 +137,7 @@ function hidePopup() {
 
 let cartItems = {};
 let totalPrice = 0.0
+let cartCookingTime = 0
 
 function addToCart(itemId, itemName, itemPrice) {
     if (cartItems[itemId]) {
@@ -209,10 +210,12 @@ async function placeOrder() {
     console.log("orderId", orderId)
     
 
-    const orderItems = Object.entries(cartItems).map(([id, item]) => ({
-        id: parseInt(id, 10),
+    const orderItems = Object.entries(cartItems).map(([id, item], index) => ({
+        id: index + 1,
+        menu_item_id: parseInt(id, 10),
         count: item.count,
         price: parseFloat((item.price * item.count).toFixed(2)),
+        order_id: orderId
     }));
 
     const client = {
