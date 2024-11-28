@@ -229,7 +229,7 @@ async function placeOrder() {
 
     const client = {
         Id: clientId,
-        Ip: "2131232"
+        Ip: "zaglushka"
     };
 
     const order = {
