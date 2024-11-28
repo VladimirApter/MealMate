@@ -53,7 +53,8 @@ public class MenuItem : ITakeRelatedData, IDeleteRelatedData
             image = ImagePath ?? "https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg",
             price = Price,
             desc = Description,
-            nutrientst = NutrientsOf100grams ?? null
+            nutrients = NutrientsOf100grams ?? null,
+            cooking_time = CookingTimeMinutes
         };
         
         return JsonSerializer.Serialize(jsonObj);

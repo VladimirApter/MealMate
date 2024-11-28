@@ -7,7 +7,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="@Model.Restaurant.Id, @Model.Table.Id">
     <title>MealMate</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <style>
@@ -51,6 +50,7 @@
                         <div class="content">
                             <p class="cost">@cell.Price.ToString(CultureInfo.InvariantCulture)₽</p>
                             <p class="desc">@cell.Name</p>
+                            <p class="cooking-time">@cell.CookingTimeMinutes</p>
                             <button class="add-button" data-item-id="@cell.Id" data-count="0">
                                 <span class="plus">+</span>
                                 <span class="text">Добавить</span>
@@ -67,6 +67,9 @@
             <div id="cart-items"></div>
             <div id="cart-total">
                 <span class="desc">Итого: </span><span class="desc" id="total-price">0</span><span class="desc">₽</span>
+            </div>
+            <div id="cart-total-time">
+                <span class="desc">Примерное время ожидания: </span><span class="desc" id="total-time">0</span><span class="desc">минут</span>
             </div>
             <textarea id="input" placeholder="Оставьте комментарий к заказу..."></textarea>
         </div>
@@ -85,8 +88,9 @@
     <div class="content">
         <div id="popup-cost" class="cost"></div>
         <div id="popup-desc" class="desc"></div>
-        <div id="popup-weight" class="weight"></div>
         <div id="popup-full-desc" class="desc"></div>
+        <div id="popup-weight" class="desc"></div>
+        <div id="popup-ctm" class="desc"></div>
     </div>
 </div>
 

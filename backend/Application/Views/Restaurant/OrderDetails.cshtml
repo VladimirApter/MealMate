@@ -7,16 +7,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Детали заказа</title>
+    <title>About order</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 <div class="container">
-    <h1>Детали заказа #@Model.Id</h1>
-    <p>Дата и время: @Model.DateTime</p>
-    <p>Комментарий: @Model.Comment</p>
-    <p>Статус: @Model.Status</p>
-    <p>Клиент: @Model.Client.Ip</p>
+    <div class="block">
+        <div class="category">Заказ #@Model.Id</div>
+        <div class="information"><b>Дата заказа:</b> @Model.DateTime</div>
+        <div class="information"><b>Статус:</b> @Model.Status</div>
+        <div class="table-row table-row-bold">
+            <div><div class="a"><p>Название</p></div><div class="b"><p>Кол-во</p></div><div class="c"><p>Цена</p></div></div>
+        </div>
+        @foreach (var item in @Model.OrderItems)
+        {
+            <div class="table-row">
+                <div><div class="a"><p>@item.MenuItem.Name</p></div><div class="b"><p>@item.Count</p></div><div class="c"><p>@item.Price</p></div></div>
+            </div>
+        } 
+        <div class="table-row table-row-bold">
+            <div><div class="a"><p>Итого:</p></div><div class="d"><p></p></div><div class="c"><p>@Model.Price</p></div></div>
+        </div>
+        <div class="information"><b>Комментарий:</b> @Model.Comment</div>
+    </div>
 </div>
 </body>
 </html>

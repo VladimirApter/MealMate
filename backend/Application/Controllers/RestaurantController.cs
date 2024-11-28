@@ -41,10 +41,30 @@ public class RestaurantController : Controller
     [HttpPost("/")]
     public IActionResult PlaceOrder([FromBody] Order order)
     {
+        var clientIp = HttpContext.Connection.RemoteIpAddress?.ToString();
+        if (string.IsNullOrEmpty(clientIp))
+            clientIp = "no ip";
+        var client = new Client(order.ClientId, clientIp);
+        order.Client = client;
+
+        var apiClientDish = new ApiClient<Dish>();
+        var apiClientDrink = new ApiClient<Drink>();
+        foreach (var orderItem in order.OrderItems)
+        {
+            var objDish = apiClientDish.Get(orderItem.MenuItemId.Value);
+            var objDrink = apiClientDrink.Get(orderItem.MenuItemId.Value);
+
+            if (objDish == null)
+                orderItem.MenuItem = objDrink;
+            else
+                orderItem.MenuItem = objDish;
+        }
+        
         Console.WriteLine($"Заказ {order.Id} получен");
         Orders.OrdersDictionary[order.Id] = order;
         return Ok(new { url = order.Id.ToString() });
     }
+
     
     [HttpGet("{token}/{orderId}")]
     public IActionResult OrderDetails(int orderId)
