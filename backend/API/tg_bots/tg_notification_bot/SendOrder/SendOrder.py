@@ -1,20 +1,21 @@
 from typing import List, Dict, Union
 
 from ApiClient.ApiClient import ApiClient
-from Model import Table, Restaurant, NotificationGetter, Dish, Drink
+from Model.Table import Table
+from Model.Restaurant import Restaurant
 from Model.Order import Order
 from tg_notification_bot.Config import bot
 from tg_notification_bot.main import create_keyboard
 
 
 def send_order(order: Order):
-    # api_client = ApiClient(Table)
-    # table = api_client.get(order.table_id)
-    #
-    # api_client = ApiClient(Restaurant)
-    # restaurant = api_client.get(table.restaurant_id)
-    #
-    # notification_getter_user_id = restaurant.notification_getter.id
+    api_client = ApiClient(Table)
+    table = api_client.get(order.table_id)
+
+    api_client = ApiClient(Restaurant)
+    restaurant = api_client.get(table.restaurant_id)
+    notification_getter = restaurant.notification_getter
+
     dishes = [item for item in order.order_items if "weight" in item.menu_item.dict()]
     drinks = [item for item in order.order_items if "volume" in item.menu_item.dict()]
 
@@ -47,4 +48,4 @@ def send_order(order: Order):
 
     keyboard = create_keyboard(order)
 
-    bot.send_message(chat_id=1488093047, text=message, reply_markup=keyboard)  # replace 'chat_id' on n_g_u_i
+    bot.send_message(chat_id=notification_getter.id, text=message, reply_markup=keyboard)  # replace 'chat_id' on n_g_u_i

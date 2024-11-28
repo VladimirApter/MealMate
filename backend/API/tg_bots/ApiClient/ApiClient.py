@@ -1,8 +1,8 @@
-from enum import Enum
-
 import httpx
 from threading import Lock
 from typing import Any
+
+from Model.Table import Table
 
 api_base_url = "http://localhost:5051"
 
@@ -10,7 +10,7 @@ api_base_url = "http://localhost:5051"
 class ApiClient:
     def __init__(self, obj_class):
         self.obj_class = obj_class
-        self.endpoint = obj_class.__name__.lower()
+        self.endpoint = obj_class.__name__.lower().split('.')[-1]
         self.lock = Lock()
 
     def _get_url(self, id=None):
@@ -26,6 +26,7 @@ class ApiClient:
                 if response.status_code == 200:
                     data = response.json()
                     # obj = self.obj_class.parse_obj(data)
+                    print(self.obj_class, Table)
                     obj = self.obj_class.model_validate(data)
                     return obj
                 else:
@@ -35,10 +36,11 @@ class ApiClient:
         with self.lock:
             with httpx.Client() as client:
                 data = obj.dict(by_alias=True)
+
                 if 'date_time' in data:
                     data['date_time'] = data['date_time'].isoformat()
-
-                data['status'] = int(data['status'])
+                if 'status' in data:
+                    data['status'] = int(data['status'])
 
                 response = client.post(self._get_url(), json=data, headers={'Content-Type': 'application/json'})
                 if response.status_code == 200:
