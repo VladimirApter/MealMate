@@ -1,4 +1,6 @@
-from Config import client
+from telethon.errors import UserPrivacyRestrictedError
+
+from tg_notification_bot.NotificationRequestClient.Config import client
 from Model.NotificationGetter import NotificationGetter
 from Model.Owner import Owner
 from Model.Restaurant import Restaurant
@@ -6,18 +8,26 @@ from ApiClient.ApiClient import ApiClient
 
 
 async def send_notification_request(notification_getter: NotificationGetter):
-    if notification_getter.is_blocked:
-        return
+    async with client:
+        try:
+            if notification_getter.is_blocked:
+                return
 
-    owner, restaurant = _get_owner_and_restaurant_by_notification_getter(notification_getter)
-    message = f'Здравствуйте, пользователь @{owner.username} назначил вас ' \
-              f'получателем уведомлений в ресторане "{restaurant.name}". ' \
-              f'Если готовы начать работу, запустите бота ' \
-              f'@MealMateNotification_bot. Если вас назначили по ошибке, ' \
-              f'то ничего делать не нужно, я вас больше не побеспокою.'
+            owner, restaurant = _get_owner_and_restaurant_by_notification_getter(notification_getter)
+            message = f'Здравствуйте, пользователь @{owner.username} назначил вас ' \
+                      f'получателем уведомлений в ресторане "{restaurant.name}". ' \
+                      f'Если готовы начать работу, запустите бота ' \
+                      f'@MealMateNotification_bot. Если вас назначили по ошибке, ' \
+                      f'то ничего делать не нужно, я вас больше не побеспокою.'
 
-    user = await client.get_entity(notification_getter.username)
-    await client.send_message(user, message)
+            user = await client.get_entity(notification_getter.username)
+            await client.send_message(user, message)
+        except UserPrivacyRestrictedError:
+            notification_getter.is_blocked = True
+            api_client = ApiClient(NotificationGetter)
+            api_client.post(notification_getter)
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
 
 def _get_owner_and_restaurant_by_notification_getter(notification_getter: NotificationGetter):
