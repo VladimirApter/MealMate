@@ -213,6 +213,9 @@ async function placeOrder() {
         id: parseInt(id, 10),
         count: item.count,
         price: parseFloat((item.price * item.count).toFixed(2)),
+        menuItem: {
+            id: item.Id
+        }
     }));
 
     const client = {
