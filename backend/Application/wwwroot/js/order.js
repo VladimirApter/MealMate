@@ -137,6 +137,7 @@ function hidePopup() {
 
 let cartItems = {};
 let totalPrice = 0.0
+let cartCookingTime = 0
 
 function addToCart(itemId, itemName, itemPrice) {
     if (cartItems[itemId]) {
@@ -214,6 +215,7 @@ async function placeOrder() {
         menu_item_id: parseInt(id, 10),
         count: item.count,
         price: parseFloat((item.price * item.count).toFixed(2)),
+        order_id: orderId
     }));
 
     const client = {
