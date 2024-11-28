@@ -72,6 +72,9 @@ public class RestaurantController : Controller
     public IActionResult OrderDetails(int orderId)
     {
         var order = Orders.OrdersDictionary[orderId];
+        var apiClient = new ApiClient<Order>();
+        var obj = apiClient.Get(orderId);
+        order.Status = obj.Status;
         return View("OrderDetails", order);
     }
 }
