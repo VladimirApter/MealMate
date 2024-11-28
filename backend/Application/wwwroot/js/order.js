@@ -224,12 +224,13 @@ async function placeOrder() {
         "Id": orderId,
         "client_id": clientId,
         "table_id": tableId,
-        "cooking_time": 123,
-        "Comment": comment,
+        "cooking_time_minutes": 123.2,
+        "Comment": comment || "",
         "date_time": new Date().toISOString(),
         "Status": 0,
         "Client": client,
-        "order_items": orderItems
+        "order_items": orderItems,
+        "Price": totalPrice
     };
 
     console.log('Order', order);
