@@ -17,6 +17,7 @@ class Order(BaseModel):
     id: Optional[int]
     client_id: int
     table_id: int
+    price: int
     order_items: List[OrderItem]
     comment: Optional[str]
     date_time: datetime
@@ -31,6 +32,7 @@ class Order(BaseModel):
     def __init__(self,
                  client_id: int,
                  table_id: int,
+                 price: int,
                  order_items: List[OrderItem],
                  comment: Optional[str],
                  date_time: datetime,
@@ -44,6 +46,7 @@ class Order(BaseModel):
             id=id,
             client_id=client_id,
             table_id=table_id,
+            price=price,
             order_items=order_items,
             comment=comment,
             date_time=date_time,

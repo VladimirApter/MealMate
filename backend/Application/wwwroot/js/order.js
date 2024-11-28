@@ -10,12 +10,14 @@ addButton.forEach(button => {
         const itemId = button.getAttribute('data-item-id');
         const itemName = button.closest('.cell').querySelector('.desc').textContent;
         const itemPrice = parseFloat(button.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
+        const itemCookingTime = parseFloat(button.closest('.cell').querySelector('.cooking-time').textContent);
 
-        addToCart(itemId, itemName, itemPrice);
+        addToCart(itemId, itemName, itemPrice, itemCookingTime);
 
         button.replaceWith(div);
     });
 });
+
 
 document.getElementById('scrollToBottomBtn').addEventListener('click', function() {
     window.scrollTo({
@@ -93,14 +95,16 @@ function createOriginalButton(button) {
         const itemId = originalButton.getAttribute('data-item-id');
         const itemName = originalButton.closest('.cell').querySelector('.desc').textContent;
         const itemPrice = parseFloat(originalButton.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
+        const itemCookingTime = parseFloat(originalButton.closest('.cell').querySelector('.cooking-time').textContent);
 
-        addToCart(itemId, itemName, itemPrice);
+        addToCart(itemId, itemName, itemPrice, itemCookingTime);
 
         originalButton.replaceWith(div);
     });
 
     return originalButton;
 }
+
 
 
 function updateButtonCount(button, newCount) {
@@ -122,11 +126,16 @@ function showPopup(cellData) {
     const popupCost = document.getElementById('popup-cost');
     const popupDesc = document.getElementById('popup-full-desc');
     const popupWeight = document.getElementById('popup-weight');
-    popupImage.src = cellData.image;
+    const popupCtm = document.getElementById('popup-ctm');
+
+    console.log(cellData)
+    popupImage.src = "/MenuItemImages/" + cellData.image;
     popupCost.textContent = parseFloat(cellData.price).toFixed(2) + "₽"; // Округляем до двух знаков после запятой
     popupName.textContent = cellData.name;
     popupDesc.textContent = cellData.desc;
-    popupWeight.textContent = cellData.weight + "г";
+    popupWeight.textContent = "Белки " + cellData.nutrients.Proteins + "г, " + "Жиры " + cellData.nutrients.Fats + "г, " + "Углеводы " + cellData.nutrients.Carbohydrates + "г";
+    popupCtm.textContent = "Время приготовления: " + cellData.cooking_time + " минут";
+
     popup.style.display = 'block';
 }
 
@@ -135,17 +144,18 @@ function hidePopup() {
     popup.style.display = 'none';
 }
 
-const cartItems = {};
+let cartItems = {};
 let totalPrice = 0.0
-
-function addToCart(itemId, itemName, itemPrice) {
+let cartCookingTime = 0.0
+function addToCart(itemId, itemName, itemPrice, itemCookingTime = 0) {
     if (cartItems[itemId]) {
         cartItems[itemId].count += 1;
     } else {
-        cartItems[itemId] = { name: itemName, price: parseFloat(itemPrice).toFixed(2), count: 1 };
+        cartItems[itemId] = { name: itemName, price: parseFloat(itemPrice).toFixed(2), count: 1, itemCookingTime};
     }
     updateCart();
 }
+
 
 function removeFromCart(itemId, itemName, itemPrice) {
     if (cartItems[itemId]) {
@@ -153,14 +163,17 @@ function removeFromCart(itemId, itemName, itemPrice) {
         if (cartItems[itemId].count === 0) {
             delete cartItems[itemId];
         }
-        updateCart();
     }
+    updateCart();
 }
+
 
 function updateCart() {
     const cartElement = document.getElementById('cart-items');
     cartElement.innerHTML = '';
     totalPrice = 0.0;
+
+    let nowMaxTime = 0
 
     Object.values(cartItems).forEach(item => {
         const itemElement = document.createElement('div');
@@ -168,35 +181,112 @@ function updateCart() {
         const totalItemPrice = (item.price * item.count).toFixed(2); // Округляем до двух знаков после запятой
         itemElement.innerHTML = `${item.name} ${item.count}шт. - ${totalItemPrice}₽`;
         cartElement.appendChild(itemElement);
-        totalPrice += parseFloat(totalItemPrice); // Добавляем округленную цену к общей сумме
+        totalPrice += parseFloat(totalItemPrice);
+        if(item.itemCookingTime > nowMaxTime){
+            nowMaxTime = item.itemCookingTime
+        }
     });
 
-    document.getElementById('total-price').textContent = totalPrice.toFixed(2); // Округляем общую сумму до двух знаков после запятой
+    cartCookingTime = nowMaxTime;
+
+    document.getElementById('total-price').textContent = totalPrice.toFixed(2);// Округляем общую сумму до двух знаков после запятой
+    document.getElementById('total-time').textContent = cartCookingTime;
 }
 
-function placeOrder() {
-    const orderItems = Object.entries(cartItems).map(([id, item]) => ({
-        dish_id: id,
-        count: item.count,
-        price: parseFloat((item.price * item.count).toFixed(2)),
-    }));
-    const order = {
-        client_id: 1,  // заменить на реальный ID клиента
-        restaurant_id: 1,  // заменить на реальный ID ресторана
-        order_items: orderItems,
-        comment: '',
-        datetime: new Date().toISOString()
+
+
+async function generateOrderId(data) {
+    const text = JSON.stringify(data);
+    const encoder = new TextEncoder();
+    const dataBuffer = encoder.encode(text);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
+    const hashArray = new Uint8Array(hashBuffer);
+    const orderId = (hashArray[0] << 24) | (hashArray[1] << 16) | (hashArray[2] << 8) | hashArray[3];
+    return orderId & 0x7FFFFFFF;
+}
+
+async function placeOrder() {
+    const contextElement = document.getElementById('order-context');
+    const tableId = parseInt(contextElement.getAttribute('data-table-id'), 10);
+    const restaurantId = parseInt(contextElement.getAttribute('data-restaurant-id'), 10);
+    const clientId = parseInt(contextElement.getAttribute('data-client-id'), 10);
+    const comment = document.getElementById('input').value;
+
+    const data = {
+        tableId,
+        restaurantId,
+        clientId,
+        cartItems: Object.entries(cartItems),
+        comment: comment || "",
+        timestamp: new Date().toISOString(),
     };
 
-    fetch('/restaurant/placeOrder', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(order)
-    })
-        .then(response => response.json())
-        .then(data => alert(`Заказ создан! ID заказа: ${data.id}`))
-        .catch(error => console.error('Ошибка:', error));
+    console.log("Input for hash:", data);
 
-    console.log('Order Items:', orderItems);
-    console.log('Total Price:', totalPrice.toFixed(2));
+
+    const orderId = await generateOrderId(data);
+    console.log("orderId", orderId)
+
+
+    const orderItems = Object.entries(cartItems).map(([id, item], index) => ({
+        id: index + 1,
+        menu_item_id: parseInt(id, 10),
+        count: item.count,
+        price: parseFloat((item.price * item.count).toFixed(2)),
+        order_id: orderId,
+    }));
+
+    const client = {
+        Id: clientId,
+        Ip: "zaglushka"
+    };
+
+    const order = {
+        "Id": orderId,
+        "client_id": clientId,
+        "table_id": tableId,
+        "cooking_time_minutes": cartCookingTime,
+        "Comment": comment || "",
+        "date_time": new Date().toISOString(),
+        "Status": 0,
+        "Client": client,
+        "order_items": orderItems,
+        "Price": totalPrice
+    };
+
+    console.log('Order', order);
+
+    try {
+        const response = await fetch('/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(order),
+        });
+
+        if (response.ok) {
+            clearCart();
+            const data = await response.json();
+            console.log('Response from server:', data); // Лог для проверки
+            const orderUrl = data.url;
+            if (orderUrl) {
+                clearCart();
+                if (window.location.href.at(-1) === '/') {
+                    window.location.href += orderUrl;
+                } else {
+                    window.location.href += '/' + orderUrl;
+                }
+            }} else {
+            alert('Ошибка при отправке заказа');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Ошибка при отправке заказа');
+    }
+}
+
+function clearCart() {
+    cartItems = {};
+    updateCart();
 }

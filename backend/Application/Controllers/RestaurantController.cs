@@ -3,27 +3,19 @@ using Domain.DataBaseAccess;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Domain.Logic;
+using Microsoft.EntityFrameworkCore;
 
 namespace site.Controllers;
+
+public static class Orders 
+{
+    public static readonly Dictionary<int?, Order> OrdersDictionary = new Dictionary<int?, Order>();
+}
 
 [ApiController]
 [Route("order")]
 public class RestaurantController : Controller
 {
-    // [HttpGet("{id}")]
-    // public async Task<IActionResult> GetRestaurant(int id)
-    // {
-    //     var apiClient = new ApiClient<Restaurant>();
-    //     var restaurant = apiClient.Get(id);
-    //     if (restaurant == null)
-    //         return NotFound();
-
-    //     // Загрузка связанных данных
-    //     await restaurant.TakeRelatedData(new ApplicationDbContext());
-
-    //     return View("RestaurantDetails", restaurant);
-    // }
-
     [HttpGet("{token}")]
     public IActionResult GetRestaurant(string token)
     {
@@ -46,17 +38,40 @@ public class RestaurantController : Controller
     }
     
     
-    // [HttpPost("placeOrder")]
-    // public IActionResult PlaceOrder([FromBody] Order order)
-    // {
-    //     Console.WriteLine("Received order:");
+    [HttpPost("/")]
+    public IActionResult PlaceOrder([FromBody] Order order)
+    {
+        var clientIp = HttpContext.Connection.RemoteIpAddress?.ToString();
+        if (string.IsNullOrEmpty(clientIp))
+            clientIp = "no ip";
+        var client = new Client(order.ClientId, clientIp);
+        order.Client = client;
 
-    //     foreach (var item in order.OrderItems)
-    //     {
-    //         Console.WriteLine($"Dish ID: {item.Id}, Count: {item.Count}, Price: {item.Price}");
-    //     }
+        var apiClientDish = new ApiClient<Dish>();
+        var apiClientDrink = new ApiClient<Drink>();
+        foreach (var orderItem in order.OrderItems)
+        {
+            var objDish = apiClientDish.Get(orderItem.MenuItemId.Value);
+            var objDrink = apiClientDrink.Get(orderItem.MenuItemId.Value);
 
-    //     // Возвращаем ID заказа (в данном случае, это просто пример)
-    //     return Ok(new { id = order.Id });
-    //}
+            if (objDish == null)
+                orderItem.MenuItem = objDrink;
+            else
+                orderItem.MenuItem = objDish;
+        }
+        
+        Console.WriteLine($"Заказ {order.Id} получен");
+        Orders.OrdersDictionary[order.Id] = order;
+        var apiClient = new ApiClient<Order>();
+        apiClient.Post(order);
+        return Ok(new { url = order.Id.ToString() });
+    }
+
+    
+    [HttpGet("{token}/{orderId}")]
+    public IActionResult OrderDetails(int orderId)
+    {
+        var order = Orders.OrdersDictionary[orderId];
+        return View("OrderDetails", order);
+    }
 }

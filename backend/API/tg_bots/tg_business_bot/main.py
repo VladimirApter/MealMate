@@ -1,6 +1,6 @@
 from telebot import types
 from Config import *
-from Registration import register_commands
+from Commands import register_commands
 from excel_tables_work.create_menu_template import create_menu_template
 
 create_menu_template()

@@ -8,32 +8,6 @@ from Update import get_notification_getter_markup
 from Config import current_dir
 
 
-def register_commands():
-    @bot.message_handler(commands=['register'])
-    def register_start(message: types.Message):
-        api_client = ApiClient(Owner)
-
-        owner_id = message.chat.id
-        owner = api_client.get(owner_id)
-        if owner is None:
-            owner = Owner(id=owner_id, username=message.from_user.username)
-            api_client.post(owner)
-
-        bot.send_message(message.chat.id, 'Вы зарегистрированы, ваши данные сохранены! Можете добавить свой ресторан с помощью команды /new_rest')
-
-    @bot.message_handler(commands=['new_rest'])
-    def restaurant_register_start(message: types.Message):
-        api_client = ApiClient(Owner)
-        owner = api_client.get(message.chat.id)
-
-        if owner is None:
-            bot.send_message(message.chat.id, "Для начала вам нужно зарегестрироваться, используйте /register")
-            return
-
-        restaurant = Restaurant(name='', owner_id=owner.id)
-        register_restaurant_name(message, restaurant)
-
-
 def register_restaurant_name(message: types.Message, restaurant: Restaurant):
     bot.send_message(message.chat.id, 'Введите название ресторана')
     bot.register_next_step_handler(message, validate_and_post_restaurant_name, restaurant, register_restaurant_address, True)
