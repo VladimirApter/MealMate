@@ -1,4 +1,6 @@
-﻿@model Domain.Models.Order
+﻿@using System.Globalization
+@using System.Text.Json
+@model Domain.Models.Order
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -15,13 +17,7 @@
     <p>Комментарий: @Model.Comment</p>
     <p>Статус: @Model.Status</p>
     <p>Клиент: @Model.Client.Ip</p>
-    <h2>Товары:</h2>
-    <ul>
-        @foreach (var item in Model.OrderItems)
-        {
-        <li>@item.MenuItem.Name - @item.Count шт. - @item.Price ₽</li>
-        }
-    </ul>
+    <p>Время: @Model.CookingTimeMinutes</p>
 </div>
 </body>
 </html>

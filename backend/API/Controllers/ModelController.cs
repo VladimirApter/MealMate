@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using JsonSerializerOptions = System.Text.Json.JsonSerializerOptions;
 using Domain.DataBaseAccess;
@@ -50,9 +51,41 @@ namespace Domen.Controllers
                 var o = await DataBaseAccess<T>.GetAsync(id);
                 return o == null ? NotFound() : Ok(o);
             }
-
-            DataBaseAccess<T>.AddOrUpdate(entity);
+            
+            if (entity is Order order)
+            {
+                if (order.Id is null)
+                {
+                    DataBaseAccess<T>.AddOrUpdate(entity);
+                    await ForwardOrder(entity as Order, "http://localhost:5059/order", "Python");
+                }
+                else
+                {
+                    DataBaseAccess<T>.AddOrUpdate(entity);
+                    await ForwardOrder(entity as Order, "http://", "Site");
+                }
+            }
+            else
+            {
+                DataBaseAccess<T>.AddOrUpdate(entity);
+            }
+            
             return Ok(entity.Id);
+        }
+        private static async Task ForwardOrder(Order? order, string url, string location)
+        {
+            if (order == null) return;
+
+            var jsonContent = JsonSerializer.Serialize(order);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            using var client = new HttpClient();
+            var response = await client.PostAsync(url, content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException($"Failed to forward Order to {location}: {response.StatusCode}");
+            }
         }
 
         private async Task<IActionResult> GetPostTable<T>(int id, [FromBody] T? entityTable) where T : Table

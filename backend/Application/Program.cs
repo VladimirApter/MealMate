@@ -301,12 +301,12 @@ restaurantApi2.Post(restaurant2);
 
 
 
-var orderItem = new OrderItem(1 , 1, 2, 500, californiaRoll);
+var orderItem = new OrderItem(1 , 1, 2, californiaRoll);
 //var orderItem = new OrderItem(1, 1, 20, 20);
 var orderItemApi = new ApiClient<OrderItem>();
 //orderItemApi.Post(orderItem);
 
-var orderItem2 = new OrderItem(1, 2, 3, 1000, margheritaPizza);
+var orderItem2 = new OrderItem(1, 2, 3, margheritaPizza);
 //orderItemApi.Post(orderItem2);
 //orderItemApi.Post(orderItem2);
 

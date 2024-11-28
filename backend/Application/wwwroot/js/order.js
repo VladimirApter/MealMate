@@ -174,10 +174,17 @@ function updateCart() {
     document.getElementById('total-price').textContent = totalPrice.toFixed(2); // Округляем общую сумму до двух знаков после запятой
 }
 
-async function getUserContext() {
-    const response = await fetch('/api/context');
-    return await response.json(); 
+
+async function generateOrderId(data) {
+    const text = JSON.stringify(data);
+    const encoder = new TextEncoder();
+    const dataBuffer = encoder.encode(text);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
+    const hashArray = new Uint8Array(hashBuffer);
+    const orderId = (hashArray[0] << 24) | (hashArray[1] << 16) | (hashArray[2] << 8) | hashArray[3];
+    return orderId & 0x7FFFFFFF;
 }
+
 
 async function placeOrder() {
     const contextElement = document.getElementById('order-context');
@@ -185,7 +192,22 @@ async function placeOrder() {
     const restaurantId = parseInt(contextElement.getAttribute('data-restaurant-id'), 10);
     const clientId = parseInt(contextElement.getAttribute('data-client-id'), 10);
     const comment = document.getElementById('input').value;
-    const orderId = (tableId * 17) ^ (restaurantId * 11) ^ (clientId * 7);
+
+    const data = {
+        tableId,
+        restaurantId,
+        clientId,
+        cartItems: Object.entries(cartItems),
+        comment: comment || "", // Убедитесь, что comment не равен undefined
+        timestamp: new Date().toISOString()
+    };
+
+    console.log("Input for hash:", data); // Лог данных для хэш-функции
+
+
+    const orderId = await generateOrderId(data);
+    console.log("orderId", orderId)
+    
 
     const orderItems = Object.entries(cartItems).map(([id, item]) => ({
         id: parseInt(id, 10),
@@ -202,12 +224,13 @@ async function placeOrder() {
         "Id": orderId,
         "client_id": clientId,
         "table_id": tableId,
-        "cooking_time": 123,
-        "Comment": comment,
+        "cooking_time_minutes": 123.2,
+        "Comment": comment || "",
         "date_time": new Date().toISOString(),
         "Status": 0,
         "Client": client,
-        "order_items": orderItems
+        "order_items": orderItems,
+        "Price": totalPrice
     };
 
     console.log('Order', order);
@@ -228,7 +251,11 @@ async function placeOrder() {
             const orderUrl = data.url;
             if (orderUrl) {
                 clearCart();
-                window.location.href = orderUrl;
+                if (window.location.href.at(-1) === '/') {
+                    window.location.href += orderUrl;
+                } else {
+                    window.location.href += '/' + orderUrl;
+                }
             }} else {
             alert('Ошибка при отправке заказа');
         }
