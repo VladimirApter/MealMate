@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from pydantic import ValidationError
-from API.tg_bots.Model.Order import Order
+from Model.Order import Order
 
 order_bp = Blueprint("order", __name__)
 

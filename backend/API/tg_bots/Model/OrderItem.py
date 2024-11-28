@@ -2,8 +2,8 @@ from pydantic import BaseModel
 from typing import Optional, Union
 
 
-from API.tg_bots.Model.Drink import Drink
-from API.tg_bots.Model.Dish import Dish
+from Model.Drink import Drink
+from Model.Dish import Dish
 
 
 class OrderItem(BaseModel):

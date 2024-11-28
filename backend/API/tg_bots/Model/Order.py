@@ -3,8 +3,8 @@ from typing import List, Optional
 from datetime import datetime
 from enum import Enum
 
-from API.tg_bots.Model.OrderItem import OrderItem
-from API.tg_bots.Model.Client import Client
+from Model.OrderItem import OrderItem
+from Model.Client import Client
 
 
 class OrderStatus(Enum):
@@ -17,16 +17,18 @@ class Order(BaseModel):
     id: Optional[int]
     client_id: int
     table_id: int
+    price: int
     order_items: List[OrderItem]
     comment: Optional[str]
     date_time: datetime
     status: OrderStatus
-    cooking_time: float
+    cooking_time_minutes: float
     client: Client
 
     def __init__(self,
                  client_id: int,
                  table_id: int,
+                 price: int,
                  order_items: List[OrderItem],
                  comment: Optional[str],
                  date_time: datetime,
@@ -37,6 +39,7 @@ class Order(BaseModel):
             id=id,
             client_id=client_id,
             table_id=table_id,
+            price=price,
             order_items=order_items,
             comment=comment,
             date_time=date_time,

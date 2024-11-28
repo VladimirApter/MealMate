@@ -1,7 +1,7 @@
 from typing import Optional
 
 from pydantic import BaseModel, field_validator
-from API.tg_bots.Model.Nutrients import Nutrients
+from Model.Nutrients import Nutrients
 
 
 class MenuItem(BaseModel):

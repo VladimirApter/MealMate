@@ -7,33 +7,6 @@ from DataValidationAndPost import *
 from excel_tables_work.fill_menu_template import *
 
 
-@bot.message_handler(commands=['update'])
-def update_start(message: types.Message):
-    api_client = ApiClient(Owner)
-    owner = api_client.get(message.chat.id)
-
-    restaurant_ids = owner.restaurant_ids
-
-    if len(restaurant_ids) == 0:
-        bot.send_message(message.chat.id, "У вас пока нет ресторанов, создайте первый при помощи /new_rest")
-        return
-    elif len(restaurant_ids) == 1:
-        api_client = ApiClient(Restaurant)
-        restaurant = api_client.get(restaurant_ids[0])
-
-        markup = get_update_parts_markup()
-        bot.send_message(message.chat.id, f'Что вы хотели бы изменить в ресторане {restaurant.name}?', reply_markup=markup)
-        bot.register_next_step_handler(message, get_update_part, restaurant)
-        return
-    elif len(restaurant_ids) > 1:
-        api_client = ApiClient(Restaurant)
-        restaurants = [api_client.get(rest_id) for rest_id in restaurant_ids]
-
-        markup = get_restaurants_markup(restaurants)
-        bot.send_message(message.chat.id, 'Выберите ресторан', reply_markup=markup)
-        bot.register_next_step_handler(message, get_restaurant, restaurants)
-
-
 def get_restaurant(message: types.Message, restaurants):
     if not message.text:
         bot.send_message(message.chat.id, 'Чтобы выбрать ресторан нажмите на одну из кнопок ниже')

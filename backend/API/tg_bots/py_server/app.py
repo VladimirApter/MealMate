@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Регистрация blueprints
 app.register_blueprint(order_bp, url_prefix="/order")
-app.register_blueprint(notification_bp, url_prefix="/notification")
+app.register_blueprint(notification_bp, url_prefix="/notificationgetter")
 
 if __name__ == "__main__":
     app.run(host='localhost', port=5059, debug=True)
