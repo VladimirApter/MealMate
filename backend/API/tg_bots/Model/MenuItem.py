@@ -1,7 +1,7 @@
 from typing import Optional
 
 from pydantic import BaseModel, field_validator
-from API.tg_bots.Model.Nutrients import Nutrients
+from Model.Nutrients import Nutrients
 
 
 class MenuItem(BaseModel):
@@ -38,8 +38,8 @@ class MenuItem(BaseModel):
 
     @field_validator('__all__', mode='before', check_fields=False)
     def determine_type(cls, values):
-        from Model.Dish import Dish
-        from Model.Drink import Drink
+        from API.tg_bots.Model.Dish import Dish
+        from API.tg_bots.Model.Drink import Drink
 
         if 'weight' in values:
             return Dish(**values)

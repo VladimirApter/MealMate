@@ -23,7 +23,8 @@ class ApiClient:
                 response = client.get(self._get_url(id))
                 if response.status_code == 200:
                     data = response.json()
-                    obj = self.obj_class.parse_obj(data)
+                    # obj = self.obj_class.parse_obj(data)
+                    obj = self.obj_class.model_validate(data)
                     return obj
                 else:
                     return None
@@ -31,7 +32,7 @@ class ApiClient:
     def post(self, obj):
         with self.lock:
             with httpx.Client() as client:
-                response = client.post(self._get_url(), json=ApiClient._to_dict(obj), headers={'Content-Type': 'application/json'})
+                response = client.post(self._get_url(), json=obj.dict(by_alias=True), headers={'Content-Type': 'application/json'})
                 if response.status_code == 200:
                     obj_id = int(response.json())
                     return obj_id

@@ -1,5 +1,8 @@
 from time import sleep
 
+from ApiClient.ApiClient import ApiClient
+from Model import Owner
+from Model.Restaurant import Restaurant
 from DataValidationAndPost import *
 from Update import get_notification_getter_markup
 from Config import current_dir

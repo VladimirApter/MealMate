@@ -1,8 +1,8 @@
-from Config import client
-from Model.NotificationGetter import NotificationGetter
-from Model.Owner import Owner
-from Model.Restaurant import Restaurant
-from ApiClient.ApiClient import ApiClient
+from API.tg_bots.tg_notification_bot.NotificationRequestClient.Config import client
+from API.tg_bots.Model.NotificationGetter import NotificationGetter
+from API.tg_bots.Model.Owner import Owner
+from API.tg_bots.Model.Restaurant import Restaurant
+from API.tg_bots.ApiClient.ApiClient import ApiClient
 
 
 async def send_notification_request(notification_getter: NotificationGetter):
