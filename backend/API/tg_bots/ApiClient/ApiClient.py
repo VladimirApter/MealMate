@@ -1,3 +1,5 @@
+from enum import Enum
+
 import httpx
 from threading import Lock
 from typing import Any
@@ -32,7 +34,13 @@ class ApiClient:
     def post(self, obj):
         with self.lock:
             with httpx.Client() as client:
-                response = client.post(self._get_url(), json=obj.dict(by_alias=True), headers={'Content-Type': 'application/json'})
+                data = obj.dict(by_alias=True)
+                if 'date_time' in data:
+                    data['date_time'] = data['date_time'].isoformat()
+
+                data['status'] = int(data['status'])
+
+                response = client.post(self._get_url(), json=data, headers={'Content-Type': 'application/json'})
                 if response.status_code == 200:
                     obj_id = int(response.json())
                     return obj_id

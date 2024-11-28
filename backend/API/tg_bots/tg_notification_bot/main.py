@@ -61,20 +61,22 @@ def handle_callback(call):
 
     if order_status == 'accept':
         order.status = OrderStatus.COOKING
+        order.status = int(order.status.value)
         api_client.post(order)
 
         keyboard = InlineKeyboardMarkup()
-        button2 = InlineKeyboardButton("Выполнено", callback_data="done")
+        button2 = InlineKeyboardButton("Выполнено", callback_data=f"{order.id}:done")
         keyboard.add(button2)
 
         bot.edit_message_reply_markup(chat_id=chat_id, message_id=message_id, reply_markup=keyboard)
         bot.reply_to(call.message, "Заказ подтвержден")
 
     if order_status == "done":
-        if not order.status.COOKING:
-            bot.answer_callback_query(call.id, "Сначала нужно нажать кнопку 'Принять'.")
+        if order.status != OrderStatus.COOKING.value:
+            bot.answer_callback_query(call.id, "Нельзя завершить заказ без подтверждения!")
         else:
             order.status = OrderStatus.DONE
+            order.status = int(order.status.value)
             api_client.post(order)
 
             bot.answer_callback_query(call.id, "Заказ завершен!")
