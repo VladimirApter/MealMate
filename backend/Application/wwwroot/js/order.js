@@ -10,8 +10,9 @@ addButton.forEach(button => {
         const itemId = button.getAttribute('data-item-id');
         const itemName = button.closest('.cell').querySelector('.desc').textContent;
         const itemPrice = parseFloat(button.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
+        const itemCookingTime = parseFloat(button.closest('.cell').querySelector('.cooking-time').textContent);
 
-        addToCart(itemId, itemName, itemPrice);
+        addToCart(itemId, itemName, itemPrice, itemCookingTime);
 
         button.replaceWith(div);
     });
@@ -93,8 +94,9 @@ function createOriginalButton(button) {
         const itemId = originalButton.getAttribute('data-item-id');
         const itemName = originalButton.closest('.cell').querySelector('.desc').textContent;
         const itemPrice = parseFloat(originalButton.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
-
-        addToCart(itemId, itemName, itemPrice);
+        const itemCookingTime = parseFloat(originalButton.closest('.cell').querySelector('.cooking-time').textContent);
+        
+        addToCart(itemId, itemName, itemPrice, itemCookingTime);
 
         originalButton.replaceWith(div);
     });
@@ -137,13 +139,12 @@ function hidePopup() {
 
 let cartItems = {};
 let totalPrice = 0.0
-let cartCookingTime = 0
-
-function addToCart(itemId, itemName, itemPrice) {
+let cartCookingTime = 0.0
+function addToCart(itemId, itemName, itemPrice, itemCookingTime = 0) {
     if (cartItems[itemId]) {
         cartItems[itemId].count += 1;
     } else {
-        cartItems[itemId] = { name: itemName, price: parseFloat(itemPrice).toFixed(2), count: 1 };
+        cartItems[itemId] = { name: itemName, price: parseFloat(itemPrice).toFixed(2), count: 1, itemCookingTime};
     }
     updateCart();
 }
@@ -154,8 +155,8 @@ function removeFromCart(itemId, itemName, itemPrice) {
         if (cartItems[itemId].count === 0) {
             delete cartItems[itemId];
         }
-        updateCart();
     }
+    updateCart();
 }
 
 function updateCart() {
@@ -163,16 +164,24 @@ function updateCart() {
     cartElement.innerHTML = '';
     totalPrice = 0.0;
 
+    let nowMaxTime = 0
+    
     Object.values(cartItems).forEach(item => {
         const itemElement = document.createElement('div');
         itemElement.className = 'desc';
         const totalItemPrice = (item.price * item.count).toFixed(2); // Округляем до двух знаков после запятой
         itemElement.innerHTML = `${item.name} ${item.count}шт. - ${totalItemPrice}₽`;
         cartElement.appendChild(itemElement);
-        totalPrice += parseFloat(totalItemPrice); // Добавляем округленную цену к общей сумме
+        totalPrice += parseFloat(totalItemPrice);
+        if(item.itemCookingTime > nowMaxTime){
+            nowMaxTime = item.itemCookingTime
+        } 
     });
+    
+    cartCookingTime = nowMaxTime;
 
-    document.getElementById('total-price').textContent = totalPrice.toFixed(2); // Округляем общую сумму до двух знаков после запятой
+    document.getElementById('total-price').textContent = totalPrice.toFixed(2);// Округляем общую сумму до двух знаков после запятой
+    document.getElementById('total-time').textContent = cartCookingTime;
 }
 
 
@@ -199,11 +208,11 @@ async function placeOrder() {
         restaurantId,
         clientId,
         cartItems: Object.entries(cartItems),
-        comment: comment || "", // Убедитесь, что comment не равен undefined
+        comment: comment || "",
         timestamp: new Date().toISOString()
     };
 
-    console.log("Input for hash:", data); // Лог данных для хэш-функции
+    console.log("Input for hash:", data); 
 
 
     const orderId = await generateOrderId(data);
@@ -227,7 +236,7 @@ async function placeOrder() {
         "Id": orderId,
         "client_id": clientId,
         "table_id": tableId,
-        "cooking_time_minutes": 123.2,
+        "cooking_time_minutes": cartCookingTime,
         "Comment": comment || "",
         "date_time": new Date().toISOString(),
         "Status": 0,
