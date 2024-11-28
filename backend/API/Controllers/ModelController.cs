@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using JsonSerializerOptions = System.Text.Json.JsonSerializerOptions;
 using Domain.DataBaseAccess;
@@ -14,6 +15,9 @@ namespace Domen.Controllers
     {
         private static readonly JsonSerializerOptions
             OptionsDeserializer = new() { PropertyNameCaseInsensitive = true };
+
+        private static readonly JsonSerializerOptions OptionsSerializer = new()
+            { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
         [HttpGet("{entityType}/{id}"), HttpPost("{entityType}")]
         public async Task<IActionResult> GetPostEntity(string entityType, int id, [FromBody] object? entity)
@@ -51,32 +55,36 @@ namespace Domen.Controllers
                 var o = await DataBaseAccess<T>.GetAsync(id);
                 return o == null ? NotFound() : Ok(o);
             }
-            
+
             if (entity is Order order)
             {
-                if (order.Id is null)
+                if (order.Id != null)
                 {
-                    DataBaseAccess<T>.AddOrUpdate(entity);
-                    await ForwardOrder(entity as Order, "http://localhost:5059/order", "Python");
-                }
-                else
-                {
-                    DataBaseAccess<T>.AddOrUpdate(entity);
-                    await ForwardOrder(entity as Order, "http://", "Site");
+                    var o = await DataBaseAccess<T>.GetAsync(order.Id.Value);
+                    if (o == null)
+                    {
+                        DataBaseAccess<T>.AddOrUpdate(entity);
+                        await ForwardOrder(order, "http://localhost:5059/order", "Python");
+                    }
+                    else
+                    {
+                        DataBaseAccess<T>.AddOrUpdate(entity);
+                        //await ForwardOrder(entity as Order, "http://localhost:5011", "Site");
+                    }
                 }
             }
             else
             {
                 DataBaseAccess<T>.AddOrUpdate(entity);
             }
-            
+
             return Ok(entity.Id);
         }
         private static async Task ForwardOrder(Order? order, string url, string location)
         {
             if (order == null) return;
 
-            var jsonContent = JsonSerializer.Serialize(order);
+            var jsonContent = JsonSerializer.Serialize(order, OptionsSerializer);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             using var client = new HttpClient();
@@ -108,7 +116,7 @@ namespace Domen.Controllers
 
             return Ok(table.Id);
         }
-        
+
         [HttpDelete("{entityType}/{id}")]
         public async Task<IActionResult> DeleteEntity(string entityType, int id)
         {
