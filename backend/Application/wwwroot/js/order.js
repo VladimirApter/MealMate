@@ -96,7 +96,7 @@ function createOriginalButton(button) {
         const itemName = originalButton.closest('.cell').querySelector('.desc').textContent;
         const itemPrice = parseFloat(originalButton.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
         const itemCookingTime = parseFloat(originalButton.closest('.cell').querySelector('.cooking-time').textContent);
-        
+
         addToCart(itemId, itemName, itemPrice, itemCookingTime);
 
         originalButton.replaceWith(div);
@@ -174,7 +174,7 @@ function updateCart() {
     totalPrice = 0.0;
 
     let nowMaxTime = 0
-    
+
     Object.values(cartItems).forEach(item => {
         const itemElement = document.createElement('div');
         itemElement.className = 'desc';
@@ -184,9 +184,9 @@ function updateCart() {
         totalPrice += parseFloat(totalItemPrice);
         if(item.itemCookingTime > nowMaxTime){
             nowMaxTime = item.itemCookingTime
-        } 
+        }
     });
-    
+
     cartCookingTime = nowMaxTime;
 
     document.getElementById('total-price').textContent = totalPrice.toFixed(2);// Округляем общую сумму до двух знаков после запятой
@@ -221,12 +221,12 @@ async function placeOrder() {
         timestamp: new Date().toISOString(),
     };
 
-    console.log("Input for hash:", data); 
+    console.log("Input for hash:", data);
 
 
     const orderId = await generateOrderId(data);
     console.log("orderId", orderId)
-    
+
 
     const orderItems = Object.entries(cartItems).map(([id, item], index) => ({
         id: index + 1,
@@ -237,21 +237,21 @@ async function placeOrder() {
     }));
 
     const client = {
-        id: clientId,
-        ip: "zaglushka"
+        Id: clientId,
+        Ip: "zaglushka"
     };
 
     const order = {
-        "id": orderId,
+        "Id": orderId,
         "client_id": clientId,
         "table_id": tableId,
         "cooking_time_minutes": cartCookingTime,
-        "comment": comment || "",
+        "Comment": comment || "",
         "date_time": new Date().toISOString(),
-        "status": 0,
-        "client": client,
+        "Status": 0,
+        "Client": client,
         "order_items": orderItems,
-        "price": totalPrice
+        "Price": totalPrice
     };
 
     console.log('Order', order);

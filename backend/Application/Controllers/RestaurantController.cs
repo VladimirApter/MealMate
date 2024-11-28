@@ -62,8 +62,6 @@ public class RestaurantController : Controller
         
         Console.WriteLine($"Заказ {order.Id} получен");
         Orders.OrdersDictionary[order.Id] = order;
-        var apiClientOrder = new ApiClient<Order>();
-        apiClientOrder.Post(order);
         return Ok(new { url = order.Id.ToString() });
     }
 
