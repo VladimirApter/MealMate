@@ -13,6 +13,8 @@ def extract_and_save_images(file_path):
 
     if not os.path.exists(temp_folder):
         os.makedirs(temp_folder)
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
 
     with zipfile.ZipFile(file_path, 'r') as z:
         z.extractall(temp_folder)

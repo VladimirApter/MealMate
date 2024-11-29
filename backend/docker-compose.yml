@@ -1,8 +1,12 @@
 services:
   api:
     build:
-      context: ./API
+      context: ./
       dockerfile: ./API/Dockerfile
+    volumes:
+      - ./data/api/database:/DataBase
+    environment:
+      DATABASE_PATH: "/DataBase"
     logging:
       driver: "json-file"
       options:
@@ -10,7 +14,7 @@ services:
         max-file: "3"
   application:
     build:
-      context: ./Application
+      context: ./
       dockerfile: ./Application/Dockerfile
     volumes:
       - ./data/application/images:/wwwroot/MenuItemImages
@@ -23,7 +27,7 @@ services:
   py_server:
     build:
       context: ./API/tg_bots
-      dockerfile: ./API/tg_bots/DockerfilePyServer
+      dockerfile: ./DockerfilePyServer
     volumes:
       - ./data/py_server/sessions:/app/tg_notification_bot/NotificationRequestClient/sessions
     logging:
@@ -34,7 +38,7 @@ services:
   bot:
     build:
       context: ./API/tg_bots
-      dockerfile: ./API/tg_bots/DockerfileBot
+      dockerfile: ./DockerfileBot
     volumes:
       - ./data/bot/tables:/tables
       - ./data/application/images:/images

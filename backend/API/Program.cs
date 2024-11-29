@@ -31,8 +31,6 @@ app.UseSwaggerUI(c =>
 // Регистрация маршрутов на верхнем уровне
 app.MapControllers();
 
-DataBasePathGetter.Setup();
-HostsUrlGetter.Setup();
 
 var databaseFolder = DataBasePathGetter.DataBasePath;
 if (!Directory.Exists(databaseFolder))
