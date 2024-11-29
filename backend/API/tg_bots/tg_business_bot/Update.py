@@ -22,8 +22,10 @@ def get_update_part(message: types.Message, restaurant: Restaurant):
     elif part == 'меню':
         bot.send_chat_action(message.chat.id, 'typing')
 
-        menu_template_path = os.path.join(current_dir, "excel_tables_work", "menu_template.xlsx")
-        filled_menu_temp_path = os.path.join(f'excel_tables_work', f'{hash(message.chat.id) + hash(time())}.xlsx')
+        tables_path = os.getenv("TABLES_PATH", None)
+        menu_template_path = os.path.join(current_dir, "excel_tables_work", "menu_template.xlsx") if tables_path == None else os.path.join(tables_path, "menu_template.xlsx")
+
+        filled_menu_temp_path = os.path.join(current_dir, f'excel_tables_work', f'{hash(message.chat.id) + hash(time())}.xlsx') if tables_path == None else os.path.join(tables_path, f'{hash(message.chat.id) + hash(time())}.xlsx')
         fill_menu_template(menu_template_path, filled_menu_temp_path, restaurant.menu)
 
         bot.send_message(message.chat.id, "Отправляю текущую версию меню...")

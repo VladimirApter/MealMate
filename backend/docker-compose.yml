@@ -1,0 +1,51 @@
+services:
+  api:
+    build:
+      context: ./API
+      dockerfile: ./API/Dockerfile
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  application:
+    build:
+      context: ./Application
+      dockerfile: ./Application/Dockerfile
+    volumes:
+      - ./data/application/images:/wwwroot/MenuItemImages
+      - ./data/application/database:/DataBase
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  py_server:
+    build:
+      context: ./API/tg_bots
+      dockerfile: ./API/tg_bots/DockerfilePyServer
+    volumes:
+      - ./data/py_server/sessions:/app/tg_notification_bot/NotificationRequestClient/sessions
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  bot:
+    build:
+      context: ./API/tg_bots
+      dockerfile: ./API/tg_bots/DockerfileBot
+    volumes:
+      - ./data/bot/tables:/tables
+      - ./data/application/images:/images
+      - ./data/application/database/QRCodeImages:/qrcodes
+    environment:
+      TABLES_PATH: "/tables"
+      MENUITEMIMAGES_PATH: "/images"
+      QRIMAGES_PATH: "/qrcodes"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
