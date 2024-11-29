@@ -10,7 +10,7 @@ public class ApiClient<T> where T : class
     private static readonly string RequestUri = $"http://localhost:5051/api/{typeof(T).Name.ToLower()}";
     private static readonly JsonSerializerOptions OptionsDeserializer = new() { PropertyNameCaseInsensitive = true };
 
-    public T? Get(int id)
+    public T? Get(long id)
     {
         lock (@lock)
         {
@@ -38,7 +38,7 @@ public class ApiClient<T> where T : class
         }
     }
 
-    public void Delete(int id)
+    public void Delete(long id)
     {
         lock (@lock)
         {

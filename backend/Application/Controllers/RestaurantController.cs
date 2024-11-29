@@ -9,7 +9,7 @@ namespace site.Controllers;
 
 public static class Orders 
 {
-    public static readonly Dictionary<int?, Order> OrdersDictionary = new Dictionary<int?, Order>();
+    public static readonly Dictionary<long?, Order> OrdersDictionary = new Dictionary<long?, Order>();
 }
 
 [ApiController]
@@ -69,7 +69,7 @@ public class RestaurantController : Controller
 
     
     [HttpGet("{token}/{orderId}")]
-    public IActionResult OrderDetails(int orderId)
+    public IActionResult OrderDetails(long orderId)
     {
         var order = Orders.OrdersDictionary[orderId];
         var apiClient = new ApiClient<Order>();

@@ -7,8 +7,8 @@ public class Drink : MenuItem, ITableDataBase
     public double Volume { get; set; }
     
     public Drink(){}
-    public Drink(int? id,
-        int categoryId, 
+    public Drink(long? id,
+        long categoryId, 
         int cookingTimeMinutes,
         double price,
         double volume,

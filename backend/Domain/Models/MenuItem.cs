@@ -9,8 +9,8 @@ namespace Domain.Models;
 [JsonConverter(typeof(MenuItemConverter))]
 public class MenuItem : ITakeRelatedData, IDeleteRelatedData
 {
-    public int? Id { get; set; }
-    [JsonPropertyName("category_id")] public int CategoryId { get; set; }
+    public long? Id { get; set; }
+    [JsonPropertyName("category_id")] public long CategoryId { get; set; }
     [JsonPropertyName("cooking_time_minutes")] public double CookingTimeMinutes { get; set; }
     public double Price { get; set; }
     public string Name { get; set; }
@@ -19,7 +19,7 @@ public class MenuItem : ITakeRelatedData, IDeleteRelatedData
     [JsonPropertyName("nutrients_of_100_grams")] [NotMapped] public Nutrients? NutrientsOf100grams { get; set; }
     
     public MenuItem(){}
-    public MenuItem(int? id, int categoryId, int cookingTimeMinutes, double price, string name, string description,
+    public MenuItem(long? id, long categoryId, int cookingTimeMinutes, double price, string name, string description,
         string? imagePath, Nutrients? nutrientsOf100grams)
     {
         Id = id;

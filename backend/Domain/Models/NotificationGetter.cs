@@ -6,11 +6,11 @@ namespace Domain.Models;
 
 public class NotificationGetter : TgAccount, ITableDataBase
 {
-    [JsonPropertyName("restaurant_id")] public int RestaurantId { get; set; }
+    [JsonPropertyName("restaurant_id")] public long RestaurantId { get; set; }
     
     [JsonPropertyName("is_blocked")] public bool IsBlocked { get; set; }
     
-    public NotificationGetter(string username, int? id, int restaurantId, bool isBlocked) : base(id, username)
+    public NotificationGetter(string username, long? id, long restaurantId, bool isBlocked) : base(id, username)
     {
         RestaurantId = restaurantId;
         IsBlocked = isBlocked;

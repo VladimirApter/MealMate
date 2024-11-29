@@ -16,7 +16,7 @@ namespace host.Controllers
 
 
         [HttpGet("{entityType}/{id}"), HttpPost("{entityType}")]
-        public async Task<IActionResult> GetPostEntity(string entityType, int id, [FromBody] object? entity)
+        public async Task<IActionResult> GetPostEntity(string entityType, long id, [FromBody] object? entity)
         {
             return entityType.ToLower() switch
             {
@@ -44,7 +44,7 @@ namespace host.Controllers
             }
         }
 
-        private async Task<IActionResult> GetPostEntity<T>(int id, [FromBody] T? entity) where T : class, ITableDataBase
+        private async Task<IActionResult> GetPostEntity<T>(long id, [FromBody] T? entity) where T : class, ITableDataBase
         {
             if (entity == null)
             {
@@ -68,7 +68,7 @@ namespace host.Controllers
         }
 
 
-        private async Task<IActionResult> GetPostTable<T>(int id, [FromBody] T? entityTable) where T : Table
+        private async Task<IActionResult> GetPostTable<T>(long id, [FromBody] T? entityTable) where T : Table
         {
             if (entityTable == null)
             {
@@ -90,7 +90,7 @@ namespace host.Controllers
         }
 
         [HttpDelete("{entityType}/{id}")]
-        public async Task<IActionResult> DeleteEntity(string entityType, int id)
+        public async Task<IActionResult> DeleteEntity(string entityType, long id)
         {
             return entityType.ToLower() switch
             {
@@ -111,7 +111,7 @@ namespace host.Controllers
             };
         }
 
-        private async Task<IActionResult> DeleteEntity<T>(int id) where T : class, ITableDataBase
+        private async Task<IActionResult> DeleteEntity<T>(long id) where T : class, ITableDataBase
         {
             var entity = await DataBaseAccess<T>.GetAsync(id);
             if (entity == null) return NotFound();

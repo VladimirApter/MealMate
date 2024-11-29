@@ -8,8 +8,8 @@ public class Dish : MenuItem, ITableDataBase
     public double Weight { get; set; }
     
     public Dish(){}
-    public Dish(int? id,
-        int categoryId,
+    public Dish(long? id,
+        long categoryId,
         int cookingTimeMinutes,
         double price, 
         double weight,

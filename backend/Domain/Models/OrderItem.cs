@@ -7,15 +7,15 @@ namespace Domain.Models;
 
 public class OrderItem : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
-    public int? Id { get; set; } 
-    [JsonPropertyName("menu_item_id")] public int? MenuItemId { get; set; }
-    [JsonPropertyName("order_id")] public int OrderId { get; set; }
+    public long? Id { get; set; } 
+    [JsonPropertyName("menu_item_id")] public long? MenuItemId { get; set; }
+    [JsonPropertyName("order_id")] public long OrderId { get; set; }
     public int Count { get; set; }
     [NotMapped] public double Price { get; set; }
     [JsonPropertyName("menu_item")] [NotMapped] public MenuItem? MenuItem { get; set; }
     
     public OrderItem(){}
-    public OrderItem(int? id, int orderId, int count, MenuItem menuItem)
+    public OrderItem(long? id, long orderId, int count, MenuItem menuItem)
     {
         Id = id;
         OrderId = orderId;

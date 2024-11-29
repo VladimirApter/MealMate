@@ -5,12 +5,12 @@ namespace Domain.Logic;
 
 public class GeoCoordinates : ITableDataBase
 {
-    public int? Id { get; set; }
-    [JsonPropertyName("restaurant_id")] public int RestaurantId { get; set; }
+    public long? Id { get; set; }
+    [JsonPropertyName("restaurant_id")] public long RestaurantId { get; set; }
     public double Latitude { get; set; }
     public double Longitude { get; set; }
 
-    public GeoCoordinates(int restaurantId, double latitude, double longitude)
+    public GeoCoordinates(long restaurantId, double latitude, double longitude)
     {
         RestaurantId = restaurantId;
         Latitude = latitude;

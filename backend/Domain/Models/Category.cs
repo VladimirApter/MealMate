@@ -7,13 +7,13 @@ namespace Domain.Models;
 
 public class Category : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
-    public int? Id { get; set; }
-    [JsonPropertyName("menu_id")] public int MenuId { get; set; }
+    public long? Id { get; set; }
+    [JsonPropertyName("menu_id")] public long MenuId { get; set; }
     public string Name { get; set; }
     [JsonPropertyName("menu_items")] [NotMapped] public List<MenuItem>? MenuItems { get; set; }
     
     public Category() {}
-    public Category(int? id, int menuId, string name, List<MenuItem>? menuItems)
+    public Category(long? id, long menuId, string name, List<MenuItem>? menuItems)
     {
         Id = id;
         MenuId = menuId;

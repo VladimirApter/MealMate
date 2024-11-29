@@ -7,9 +7,9 @@ namespace Domain.Models;
 
 public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
-    public int? Id { get; set; }
-    [JsonPropertyName("client_id")] public int? ClientId { get; set; }
-    [JsonPropertyName("table_id")] public int TableId { get; set; }
+    public long? Id { get; set; }
+    [JsonPropertyName("client_id")] public long? ClientId { get; set; }
+    [JsonPropertyName("table_id")] public long TableId { get; set; }
     [JsonPropertyName("cooking_time_minutes")] public double CookingTimeMinutes { get; set; }
     [NotMapped] public double Price { get; set; }
     public string? Comment { get; set; }
@@ -19,7 +19,7 @@ public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
     [JsonPropertyName("order_items")] [NotMapped] public List<OrderItem> OrderItems { get; set; }
 
     public Order(){}
-    public Order(int? id, int tableId, string? comment, DateTime dateTime, Client? client, List<OrderItem> orderItems)
+    public Order(long? id, long tableId, string? comment, DateTime dateTime, Client? client, List<OrderItem> orderItems)
     {
         Id = id;
         TableId = tableId;

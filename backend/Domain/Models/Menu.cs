@@ -8,12 +8,12 @@ namespace Domain.Models;
 
 public class Menu : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
-    public int? Id { get; set; }
-    [JsonPropertyName("restaurant_id")] public int RestaurantId { get; set; }
+    public long? Id { get; set; }
+    [JsonPropertyName("restaurant_id")] public long RestaurantId { get; set; }
     [JsonPropertyName("categories")] [NotMapped] public List<Category>? Categories { get; set; }
 
     public Menu(){}
-    public Menu(int? id, List<Category>? categories, int restaurantId)
+    public Menu(long? id, List<Category>? categories, long restaurantId)
     {
         Id = id;
         RestaurantId = restaurantId;

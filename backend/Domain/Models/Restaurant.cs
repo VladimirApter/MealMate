@@ -8,8 +8,8 @@ namespace Domain.Models;
 
 public class Restaurant : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
-    public int? Id { get; set; }
-    [JsonPropertyName("owner_id")] public int OwnerId { get; set; }
+    public long? Id { get; set; }
+    [JsonPropertyName("owner_id")] public long OwnerId { get; set; }
     public string Name { get; set; }
     [NotMapped] public GeoCoordinates? Coordinates { get; set; }
     [JsonPropertyName("notification_getter")] [NotMapped] public NotificationGetter? NotificationGetter { get; set; }
@@ -17,7 +17,7 @@ public class Restaurant : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
     [NotMapped] public List<Table>? Tables { get; set; }
 
     public Restaurant(){}
-    public Restaurant(int? id, int ownerId, string name, GeoCoordinates? coordinates, NotificationGetter? notificationGetter,
+    public Restaurant(long? id, long ownerId, string name, GeoCoordinates? coordinates, NotificationGetter? notificationGetter,
         Menu? menu, List<Table>? tables)
     {
         Id = id;

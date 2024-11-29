@@ -9,7 +9,7 @@ using host;
 
 public class DataBaseAccess<T> where T : class, ITableDataBase
 {
-    public static async Task<T?> GetAsync(int id)
+    public static async Task<T?> GetAsync(long id)
     {
         await using var context = new ApplicationDbContext();
 
@@ -114,7 +114,7 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
         context.SaveChanges();
     }
 
-    public static void Delete(int id)
+    public static void Delete(long id)
     {
         using var context = new ApplicationDbContext();
 
@@ -172,14 +172,14 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
     }
 
 
-    private static bool IsIdDuplicate(ApplicationDbContext context, int id)
+    private static bool IsIdDuplicate(ApplicationDbContext context, long id)
     {
         var allIds = context.Dishes.Select(d => d.Id)
             .Union(context.Drinks.Select(d => d.Id));
         return allIds.Contains(id);
     }
 
-    private static int GetNextUniqueId(ApplicationDbContext context)
+    private static long GetNextUniqueId(ApplicationDbContext context)
     {
         var maxDishId = context.Dishes.Any() ? context.Dishes.Max(d => d.Id) : 0;
         var maxDrinkId = context.Drinks.Any() ? context.Drinks.Max(d => d.Id) : 0;

@@ -9,13 +9,13 @@ public static class TokenEncryptor
     private const string SecretKey = "HBIkdLEL7MFGvvVwteis9n3gkcabBpFJ";
     
     //метод для генерации токена
-    public static string GenerateToken(int? tableId, int restaurantId)
+    public static string GenerateToken(long? tableId, long restaurantId)
     {
         return Encrypt(tableId, restaurantId);
     }
     
     //метод для шифровки
-    public static string Encrypt(int? tableId, int restaurantId)
+    public static string Encrypt(long? tableId, long restaurantId)
     {
         var data = $"{tableId}:{restaurantId}";
         using var aes = Aes.Create();
@@ -38,7 +38,7 @@ public static class TokenEncryptor
     }
     
     //метод для дешифровки
-    public static (int TableId, int RestaurantId) DecryptToken(string token)
+    public static (long TableId, long RestaurantId) DecryptToken(string token)
     {
         var fixedToken = token.Replace("-", "+").Replace("_", "/");
         while (fixedToken.Length % 4 != 0) 
@@ -58,8 +58,8 @@ public static class TokenEncryptor
             if (parts.Length != 2)
                 throw new FormatException("Invalid token format.");
 
-            int restaurantId = int.Parse(parts[1]);
-            int tableId = int.Parse(parts[0]);
+            var restaurantId = long.Parse(parts[1]);
+            var tableId = long.Parse(parts[0]);
 
             return (tableId, restaurantId);
         }
