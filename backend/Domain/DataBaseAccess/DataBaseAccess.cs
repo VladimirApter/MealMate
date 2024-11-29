@@ -4,6 +4,8 @@ using System.Reflection;
 using System.ComponentModel.DataAnnotations.Schema;
 using Domain.DataBaseAccess;
 using Domain.Models;
+using host;
+
 
 public class DataBaseAccess<T> where T : class, ITableDataBase
 {
@@ -28,6 +30,13 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
             (obj is not Drink || context.Set<Drink>().Find(obj.Id) == null))
         {
             obj.Id = GetNextUniqueId(context);
+        }
+
+        if (obj is NotificationGetter notificationGetter)
+        {
+            DataBaseAccess<NotificationGetter>.AddOrUpdateNotificationGetter(notificationGetter);
+            context.SaveChanges();
+            return;
         }
 
         var existingObj = context.Set<T>().Find(obj.Id);
@@ -135,6 +144,24 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
         else if (table.Id == null) context.Set<Table>().Add(table);
 
         context.SaveChanges();
+    }
+
+    public static async void AddOrUpdateNotificationGetter<TNotificationGetter>(TNotificationGetter notificationGetter)
+        where TNotificationGetter : NotificationGetter
+    {
+        await using var context = new ApplicationDbContext();
+        var existingNotificationGetter = await context.Set<NotificationGetter>().FindAsync(notificationGetter.Id);
+
+        if (existingNotificationGetter != null)
+        {
+            context.Entry(existingNotificationGetter).CurrentValues.SetValues(notificationGetter);
+        }
+        else
+        {
+            context.Set<NotificationGetter>().Add(notificationGetter);
+            await context.SaveChangesAsync();
+            await ForwardToPythonServer.ForwardObject(notificationGetter, "http://localhost:5059/notificationgetter");
+        }
     }
 
     private static void RemoveRelatedData(T obj)

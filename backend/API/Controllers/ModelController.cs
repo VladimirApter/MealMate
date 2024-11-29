@@ -1,13 +1,11 @@
-using System.Text;
-using System.Text.Json;
-using Microsoft.AspNetCore.Mvc;
-using JsonSerializerOptions = System.Text.Json.JsonSerializerOptions;
 using Domain.DataBaseAccess;
 using Domain.Logic;
 using Domain.Models;
+using Microsoft.AspNetCore.Mvc;
+using JsonSerializerOptions = System.Text.Json.JsonSerializerOptions;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace Domen.Controllers
+namespace host.Controllers
 {
     [ApiController]
     [Route("api")]
@@ -16,8 +14,6 @@ namespace Domen.Controllers
         private static readonly JsonSerializerOptions
             OptionsDeserializer = new() { PropertyNameCaseInsensitive = true };
 
-        private static readonly JsonSerializerOptions OptionsSerializer = new()
-            { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
         [HttpGet("{entityType}/{id}"), HttpPost("{entityType}")]
         public async Task<IActionResult> GetPostEntity(string entityType, int id, [FromBody] object? entity)
@@ -61,21 +57,7 @@ namespace Domen.Controllers
                 if (order.Id == null) return NotFound(order.Id);
                 var o = await DataBaseAccess<T>.GetAsync(order.Id.Value);
                 DataBaseAccess<T>.AddOrUpdate(entity);
-                if (o == null) await ForwardObject(order, "http://localhost:5059/order", "Python");
-            }
-            else if (entity is NotificationGetter notificationGetter)
-            {
-                if (notificationGetter.Id == null)
-                {
-                    DataBaseAccess<T>.AddOrUpdate(entity);
-                    await ForwardObject(entity, "http://localhost:5059/notificationgetter", "Python");
-                }
-                else
-                {
-                    var o = await DataBaseAccess<T>.GetAsync(notificationGetter.Id.Value);
-                    DataBaseAccess<T>.AddOrUpdate(entity);
-                    if (o == null) await ForwardObject(entity, "http://localhost:5059/notificationgetter", "Python");
-                }
+                if (o == null) await ForwardToPythonServer.ForwardObject(order, "http://localhost:5059/order");
             }
             else
             {
@@ -84,21 +66,7 @@ namespace Domen.Controllers
 
             return Ok(entity.Id);
         }
-        private static async Task ForwardObject<T>(T? obj, string url, string location)
-        {
-            if (obj == null) return;
 
-            var jsonContent = JsonSerializer.Serialize(obj, OptionsSerializer);
-            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
-            using var client = new HttpClient();
-            var response = await client.PostAsync(url, content);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new HttpRequestException($"Failed to forward {nameof(T)} to {location}: {response.StatusCode}");
-            }
-        }
 
         private async Task<IActionResult> GetPostTable<T>(int id, [FromBody] T? entityTable) where T : Table
         {
