@@ -1,35 +1,36 @@
-using System.Drawing;
-using System.Drawing.Drawing2D;
+using SkiaSharp;
+using System;
+using System.Runtime.InteropServices;
 
 namespace Domain.Logic;
 
 public static class NumberImageGenerator
 {
-    public static Bitmap Generate(int number)
+    public static SKBitmap Generate(int number)
     {
-        var bitmap = new Bitmap(240, 240);
+        var bitmap = new SKBitmap(240, 240);
 
-        using var graphics = Graphics.FromImage(bitmap);
-        graphics.Clear(Color.Transparent);
-
-        graphics.SmoothingMode = SmoothingMode.HighQuality;
-        graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+        using var canvas = new SKCanvas(bitmap);
+        canvas.Clear(SKColors.Transparent);
 
         var numberText = number.ToString();
 
         var fontSize = CalculateFontSize(numberText.Length);
-        var font = new Font("Arial", fontSize, FontStyle.Bold, GraphicsUnit.Pixel);
-        var brush = Brushes.Black;
+        using var font = new SKFont(SKTypeface.FromFamilyName("Arial", SKFontStyleWeight.Bold, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright), fontSize);
+        using var paint = new SKPaint();
+        paint.Color = SKColors.Black;
+        paint.IsAntialias = true;
 
-        var textSize = graphics.MeasureString(numberText, font);
+        var textWidth = font.MeasureText(MemoryMarshal.Cast<char, ushort>(numberText.AsSpan()));
+        var textHeight = font.Metrics.Descent - font.Metrics.Ascent;
 
-        var x = (bitmap.Width - textSize.Width) / 2;
-        var y = (bitmap.Height - textSize.Height) / 2 + CalculateExtraVerticalOffset(numberText.Length);
+        var x = (bitmap.Width - textWidth) / 2;
+        var y = (bitmap.Height - textHeight) / 2;
 
-        DrawRoundedRectangle(graphics, new Rectangle(0, 0, bitmap.Width, bitmap.Height),
-            100, Brushes.White, Pens.Transparent);
-
-        graphics.DrawString(numberText, font, brush, x, y);
+        const float borderThickness = 7;
+        DrawRoundedRectangle(canvas, new SKRect(0, 0, bitmap.Width, bitmap.Height), 50, SKColors.Black);
+        DrawRoundedRectangle(canvas, new SKRect(borderThickness, borderThickness, bitmap.Width - borderThickness, bitmap.Height - borderThickness), 43, SKColors.White);
+        canvas.DrawText(numberText, x, y - font.Metrics.Ascent, font, paint);
 
         return bitmap;
     }
@@ -42,29 +43,16 @@ public static class NumberImageGenerator
             return baseFontSize;
         return baseFontSize / (digitCount * 0.55f);
     }
-    
-    private static float CalculateExtraVerticalOffset(int digitCount)
+
+    private static void DrawRoundedRectangle(SKCanvas canvas, SKRect rect, float cornerRadius, SKColor fillColor)
     {
-        const float baseVerticalOffset = 10;
+        using var path = new SKPath();
+        path.AddRoundRect(rect, cornerRadius, cornerRadius);
 
-        return digitCount switch
-        {
-            1 => baseVerticalOffset,
-            2 => baseVerticalOffset * 0.7f,
-            _ => baseVerticalOffset * 0.3f
-        };
-    }
+        using var paint = new SKPaint();
+        paint.Color = fillColor;
+        paint.Style = SKPaintStyle.Fill;
 
-    private static void DrawRoundedRectangle(Graphics graphics, Rectangle rectangle, int cornerRadius, Brush fillBrush, Pen outlinePen)
-    {
-        using var path = new GraphicsPath();
-        path.AddArc(rectangle.X, rectangle.Y, cornerRadius, cornerRadius, 180, 90);
-        path.AddArc(rectangle.Right - cornerRadius, rectangle.Y, cornerRadius, cornerRadius, 270, 90);
-        path.AddArc(rectangle.Right - cornerRadius, rectangle.Bottom - cornerRadius, cornerRadius, cornerRadius, 0, 90);
-        path.AddArc(rectangle.X, rectangle.Bottom - cornerRadius, cornerRadius, cornerRadius, 90, 90);
-        path.CloseFigure();
-
-        graphics.FillPath(fillBrush, path);
-        graphics.DrawPath(outlinePen, path);
+        canvas.DrawPath(path, paint);
     }
 }

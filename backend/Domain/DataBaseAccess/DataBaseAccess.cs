@@ -3,8 +3,10 @@ using System.Linq;
 using System.Reflection;
 using System.ComponentModel.DataAnnotations.Schema;
 using Domain.DataBaseAccess;
+using Domain.Logic;
 using Domain.Models;
 using host;
+using Microsoft.Extensions.Configuration;
 
 
 public class DataBaseAccess<T> where T : class, ITableDataBase
@@ -160,7 +162,7 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
         {
             context.Set<NotificationGetter>().Add(notificationGetter);
             await context.SaveChangesAsync();
-            await ForwardToPythonServer.ForwardObject(notificationGetter, "http://localhost:5059/notificationgetter");
+            await ForwardToPythonServer.ForwardObject(notificationGetter, $"{HostsUrlGetter.PyServerUrl}/notificationgetter");
         }
     }
 

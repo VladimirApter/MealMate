@@ -1,21 +1,17 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Drawing;
-using System.Drawing.Imaging;
+using SkiaSharp;
 using QRCoder;
-
 
 namespace Domain.Logic;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public static class TableQrCode
 {
-    private static readonly string applicationBaseUrl;
+    private static readonly string applicationBaseUrl = HostsUrlGetter.ApplicationUrl;
     private static readonly string qrcodeDataBasePath;
-    
+
     static TableQrCode()
     {
-        applicationBaseUrl = HostsUrlGetter.ApplicationUrl;
-
         var databasePath = DataBasePathGetter.DataBasePath;
         qrcodeDataBasePath = Path.Combine(databasePath, "QRCodeImages");
     }
@@ -24,36 +20,41 @@ public static class TableQrCode
     {
         var url = $"{applicationBaseUrl}/order/{tableToken}";
         var logo = NumberImageGenerator.Generate(tableNumber);
-        
-        
+
         var qrGenerator = new QRCodeGenerator();
         var qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
         var qrCode = new PngByteQRCode(qrCodeData);
         var qrCodeBytes = qrCode.GetGraphic(20);
-        
-        using var ms = new MemoryStream(qrCodeBytes);
-        var qrCodeImage = new Bitmap(ms);
-        
-        var convertedQrCodeImage = new Bitmap(qrCodeImage.Width, qrCodeImage.Height, PixelFormat.Format32bppArgb);
-        using (var graphics = Graphics.FromImage(convertedQrCodeImage))
-            graphics.DrawImage(qrCodeImage, 0, 0);
-        
-        var convertedLogo = new Bitmap(logo.Width, logo.Height, PixelFormat.Format32bppArgb);
-        using (var graphics = Graphics.FromImage(convertedLogo))
-            graphics.DrawImage(logo, 0, 0);
 
-        using (var graphics = Graphics.FromImage(convertedQrCodeImage))
+        using var ms = new MemoryStream(qrCodeBytes);
+        var qrCodeImage = SKBitmap.Decode(ms);
+
+        var convertedQrCodeImage = new SKBitmap(qrCodeImage.Width, qrCodeImage.Height);
+        using (var canvas = new SKCanvas(convertedQrCodeImage))
+        {
+            canvas.Clear(SKColors.Transparent);
+            canvas.DrawBitmap(qrCodeImage, 0, 0);
+        }
+
+        var convertedLogo = new SKBitmap(logo.Width, logo.Height);
+        using (var canvas = new SKCanvas(convertedLogo))
+        {
+            canvas.Clear(SKColors.Transparent);
+            canvas.DrawBitmap(logo, 0, 0);
+        }
+
+        using (var canvas = new SKCanvas(convertedQrCodeImage))
         {
             var logoSize = convertedQrCodeImage.Width / 5;
             var x = (convertedQrCodeImage.Width - logoSize) / 2;
             var y = (convertedQrCodeImage.Height - logoSize) / 2;
-            graphics.DrawImage(convertedLogo, x, y, logoSize, logoSize);
+            canvas.DrawBitmap(convertedLogo, new SKRect(x, y, x + logoSize, y + logoSize));
         }
 
         return SaveQrCode(convertedQrCodeImage);
     }
 
-    private static string SaveQrCode(Bitmap bitmap)
+    private static string SaveQrCode(SKBitmap bitmap)
     {
         if (!Directory.Exists(qrcodeDataBasePath))
             Directory.CreateDirectory(qrcodeDataBasePath);
@@ -61,7 +62,10 @@ public static class TableQrCode
         var uniqueFileName = $"{Guid.NewGuid()}.png";
         var filePath = Path.Combine(qrcodeDataBasePath, uniqueFileName);
 
-        bitmap.Save(filePath, ImageFormat.Png);
+        using var image = SKImage.FromBitmap(bitmap);
+        using var data = image.Encode(SKEncodedImageFormat.Png, 100);
+        using var stream = File.OpenWrite(filePath);
+        data.SaveTo(stream);
 
         return uniqueFileName;
     }

@@ -1,8 +1,7 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 5051
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -21,4 +20,22 @@ RUN dotnet publish "API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAp
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "API.dll"]
+
+USER root
+
+# Install SkiaSharp dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    libfontconfig1 \
+    libfreetype6 \
+    libharfbuzz0b \
+    libicu-dev \
+    libglib2.0-0 \
+    libc6 \
+    libstdc++6 \
+    libgcc1 && \
+    rm -rf /var/lib/apt/lists/*
+
+USER $APP_UID
+
+ENTRYPOINT ["dotnet", "API.dll", "--urls", "http://*:5051"]

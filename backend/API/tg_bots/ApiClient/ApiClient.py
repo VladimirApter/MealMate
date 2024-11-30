@@ -1,9 +1,11 @@
+import os
 import httpx
 from threading import Lock
 from typing import Any
 
-
-api_base_url = "http://localhost:5051"
+api_base_url = os.getenv("API_URL", None)
+if api_base_url is None:
+    api_base_url = "http://localhost:5051"
 
 
 class ApiClient:
@@ -39,9 +41,6 @@ class ApiClient:
                     data['date_time'] = data['date_time'].isoformat()
                 if 'status' in data:
                     data['status'] = int(data['status'])
-
-                print(data)
-                print(self._get_url())
 
                 response = client.post(self._get_url(), json=data, headers={'Content-Type': 'application/json'})
                 if response.status_code == 200:
