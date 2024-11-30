@@ -2,6 +2,22 @@
 @using System.Text.Json
 @model Domain.Models.Order
 
+@{
+
+    string GetStatus() 
+    {
+        if (Model.Status.ToString() == "InAssembly")
+            return "Ожидает подтверждения";
+
+        if (Model.Status.ToString() == "Cooking")
+            return "Готовится";
+
+        if (Model.Status.ToString() == "Done")
+            return "Выполнен";
+
+        return "-";
+    }
+}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -15,7 +31,8 @@
     <div class="block">
         <div class="category">Заказ #@Model.Id</div>
         <div class="information"><b>Дата заказа:</b> @Model.DateTime</div>
-        <div class="information"><b>Статус:</b> @Model.Status</div>
+        <div class="information"><b>Примерное время ожидания:</b> @Model.CookingTimeMinutes минут</div>
+        <div class="information"><b>Статус:</b> @GetStatus()</div>
         <div class="table-row table-row-bold">
             <div><div class="a"><p>Название</p></div><div class="b"><p>Кол-во</p></div><div class="c"><p>Цена</p></div></div>
         </div>

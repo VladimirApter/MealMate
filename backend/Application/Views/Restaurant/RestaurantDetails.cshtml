@@ -44,6 +44,7 @@
                 @foreach (var cell in category.MenuItems)
                 {
                     var dataCell = cell.ToString();
+                    var doc = JsonDocument.Parse(dataCell);
                     <div class="cell" data-cell='@dataCell' onclick="handleCellClick(event, this)">
                         <img src="/MenuItemImages/@cell.ImagePath" alt="image" class="image">
                         <div class="content">
@@ -68,10 +69,11 @@
                 <span class="desc">Итого: </span><span class="desc" id="total-price">0</span><span class="desc">₽</span>
             </div>
             <div id="cart-total-time">
-                <span class="desc">Примерное время ожидания: </span><span class="desc" id="total-time">0</span><span class="desc">минут</span>
+                <span class="desc">Примерное время ожидания: </span><span class="desc" id="total-time">0</span><span class="desc"> минут</span>
             </div>
             <textarea id="input" placeholder="Оставьте комментарий к заказу..."></textarea>
         </div>
+
     </div>
 
 </div>
