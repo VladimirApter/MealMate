@@ -13,7 +13,7 @@ public static class DataBasePathGetter
             return;
         
         var currentDirectory = Directory.GetCurrentDirectory();
-        var dataBasePath = Path.GetFullPath(Path.Combine(currentDirectory, "../DataBase"));
+        var dataBasePath = Path.Combine(currentDirectory, "../DataBase");
         DataBasePath = dataBasePath;
     }
 }

@@ -5,7 +5,6 @@ services:
       dockerfile: ./API/Dockerfile
     volumes:
       - ./data/api/database:/DataBase
-      - ./data/api/database/QRCodeImages:/DataBase/QRCodeImages
     environment:
       DATABASE_PATH: "/DataBase"
       API_URL: "http://api:5051"
@@ -24,7 +23,6 @@ services:
       - "80:5011"
     volumes:
       - ./data/application/images:/app/wwwroot/MenuItemImages
-      - ./data/application/database:/DataBase
     environment:
       API_URL: "http://api:5051"
     logging:
