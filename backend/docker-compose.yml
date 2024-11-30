@@ -23,7 +23,7 @@ services:
     ports:
       - "80:5011"
     volumes:
-      - ./data/application/images:/wwwroot/MenuItemImages
+      - ./data/application/images:/app/wwwroot/MenuItemImages
       - ./data/application/database:/DataBase
     environment:
       API_URL: "http://api:5051"

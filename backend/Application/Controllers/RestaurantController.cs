@@ -60,7 +60,7 @@ public class RestaurantController : Controller
                 orderItem.MenuItem = objDish;
         }
         
-        //Console.WriteLine($"Заказ {order.Id} получен");
+        Console.WriteLine($"Заказ {order.Id} получен");
         Orders.OrdersDictionary[order.Id] = order;
         var apiClient = new ApiClient<Order>();
         apiClient.Post(order);
