@@ -3,6 +3,8 @@ USER $APP_UID
 WORKDIR /app
 EXPOSE 5051
 
+USER root
+
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
@@ -21,7 +23,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-USER root
 
 # Install SkiaSharp dependencies
 RUN apt-get update && \
@@ -35,7 +36,5 @@ RUN apt-get update && \
     libstdc++6 \
     libgcc1 && \
     rm -rf /var/lib/apt/lists/*
-
-USER $APP_UID
 
 ENTRYPOINT ["dotnet", "API.dll", "--urls", "http://*:5051"]

@@ -22,6 +22,7 @@ public class ApplicationDbContext : DbContext
     
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlite($"Data Source={DataBasePathGetter.DataBasePath}/DataBase.bd3");
+        var databaseFilePath = Path.Combine(DataBasePathGetter.DataBasePath, "DataBase.bd3");
+        options.UseSqlite($"Data Source={databaseFilePath}");
     }
 }

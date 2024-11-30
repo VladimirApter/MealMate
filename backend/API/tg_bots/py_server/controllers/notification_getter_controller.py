@@ -17,12 +17,13 @@ def run_async_task(coroutine):
 
 @notification_bp.route("/", methods=["POST"])
 def handle_notification_getter():
-    try:
-        data = request.json
-        notification_getter = NotificationGetter(**data)
-
-        threading.Thread(target=run_async_task, args=(send_notification_request(notification_getter),)).start()
-
-        return jsonify(notification_getter.dict()), 200
-    except ValidationError as e:
-        return jsonify({"error": e.errors()}), 400
+    return None, 200
+    # try:
+    #     data = request.json
+    #     notification_getter = NotificationGetter(**data)
+    #
+    #     threading.Thread(target=run_async_task, args=(send_notification_request(notification_getter),)).start()
+    #
+    #     return jsonify(notification_getter.dict()), 200
+    # except ValidationError as e:
+    #     return jsonify({"error": e.errors()}), 400
