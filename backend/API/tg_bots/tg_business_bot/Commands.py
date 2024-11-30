@@ -11,6 +11,22 @@ from DataValidationAndPost import get_yes_no_markup
 
 
 def register_commands():
+    @bot.message_handler(commands=['help'])
+    def help_to_use(message: types.Message):
+        bot.send_message(message.chat.id, "Данный бот позволяет Вам быстро подключить свой ресторан к нашей системе.\n"
+                                          "При помощи qr кода клиент будет перенаправлен на сайт вашего ресторана с меню.\n"
+                                          "После совершения заказа будет отправляться уведомление в telegram бота с деталями заказа.\n"
+                                          "Пользователя, которому будут отправляться уведоления, Вы выбираете сами.\n"
+                                          "Краткая справка о поддерживаемых командах\n"
+                                          "/start - запуск бота.\n"
+                                          "/register - регистрация, сохраним ваши данные.\n"
+                                          "/new_rest -добавить новый ресторан.\n"
+                                          "/qr - выслать qr коды всех столов.\n"
+                                          "/update - обновить данные о ресторане.\n"
+                                          "/delete - удалить ресторан.\n"
+                                          "Команды работают только для зарегистрированных пользователей.\n"
+                                          "Бот автоматически сохраняет изменения в базе данных.\n")
+
     @bot.message_handler(commands=['register'])
     def register_start(message: types.Message):
         api_client = ApiClient(Owner)
@@ -88,9 +104,12 @@ def get_owner_and_restaurants(message: types.Message):
     api_client = ApiClient(Owner)
     owner = api_client.get(message.chat.id)
 
-    if not owner or not owner.restaurant_ids:
-        bot.send_message(message.chat.id, "У вас пока нет ресторанов, создайте первый при помощи /new_rest")
+    if not owner:
+        bot.send_message(message.chat.id, "Сначала нужно зарегистрироваться при помощи /new_rest")
         return None, None
+    if not owner.restaurant_ids:
+        bot.send_message(message.chat.id, "У вас пока нет ресторанов, создайте первый при помощи /new_rest")
+        return owner, None
 
     api_client = ApiClient(Restaurant)
     restaurants = [api_client.get(rest_id) for rest_id in owner.restaurant_ids]

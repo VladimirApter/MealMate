@@ -42,8 +42,7 @@ def _fill_row(sheet, row_num, category, item, weight_or_volume):
         item.nutrients_of_100_grams.proteins,
         item.nutrients_of_100_grams.fats,
         item.nutrients_of_100_grams.carbohydrates,
-        item.cooking_time_minutes,
-        item.image_path
+        item.cooking_time_minutes
     ]
 
     for col_num, value in enumerate(data, start=2):

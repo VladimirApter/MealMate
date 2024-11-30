@@ -7,7 +7,6 @@ from tg_notification_bot.main import start_bot
 
 app = Flask(__name__)
 
-# Регистрация blueprints
 app.register_blueprint(order_bp, url_prefix="/order")
 app.register_blueprint(notification_bp, url_prefix="/notificationgetter")
 

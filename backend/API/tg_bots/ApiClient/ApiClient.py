@@ -26,7 +26,7 @@ class ApiClient:
                 if response.status_code == 200:
                     data = response.json()
                     # obj = self.obj_class.parse_obj(data)
-                    print(self.obj_class, Table)
+                    # print(self.obj_class, Table)
                     obj = self.obj_class.model_validate(data)
                     return obj
                 else:

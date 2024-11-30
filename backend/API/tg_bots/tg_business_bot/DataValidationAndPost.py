@@ -148,7 +148,10 @@ def validate_and_post_notification_getter(message: types.Message, restaurant: Re
     api_client = ApiClient(Restaurant)
     api_client.post(restaurant)
 
-    bot.send_message(message.chat.id, f'Получатель уведомлений сохранен', reply_markup=types.ReplyKeyboardRemove())
+    bot.send_message(message.chat.id, f'Получатель уведомлений сохранен\n'
+                                      f'получатель уведомлений должен запустить бота @MealMateNotification_bot,'
+                                      f' чтобы мы могли присылать уведомления о заказах',
+                                      reply_markup=types.ReplyKeyboardRemove())
 
     if func_to_return_after_post is not None:
         func_to_return_after_post(message, restaurant)

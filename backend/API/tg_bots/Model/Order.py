@@ -26,7 +26,7 @@ class Order(BaseModel):
     price: float
 
     class Config:
-        use_enum_values = True  # Включаем преобразование enum в строку по умолчанию
+        use_enum_values = True
 
     def __init__(self,
                  client_id: int,
@@ -52,23 +52,3 @@ class Order(BaseModel):
             client=client,
             cooking_time_minutes=cooking_time_minutes
         )
-
-    # @field_validator('status', mode='before')
-    # def parse_status(cls, value):
-    #     if isinstance(value, int):
-    #         if value == 0:
-    #             return OrderStatus.IN_ASSEMBLY
-    #         elif value == 1:
-    #             return OrderStatus.COOKING
-    #         elif value == 2:
-    #             return OrderStatus.DONE
-    #     return value
-
-    # def json(self):
-    #     # Явно сериализуем OrderStatus как строку
-    #     order_data = self.dict()
-    #     order_data["status"] = str(self.status)  # Преобразуем статус в строку
-    #     return order_data
-
-
-

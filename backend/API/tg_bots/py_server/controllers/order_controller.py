@@ -12,7 +12,6 @@ order_bp = Blueprint("order", __name__)
 def handle_order():
     try:
         order_data = request.json
-        #order_data.pop("cooking_time", None)
 
         order_data["order_items"] = parse_obj_as(List[OrderItem], order_data["order_items"])
 
