@@ -57,7 +57,7 @@ public class ModelController : ControllerBase
             if (order.Id == null) return NotFound(order.Id);
             var o = await DataBaseAccess<T>.GetAsync(order.Id.Value);
             DataBaseAccess<T>.AddOrUpdate(entity);
-            if (o == null) await ForwardToPythonServer.ForwardObject(order, $"{HostsUrlGetter.PyServerUrl}/order");
+            if (o == null) await ForwardToPythonServer.ForwardObject(order, $"{HostsUrlGetter.PyServerUrl}/order/");
         }
         else
         {
