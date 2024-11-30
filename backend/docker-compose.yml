@@ -5,7 +5,7 @@ services:
       dockerfile: ./API/Dockerfile
     volumes:
       - ./data/api/database:/DataBase
-      - ./data/application/database/QRCodeImages:/DataBase/QRCodeImages
+      - ./data/api/database/QRCodeImages:/DataBase/QRCodeImages
     environment:
       DATABASE_PATH: "/DataBase"
       API_URL: "http://api:5051"
@@ -27,8 +27,6 @@ services:
       - ./data/application/database:/DataBase
     environment:
       API_URL: "http://api:5051"
-      APPLICATION_URL: "http://158.160.3.25"
-      PYSERVER_URL: "http://py_server:5059"
     logging:
       driver: "json-file"
       options:
@@ -56,7 +54,7 @@ services:
     volumes:
       - ./data/bot/tables:/tables
       - ./data/application/images:/images
-      - ./data/application/database/QRCodeImages:/qrcodes
+      - ./data/api/database/QRCodeImages:/qrcodes
     environment:
       API_URL: "http://api:5051"
       TABLES_PATH: "/tables"
