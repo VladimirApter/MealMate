@@ -1,6 +1,7 @@
 import httpx
 from threading import Lock
 from typing import Any
+import os
 
 api_base_url = os.getenv("API_URL", None)
 if api_base_url is None:
