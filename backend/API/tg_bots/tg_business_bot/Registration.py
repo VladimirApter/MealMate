@@ -29,7 +29,8 @@ def register_notification_getter(message: types.Message, restaurant: Restaurant)
 def register_restaurant_menu(message: types.Message, restaurant: Restaurant):
     bot.send_message(message.chat.id, 'Перейдем к созданию меню')
 
-    menu_template_path = os.path.join(current_dir, "excel_tables_work", "menu_template.xlsx")
+    tables_path = os.getenv("TABLES_PATH", None)
+    menu_template_path = os.path.join(current_dir, "excel_tables_work", "menu_template.xlsx") if tables_path == None else os.path.join(tables_path, "menu_template.xlsx")
     with open(menu_template_path, 'rb') as file:
         bot.send_document(message.chat.id, file, visible_file_name="шаблон_меню.xlsx", caption="Этот файл - шаблон меню, в нем есть две таблицы: Блюда и Напитки. "
                                                          "Заполните таблицы в соответствии с Вашим меню и отправьте мне файл. "

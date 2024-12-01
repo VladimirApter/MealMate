@@ -1,3 +1,4 @@
+import os
 import threading
 
 from flask import Flask
@@ -11,6 +12,6 @@ app.register_blueprint(order_bp, url_prefix="/order")
 app.register_blueprint(notification_bp, url_prefix="/notificationgetter")
 
 if __name__ == "__main__":
-    threading.Thread(target=lambda: app.run(host='localhost', port=5059)).start()
+    threading.Thread(target=lambda: app.run(host="0.0.0.0", port=5059)).start()
 
     start_bot()

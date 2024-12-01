@@ -1,33 +1,12 @@
 using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Configuration;
 
 namespace Domain.Logic;
 
-public static partial class HostsUrlGetter
+public static class HostsUrlGetter
 {
-    public static string ApiUrl;
-    public static string ApplicationUrl;
-
-    public static void Setup()
-    {
-        var currentDirectory = Directory.GetCurrentDirectory();
-
-        var apiPath = Path.GetFullPath(Path.Combine(currentDirectory, "../API/API.http"));
-        var applicationPath = Path.GetFullPath(Path.Combine(currentDirectory, "../Application/Application.http"));
-
-        var apiContent = File.ReadAllText(apiPath);
-        var apiMatch = MyRegex().Match(apiContent);
-
-        if (apiMatch.Success)
-            ApiUrl = apiMatch.Groups[1].Value.Trim();
-
-        var applicationContent = File.ReadAllText(applicationPath);
-        var applicationMatch = MyRegex().Match(applicationContent);
-
-        if (applicationMatch.Success)
-            ApplicationUrl = applicationMatch.Groups[1].Value.Trim();
-    }
-
-    [GeneratedRegex(@"@\w+_HostAddress\s*=\s*(.+)")]
-    private static partial Regex MyRegex();
+    public static readonly string ApiUrl = Environment.GetEnvironmentVariable("API_URL") ?? "http://localhost:5051";
+    public static readonly string ApplicationUrl = Environment.GetEnvironmentVariable("APPLICATION_URL") ?? "http://localhost:5011";
+    public static readonly string PyServerUrl = Environment.GetEnvironmentVariable("PYSERVER_URL") ?? "http://localhost:5059";
 }

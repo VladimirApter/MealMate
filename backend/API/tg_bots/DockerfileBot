@@ -1,0 +1,15 @@
+FROM python:3.11-slim
+
+USER root
+
+WORKDIR /app
+ENV PYTHONPATH /app
+COPY requirements.txt ./
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+RUN apt update
+RUN apt install nano
+
+COPY . .
+
+CMD ["python", "tg_business_bot/main.py"]

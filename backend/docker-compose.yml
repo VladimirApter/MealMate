@@ -1,0 +1,66 @@
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: ./API/Dockerfile
+    volumes:
+      - ./data/api/database:/DataBase
+    environment:
+      DATABASE_PATH: "/DataBase"
+      API_URL: "http://api:5051"
+      APPLICATION_URL: "http://158.160.3.25"
+      PYSERVER_URL: "http://py_server:5059"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  application:
+    build:
+      context: ./
+      dockerfile: ./Application/Dockerfile
+    ports:
+      - "80:5011"
+    volumes:
+      - ./data/application/images:/app/wwwroot/MenuItemImages
+    environment:
+      API_URL: "http://api:5051"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  py_server:
+    build:
+      context: ./API/tg_bots
+      dockerfile: ./DockerfilePyServer
+    ports:
+      - "5059:5059"
+    volumes:
+      - ./data/py_server/sessions:/app/tg_notification_bot/NotificationRequestClient/sessions
+    environment:
+      API_URL: "http://api:5051"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  bot:
+    build:
+      context: ./API/tg_bots
+      dockerfile: ./DockerfileBot
+    volumes:
+      - ./data/bot/tables:/tables
+      - ./data/application/images:/images
+      - ./data/api/database/QRCodeImages:/qrcodes
+    environment:
+      API_URL: "http://api:5051"
+      TABLES_PATH: "/tables"
+      MENUITEMIMAGES_PATH: "/images"
+      QRIMAGES_PATH: "/qrcodes"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+

@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using Domain.Logic;
 
 namespace site;
 
@@ -7,9 +8,15 @@ public class ApiClient<T> where T : class
 {
     private readonly object @lock = new();
     private static readonly HttpClient HttpClient = new();
-    private static readonly string RequestUri = $"http://localhost:5051/api/{typeof(T).Name.ToLower()}";
+    private readonly string RequestUri;
     private static readonly JsonSerializerOptions OptionsDeserializer = new() { PropertyNameCaseInsensitive = true };
 
+    public ApiClient()
+    {
+        var apiBaseUrl = HostsUrlGetter.ApiUrl;
+        RequestUri = $"{apiBaseUrl}/api/{typeof(T).Name.ToLower()}";
+    }
+    
     public T? Get(long id)
     {
         lock (@lock)

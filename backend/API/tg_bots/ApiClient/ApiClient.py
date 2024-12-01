@@ -2,9 +2,9 @@ import httpx
 from threading import Lock
 from typing import Any
 
-from Model.Table import Table
-
-api_base_url = "http://localhost:5051"
+api_base_url = os.getenv("API_URL", None)
+if api_base_url is None:
+    api_base_url = "http://localhost:5051"
 
 
 class ApiClient:
@@ -26,7 +26,6 @@ class ApiClient:
                 if response.status_code == 200:
                     data = response.json()
                     # obj = self.obj_class.parse_obj(data)
-                    # print(self.obj_class, Table)
                     obj = self.obj_class.model_validate(data)
                     return obj
                 else:

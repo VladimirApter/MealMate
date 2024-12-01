@@ -175,7 +175,8 @@ def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_
     file_info = bot.get_file(message.document.file_id)
     downloaded_file = bot.download_file(file_info.file_path)
 
-    temp_excel_file_path = os.path.join(current_dir, "excel_tables_work", f'{message.chat.id}_temp.xlsx')
+    tables_path = os.getenv("TABLES_PATH", None)
+    temp_excel_file_path = os.path.join(current_dir, "excel_tables_work", f'{message.chat.id}_temp.xlsx') if tables_path == None else os.path.join(tables_path, f'{message.chat.id}_temp.xlsx')
     with open(temp_excel_file_path, 'wb') as new_file:
         new_file.write(downloaded_file)
 
@@ -244,6 +245,7 @@ def validate_and_post_tables(message: types.Message, restaurant: Restaurant, fun
             table_id = api_client.post(table)  # generate qr while post
             table = api_client.get(table_id)  # get table with qr
             restaurant.tables.append(table)
+
 
             qr_code_image_path = os.path.join(qr_images_dir, table.qr_code_image_path)
             with open(qr_code_image_path, 'rb') as qr_image:

@@ -22,3 +22,8 @@
 /backend/API/PY_bots/tg_notification_bot/.idea/
 /backend/API/PY_bots/tg_notification_bot/venv/
 /backend/Application/wwwroot/MenuItemImages/
+*__pycache__
+*.session
+*menu_template*
+*output.xlsx
+*test*
