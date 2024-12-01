@@ -47,19 +47,19 @@ public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 
     public void DeleteRelatedData(ApplicationDbContext context)
     {
-        var client = context.Clients.FirstOrDefault(c => c.Id == ClientId);
-        if (client != null)
-        {
-            context.Clients.Remove(client);
-            context.SaveChanges();
-        }
-        var orderItems = context.OrderItems.Where(oi => oi.OrderId == Id);
-        foreach (var orderItem in orderItems)
-        {
-            context.OrderItems.Remove(orderItem);
-            context.SaveChanges();
-            orderItem.DeleteRelatedData(context);
-        }
+        // var client = context.Clients.FirstOrDefault(c => c.Id == ClientId);
+        // if (client != null)
+        // {
+        //     context.Clients.Remove(client);
+        //     context.SaveChanges();
+        // }
+        // var orderItems = context.OrderItems.Where(oi => oi.OrderId == Id);
+        // foreach (var orderItem in orderItems)
+        // {
+        //     context.OrderItems.Remove(orderItem);
+        //     context.SaveChanges();
+        //     orderItem.DeleteRelatedData(context);
+        // }
     }
 }
 

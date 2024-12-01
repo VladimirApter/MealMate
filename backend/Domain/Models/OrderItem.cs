@@ -38,19 +38,19 @@ public class OrderItem : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 
     public void DeleteRelatedData(ApplicationDbContext context)
     {
-        foreach (var dish in context.Dishes
-                     .Where(d => d.Id == MenuItemId))
-        {
-            context.Dishes.Remove(dish);
-            context.SaveChanges();
-            dish.DeleteRelatedData(context);
-        }
-        foreach (var drink in context.Drinks
-                     .Where(d => d.Id == MenuItemId))
-        {
-            context.Drinks.Remove(drink);
-            context.SaveChanges();
-            drink.DeleteRelatedData(context);
-        }
+        // foreach (var dish in context.Dishes
+        //              .Where(d => d.Id == MenuItemId))
+        // {
+        //     context.Dishes.Remove(dish);
+        //     context.SaveChanges();
+        //     dish.DeleteRelatedData(context);
+        // }
+        // foreach (var drink in context.Drinks
+        //              .Where(d => d.Id == MenuItemId))
+        // {
+        //     context.Drinks.Remove(drink);
+        //     context.SaveChanges();
+        //     drink.DeleteRelatedData(context);
+        // }
     }
 }
