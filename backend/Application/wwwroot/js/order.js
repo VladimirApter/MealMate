@@ -199,11 +199,14 @@ async function generateOrderId(data) {
     const text = JSON.stringify(data);
     const encoder = new TextEncoder();
     const dataBuffer = encoder.encode(text);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
+    const crypto = require('crypto');
+    const hashBuffer = await crypto.createHash('SHA-256');
+    hashBuffer.update(dataBuffer);
     const hashArray = new Uint8Array(hashBuffer);
     const orderId = (hashArray[0] << 24) | (hashArray[1] << 16) | (hashArray[2] << 8) | hashArray[3];
     return orderId & 0x7FFFFFFF;
 }
+
 
 async function placeOrder() {
     const contextElement = document.getElementById('order-context');
