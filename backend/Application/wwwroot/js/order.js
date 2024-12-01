@@ -194,23 +194,12 @@ function updateCart() {
 }
 
 
-
-const script = document.createElement('script');
-script.src = 'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js';
-document.head.appendChild(script);
-
-// Ожидаем загрузки библиотеки
-script.onload = function() {
-    // Теперь вы можете использовать библиотеку
-    async function generateOrderId(data) {
-        const text = JSON.stringify(data);
-        const hash = CryptoJS.SHA256(text);
-        const orderId = hash.words[0] & 0x7FFFFFFF;
-        return orderId;
-    }
-};
-
-
+async function generateOrderId(data) {
+    const text = JSON.stringify(data);
+    const hash = CryptoJS.SHA256(text);
+    const orderId = hash.words[0] & 0x7FFFFFFF;
+    return orderId;
+}
 
 async function placeOrder() {
     const contextElement = document.getElementById('order-context');
