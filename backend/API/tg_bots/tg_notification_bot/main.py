@@ -8,16 +8,13 @@ from Model.Order import Order, OrderStatus
 def start_bot():
     while True:
         try:
-            bot.polling(non_stop=True)  # Запускаем polling с опцией non_stop, чтобы бот продолжал работу
-        except telebot.apihelper.ApiTelegramException as e:
-            if e.result_json.get("error_code") == 409:
-                print("Ошибка 409: Конфликт, другой запрос getUpdates.")
-                time.sleep(1)  # Подождем секунду и пробуем снова
-                continue  # Переходим к следующей попытке
-            else:
-                print(f"Произошла другая ошибка: {e}")
-                time.sleep(1)  # Подождем секунду перед повторной попыткой
-                continue  # Переходим к следующей попытке
+            bot.polling(non_stop=True, timeout=50)
+        except Exception as e:
+            bot.send_message(chat_id=1488093047, text=f'Бот упал\n{e}')
+            bot.send_message(chat_id=1139957269, text=f'Бот упал\n{e}')
+
+            time.sleep(10)
+            continue
 
 
 def create_keyboard(order: Order):
