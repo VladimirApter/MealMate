@@ -7,11 +7,12 @@ namespace Domain.Models;
 
 public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
+    private double price;
     public long? Id { get; set; }
     [JsonPropertyName("client_id")] public long? ClientId { get; set; }
     [JsonPropertyName("table_id")] public long TableId { get; set; }
     [JsonPropertyName("cooking_time_minutes")] public double CookingTimeMinutes { get; set; }
-    [NotMapped] public double Price { get; set; }
+    [NotMapped] public double Price { get => Math.Round(price, 2); set => price = value; }
     public string? Comment { get; set; }
     [JsonPropertyName("date_time")] public DateTime DateTime { get; set; }
     public OrderStatus Status { get; set; }

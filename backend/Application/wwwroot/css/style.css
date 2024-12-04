@@ -279,9 +279,15 @@ body {
     border: none;
     outline: none;
     box-sizing: border-box; 
-  }
+}
 
-  #scrollToBottomBtn {
+  @media screen and (max-width: 425px) {
+    #input {
+        font-size: 14px;
+    }
+}
+
+#scrollToBottomBtn {
     user-select: none;
     position: fixed;
     bottom: 20px;
@@ -322,7 +328,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 86%;
     margin: 3px 24px;
 }
 
@@ -362,6 +368,7 @@ body {
 }
 
 .table-row .d {
+    width: 115px;
     background-color: #D9D9D9;
 }
 

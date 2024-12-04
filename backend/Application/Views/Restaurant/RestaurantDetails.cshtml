@@ -36,6 +36,7 @@
 <body>
 <div id="order-context" data-table-id="@Model.Table.Id" data-restaurant-id="@Model.Restaurant.Id" data-client-id="1"></div>
 <div class="container">
+    <p class="category">@Model.Restaurant.Name</p>
     @foreach (var category in Model.Restaurant.Menu.Categories)
     {
         <div class="block">
@@ -46,7 +47,14 @@
                     var dataCell = cell.ToString();
                     var doc = JsonDocument.Parse(dataCell);
                     <div class="cell" data-cell='@dataCell' onclick="handleCellClick(event, this)">
-                        <img src="/MenuItemImages/@cell.ImagePath" alt="image" class="image">
+                        @if (string.IsNullOrEmpty(cell.ImagePath))
+                        {
+                            <img src="https://i.ebayimg.com/images/g/lbUAAOSw6DtmH8z0/s-l1600.png" alt="image" class="image">
+                        }
+                        else 
+                        {
+                            <img src="/MenuItemImages/@cell.ImagePath" alt="image" class="image">
+                        }
                         <div class="content">
                             <p class="cost">@cell.Price.ToString(CultureInfo.InvariantCulture)₽</p>
                             <p class="desc">@cell.Name</p>
