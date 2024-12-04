@@ -130,12 +130,13 @@ function showPopup(cellData) {
 
     console.log(cellData)
     popupImage.src = "/MenuItemImages/" + cellData.image;
-    popupCost.textContent = parseFloat(cellData.price).toFixed(2) + "₽"; // Округляем до двух знаков после запятой
+    popupCost.textContent = parseFloat(cellData.price).toFixed(2) + "₽";
     popupName.textContent = cellData.name;
     popupDesc.textContent = cellData.desc;
-    popupWeight.textContent = "Белки " + cellData.nutrients.Proteins + "г, " + "Жиры " + cellData.nutrients.Fats + "г, " + "Углеводы " + cellData.nutrients.Carbohydrates + "г";
+    if (cellData.nutrients.Proteins !== null && cellData.nutrients.Fats !== null && cellData.nutrients.Carbohydrates !== null) {
+        popupWeight.textContent = "Белки " + cellData.nutrients.Proteins + "г, " + "Жиры " + cellData.nutrients.Fats + "г, " + "Углеводы " + cellData.nutrients.Carbohydrates + "г";
+    }
     popupCtm.textContent = "Время приготовления: " + cellData.cooking_time + " минут";
-
     popup.style.display = 'block';
 }
 
@@ -286,3 +287,18 @@ function clearCart() {
     cartItems = {};
     updateCart();
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    function setCellHeight() {
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => {
+            const width = cell.offsetWidth;
+            const height = 3 * width / 2;
+            cell.style.height = `${height}px`;
+        });
+    }
+
+    // Вызываем функцию при загрузке страницы и при изменении размера окна
+    setCellHeight();
+    window.addEventListener('resize', setCellHeight);
+});

@@ -51,11 +51,16 @@ body {
 .cell {
     color: black;
     width: 300px;
-    height: 400px;
     background-color: #FFFFFF;
     border-radius: 30px;
-    margin: 12px;
+    margin: auto;
     position: relative;
+}
+
+@media screen and (max-width: 650px) {
+    .cell {
+        width: 48%;
+    }
 }
 
 .image {
@@ -81,19 +86,32 @@ body {
 }
 
 .cost {
+    font-size: 24px;
     user-select: none;
     font-family: Yandex Sans Display;
     font-weight: bold;
-    font-size: 24px;
     margin: 10px 0px;
 }
 
+@media screen and (max-width: 425px) {
+    .cost {
+        font-size: 18px;
+        margin: 4px 0px;
+    }
+}
+
 .desc {
-   font-size: 18px;
-     user-select: none;
+    font-size: 18px;
+    user-select: none;
     font-family: Yandex Sans Display;
     font-weight: normal;
     margin: 10px 0px;
+}
+
+@media screen and (max-width: 425px) {
+    .desc {
+        font-size: 14px;
+    }
 }
 
 .weight {
@@ -119,6 +137,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 425px) {
+    .add-button {
+        border-radius: 15px;
+        height: 40px;
+    }
 }
 
 .send-button {
@@ -158,6 +183,12 @@ body {
     margin-right: 10px;
 }
 
+@media screen and (max-width: 425px) {
+    .add-button .plus {
+        font-size: 18px;
+    }
+}
+
 .add-button .text {
     width: 100px;
     font-family: Yandex Sans Display;
@@ -167,6 +198,14 @@ body {
     font-weight: normal;
     text-align: center;
 }
+
+@media screen and (max-width: 425px) {
+    .add-button .text {
+        width: 60px;
+        font-size: 14px;
+    }
+}
+
 .action1 {
     display: inline-block;
     padding: 10px;
@@ -177,6 +216,13 @@ body {
     font-weight: normal;
     margin: 0px 10px;
 }
+
+@media screen and (max-width: 425px) {
+    .add-button .action1 {
+        font-size: 18px;
+    }
+}
+
 .category 
 {
     font-family: Yandex Sans Display;
