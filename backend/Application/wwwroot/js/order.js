@@ -129,7 +129,12 @@ function showPopup(cellData) {
     const popupCtm = document.getElementById('popup-ctm');
 
     console.log(cellData)
-    popupImage.src = "/MenuItemImages/" + cellData.image;
+    if (cellData.image !== null) {
+        popupImage.src = "/MenuItemImages/" + cellData.image;
+    }
+    else {
+        popupImage.src = "https://i.ebayimg.com/images/g/lbUAAOSw6DtmH8z0/s-l1600.png";
+    }
     popupCost.textContent = parseFloat(cellData.price).toFixed(2) + "₽";
     popupName.textContent = cellData.name;
     popupDesc.textContent = cellData.desc;
