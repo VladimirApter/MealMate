@@ -34,6 +34,21 @@
     </style>
 </head>
 <body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    function setCellHeight() {
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => {
+            const width = cell.offsetWidth;
+            const height = 3 * width / 2;
+            cell.style.height = `${height}px`;
+        });
+    }
+
+    setCellHeight();
+    window.addEventListener('resize', setCellHeight);
+});
+</script>
 <div id="order-context" data-table-id="@Model.Table.Id" data-restaurant-id="@Model.Restaurant.Id" data-client-id="1"></div>
 <div class="container">
     <p class="category">@Model.Restaurant.Name</p>

@@ -54,6 +54,7 @@ body {
     background-color: #FFFFFF;
     border-radius: 30px;
     margin: auto;
+    margin-top: 3px;
     position: relative;
 }
 
@@ -123,6 +124,7 @@ body {
  }
 
 .add-button {
+    color: black;
     cursor: pointer;
     user-select: none;
     position: absolute;
@@ -147,6 +149,7 @@ body {
 }
 
 .send-button {
+    color: black;
     cursor: pointer;
     user-select: none;
     bottom: 0;
@@ -160,6 +163,7 @@ body {
 }
 
 .send-button .text {
+    color: black;
     font-family: Yandex Sans Display;
     font-size: 18px;
     cursor: pointer;
@@ -175,6 +179,7 @@ body {
 
 
 .add-button .plus {
+    color: black;
     font-family: Yandex Sans Display;
     font-size: 24px;
     cursor: pointer;
@@ -190,6 +195,7 @@ body {
 }
 
 .add-button .text {
+    color: black;
     width: 100px;
     font-family: Yandex Sans Display;
     font-size: 18px;

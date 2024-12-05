@@ -129,7 +129,7 @@ function showPopup(cellData) {
     const popupCtm = document.getElementById('popup-ctm');
 
     console.log(cellData)
-    if (cellData.image !== null) {
+    if (cellData.image !== "https://i.ebayimg.com/images/g/lbUAAOSw6DtmH8z0/s-l1600.png") {
         popupImage.src = "/MenuItemImages/" + cellData.image;
     }
     else {
@@ -292,18 +292,3 @@ function clearCart() {
     cartItems = {};
     updateCart();
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    function setCellHeight() {
-        const cells = document.querySelectorAll('.cell');
-        cells.forEach(cell => {
-            const width = cell.offsetWidth;
-            const height = 3 * width / 2;
-            cell.style.height = `${height}px`;
-        });
-    }
-
-    // Вызываем функцию при загрузке страницы и при изменении размера окна
-    setCellHeight();
-    window.addEventListener('resize', setCellHeight);
-});
