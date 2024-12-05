@@ -49,6 +49,7 @@ body {
 }
 
 .cell {
+    height: 400px;
     color: black;
     width: 300px;
     background-color: #FFFFFF;
