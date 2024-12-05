@@ -50,7 +50,7 @@ public class MenuItem : ITakeRelatedData, IDeleteRelatedData
         var jsonObj = new
         {
             name = Name,
-            image = ImagePath ?? "https://grillandjoy.ru/upload/medialibrary/651/9_2_003.jpg",
+            image = ImagePath,
             price = Price,
             desc = Description,
             nutrients = NutrientsOf100grams ?? null,

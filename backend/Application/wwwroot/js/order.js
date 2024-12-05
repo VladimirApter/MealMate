@@ -129,7 +129,7 @@ function showPopup(cellData) {
     const popupCtm = document.getElementById('popup-ctm');
 
     console.log(cellData)
-    if (cellData.image !== "https://i.ebayimg.com/images/g/lbUAAOSw6DtmH8z0/s-l1600.png") {
+    if (cellData.image !== null) {
         popupImage.src = "/MenuItemImages/" + cellData.image;
     }
     else {
@@ -140,6 +140,9 @@ function showPopup(cellData) {
     popupDesc.textContent = cellData.desc;
     if (cellData.nutrients.Proteins !== null && cellData.nutrients.Fats !== null && cellData.nutrients.Carbohydrates !== null) {
         popupWeight.textContent = "Белки " + cellData.nutrients.Proteins + "г, " + "Жиры " + cellData.nutrients.Fats + "г, " + "Углеводы " + cellData.nutrients.Carbohydrates + "г";
+    }
+    else{
+        popupWeight.textContent= " ";
     }
     popupCtm.textContent = "Время приготовления: " + cellData.cooking_time + " минут";
     popup.style.display = 'block';
