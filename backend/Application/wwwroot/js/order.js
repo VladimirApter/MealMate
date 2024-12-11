@@ -295,3 +295,46 @@ function clearCart() {
     cartItems = {};
     updateCart();
 }
+
+document.getElementById('waiter').addEventListener('click', callWaiter);
+
+async function callWaiter() {
+    const contextElement = document.getElementById('order-context');
+    const tableId = parseInt(contextElement.getAttribute('data-table-id'), 10);
+    const clientId = parseInt(contextElement.getAttribute('data-client-id'), 10);
+
+    const client = {
+        Id: clientId,
+        Ip: "zaglushka"
+    };
+
+    const waiterCall = {
+        "client_id": clientId,
+        "table_id": tableId,
+        "date_time": new Date().toISOString(),
+        "status": 0,
+        "client": client
+    };
+
+    try {
+        const response = await fetch('/waitercall', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(waiterCall),
+        });
+
+        if (response.ok) {
+            alert('Официант уведомлён и скоро к вам подойдет.');
+        } else {
+            alert('Ошибка при вызове официанта.');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Ошибка при вызове официанта.');
+    }
+}
+
+
+
