@@ -33,6 +33,7 @@ public class ModelController : ControllerBase
             "orderitem" => await GetPostEntity(id, DeserializeEntity<OrderItem>(entity)),
             "client" => await GetPostEntity(id, DeserializeEntity<Client>(entity)),
             "order" => await GetPostEntity(id, DeserializeEntity<Order>(entity)),
+            "waitercall" => await GetPostEntity(id, DeserializeEntity<WaiterCall>(entity)),
             _ => BadRequest("Invalid entity type.")
         };
 
@@ -58,6 +59,13 @@ public class ModelController : ControllerBase
             var o = await DataBaseAccess<T>.GetAsync(order.Id.Value);
             DataBaseAccess<T>.AddOrUpdate(entity);
             if (o == null) await ForwardToPythonServer.ForwardObject(order, $"{HostsUrlGetter.PyServerUrl}/order/");
+        }
+        else if (entity is WaiterCall waiterCall)
+        {
+            if (waiterCall.Id == null) return NotFound(waiterCall.Id);
+            var o = await DataBaseAccess<T>.GetAsync(waiterCall.Id.Value);
+            DataBaseAccess<T>.AddOrUpdate(entity);
+            if (o == null) await ForwardToPythonServer.ForwardObject(waiterCall, $"{HostsUrlGetter.PyServerUrl}/waitercall/");
         }
         else
         {
@@ -107,6 +115,7 @@ public class ModelController : ControllerBase
             "orderitem" => await DeleteEntity<OrderItem>(id),
             "client" => await DeleteEntity<Client>(id),
             "order" => await DeleteEntity<Order>(id),
+            "waitercall" => await DeleteEntity<WaiterCall>(id),
             _ => BadRequest("Invalid entity type.")
         };
     }

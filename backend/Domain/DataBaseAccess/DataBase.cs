@@ -19,6 +19,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<OrderItem> OrderItems { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<Client> Clients { get; set; }
+    public DbSet<WaiterCall> WaiterCalls { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
