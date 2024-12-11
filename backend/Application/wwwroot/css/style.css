@@ -382,3 +382,42 @@ body {
 .cooking-time {
     display: none;
 }
+
+#cart-total-time {
+    margin-top: 10px;
+}
+
+.call {
+    cursor: pointer;
+    user-select: none;
+    margin-top: 20px;
+    display: flex;
+    max-width: 380px;
+    height: 63px;
+    border-radius: 20px;
+    background-color: #747474;
+}
+
+.callText {
+    user-select: none;
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+}
+
+.callText p {
+    user-select: none;
+    font-family: Yandex Sans Display;
+    font-weight: bold;
+    color: rgb(220, 220, 220);
+    font-size: 18px;
+
+    text-align: center;
+}
+
+.call img {
+    user-select: none;
+    height: 100%; 
+    object-fit: cover; 
+}
