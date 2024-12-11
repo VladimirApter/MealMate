@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 app.register_blueprint(order_bp, url_prefix="/order")
 app.register_blueprint(notification_bp, url_prefix="/notificationgetter")
+app.register_blueprint(notification_bp, url_prefix="/waitercall")
 
 if __name__ == "__main__":
     threading.Thread(target=lambda: app.run(host="0.0.0.0", port=5059)).start()
