@@ -95,8 +95,8 @@
                 <span class="desc">Примерное время ожидания: </span><span class="desc" id="total-time">0</span><span class="desc"> минут</span>
             </div>
             <textarea id="input" placeholder="Оставьте комментарий к заказу..."></textarea>
-            <div class="call" onclick="callWaiter()">
-                <span class="callText"><p>Позвать официанта</p></span>
+            <div class="call" id="call" onclick="callWaiter()">
+                <span class="callText"><p id="callText">Позвать официанта</p></span>
                 <span class="callImage"><img src="/img/call.svg" alt="Позвать официанта"></span>
             </div>
         </div>
@@ -104,12 +104,6 @@
     </div>
 
 </div>
-
-
-@* <button class="waiter-button" id="waiter" onclick="">
-    <span class="text">Позвать оффицианта</span><span class="waiter-img"><img src="/img/waiterCall.svg" alt="waiter"></span>
-</button> *@
-
 
 <button class="send-button" id="order-button" onclick="placeOrder()">
     <span class="text">Сделать заказ</span><span class="arrow"><img src="/img/arrow.svg" alt="arrow"></span>

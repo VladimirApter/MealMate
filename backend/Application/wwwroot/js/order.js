@@ -302,7 +302,7 @@ async function callWaiter() {
     const contextElement = document.getElementById('order-context');
     const tableId = parseInt(contextElement.getAttribute('data-table-id'), 10);
     const clientId = parseInt(contextElement.getAttribute('data-client-id'), 10);
-
+    
     const client = {
         Id: clientId,
         Ip: "zaglushka"
@@ -326,7 +326,16 @@ async function callWaiter() {
         });
 
         if (response.ok) {
-            alert('Официант уведомлён и скоро к вам подойдет.');
+            const textElement = document.getElementById('callText');
+            const originalText = textElement.textContent;
+            const callBlock = document.getElementById('call');
+            callBlock.style.backgroundColor = "#0DB33C";
+            textElement.textContent = 'Официант уже идет';
+            setTimeout(() => {
+                textElement.textContent = originalText;
+                callBlock.style.backgroundColor = "#747474";
+            }, 30000);
+
         } else {
             alert('Ошибка при вызове официанта.');
         }
@@ -335,6 +344,4 @@ async function callWaiter() {
         alert('Ошибка при вызове официанта.');
     }
 }
-
-
 
