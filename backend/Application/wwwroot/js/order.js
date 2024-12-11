@@ -329,13 +329,15 @@ async function callWaiter() {
             const textElement = document.getElementById('callText');
             const originalText = textElement.textContent;
             const callBlock = document.getElementById('call');
+            const originalOnClick = callBlock.getAttribute('onclick');
             callBlock.style.backgroundColor = "#0DB33C";
             textElement.textContent = 'Официант уже идет';
+            callBlock.setAttribute('onclick', '');
             setTimeout(() => {
                 textElement.textContent = originalText;
                 callBlock.style.backgroundColor = "#747474";
+                callBlock.setAttribute('onclick', originalOnClick);
             }, 30000);
-
         } else {
             alert('Ошибка при вызове официанта.');
         }
