@@ -87,8 +87,8 @@ public class RestaurantController : Controller
         var client = new Client(waiterCall.ClientId, clientIp);
         waiterCall.Client = client;
         
-        var apiclient = new ApiClient<WaiterCall>();
-        apiclient.Post(waiterCall);
+        var apiClient = new ApiClient<WaiterCall>();
+        apiClient.Post(waiterCall);
         return Ok();
     }
 }

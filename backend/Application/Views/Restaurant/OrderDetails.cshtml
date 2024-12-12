@@ -6,16 +6,14 @@
 
     string GetStatus() 
     {
-        if (Model.Status.ToString() == "InAssembly")
-            return "Ожидает подтверждения";
-
-        if (Model.Status.ToString() == "Cooking")
-            return "Готовится";
-
-        if (Model.Status.ToString() == "Done")
-            return "Выполнен";
-
-        return "-";
+        return Model.Status.ToString() switch
+        {
+            "InAssembly" => "Ожидает подтверждения",
+            "Cooking" => "Готовится",
+            "Done" => "Выполнен",
+            "Cancelled" => "Отменён",
+            _ => "-"
+        };
     }
 }
 <!DOCTYPE html>
@@ -23,7 +21,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="10">
+    <meta http-equiv="refresh" content="15">
     <title>About order</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
