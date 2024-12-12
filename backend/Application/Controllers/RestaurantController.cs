@@ -77,4 +77,18 @@ public class RestaurantController : Controller
         order.Status = obj.Status;
         return View("OrderDetails", order);
     }
+
+    [HttpPost("/waitercall")]
+    public IActionResult WaiterCall([FromBody] WaiterCall waiterCall)
+    {
+        var clientIp = HttpContext.Connection.RemoteIpAddress?.ToString();
+        if (string.IsNullOrEmpty(clientIp))
+            clientIp = "no ip";
+        var client = new Client(waiterCall.ClientId, clientIp);
+        waiterCall.Client = client;
+        
+        var apiclient = new ApiClient<WaiterCall>();
+        apiclient.Post(waiterCall);
+        return Ok();
+    }
 }
