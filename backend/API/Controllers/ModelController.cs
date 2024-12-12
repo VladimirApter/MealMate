@@ -69,10 +69,20 @@ public class ModelController : ControllerBase
         }
         else if (entity is WaiterCall waiterCall)
         {
-            if (waiterCall.Id == null) return NotFound(waiterCall.Id);
-            var o = await DataBaseAccess<T>.GetAsync(waiterCall.Id.Value);
-            DataBaseAccess<T>.AddOrUpdate(entity);
-            if (o == null) await ForwardToPythonServer.ForwardObject(waiterCall, $"{HostsUrlGetter.PyServerUrl}/waitercall/");
+            if (waiterCall.Id != null)
+            {
+                var o = await DataBaseAccess<T>.GetAsync(waiterCall.Id.Value);
+                if (o == null)
+                {
+                    DataBaseAccess<T>.AddOrUpdate(entity);
+                    await ForwardToPythonServer.ForwardObject(waiterCall, $"{HostsUrlGetter.PyServerUrl}/waitercall/");
+                }
+            }
+            else
+            {
+                DataBaseAccess<T>.AddOrUpdate(entity);
+                await ForwardToPythonServer.ForwardObject(waiterCall, $"{HostsUrlGetter.PyServerUrl}/waitercall/");
+            }
         }
         else
         {
