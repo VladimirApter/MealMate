@@ -6,7 +6,7 @@ from pydantic import ValidationError
 from Model.NotificationGetter import NotificationGetter
 # from tg_notification_bot.NotificationRequestClient.NotificationRequest import send_notification_request
 
-notification_bp = Blueprint("notificationgetter", __name__)
+notification_getter_bp = Blueprint("notificationgetter", __name__)
 
 
 def run_async_task(coroutine):
@@ -15,7 +15,7 @@ def run_async_task(coroutine):
     loop.run_until_complete(coroutine)
 
 
-@notification_bp.route("/", methods=["POST"])
+@notification_getter_bp.route("/", methods=["POST"])
 def handle_notification_getter():
     try:
         data = request.json

@@ -72,9 +72,9 @@ public class ModelController : ControllerBase
             if (waiterCall.Id != null)
             {
                 var o = await DataBaseAccess<T>.GetAsync(waiterCall.Id.Value);
+                DataBaseAccess<T>.AddOrUpdate(entity);
                 if (o == null)
                 {
-                    DataBaseAccess<T>.AddOrUpdate(entity);
                     await ForwardToPythonServer.ForwardObject(waiterCall, $"{HostsUrlGetter.PyServerUrl}/waitercall/");
                 }
             }

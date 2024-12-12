@@ -5,10 +5,10 @@ from Model.OrderItem import OrderItem
 from Model.WaiterCall import WaiterCall
 from tg_notification_bot.SendWaiterCall.SendWaiterCall import send_waiter_call
 
-waiter_bp = Blueprint("waitercall", __name__)
+waiter_call_bp = Blueprint("waitercall", __name__)
 
 
-@waiter_bp.route("/", methods=["POST"])
+@waiter_call_bp.route("/", methods=["POST"])
 def handle_order():
     try:
         waiter_data = request.json

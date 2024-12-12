@@ -11,6 +11,7 @@ class OrderStatus(Enum):
     IN_ASSEMBLY = 0
     COOKING = 1
     DONE = 2
+    CANCELLED = 3
 
 
 class Order(BaseModel):

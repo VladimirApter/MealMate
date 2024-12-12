@@ -127,5 +127,5 @@ def create_menu_template():
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
     tables_path = os.getenv("TABLES_PATH", None)
-    result_path = os.path.join(current_dir, "tables", "menu_template.xlsx") if tables_path == None else os.path.join(tables_path, "menu_template.xlsx")
+    result_path = os.path.join(current_dir, "menu_template.xlsx") if tables_path == None else os.path.join(tables_path, "menu_template.xlsx")
     wb.save(result_path)

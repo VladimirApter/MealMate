@@ -71,13 +71,14 @@ def handle_other_content(message):
 def handle_cancel(call):
     order_id = call.data.split(":")[0]
     chat_id = call.message.chat.id
+    message_id = call.message.message_id
 
     bot.edit_message_reply_markup(chat_id=chat_id,
-                                  message_id=call.message.message_id,
+                                  message_id=message_id,
                                   reply_markup=None)
 
     confirm_keyboard = InlineKeyboardMarkup()
-    yes_button = InlineKeyboardButton("Да", callback_data=f"{order_id}:confirm_cancel:{call.message.message_id}")
+    yes_button = InlineKeyboardButton("Да", callback_data=f"{order_id}:confirm_cancel:{message_id}")
     no_button = InlineKeyboardButton("Нет", callback_data=f"{order_id}:restore_buttons:{call.message.message_id}")
     confirm_keyboard.add(yes_button, no_button)
 
@@ -92,9 +93,8 @@ def handle_restore(call):
     order_id = parts[0]
     message_id = int(parts[-1])
 
-    bot.edit_message_reply_markup(chat_id=call.message.chat.id,
-                                  message_id=call.message.message_id,
-                                  reply_markup=None)
+    bot.delete_message(chat_id=call.message.chat.id,
+                       message_id=call.message.message_id)
 
     original_keyboard = InlineKeyboardMarkup()
     accept_button = InlineKeyboardButton("Принять", callback_data=f"{order_id}:accept")
@@ -110,29 +110,24 @@ def handle_restore(call):
 def handle_confirm_cancel(call):
     parts = call.data.split(":")
     order_id = parts[0]
-    original_message_id = parts[-1]
+    original_message_id = int(parts[-1])
 
     api_client = ApiClient(Order)
 
     order = api_client.get(order_id)
-    order.status = OrderStatus.COOKING
+    order.status = OrderStatus.CANCELLED
     order.status = int(order.status.value)
 
     api_client.post(order)
-
-    bot.edit_message_reply_markup(chat_id=call.message.chat.id,
-                                  message_id=call.message.message_id,
-                                  reply_markup=None)
-    bot.edit_message_reply_markup(chat_id=call.message.chat.id,
-                                  message_id=int(original_message_id),
-                                  reply_markup=None)
+    bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
 
     bot.send_message(chat_id=call.message.chat.id,
-                     text=f"Заказ {order_id} отменен.")
+                     text='Заказ отменен',
+                     reply_to_message_id=original_message_id)
 
 
 @bot.callback_query_handler(func=lambda call: call.data.endswith("accept"))
-def handle_callback(call):
+def handle_accept(call):
     chat_id = call.message.chat.id
     message_id = call.message.message_id
 
@@ -155,7 +150,7 @@ def handle_callback(call):
 
 
 @bot.callback_query_handler(func=lambda call: call.data.endswith("done"))
-def handle_callback(call):
+def handle_done(call):
     chat_id = call.message.chat.id
     message_id = call.message.message_id
 
@@ -169,13 +164,17 @@ def handle_callback(call):
 
     api_client.post(order)
 
-    bot.answer_callback_query(call.id, "Заказ завершен!")
     bot.edit_message_reply_markup(chat_id=chat_id, message_id=message_id, reply_markup=None)
+    bot.edit_message_text(
+        chat_id=call.message.chat.id,
+        message_id=call.message.message_id,
+        text=f"{call.message.text}\n\nВЫПОЛНЕН"
+    )
     bot.reply_to(call.message, "Заказ выполнен")
 
 
 @bot.callback_query_handler(func=lambda call: call.data.endswith("accept_waiter"))
-def handle_callback(call):
+def handle_accept_waiter(call):
     chat_id = call.message.chat.id
     message_id = call.message.message_id
     waiter_id = call.data.split(':')[0]
