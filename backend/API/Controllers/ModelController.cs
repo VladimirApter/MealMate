@@ -58,13 +58,21 @@ public class ModelController : ControllerBase
             if (order.Id == null) return NotFound(order.Id);
             var o = await DataBaseAccess<T>.GetAsync(order.Id.Value);
             DataBaseAccess<T>.AddOrUpdate(entity);
-            //if (o == null) await ForwardToPythonServer.ForwardObject(order, $"{HostsUrlGetter.PyServerUrl}/order/");
+            if (o == null) await ForwardToPythonServer.ForwardObject(order, $"{HostsUrlGetter.PyServerUrl}/order/");
+        }
+        else if (entity is NotificationGetter notificationGetter)
+        {
+            if (notificationGetter.Id == null) return NotFound(notificationGetter.Id);
+            var o = await DataBaseAccess<T>.GetAsync(notificationGetter.Id.Value);
+            DataBaseAccess<T>.AddOrUpdate(entity);
+            if (o == null) await ForwardToPythonServer.ForwardObject(notificationGetter, $"{HostsUrlGetter.PyServerUrl}/notificationgetter/");
         }
         else if (entity is WaiterCall waiterCall)
         {
-            //var o = await DataBaseAccess<T>.GetAsync(waiterCall.Id.Value);
+            if (waiterCall.Id == null) return NotFound(waiterCall.Id);
+            var o = await DataBaseAccess<T>.GetAsync(waiterCall.Id.Value);
             DataBaseAccess<T>.AddOrUpdate(entity);
-            //await ForwardToPythonServer.ForwardObject(waiterCall, $"{HostsUrlGetter.PyServerUrl}/waitercall/");
+            if (o == null) await ForwardToPythonServer.ForwardObject(waiterCall, $"{HostsUrlGetter.PyServerUrl}/waitercall/");
         }
         else
         {

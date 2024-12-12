@@ -162,7 +162,6 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
         {
             context.Set<NotificationGetter>().Add(notificationGetter);
             await context.SaveChangesAsync();
-            //await ForwardToPythonServer.ForwardObject(notificationGetter, $"{HostsUrlGetter.PyServerUrl}/notificationgetter/");
         }
     }
 
