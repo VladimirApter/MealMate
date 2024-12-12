@@ -60,13 +60,6 @@ public class ModelController : ControllerBase
             DataBaseAccess<T>.AddOrUpdate(entity);
             if (o == null) await ForwardToPythonServer.ForwardObject(order, $"{HostsUrlGetter.PyServerUrl}/order/");
         }
-        else if (entity is NotificationGetter notificationGetter)
-        {
-            if (notificationGetter.Id == null) return NotFound(notificationGetter.Id);
-            var o = await DataBaseAccess<T>.GetAsync(notificationGetter.Id.Value);
-            DataBaseAccess<T>.AddOrUpdate(entity);
-            if (o == null) await ForwardToPythonServer.ForwardObject(notificationGetter, $"{HostsUrlGetter.PyServerUrl}/notificationgetter/");
-        }
         else if (entity is WaiterCall waiterCall)
         {
             if (waiterCall.Id != null)
