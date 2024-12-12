@@ -69,4 +69,5 @@ public enum OrderStatus
     InAssembly,
     Cooking,
     Done,
+    Cancelled
 }
