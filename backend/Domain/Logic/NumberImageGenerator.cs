@@ -24,7 +24,7 @@ public static class NumberImageGenerator
         var textWidth = font.MeasureText(MemoryMarshal.Cast<char, ushort>(numberText.AsSpan()));
         var textHeight = font.Metrics.Descent - font.Metrics.Ascent;
 
-        var x = (bitmap.Width - textWidth) / 2;
+        var x = (bitmap.Width - textWidth) / 2 + 10 * textWidth / 115;
         var y = (bitmap.Height - textHeight) / 2;
 
         const float borderThickness = 7;
