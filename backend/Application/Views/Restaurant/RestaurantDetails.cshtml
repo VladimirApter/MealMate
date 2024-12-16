@@ -34,20 +34,26 @@
     </style>
 </head>
 <body>
+
+<script>
+    
+</script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    function setCellHeight() {
-        const cells = document.querySelectorAll('.cell');
-        cells.forEach(cell => {
-            const width = cell.offsetWidth;
-            const height = 3 * width / 2;
-            cell.style.height = `${height}px`;
-        });
-    }
+        function setCellHeight() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => {
+                const width = cell.offsetWidth;
+                const height = 3 * width / 2;
+                cell.style.height = `${height}px`;
+            });
+        }
 
-    setCellHeight();
-    window.addEventListener('resize', setCellHeight);
-});
+        setCellHeight();
+        window.addEventListener('resize', setCellHeight);
+    });
+    
 </script>
 <div id="order-context" data-table-id="@Model.Table.Id" data-restaurant-id="@Model.Restaurant.Id" data-client-id="1"></div>
 <div class="container">
@@ -66,7 +72,7 @@
                         {
                             <img src="https://i.ebayimg.com/images/g/lbUAAOSw6DtmH8z0/s-l1600.png" alt="image" class="image">
                         }
-                        else 
+                        else
                         {
                             <img src="/MenuItemImages/@cell.ImagePath" alt="image" class="image">
                         }
@@ -95,8 +101,9 @@
                 <span class="desc">Примерное время ожидания: </span><span class="desc" id="total-time">0</span><span class="desc"> минут</span>
             </div>
             <textarea id="input" placeholder="Оставьте комментарий к заказу..."></textarea>
-            <div class="call" id="call" onclick="callWaiter()">
-                <span class="callText"><p id="callText">Позвать официанта</p></span>
+            <div class="call" id="call">
+                <span class="callText">
+                    <p id="callText">Позвать официанта</p></span>
                 <span class="callImage"><img src="/img/call.svg" alt="Позвать официанта"></span>
             </div>
         </div>
@@ -105,9 +112,16 @@
 
 </div>
 
-<button class="send-button" id="order-button" onclick="placeOrder()">
+<button class="send-button" id="order-button">
     <span class="text">Сделать заказ</span><span class="arrow"><img src="/img/arrow.svg" alt="arrow"></span>
 </button>
+
+<div class="resPositionLatitude" id="resPositionLatitude">
+    @Model.Restaurant.Coordinates.Latitude
+</div>
+<div class="resPositionLongitude" id="resPositionLongitude">
+    @Model.Restaurant.Coordinates.Longitude
+</div>
 
 <div id="popup">
     <img src="#" alt="image" class="image" id="popup-image">
@@ -126,6 +140,8 @@
 </button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+
 <script src="/js/order.js"></script>
 
 </body>
