@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Linq;
-using System.Reflection;
 using System.ComponentModel.DataAnnotations.Schema;
-using Domain.DataBaseAccess;
+using System.Reflection;
 using Domain.Logic;
 using Domain.Models;
 using host;
-using Microsoft.Extensions.Configuration;
 
+namespace Domain.DataBaseAccess;
 
 public class DataBaseAccess<T> where T : class, ITableDataBase
 {
@@ -52,24 +50,28 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
                 object? objNew = null;
                 if (obj is OrderItem objOrderItem)
                 {
-                    objOrderItem.MenuItemId = objOrderItem.MenuItem.Id;
+                    objOrderItem.MenuItemId = objOrderItem.MenuItem?.Id;
                     objNew = objOrderItem;
                 }
                 else if (obj is Order objOrder)
                 {
-                    objOrder.ClientId = objOrder.Client.Id;
+                    objOrder.ClientId = objOrder.Client?.Id;
                     objNew = objOrder;
                 }
 
-                context.Entry(existingObj).CurrentValues.SetValues(objNew);
+                if (objNew != null) context.Entry(existingObj).CurrentValues.SetValues(objNew);
             }
             else if (existingObj is Dish or Drink)
             {
                 MenuItem? objMenuItem = existingObj is Drink ? obj as Drink : obj as Dish;
-                objMenuItem.NutrientsOf100grams.MenuItemId = objMenuItem.Id;
-                object objNew = objMenuItem;
-                AddOrUpdateNotMappedProperties(obj);
-                context.Entry(existingObj).CurrentValues.SetValues(objNew);
+                if (objMenuItem != null)
+                {
+                    if (objMenuItem.NutrientsOf100grams != null)
+                        objMenuItem.NutrientsOf100grams.MenuItemId = objMenuItem.Id;
+                    object objNew = objMenuItem;
+                    AddOrUpdateNotMappedProperties(obj);
+                    context.Entry(existingObj).CurrentValues.SetValues(objNew);
+                }
             }
             else
             {
@@ -83,20 +85,20 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
                 AddOrUpdateNotMappedProperties(obj);
                 if (obj is OrderItem objOrderItem)
                 {
-                    objOrderItem.MenuItemId = objOrderItem.MenuItem.Id;
+                    objOrderItem.MenuItemId = objOrderItem.MenuItem?.Id;
                     context.Set<OrderItem>().Add(objOrderItem);
                 }
 
                 else if (obj is Order objOrder)
                 {
-                    objOrder.ClientId = objOrder.Client.Id;
+                    objOrder.ClientId = objOrder.Client?.Id;
                     context.Set<Order>().Add(objOrder);
                 }
             }
             else if (obj is Dish or Drink)
             {
                 MenuItem? objMenuItem = obj is Drink ? obj as Drink : obj as Dish;
-                if (objMenuItem.NutrientsOf100grams != null)
+                if (objMenuItem?.NutrientsOf100grams != null)
                     objMenuItem.NutrientsOf100grams.MenuItemId = objMenuItem.Id;
                 AddOrUpdateNotMappedProperties(obj);
 
@@ -111,7 +113,6 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
             }
         }
 
-        //if (obj is not OrderItem && obj is not Order && obj is not MenuItem) AddOrUpdateNotMappedProperties(obj);
         AddOrUpdateNotMappedProperties(obj);
         context.SaveChanges();
     }
@@ -148,7 +149,7 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
         context.SaveChanges();
     }
 
-    public static async void AddOrUpdateNotificationGetter<TNotificationGetter>(TNotificationGetter notificationGetter)
+    private static async void AddOrUpdateNotificationGetter<TNotificationGetter>(TNotificationGetter notificationGetter)
         where TNotificationGetter : NotificationGetter
     {
         await using var context = new ApplicationDbContext();
@@ -162,7 +163,8 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
         {
             context.Set<NotificationGetter>().Add(notificationGetter);
             await context.SaveChangesAsync();
-            await ForwardToPythonServer.ForwardObject(notificationGetter, $"{HostsUrlGetter.PyServerUrl}/notificationgetter/");
+            await ForwardToPythonServer.ForwardObject(notificationGetter,
+                $"{HostsUrlGetter.PyServerUrl}/notificationgetter/");
         }
     }
 
@@ -224,6 +226,6 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
             .MakeGenericType(item.GetType())
             .GetMethod(nameof(AddOrUpdate), BindingFlags.Public | BindingFlags.Static);
 
-        genericMethod?.Invoke(null, new object[] { item });
+        genericMethod?.Invoke(null, [item]);
     }
 }
