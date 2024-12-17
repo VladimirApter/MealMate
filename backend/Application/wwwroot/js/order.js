@@ -1,30 +1,146 @@
-const addButton = document.querySelectorAll('.add-button');
-
-addButton.forEach(button => {
-    button.addEventListener('click', () => {
-        const currentCount = parseInt(button.getAttribute('data-count'), 10);
-        const newCount = currentCount + 1;
-
-        const div = createButtonDiv(button, newCount);
-
-        const itemId = button.getAttribute('data-item-id');
-        const itemName = button.closest('.cell').querySelector('.desc').textContent;
-        const itemPrice = parseFloat(button.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
-        const itemCookingTime = parseFloat(button.closest('.cell').querySelector('.cooking-time').textContent);
-
-        addToCart(itemId, itemName, itemPrice, itemCookingTime);
-
-        button.replaceWith(div);
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    } else {
+        alert("Geolocation не поддерживается вашим браузером.");
+        isUserInAllowedZone = false;
+        initializePage();
+    }
 });
 
 
-document.getElementById('scrollToBottomBtn').addEventListener('click', function() {
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
+const restaurantLatitudeElement = document.getElementById("resPositionLatitude");
+const restaurantLongitudeElement = document.getElementById("resPositionLongitude");
+restaurantLatitudeElement.style.display = 'none'
+restaurantLongitudeElement.style.display = 'none'
+let isUserInAllowedZone = false
+const restaurantLatitude = parseFloat(restaurantLatitudeElement.textContent.replace(',', '.'));
+const restaurantLongitude = parseFloat(restaurantLongitudeElement.textContent.replace(',', '.'));
+
+
+function successCallback(position) {
+    const userLatitude = position.coords.latitude;
+    const userLongitude = position.coords.longitude;
+    console.log("Ресторан:", restaurantLatitude, restaurantLongitude)
+    console.log("Пользователь:", userLatitude, userLongitude)
+
+    const distance = calculateDistance(
+        userLatitude,
+        userLongitude,
+        restaurantLatitude,
+        restaurantLongitude
+    );
+    console.log("Distance:", distance)
+
+    if (distance <= 0.2) {
+        isUserInAllowedZone = true;
+    } else {
+        isUserInAllowedZone = false;
+        alert("Вы находитесь слишком далеко от ресторана. Доступ к некоторым функциям ограничен.");
+    }
+    initializePage();
+}
+
+function errorCallback(error) {
+    console.error(error);
+    alert("Не удалось получить ваше местоположение. Доступ к некоторым функциям ограничен.");
+    isUserInAllowedZone = false;
+    initializePage();
+}
+
+function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Радиус Земли в километрах
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRadians(lat1)) *
+        Math.cos(toRadians(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // Расстояние в километрах
+    console.log("Расстояние до ресторана: " + (distance * 1000).toFixed(2) + " метров");
+
+    return distance;
+}
+
+function toRadians(degrees) {
+    return (degrees * Math.PI) / 180;
+}
+
+function initializePage() {
+    const addButtons = document.querySelectorAll('.add-button');
+    const orderButton = document.getElementById('order-button');
+    const callButton = document.getElementById('call');
+
+    if (!isUserInAllowedZone) {
+        // Блокируем кнопки и добавляем обработчик для повторного запроса геолокации
+        addButtons.forEach(button => {
+            button.addEventListener('click', requestGeolocationPermission);
+        });
+
+        if (orderButton) {
+            //orderButton.disabled = true;
+            orderButton.addEventListener('click', requestGeolocationPermission)
+            orderButton.style.display = 'none'
+            //orderButton.addEventListener('click', requestGeolocationPermission);
+        }
+
+        if (callButton) {
+            callButton.addEventListener('click', requestGeolocationPermission)
+            callButton.style.display = 'none'; // Скрываем кнопку вызова официанта
+        }
+    } else {
+        initializePage2()
+    }
+}
+
+function requestGeolocationPermission(event) {
+    event.preventDefault();
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+        alert("Для выполнения этого действия необходимо находиться в ресторане");
+    } else {
+        alert("Геолокация не поддерживается вашим браузером.");
+    }
+}
+
+function initializePage2(){
+    const addButton = document.querySelectorAll('.add-button');
+    const orderButton = document.getElementById('order-button');
+    const callButton = document.getElementById('call');
+
+    addButton.forEach(button => {
+        button.addEventListener('click', () => {
+            const currentCount = parseInt(button.getAttribute('data-count'), 10);
+            const newCount = currentCount + 1;
+
+            const div = createButtonDiv(button, newCount);
+
+            const itemId = button.getAttribute('data-item-id');
+            const itemName = button.closest('.cell').querySelector('.desc').textContent;
+            const itemPrice = parseFloat(button.closest('.cell').querySelector('.cost').textContent.replace('₽', ''));
+            const itemCookingTime = parseFloat(button.closest('.cell').querySelector('.cooking-time').textContent);
+
+            addToCart(itemId, itemName, itemPrice, itemCookingTime);
+
+            button.replaceWith(div);
+        });
     });
-});
+    
+    orderButton.addEventListener('click', placeOrder)
+    callButton.addEventListener('click', callWaiter)
+
+
+    document.getElementById('scrollToBottomBtn').addEventListener('click', function() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    });
+}
 
 function createButtonDiv(button, newCount) {
     const div = document.createElement('div');
@@ -216,6 +332,12 @@ async function placeOrder() {
     const restaurantId = parseInt(contextElement.getAttribute('data-restaurant-id'), 10);
     const clientId = parseInt(contextElement.getAttribute('data-client-id'), 10);
     const comment = document.getElementById('input').value;
+    
+    if (cartItems.count === undefined){
+        alert('Ваша корзина пуста!');
+        return;
+    }
+    
 
     const data = {
         tableId,

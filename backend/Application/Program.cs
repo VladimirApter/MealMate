@@ -135,8 +135,8 @@ app.MapControllers();
 // // Задаем географические координаты ресторана
 // var coordinates = new GeoCoordinates(
 //     restaurantId: 1,
-//     latitude: 41.902782,    // Широта Рима
-//     longitude: 12.496366    // Долгота Рима
+//     latitude: 56.83811,    // Широта Рима
+//     longitude: 60.6579   // Долгота Рима
 // );
 //
 // // Создаем объект NotificationGetter для уведомлений
