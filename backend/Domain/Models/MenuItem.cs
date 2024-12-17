@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Domain.DataBaseAccess;
@@ -9,17 +10,17 @@ namespace Domain.Models;
 public class MenuItem : ITakeRelatedData, IDeleteRelatedData
 {
     public long? Id { get; set; }
-    [JsonPropertyName("category_id")] public long CategoryId { get; }
-    [JsonPropertyName("cooking_time_minutes")] public double CookingTimeMinutes { get; }
-    public double Price { get; }
-    public string Name { get; }
-    [JsonPropertyName("image_path")] public string? ImagePath { get; }
-    private string Description { get; }
-    [JsonPropertyName("nutrients_of_100_grams")] [NotMapped] public Nutrients? NutrientsOf100Grams { get; private set; }
+    [JsonPropertyName("category_id")] public long CategoryId { get; set; }
+    [JsonPropertyName("cooking_time_minutes")] public double CookingTimeMinutes { get; set; }
+    public double Price { get; set; }
+    public string Name { get; set; }
+    [JsonPropertyName("image_path")] public string? ImagePath { get; set; }
+    public string Description { get; set; }
+    [JsonPropertyName("nutrients_of_100_grams")] [NotMapped] public Nutrients? NutrientsOf100grams { get; set; }
     
     public MenuItem(){}
     public MenuItem(long? id, long categoryId, int cookingTimeMinutes, double price, string name, string description,
-        string? imagePath, Nutrients? nutrientsOf100Grams)
+        string? imagePath, Nutrients? nutrientsOf100grams)
     {
         Id = id;
         CategoryId = categoryId;
@@ -28,12 +29,12 @@ public class MenuItem : ITakeRelatedData, IDeleteRelatedData
         Name = name;
         ImagePath = imagePath;
         Description = description;
-        NutrientsOf100Grams = nutrientsOf100Grams;
+        NutrientsOf100grams = nutrientsOf100grams;
     }
 
     public async Task TakeRelatedData(ApplicationDbContext context)
     {
-        NutrientsOf100Grams = await context.Nutrients.FirstOrDefaultAsync(n => n.MenuItemId == Id);
+        NutrientsOf100grams = await context.Nutrients.FirstOrDefaultAsync(n => n.MenuItemId == Id);
     }
 
     public void DeleteRelatedData(ApplicationDbContext context)
@@ -52,7 +53,7 @@ public class MenuItem : ITakeRelatedData, IDeleteRelatedData
             image = ImagePath,
             price = Price,
             desc = Description,
-            nutrients = NutrientsOf100Grams ?? null,
+            nutrients = NutrientsOf100grams ?? null,
             cooking_time = CookingTimeMinutes
         };
         

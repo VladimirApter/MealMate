@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Domain.DataBaseAccess;
+using Domain.Logic;
 using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
@@ -8,8 +9,8 @@ namespace Domain.Models;
 public class Restaurant : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
     public long? Id { get; set; }
-    [JsonPropertyName("owner_id")] public long OwnerId { get; init; }
-    public string Name { get; init; }
+    [JsonPropertyName("owner_id")] public long OwnerId { get; set; }
+    public string Name { get; set; }
     [NotMapped] public GeoCoordinates? Coordinates { get; set; }
     [JsonPropertyName("notification_getter")] [NotMapped] public NotificationGetter? NotificationGetter { get; set; }
     [NotMapped] public Menu? Menu { get; set; }
@@ -68,8 +69,10 @@ public class Restaurant : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
         }
 
         var coordinates = context.GeoCoordinates.FirstOrDefault(n => n.RestaurantId == Id);
-        if (coordinates == null) return;
-        context.GeoCoordinates.Remove(coordinates);
-        context.SaveChanges();
+        if (coordinates != null)
+        {
+            context.GeoCoordinates.Remove(coordinates);
+            context.SaveChanges();
+        }
     }
 }

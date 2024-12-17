@@ -4,7 +4,7 @@ namespace Domain.Models;
 
 public class Drink : MenuItem, ITableDataBase
 {
-    public double Volume { get; init; }
+    public double Volume { get; set; }
     
     public Drink(){}
     public Drink(long? id,

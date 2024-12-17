@@ -1,11 +1,13 @@
 using System.Collections;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Reflection;
+using System.ComponentModel.DataAnnotations.Schema;
+using Domain.DataBaseAccess;
 using Domain.Logic;
 using Domain.Models;
 using host;
+using Microsoft.Extensions.Configuration;
 
-namespace Domain.DataBaseAccess;
 
 public class DataBaseAccess<T> where T : class, ITableDataBase
 {
@@ -50,27 +52,24 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
                 object? objNew = null;
                 if (obj is OrderItem objOrderItem)
                 {
-                    objOrderItem.MenuItemId = objOrderItem.MenuItem?.Id;
+                    objOrderItem.MenuItemId = objOrderItem.MenuItem.Id;
                     objNew = objOrderItem;
                 }
                 else if (obj is Order objOrder)
                 {
-                    objOrder.ClientId = objOrder.Client?.Id;
+                    objOrder.ClientId = objOrder.Client.Id;
                     objNew = objOrder;
                 }
 
-                if (objNew != null) context.Entry(existingObj).CurrentValues.SetValues(objNew);
+                context.Entry(existingObj).CurrentValues.SetValues(objNew);
             }
             else if (existingObj is Dish or Drink)
             {
                 MenuItem? objMenuItem = existingObj is Drink ? obj as Drink : obj as Dish;
-                if (objMenuItem != null)
-                {
-                    if (objMenuItem.NutrientsOf100Grams != null) objMenuItem.NutrientsOf100Grams.MenuItemId = objMenuItem.Id;
-                    object objNew = objMenuItem;
-                    AddOrUpdateNotMappedProperties(obj);
-                    context.Entry(existingObj).CurrentValues.SetValues(objNew);
-                }
+                objMenuItem.NutrientsOf100grams.MenuItemId = objMenuItem.Id;
+                object objNew = objMenuItem;
+                AddOrUpdateNotMappedProperties(obj);
+                context.Entry(existingObj).CurrentValues.SetValues(objNew);
             }
             else
             {
@@ -84,21 +83,21 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
                 AddOrUpdateNotMappedProperties(obj);
                 if (obj is OrderItem objOrderItem)
                 {
-                    objOrderItem.MenuItemId = objOrderItem.MenuItem?.Id;
+                    objOrderItem.MenuItemId = objOrderItem.MenuItem.Id;
                     context.Set<OrderItem>().Add(objOrderItem);
                 }
 
                 else if (obj is Order objOrder)
                 {
-                    objOrder.ClientId = objOrder.Client?.Id;
+                    objOrder.ClientId = objOrder.Client.Id;
                     context.Set<Order>().Add(objOrder);
                 }
             }
             else if (obj is Dish or Drink)
             {
                 MenuItem? objMenuItem = obj is Drink ? obj as Drink : obj as Dish;
-                if (objMenuItem?.NutrientsOf100Grams != null)
-                    objMenuItem.NutrientsOf100Grams.MenuItemId = objMenuItem.Id;
+                if (objMenuItem.NutrientsOf100grams != null)
+                    objMenuItem.NutrientsOf100grams.MenuItemId = objMenuItem.Id;
                 AddOrUpdateNotMappedProperties(obj);
 
                 if (objMenuItem is Drink objDrink)
@@ -111,7 +110,8 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
                 context.Set<T>().Add(obj);
             }
         }
-        
+
+        //if (obj is not OrderItem && obj is not Order && obj is not MenuItem) AddOrUpdateNotMappedProperties(obj);
         AddOrUpdateNotMappedProperties(obj);
         context.SaveChanges();
     }
@@ -139,7 +139,7 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
             context.Entry(existingTable).CurrentValues.SetValues(table);
             if (!isNew)
             {
-                context.Entry(existingTable).Property(nameof(Table.QrCodeImagePath)).IsModified = false;
+                context.Entry(existingTable).Property(nameof(Table.QRCodeImagePath)).IsModified = false;
                 context.Entry(existingTable).Property(nameof(Table.Token)).IsModified = false;
             }
         }
@@ -148,7 +148,7 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
         context.SaveChanges();
     }
 
-    private static async void AddOrUpdateNotificationGetter<TNotificationGetter>(TNotificationGetter notificationGetter)
+    public static async void AddOrUpdateNotificationGetter<TNotificationGetter>(TNotificationGetter notificationGetter)
         where TNotificationGetter : NotificationGetter
     {
         await using var context = new ApplicationDbContext();
@@ -224,6 +224,6 @@ public class DataBaseAccess<T> where T : class, ITableDataBase
             .MakeGenericType(item.GetType())
             .GetMethod(nameof(AddOrUpdate), BindingFlags.Public | BindingFlags.Static);
 
-        genericMethod?.Invoke(null, [item]);
+        genericMethod?.Invoke(null, new object[] { item });
     }
 }
