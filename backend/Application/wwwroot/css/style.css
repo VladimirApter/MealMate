@@ -77,6 +77,10 @@ body {
     opacity: 80%; 
 }
 
+.popup-image {
+    height: 30%; 
+}
+
 
 .content {
     position: absolute;
@@ -238,23 +242,10 @@ body {
     margin: 24px;
 }
 
-#popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 610px;
-    width: 90%;
-    height: 90%;
-    background-color: white;
-    padding: 20px;
-    border-radius: 30px;
-}
-
 .close-button {
     position: absolute;
-    top: 10px;
+    margin-top: 10px;
+    top: 30px;
     right: 20px;
     cursor: pointer;
     font-size: 50px;
@@ -310,6 +301,8 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+
 
 .arrow-down {
     width: 0;
@@ -395,7 +388,7 @@ body {
     max-width: 380px;
     height: 63px;
     border-radius: 20px;
-    background-color: #747474;
+    background-color: #376DD9;
 }
 
 .callText {
@@ -419,4 +412,91 @@ body {
     user-select: none;
     height: 100%; 
     object-fit: cover; 
+}
+
+#overlay {
+    display: none; /* Изначально скрыт */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+    z-index: 999;  /* Уровень слоя выше основного контента */
+}
+
+.line {
+    background-color: black;
+    height: 5px;
+    width: 200px;
+    margin-left: 24px;
+    border-radius: 2px;
+}
+
+.bg {
+    height: 40px;
+    background-color: #fff;
+    padding-top: 20px;
+    padding-left: 10px;
+    border-radius: 20px;
+}
+
+.name {
+    margin-bottom: 12px;
+}
+
+table {
+    user-select: none;
+    font-family: Yandex Sans Display;
+    width: 50%;
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 425px) {
+    table {
+        font-size: 14px;
+    }
+}
+
+th, td {
+    border: 1px solid #a9a9a9;
+    text-align: center;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2; 
+}
+
+.popup-button {
+    margin-bottom: 20px;
+}
+
+.popup-content {
+    top: 30%;
+    max-height: 350px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.status-in-assembly {
+    color: orange;
+}
+
+.status-cooking {
+    color: blue;
+}
+
+.status-done {
+    color: green;
+}
+
+.status-cancelled {
+    color: red;
+}
+
+.status-default {
+    color: black;
 }

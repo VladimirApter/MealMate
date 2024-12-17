@@ -3,19 +3,19 @@
 @model Domain.Models.Order
 
 @{
-
-    string GetStatus() 
+    (string Text, string Class) GetStatus() 
     {
         return Model.Status.ToString() switch
         {
-            "InAssembly" => "Ожидает подтверждения",
-            "Cooking" => "Готовится",
-            "Done" => "Выполнен",
-            "Cancelled" => "Отменён",
-            _ => "-"
+            "InAssembly" => ("Ожидает подтверждения", "status-in-assembly"),
+            "Cooking" => ("Готовится", "status-cooking"),
+            "Done" => ("Выполнен", "status-done"),
+            "Cancelled" => ("Отменён", "status-cancelled"),
+            _ => ("-", "status-default")
         };
     }
 }
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -31,9 +31,9 @@
         <div class="category">Заказ #@Model.Id</div>
         <div class="information"><b>Дата заказа:</b> @Model.DateTime</div>
         <div class="information"><b>Примерное время ожидания:</b> @Model.CookingTimeMinutes минут</div>
-        <div class="information"><b>Статус:</b> @GetStatus()</div>
+        <div class="information"><b>Статус:</b> <span class="@GetStatus().Class">@GetStatus().Text</span></div>
         <div class="table-row table-row-bold">
-            <div><div class="a"><p>Название</p></div><div class="b"><p>Кол-во</p></div><div class="c"><p>Цена</p></div></div>
+            <div class=top><div class="a"><p>Название</p></div><div class="b"><p>Кол-во</p></div><div class="c"><p>Цена</p></div></div>
         </div>
         @foreach (var item in @Model.OrderItems)
         {
@@ -41,8 +41,8 @@
                 <div><div class="a"><p>@item.MenuItem.Name</p></div><div class="b"><p>@item.Count</p></div><div class="c"><p>@item.Price₽</p></div></div>
             </div>
         } 
-        <div class="table-row table-row-bold">
-            <div><div class="a"><p>Итого:</p></div><div class="d"><p></p></div><div class="c"><p>@Model.Price₽</p></div></div>
+        <div class="table-row table-row-bold bottom-row">
+            <div class="bottom"><div class="a"><p>Итого:</p></div><div class="d"><p></p></div><div class="c"><p>@Model.Price₽</p></div></div>
         </div>
         <div class="information"><b>Комментарий:</b> @Model.Comment</div>
     </div>

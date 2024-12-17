@@ -16,12 +16,16 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 610px;
-            width: 90%;
+            max-width: 400px;
+            width: 80%;
             height: 90%;
             background-color: white;
             padding: 20px;
             border-radius: 30px;
+            z-index: 1000;
+        }
+        .content {
+            overflow-y: auto;
         }
         .close-button {
             position: absolute;
@@ -30,14 +34,13 @@
             cursor: pointer;
             font-size: 50px;
             color: #4c4c4c;
+            z-index: 1001;
         }
     </style>
 </head>
 <body>
 
-<script>
-    
-</script>
+<div id="overlay" onclick="hidePopup()"></div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -57,7 +60,8 @@
 </script>
 <div id="order-context" data-table-id="@Model.Table.Id" data-restaurant-id="@Model.Restaurant.Id" data-client-id="1"></div>
 <div class="container">
-    <p class="category">@Model.Restaurant.Name</p>
+    <p class="category name">@Model.Restaurant.Name</p>
+    <p class="line"></p>
     @foreach (var category in Model.Restaurant.Menu.Categories)
     {
         <div class="block">
@@ -124,20 +128,64 @@
 </div>
 
 <div id="popup">
-    <img src="#" alt="image" class="image" id="popup-image">
-    <span class="close-button" onclick="hidePopup()">×</span>
-    <div class="content">
+    <img src="#" alt="image" class="image popup-image" id="popup-image">
+    <img src="/img/x.svg" alt="x" class="close-button" onclick="hidePopup()">
+    <div class="content popup-content">
         <div id="popup-cost" class="cost"></div>
-        <div id="popup-desc" class="desc"></div>
+        <div id="popup-desc" class="desc bold"></div>
         <div id="popup-full-desc" class="desc"></div>
-        <div id="popup-weight" class="desc"></div>
+        <table>
+            <tr>
+                <th id="proteins">-</th>
+                <th id="fats">-</th>
+                <th id="carbohydrates">-</th>
+                <th id="kkal">-</th>
+            </tr>
+            <tr>
+                <td>белки</td>
+                <td>жиры</td>
+                <td>углеводы</td>
+                <td>ккал</td>
+            </tr>
+        </table>
         <div id="popup-ctm" class="desc"></div>
     </div>
+    <button class="add-button popup-button" onclick="handlePopupAddButtonClick()">
+        <span class="plus">+</span>
+        <span class="text">Добавить</span>
+    </button>
 </div>
 
-<button id="scrollToBottomBtn" title="Перейти вниз">
-    <span class="arrow-down"></span>
+<button id="scrollToBottomBtn" title="Корзина">
+    <img src="/img/basket.svg" alt="to-basket">
 </button>
+<script>
+        // Получаем элемент кнопки
+        const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+
+        // Функция, которая проверяет, находимся ли мы внизу страницы
+        function checkScrollPosition() {
+            // Высота видимой части страницы
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            // Общая высота страницы
+            const scrollHeight = document.documentElement.scrollHeight;
+            // Высота окна просмотра
+            const clientHeight = document.documentElement.clientHeight;
+
+            // Если мы внизу страницы
+            if (scrollTop + clientHeight >= scrollHeight - 200) {
+                scrollToBottomBtn.style.display = 'none'; // Скрываем кнопку
+            } else {
+                scrollToBottomBtn.style.display = 'block'; // Показываем кнопку
+            }
+        }
+
+        // Добавляем обработчик события скролла
+        window.addEventListener('scroll', checkScrollPosition);
+
+        // Вызываем функцию при загрузке страницы, чтобы установить начальное состояние
+        checkScrollPosition();
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 

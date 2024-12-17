@@ -1,3 +1,5 @@
+let currentAddButton = null;
+
 document.addEventListener('DOMContentLoaded', () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
@@ -32,7 +34,7 @@ function successCallback(position) {
     );
     console.log("Distance:", distance)
 
-    if (distance <= 0.2) {
+    if (distance <= 0.5) {
         isUserInAllowedZone = true;
     } else {
         isUserInAllowedZone = false;
@@ -201,7 +203,6 @@ function createOriginalButton(button) {
         <span class="text">Добавить</span>
     `;
 
-    // Привязываем обработчик события 'click' к новой кнопке
     originalButton.addEventListener('click', () => {
         const currentCount = parseInt(originalButton.getAttribute('data-count'), 10) || 0;
         const newCount = currentCount + 1;
@@ -221,27 +222,28 @@ function createOriginalButton(button) {
     return originalButton;
 }
 
-
-
 function updateButtonCount(button, newCount) {
     button.setAttribute('data-count', newCount);
     button.querySelector('span:nth-child(2)').textContent = newCount;
 }
 
 function handleCellClick(event, cellElement) {
+
     if (!event.target.closest('.add-button')) {
         const cellData = JSON.parse(cellElement.getAttribute('data-cell'));
+        currentAddButton = cellElement.querySelector('.add-button');
         showPopup(cellData);
     }
 }
 
 function showPopup(cellData) {
+    document.getElementById('overlay').style.display = 'block';
+    document.body.style.overflow = 'hidden';
     const popup = document.getElementById('popup');
     const popupImage = document.getElementById('popup-image');
     const popupName = document.getElementById('popup-desc');
     const popupCost = document.getElementById('popup-cost');
     const popupDesc = document.getElementById('popup-full-desc');
-    const popupWeight = document.getElementById('popup-weight');
     const popupCtm = document.getElementById('popup-ctm');
 
     console.log(cellData)
@@ -254,12 +256,35 @@ function showPopup(cellData) {
     popupCost.textContent = parseFloat(cellData.price).toFixed(2) + "₽";
     popupName.textContent = cellData.name;
     popupDesc.textContent = cellData.desc;
-    if (cellData.nutrients.Proteins !== null && cellData.nutrients.Fats !== null && cellData.nutrients.Carbohydrates !== null) {
-        popupWeight.textContent = "Белки " + cellData.nutrients.Proteins + "г, " + "Жиры " + cellData.nutrients.Fats + "г, " + "Углеводы " + cellData.nutrients.Carbohydrates + "г";
+    
+    proteins = document.getElementById('proteins');
+    if (cellData.nutrients.Proteins !== null) {
+        proteins.textContent = cellData.nutrients.Proteins + "г";
+    } else {
+        proteins.textContent = "-";
     }
-    else{
-        popupWeight.textContent= " ";
+
+    fats = document.getElementById('fats');
+    if (cellData.nutrients.Fats !== null) {
+        fats.textContent = cellData.nutrients.Fats + "г";
+    } else {
+        fats.textContent = "-";
     }
+
+    carbohydrates = document.getElementById('carbohydrates');
+    if (cellData.nutrients.Carbohydrates !== null) {
+        carbohydrates.textContent = cellData.nutrients.Carbohydrates + "г";
+    } else{
+        carbohydrates.textContent = "-";
+    }
+
+    kkal = document.getElementById('kkal');
+    if (cellData.nutrients.Kilocalories !== null) {
+        kkal.textContent = cellData.nutrients.Kilocalories + "г";
+    } else {
+        kkal.textContent = "-";
+    }
+
     popupCtm.textContent = "Время приготовления: " + cellData.cooking_time + " минут";
     popup.style.display = 'block';
 }
@@ -267,6 +292,8 @@ function showPopup(cellData) {
 function hidePopup() {
     const popup = document.getElementById('popup');
     popup.style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+    document.body.style.overflow = '';
 }
 
 let cartItems = {};
@@ -302,9 +329,9 @@ function updateCart() {
 
     Object.values(cartItems).forEach(item => {
         const itemElement = document.createElement('div');
-        itemElement.className = 'desc';
+        itemElement.className = 'desc bg';
         const totalItemPrice = (item.price * item.count).toFixed(2); // Округляем до двух знаков после запятой
-        itemElement.innerHTML = `${item.name} ${item.count}шт. - ${totalItemPrice}₽`;
+        itemElement.innerHTML = item.name + " " + item.count + "шт." + " " + totalItemPrice + "₽";
         cartElement.appendChild(itemElement);
         totalPrice += parseFloat(totalItemPrice);
         if(item.itemCookingTime > nowMaxTime){
@@ -333,11 +360,10 @@ async function placeOrder() {
     const clientId = parseInt(contextElement.getAttribute('data-client-id'), 10);
     const comment = document.getElementById('input').value;
     
-    if (cartItems.count === undefined){
+    if (Object.keys(cartItems).length === 0){
         alert('Ваша корзина пуста!');
         return;
-    }
-    
+    }    
 
     const data = {
         tableId,
@@ -452,12 +478,12 @@ async function callWaiter() {
             const originalText = textElement.textContent;
             const callBlock = document.getElementById('call');
             const originalOnClick = callBlock.getAttribute('onclick');
-            callBlock.style.backgroundColor = "#0DB33C";
+            callBlock.style.backgroundColor = "#EF8A38";
             textElement.textContent = 'Официант уже идет';
             callBlock.setAttribute('onclick', '');
             setTimeout(() => {
                 textElement.textContent = originalText;
-                callBlock.style.backgroundColor = "#747474";
+                callBlock.style.backgroundColor = "#376DD9";
                 callBlock.setAttribute('onclick', originalOnClick);
             }, 30000);
         } else {
@@ -466,6 +492,14 @@ async function callWaiter() {
     } catch (error) {
         console.error('Ошибка:', error);
         alert('Ошибка при вызове официанта.');
+    }
+}
+
+function handlePopupAddButtonClick() {
+    hidePopup();
+    if (currentAddButton) {
+        console.log(currentAddButton)
+        currentAddButton.click();
     }
 }
 
