@@ -40,8 +40,11 @@ def validate_and_post_restaurant_name(message: types.Message, restaurant: Restau
         api_client = ApiClient(Restaurant)
         restaurants = [api_client.get(rest_id) for rest_id in restaurant_ids]
 
-        if name in [rest.name for rest in restaurants]:
-            bot.send_message(message.chat.id, 'Ресторан с таким названием у Вас уже подключен, введите другое')
+        if name == restaurant.name:
+            bot.send_message(message.chat.id, 'Название ресторана не изменилось')
+            return
+        elif name in [rest.name for rest in restaurants]:
+            bot.send_message(message.chat.id, 'Ресторан с таким названием у вас уже подключен, введите другое')
             bot.register_next_step_handler(message, validate_and_post_restaurant_name, restaurant, func_to_return_after_post, is_registration)
             return
     if name == '':
@@ -149,8 +152,7 @@ def validate_and_post_notification_getter(message: types.Message, restaurant: Re
     api_client.post(restaurant)
 
     bot.send_message(message.chat.id, f'Получатель уведомлений сохранен\n'
-                                      f'получатель уведомлений должен запустить бота @MealMateNotification_bot,'
-                                      f' чтобы мы могли присылать уведомления о заказах',
+                                      f'Уведомления будет присылать @MealMateNotification_bot',
                                       reply_markup=types.ReplyKeyboardRemove())
 
     if func_to_return_after_post is not None:
@@ -245,7 +247,6 @@ def validate_and_post_tables(message: types.Message, restaurant: Restaurant, fun
             table_id = api_client.post(table)  # generate qr while post
             table = api_client.get(table_id)  # get table with qr
             restaurant.tables.append(table)
-
 
             qr_code_image_path = os.path.join(qr_images_dir, table.qr_code_image_path)
             with open(qr_code_image_path, 'rb') as qr_image:

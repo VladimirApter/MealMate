@@ -12,20 +12,32 @@ from DataValidationAndPost import get_yes_no_markup
 
 def register_commands():
     @bot.message_handler(commands=['help'])
-    def help_to_use(message: types.Message):
-        bot.send_message(message.chat.id, "Данный бот позволяет Вам быстро подключить свой ресторан к нашей системе.\n"
-                                          "При помощи qr кода клиент будет перенаправлен на сайт вашего ресторана с меню.\n"
-                                          "После совершения заказа будет отправляться уведомление в telegram бота с деталями заказа.\n"
-                                          "Пользователя, которому будут отправляться уведоления, Вы выбираете сами.\n"
-                                          "Краткая справка о поддерживаемых командах\n"
-                                          "/start - запуск бота.\n"
-                                          "/register - регистрация, сохраним ваши данные.\n"
-                                          "/new_rest -добавить новый ресторан.\n"
-                                          "/qr - выслать qr коды всех столов.\n"
-                                          "/update - обновить данные о ресторане.\n"
-                                          "/delete - удалить ресторан.\n"
-                                          "Команды работают только для зарегистрированных пользователей.\n"
-                                          "Бот автоматически сохраняет изменения в базе данных.\n")
+    def help(message: types.Message):
+        bot.send_message(message.chat.id, "С помощью данного бота вы можете подключить свое заведение к сервису MealMate.\n\n"
+                                          "Для начала работы вам нужно зарегестрироваться, используйте /register\n"
+                                          "Затем следуйте инструкциям бота, чтобы подключить ресторан к сервису\n"
+                                          "Для получения информации о работе сервиса, используйте /info\n\n"
+                                          "Команды которые могут помочь:\n"
+                                          "/start - запуск бота\n"
+                                          "/info - описание работы сервиса\n"
+                                          "/register - регистрация\n"
+                                          "/new_rest - добавить новый ресторан\n"
+                                          "/update - обновить данные о ресторане\n"
+                                          "/qr - выслать qr коды всех столов\n"
+                                          "/delete - удалить ресторан\n")
+
+    @bot.message_handler(commands=['info'])
+    def info(message: types.Message):
+        bot.send_message(message.chat.id,
+                         "MealMate - это сервис, который сделает процесс заказа "
+                         "удобнее для выших посетителей.\n "
+                         "Вы регистрируете заведение в боте, вносите данные о "
+                         "меню. Бот создает QR-коды для столиков и "
+                         "отправляет их вам. Посетители сканируют QR-код и "
+                         "попадают на сайт с меню, выбирают"
+                         "блюда и делают заказ. Когда посетитель сделает "
+                         "заказ, ваш сотрудник получит сообщение от бота и передаст "
+                         "заказ на кухню.")
 
     @bot.message_handler(commands=['register'])
     def register_start(message: types.Message):
@@ -37,7 +49,7 @@ def register_commands():
             owner = Owner(id=owner_id, username=message.from_user.username)
             api_client.post(owner)
 
-        bot.send_message(message.chat.id, 'Вы зарегистрированы, ваши данные сохранены! Можете добавить свой ресторан с помощью команды /new_rest')
+        bot.send_message(message.chat.id, 'Вы зарегистрированы, можете добавить свой ресторан с помощью /new_rest')
 
     @bot.message_handler(commands=['new_rest'])
     def restaurant_register_start(message: types.Message):
@@ -105,7 +117,7 @@ def get_owner_and_restaurants(message: types.Message):
     owner = api_client.get(message.chat.id)
 
     if not owner:
-        bot.send_message(message.chat.id, "Сначала нужно зарегистрироваться при помощи /new_rest")
+        bot.send_message(message.chat.id, "Сначала нужно зарегистрироваться при помощи /register")
         return None, None
     if not owner.restaurant_ids:
         bot.send_message(message.chat.id, "У вас пока нет ресторанов, создайте первый при помощи /new_rest")

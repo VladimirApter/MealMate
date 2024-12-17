@@ -25,7 +25,7 @@ def create_keyboard(item):
         cancel_button = InlineKeyboardButton("Отменить", callback_data=f"{item.id}:cancel")
         keyboard.add(accept_button, cancel_button)
     if isinstance(item, WaiterCall):
-        accept_button = InlineKeyboardButton("Принять", callback_data=f"{item.id}:accept_waiter")
+        accept_button = InlineKeyboardButton("Официант вышел", callback_data=f"{item.id}:accept_waiter")
         keyboard.add(accept_button)
 
     return keyboard
@@ -38,33 +38,24 @@ def send_welcome(message):
 
 @bot.message_handler(commands=['help'])
 def send_help(message):
-    bot.reply_to(message, "Когда создается новый заказ, бот автоматически отправляет вам уведомление.\n"
-                          "Уведомление будет содержать информацию о заказе\n"
-                          "После получения уведомления о заказе, вам нужно подтвердить, что заказ в обработке.\n"
-                          "Для этого нажмите кнопку 'Принять'.\n"
-                          "После выполнения заказа подтвердите его нажатием кнопки 'Выполнено'.\n"
-                          "Вы также можете отменить заказ, нажав кнопку 'Отменить'.\n"
-                          "После нажатия подтвердите действие и заказ будет отменен")
+    bot.reply_to(message, "Когда посетитель сделает заказ, "
+                          "вам придет уведомление с его деталями."
+                          "Вам нужно принять заказ и передать его на кухню.\n"
+                          "После выполнения заказа подтвердите его нажатием кнопки Выполнено.\n"
+                          "Заказ можно отменить, например если в заказе есть "
+                          "блюда из стоп листа. Посетитель увидит что заказ "
+                          "отменен, в этом случаае следует отправить официанта "
+                          "к этому столику")
 
 
 @bot.message_handler(func=lambda message: message.content_type != 'text')
 def handle_non_text_messages(message):
-    bot.reply_to(message, "Поддерживаются только команды /start и /help.")
+    bot.reply_to(message, "Используйте /help если нужна помощь")
 
 
-@bot.message_handler(content_types=['text'])
-def handle_text(message):
-    bot.reply_to(message, "Эта команда или сообщение не поддерживаются. Используйте /start или /help.")
-
-
-@bot.message_handler(content_types=['photo'])
-def handle_photo(message):
-    bot.reply_to(message, "Фото не поддерживаются. Используйте /start или /help.")
-
-
-@bot.message_handler(content_types=['sticker', 'video', 'document', 'audio', 'voice', 'animation'])
+@bot.message_handler(content_types=['sticker', 'video', 'document', 'audio', 'voice', 'animation', 'photo', 'text'])
 def handle_other_content(message):
-    bot.reply_to(message, "Этот тип сообщений не поддерживается. Используйте /start или /help.")
+    bot.reply_to(message, "Этот тип сообщений не поддерживается. Используйте /help если нужна помощь")
 
 
 @bot.callback_query_handler(func=lambda call: call.data.endswith("cancel"))
