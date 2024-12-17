@@ -5,16 +5,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
-public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
+public class Order : ITableDataBase, ITakeRelatedData
 {
     private double price;
     public long? Id { get; set; }
     [JsonPropertyName("client_id")] public long? ClientId { get; set; }
-    [JsonPropertyName("table_id")] public long TableId { get; set; }
-    [JsonPropertyName("cooking_time_minutes")] public double CookingTimeMinutes { get; set; }
+    [JsonPropertyName("table_id")] public long TableId { get; init; }
+    [JsonPropertyName("cooking_time_minutes")] public double CookingTimeMinutes { get; init; }
     [NotMapped] public double Price { get => Math.Round(price, 2); set => price = value; }
-    public string? Comment { get; set; }
-    [JsonPropertyName("date_time")] public DateTime DateTime { get; set; }
+    public string? Comment { get; init; }
+    [JsonPropertyName("date_time")] public DateTime DateTime { get; init; }
     public OrderStatus Status { get; set; }
     [NotMapped] public Client? Client { get; set; }
     [JsonPropertyName("order_items")] [NotMapped] public List<OrderItem> OrderItems { get; set; }
@@ -28,7 +28,11 @@ public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
         DateTime = dateTime;
         Status = OrderStatus.InAssembly;
         Client = client;
-        CookingTimeMinutes = orderItems.Max(item => item.MenuItem.CookingTimeMinutes);
+        CookingTimeMinutes = orderItems.Max(item =>
+        {
+            if (item.MenuItem != null) return item.MenuItem.CookingTimeMinutes;
+            return -1;
+        });
         OrderItems = orderItems;
     }
 
@@ -44,23 +48,6 @@ public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
             await orderItem.TakeRelatedData(context);
             Price += orderItem.Price;
         }
-    }
-
-    public void DeleteRelatedData(ApplicationDbContext context)
-    {
-        // var client = context.Clients.FirstOrDefault(c => c.Id == ClientId);
-        // if (client != null)
-        // {
-        //     context.Clients.Remove(client);
-        //     context.SaveChanges();
-        // }
-        // var orderItems = context.OrderItems.Where(oi => oi.OrderId == Id);
-        // foreach (var orderItem in orderItems)
-        // {
-        //     context.OrderItems.Remove(orderItem);
-        //     context.SaveChanges();
-        //     orderItem.DeleteRelatedData(context);
-        // }
     }
 }
 

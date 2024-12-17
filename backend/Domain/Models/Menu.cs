@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Domain.DataBaseAccess;
@@ -9,7 +8,7 @@ namespace Domain.Models;
 public class Menu : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
     public long? Id { get; set; }
-    [JsonPropertyName("restaurant_id")] public long RestaurantId { get; set; }
+    [JsonPropertyName("restaurant_id")] public long RestaurantId { get; init; }
     [JsonPropertyName("categories")] [NotMapped] public List<Category>? Categories { get; set; }
 
     public Menu(){}

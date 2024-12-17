@@ -5,7 +5,7 @@ namespace Domain.Models;
 
 public class Dish : MenuItem, ITableDataBase
 {
-    public double Weight { get; set; }
+    public double Weight { get; init; }
     
     public Dish(){}
     public Dish(long? id,

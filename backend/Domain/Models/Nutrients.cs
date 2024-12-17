@@ -7,10 +7,10 @@ public class Nutrients : ITableDataBase
 {
     public long? Id { get; set; }
     [JsonPropertyName("menu_item_id")] public long? MenuItemId { get; set; }
-    public int? Kilocalories { get; set; }
-    public int? Proteins { get; set; }
-    public int? Fats { get; set; }
-    public int? Carbohydrates { get; set; }
+    public int? Kilocalories { get; init; }
+    public int? Proteins { get; init; }
+    public int? Fats { get; init; }
+    public int? Carbohydrates { get; init; }
 
     public Nutrients(){}
     public Nutrients(long? id, int? kilocalories, int? proteins, int? fats, int? carbohydrates)

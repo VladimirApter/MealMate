@@ -8,10 +8,10 @@ namespace Domain.Models;
 public class WaiterCall: ITableDataBase, ITakeRelatedData
 {
     public long? Id { get; set; }
-    [JsonPropertyName("client_id")] public long? ClientId { get; set; }
-    [JsonPropertyName("table_id")] public long TableId { get; set; }
-    [JsonPropertyName("date_time")] public DateTime DateTime { get; set; }
-    public WaiterCallStatus Status { get; set; }
+    [JsonPropertyName("client_id")] public long? ClientId { get; init; }
+    [JsonPropertyName("table_id")] public long TableId { get; init; }
+    [JsonPropertyName("date_time")] public DateTime DateTime { get; init; }
+    public WaiterCallStatus Status { get; init; }
     [NotMapped] public Client? Client { get; set; }
 
     public enum WaiterCallStatus

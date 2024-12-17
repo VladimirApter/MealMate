@@ -8,8 +8,8 @@ namespace Domain.Models;
 public class Category : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
     public long? Id { get; set; }
-    [JsonPropertyName("menu_id")] public long MenuId { get; set; }
-    public string Name { get; set; }
+    [JsonPropertyName("menu_id")] public long MenuId { get; init; }
+    public string Name { get; init; }
     [JsonPropertyName("menu_items")] [NotMapped] public List<MenuItem>? MenuItems { get; set; }
     
     public Category() {}
