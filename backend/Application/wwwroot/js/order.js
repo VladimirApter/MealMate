@@ -353,6 +353,12 @@ async function generateOrderId(data) {
     return orderId;
 }
 
+function getLocalISOTime() {
+    let tzoffset = (new Date()).getTimezoneOffset() * 60000;
+    let localISOTime = (new Date(Date.now() - tzoffset)).toISOString();
+    return localISOTime;
+}
+
 async function placeOrder() {
     const contextElement = document.getElementById('order-context');
     const tableId = parseInt(contextElement.getAttribute('data-table-id'), 10);
@@ -371,7 +377,7 @@ async function placeOrder() {
         clientId,
         cartItems: Object.entries(cartItems),
         comment: comment || "",
-        timestamp: new Date().toISOString(),
+        timestamp: getLocalISOTime(),
     };
 
     console.log("Input for hash:", data);
@@ -400,7 +406,7 @@ async function placeOrder() {
         "table_id": tableId,
         "cooking_time_minutes": cartCookingTime,
         "Comment": comment || "",
-        "date_time": new Date().toISOString(),
+        "date_time": getLocalISOTime(),
         "Status": 0,
         "Client": client,
         "order_items": orderItems,
@@ -459,7 +465,7 @@ async function callWaiter() {
     const waiterCall = {
         "client_id": clientId,
         "table_id": tableId,
-        "date_time": new Date().toISOString(),
+        "date_time": getLocalISOTime(),
         "status": 0,
         "client": client
     };
