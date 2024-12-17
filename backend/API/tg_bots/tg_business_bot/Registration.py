@@ -17,7 +17,7 @@ def register_restaurant_address(message: types.Message, restaurant: Restaurant):
     api_client = ApiClient(Restaurant)
     restaurant.id = api_client.post(restaurant)
 
-    bot.send_message(message.chat.id, 'Теперь введите адрес заведения (в свободной форме)')
+    bot.send_message(message.chat.id, 'Теперь введите адрес заведения (с указанием города)')
     bot.register_next_step_handler(message, validate_and_post_address, restaurant, register_notification_getter, True)
 
 

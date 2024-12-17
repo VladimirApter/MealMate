@@ -11,8 +11,10 @@ register_commands()
 
 @bot.message_handler(commands=['start'])
 def start(message: types.Message):
-    bot.send_message(message.chat.id, 'Для регистрации используйте /register\n'
-                                      'Для получения подробной информации о боте используйте /help')
+    bot.send_message(message.chat.id, 'Здравствуйте, я бот для подключения ресторана к системе MealMate.\n\n'
+                                      'Регистрация - /register\n'
+                                      'Как работает сервис - /info\n'
+                                      'Помощь - /help')
 
 
 while True:
