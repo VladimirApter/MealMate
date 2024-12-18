@@ -25,7 +25,7 @@ public class NotificationGetterController : ControllerBase
         return Ok(notificationGetter.Id);
     }
     [HttpDelete("{id}")]
-    private async Task<IActionResult> DeleteNotificationGetter(long id)
+    public async Task<IActionResult> DeleteNotificationGetter(long id)
     {
         var notificationGetter = await DataBaseAccess<NotificationGetter>.GetAsync(id);
         if (notificationGetter == null) return NotFound("NotificationGetter is null");

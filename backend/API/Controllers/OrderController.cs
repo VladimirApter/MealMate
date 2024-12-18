@@ -28,7 +28,7 @@ public class OrderController : ControllerBase
         return Ok(order.Id);
     }
     [HttpDelete("{id}")]
-    private async Task<IActionResult> DeleteOrder(long id)
+    public async Task<IActionResult> DeleteOrder(long id)
     {
         var order = await DataBaseAccess<Order>.GetAsync(id);
         if (order == null) return NotFound("Order is null");

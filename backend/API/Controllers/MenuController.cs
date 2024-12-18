@@ -25,7 +25,7 @@ public class MenuController : ControllerBase
         return Ok(menu.Id);
     }
     [HttpDelete("{id}")]
-    private async Task<IActionResult> DeleteMenu(long id)
+    public async Task<IActionResult> DeleteMenu(long id)
     {
         var menu = await DataBaseAccess<Menu>.GetAsync(id);
         if (menu == null) return NotFound("Menu is null");

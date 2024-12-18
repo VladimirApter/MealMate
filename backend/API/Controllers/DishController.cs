@@ -25,7 +25,7 @@ public class DishController : ControllerBase
         return Ok(dish.Id);
     }
     [HttpDelete("{id}")]
-    private async Task<IActionResult> DeleteDish(long id)
+    public async Task<IActionResult> DeleteDish(long id)
     {
         var dish = await DataBaseAccess<Dish>.GetAsync(id);
         if (dish == null) return NotFound("Dish is null");

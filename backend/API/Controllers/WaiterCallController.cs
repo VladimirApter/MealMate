@@ -40,7 +40,7 @@ public class WaiterCallController : ControllerBase
         return Ok(waiterCall.Id);
     }
     [HttpDelete("{id}")]
-    private async Task<IActionResult> DeleteWaiterCall(long id)
+    public async Task<IActionResult> DeleteWaiterCall(long id)
     {
         var waiterCall = await DataBaseAccess<WaiterCall>.GetAsync(id);
         if (waiterCall == null) return NotFound("WaiterCall is null");

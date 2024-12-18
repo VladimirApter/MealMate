@@ -25,7 +25,7 @@ public class CategoryController : ControllerBase
         return Ok(category.Id);
     }
     [HttpDelete("{id}")]
-    private async Task<IActionResult> DeleteCategory(long id)
+    public async Task<IActionResult> DeleteCategory(long id)
     {
         var category = await DataBaseAccess<Category>.GetAsync(id);
         if (category == null) return NotFound("Category is null");

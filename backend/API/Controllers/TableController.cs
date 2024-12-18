@@ -34,7 +34,7 @@ public class TableController : ControllerBase
         return Ok(table.Id);
     }
     [HttpDelete("{id}")]
-    private async Task<IActionResult> DeleteTable(long id)
+    public async Task<IActionResult> DeleteTable(long id)
     {
         var table = await DataBaseAccess<Table>.GetAsync(id);
         if (table == null) return NotFound("Table is null");

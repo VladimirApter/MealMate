@@ -25,7 +25,7 @@ public class RestaurantController : ControllerBase
         return Ok(restaurant.Id);
     }
     [HttpDelete("{id}")]
-    private async Task<IActionResult> DeleteRestaurant(long id)
+    public async Task<IActionResult> DeleteRestaurant(long id)
     {
         var restaurant = await DataBaseAccess<Restaurant>.GetAsync(id);
         if (restaurant == null) return NotFound("Restaurant is null");

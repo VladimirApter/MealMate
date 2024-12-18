@@ -25,7 +25,7 @@ public class ClientController : ControllerBase
         return Ok(client.Id);
     }
     [HttpDelete("{id}")]
-    private async Task<IActionResult> DeleteClient(long id)
+    public async Task<IActionResult> DeleteClient(long id)
     {
         var client = await DataBaseAccess<Client>.GetAsync(id);
         if (client == null) return NotFound("Client is null");

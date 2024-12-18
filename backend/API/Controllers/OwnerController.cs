@@ -25,7 +25,7 @@ public class OwnerController : ControllerBase
         return Ok(owner.Id);
     }
     [HttpDelete("{id}")]
-    private async Task<IActionResult> DeleteOwner(long id)
+    public async Task<IActionResult> DeleteOwner(long id)
     {
         var owner = await DataBaseAccess<Owner>.GetAsync(id);
         if (owner == null) return NotFound("Owner is null");

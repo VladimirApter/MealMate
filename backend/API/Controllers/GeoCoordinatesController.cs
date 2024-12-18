@@ -26,7 +26,7 @@ public class GeoCoordinatesController : ControllerBase
         return Ok(geoCoordinates.Id);
     }
     [HttpDelete("{id}")]
-    private async Task<IActionResult> DeleteGeoCoordinates(long id)
+    public async Task<IActionResult> DeleteGeoCoordinates(long id)
     {
         var geoCoordinates = await DataBaseAccess<GeoCoordinates>.GetAsync(id);
         if (geoCoordinates == null) return NotFound("GeoCoordinates is null");
