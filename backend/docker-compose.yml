@@ -5,8 +5,10 @@ services:
       dockerfile: ./API/Dockerfile
     volumes:
       - ./data/api/database:/DataBase
+      - ./data/domain:/Domain
     environment:
       DATABASE_PATH: "/DataBase"
+      QR_CARD_TEMPLATE: "/Domain/Logic/qrCodeCardTemplate.png"
       API_URL: "http://api:5051"
       APPLICATION_URL: "http://158.160.3.25"
       PYSERVER_URL: "http://py_server:5059"

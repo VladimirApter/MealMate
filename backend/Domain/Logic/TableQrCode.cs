@@ -15,7 +15,13 @@ public static class TableQrCode
     {
         var databasePath = DataBasePathGetter.DataBasePath;
         qrcodeDataBasePath = Path.Combine(databasePath, "QRCodeImages");
-        templatePath = "qr_code_card_template.png";
+        
+        templatePath = Environment.GetEnvironmentVariable("QR_CARD_TEMPLATE");
+        if (templatePath != null)
+            return;
+        
+        var currentDirectory = Directory.GetCurrentDirectory();
+        templatePath = Path.Combine(currentDirectory, "../Domain/Logic/qrCodeCardTemplate.png");
     }
 
     public static string GenerateAndSaveQrCode(int tableNumber, string tableToken)
