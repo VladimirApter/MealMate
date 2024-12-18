@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
-public class OrderItem : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
+public class OrderItem : ITableDataBase, ITakeRelatedData
 {
     public long? Id { get; set; } 
     [JsonPropertyName("menu_item_id")] public long? MenuItemId { get; set; }
@@ -34,23 +34,5 @@ public class OrderItem : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
             Price = MenuItem.Price*Count;
             await MenuItem.TakeRelatedData(context);
         }
-    }
-
-    public void DeleteRelatedData(ApplicationDbContext context)
-    {
-        // foreach (var dish in context.Dishes
-        //              .Where(d => d.Id == MenuItemId))
-        // {
-        //     context.Dishes.Remove(dish);
-        //     context.SaveChanges();
-        //     dish.DeleteRelatedData(context);
-        // }
-        // foreach (var drink in context.Drinks
-        //              .Where(d => d.Id == MenuItemId))
-        // {
-        //     context.Drinks.Remove(drink);
-        //     context.SaveChanges();
-        //     drink.DeleteRelatedData(context);
-        // }
     }
 }

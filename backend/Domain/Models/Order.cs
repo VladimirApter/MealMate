@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
-public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
+public class Order : ITableDataBase, ITakeRelatedData
 {
     private double price;
     public long? Id { get; set; }
@@ -44,23 +44,6 @@ public class Order : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
             await orderItem.TakeRelatedData(context);
             Price += orderItem.Price;
         }
-    }
-
-    public void DeleteRelatedData(ApplicationDbContext context)
-    {
-        // var client = context.Clients.FirstOrDefault(c => c.Id == ClientId);
-        // if (client != null)
-        // {
-        //     context.Clients.Remove(client);
-        //     context.SaveChanges();
-        // }
-        // var orderItems = context.OrderItems.Where(oi => oi.OrderId == Id);
-        // foreach (var orderItem in orderItems)
-        // {
-        //     context.OrderItems.Remove(orderItem);
-        //     context.SaveChanges();
-        //     orderItem.DeleteRelatedData(context);
-        // }
     }
 }
 
