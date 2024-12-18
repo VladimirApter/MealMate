@@ -9,11 +9,13 @@ public static class TableQrCode
 {
     private static readonly string applicationBaseUrl = HostsUrlGetter.ApplicationUrl;
     private static readonly string qrcodeDataBasePath;
+    private static readonly string templatePath;
 
     static TableQrCode()
     {
         var databasePath = DataBasePathGetter.DataBasePath;
         qrcodeDataBasePath = Path.Combine(databasePath, "QRCodeImages");
+        templatePath = "qr_code_card_template.png";
     }
 
     public static string GenerateAndSaveQrCode(int tableNumber, string tableToken)
@@ -51,7 +53,49 @@ public static class TableQrCode
             canvas.DrawBitmap(convertedLogo, new SKRect(x, y, x + logoSize, y + logoSize));
         }
 
-        return SaveQrCode(convertedQrCodeImage);
+        var roundedQrCodeImage = CreateRoundedBitmap(convertedQrCodeImage, 55);
+
+        var finalImage = CombineWithTemplate(roundedQrCodeImage);
+
+        return SaveQrCode(finalImage);
+    }
+
+    private static SKBitmap CreateRoundedBitmap(SKBitmap bitmap, float cornerRadius)
+    {
+        var roundedBitmap = new SKBitmap(bitmap.Width, bitmap.Height);
+        using (var canvas = new SKCanvas(roundedBitmap))
+        {
+            canvas.Clear(SKColors.Transparent);
+
+            var path = new SKPath();
+            var rect = new SKRect(0, 0, bitmap.Width, bitmap.Height);
+            path.AddRoundRect(rect, cornerRadius, cornerRadius);
+
+            canvas.ClipPath(path);
+            canvas.DrawBitmap(bitmap, 0, 0);
+        }
+
+        return roundedBitmap;
+    }
+
+    private static SKBitmap CombineWithTemplate(SKBitmap qrCodeImage)
+    {
+        using var templateStream = File.OpenRead(templatePath);
+        var templateImage = SKBitmap.Decode(templateStream);
+
+        var combinedBitmap = new SKBitmap(templateImage.Width, templateImage.Height);
+        using (var canvas = new SKCanvas(combinedBitmap))
+        {
+            canvas.Clear(SKColors.Transparent);
+            canvas.DrawBitmap(templateImage, 0, 0);
+
+            var qrCodeSize = Math.Min(templateImage.Width, templateImage.Height) * 0.6f;
+            var x = (templateImage.Width - qrCodeSize) / 2;
+            var y = (templateImage.Height - qrCodeSize) / 2;
+            canvas.DrawBitmap(qrCodeImage, new SKRect(x, y, x + qrCodeSize, y + qrCodeSize));
+        }
+
+        return combinedBitmap;
     }
 
     private static string SaveQrCode(SKBitmap bitmap)
