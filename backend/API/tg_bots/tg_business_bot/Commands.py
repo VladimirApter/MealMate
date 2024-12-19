@@ -30,7 +30,7 @@ def register_commands():
     def info(message: types.Message):
         bot.send_message(message.chat.id,
                          "MealMate - это сервис, который сделает процесс заказа "
-                         "удобнее для выших посетителей.\n "
+                         "удобнее для выших посетителей.\n"
                          "Вы регистрируете заведение в боте, вносите данные о "
                          "меню. Бот создает QR-коды для столиков и "
                          "отправляет их вам. Посетители сканируют QR-код и "
@@ -100,7 +100,7 @@ def register_commands():
             return
 
         if len(restaurants) == 1:
-            markup = get_update_parts_markup()
+            markup = get_yes_no_markup()
             restaurant = restaurants[0]
             bot.send_message(message.chat.id,
                              f'Вы уверены что хотите удалить ресторан {restaurant.name}?',
