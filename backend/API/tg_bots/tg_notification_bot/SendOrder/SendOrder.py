@@ -33,8 +33,10 @@ def send_order(order: Order):
     message = (f"Новый заказ!\n\n"
                f"Заказ №{order.id}\n"
                f"Стол: {order.table_id}\n"
-               f"Время заказа: {order.date_time.strftime('%H:%M')}\n"
-               f"Комментарии: {order.comment}\n\n")
+               f"Время заказа: {order.date_time.strftime('%H:%M')}\n")
+
+    if order.comment:
+        message += f"Комментарий: {order.comment}\n\n"
 
     if formatted_dishes:
         message += "Блюда:\n" + "\n".join(formatted_dishes) + "\n\n"
