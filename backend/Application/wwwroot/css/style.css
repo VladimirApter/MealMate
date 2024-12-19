@@ -437,8 +437,12 @@ body {
     height: 40px;
     background-color: #fff;
     padding-top: 20px;
-    padding-left: 10px;
+    padding-left: 22px;
     border-radius: 20px;
+}
+
+.gray {
+    background-color: #dddddd;
 }
 
 .name {
@@ -451,6 +455,11 @@ table {
     width: 50%;
     margin: 20px 0;
     font-size: 18px;
+    border-collapse: separate; /* Используем separate для управления границами */
+    border-spacing: 0; /* Убираем промежутки между ячейками */
+    border: 2px solid #c2c2c2; /* Добавляем границу вокруг всей таблицы */
+    border-radius: 15px; /* Закругляем углы таблицы */
+    overflow: hidden; /* Чтобы содержимое не выходило за границы закругления */
 }
 
 @media screen and (max-width: 425px) {
@@ -460,13 +469,18 @@ table {
 }
 
 th, td {
-    border: 1px solid #a9a9a9;
+    /* Убираем границы ячеек, чтобы они не перекрывали закругленные углы */
+    border: none;
+    text-align: center;
+    padding: 8px;
+    outline: 1px solid #c2c2c2;
     text-align: center;
     padding: 8px;
 }
 th {
     background-color: #f2f2f2; 
 }
+
 
 .popup-button {
     margin-bottom: 20px;

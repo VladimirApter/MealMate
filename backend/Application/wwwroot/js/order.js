@@ -280,7 +280,7 @@ function showPopup(cellData) {
 
     kkal = document.getElementById('kkal');
     if (cellData.nutrients.Kilocalories !== null) {
-        kkal.textContent = cellData.nutrients.Kilocalories + "г";
+        kkal.textContent = cellData.nutrients.Kilocalories;
     } else {
         kkal.textContent = "-";
     }

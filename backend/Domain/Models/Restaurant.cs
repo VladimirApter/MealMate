@@ -55,13 +55,6 @@ public class Restaurant : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
             menu.DeleteRelatedData(context);
         }
 
-        var notificationGetter = context.NotificationGetters.FirstOrDefault(n => n.RestaurantId == Id);
-        if (notificationGetter != null)
-        {
-            context.NotificationGetters.Remove(notificationGetter);
-            context.SaveChanges();
-        }
-
         foreach (var table in context.Tables.Where(t => t.RestaurantId == Id))
         {
             context.Tables.Remove(table);
