@@ -25,6 +25,7 @@ services:
       - "80:5011"
     volumes:
       - ./data/application/images:/app/wwwroot/MenuItemImages
+      - ./data/application/certs:/app/certs
     environment:
       API_URL: "http://api:5051"
     logging:
