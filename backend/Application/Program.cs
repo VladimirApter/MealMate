@@ -3,7 +3,7 @@ using System.Net;
 var builder = WebApplication.CreateBuilder(args);
 
 var env = builder.Environment;
-var certPath = Path.Combine("..", "certs", "certificate.pfx");
+var certPath = Path.Combine(env.ContentRootPath, "certs", "certificate.pfx");
 
 builder.WebHost.ConfigureKestrel((context, serverOptions) =>
 {
