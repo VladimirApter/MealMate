@@ -6,8 +6,7 @@ var certPath = Path.Combine("certs", "certificate.pfx");
 
 builder.WebHost.ConfigureKestrel((context, serverOptions) =>
 {
-    serverOptions.Listen(IPAddress.Any, 5011);
-    serverOptions.Listen(IPAddress.Any, 5002, listenOptions =>
+    serverOptions.Listen(IPAddress.Any, 5011, listenOptions =>
     {
         listenOptions.UseHttps(certPath, "mealmate14");
     });

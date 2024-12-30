@@ -10,7 +10,7 @@ services:
       DATABASE_PATH: "/DataBase"
       QR_CARD_TEMPLATE: "/Domain/Logic/qrCodeCardTemplate.png"
       API_URL: "http://api:5051"
-      APPLICATION_URL: "http://158.160.3.25"
+      APPLICATION_URL: "https://mealmate.ru"
       PYSERVER_URL: "http://py_server:5059"
     logging:
       driver: "json-file"
@@ -22,7 +22,7 @@ services:
       context: ./
       dockerfile: ./Application/Dockerfile
     ports:
-      - "80:5011"
+      - "443:5011"
     volumes:
       - ./data/application/images:/app/wwwroot/MenuItemImages
       - ./data/application/certs:/app/certs
