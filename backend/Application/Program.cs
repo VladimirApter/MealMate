@@ -1,5 +1,18 @@
+using System.Net;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var env = builder.Environment;
+var certPath = Path.Combine("..", "certs", "certificate.pfx");
+
+builder.WebHost.ConfigureKestrel((context, serverOptions) =>
+{
+    serverOptions.Listen(IPAddress.Any, 5011);
+    serverOptions.Listen(IPAddress.Any, 5002, listenOptions =>
+    {
+        listenOptions.UseHttps(certPath, "mealmate14");
+    });
+});
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddEndpointsApiExplorer();
