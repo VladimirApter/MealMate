@@ -32,19 +32,37 @@
         <div class="information"><b>Дата заказа:</b> @Model.DateTime</div>
         <div class="information"><b>Примерное время ожидания:</b> @Model.CookingTimeMinutes минут</div>
         <div class="information"><b>Статус:</b> <span class="@GetStatus().Class">@GetStatus().Text</span></div>
-        <div class="table-row table-row-bold">
-            <div class=top><div class="a"><p>Название</p></div><div class="b"><p>Кол-во</p></div><div class="c"><p>Цена</p></div></div>
+        @* <div class="main-table-row table-row table-row-bold">
+            <div class="main-a a"><p>Название</p></div><div class="main-b b"><p>Кол-во</p></div><div class="main-c c"><p>Цена</p>
         </div>
         @foreach (var item in @Model.OrderItems)
         {
-            <div class="table-row">
-                <div><div class="a"><p>@item.MenuItem.Name</p></div><div class="b"><p>@item.Count</p></div><div class="c"><p>@item.Price₽</p></div></div>
+            <div class="main-table-row table-row">
+                <div class="main-a a">@item.MenuItem.Name</div><div class="main-b b">@item.Count</div><div class="main-c c">@item.Price₽</div>
             </div>
         } 
-        <div class="table-row table-row-bold bottom-row">
-            <div class="bottom"><div class="a"><p>Итого:</p></div><div class="d"><p></p></div><div class="c"><p>@Model.Price₽</p></div></div>
+        <div class="main-table-row table-row table-row-bold bottom-row">
+            <div class="main-a a"><p>Итого:</p></div><div class="main-d d"><p></p></div><div class="main-c c"><p>@Model.Price₽</p></div>
+        </div> *@
+        <div class="basket">
+            <div class="main-table-row table-row">
+                <div class="main-a a bold">Название</div><div class="main-b b bold">Кол-во</div><div class="main-c c bold">Цена</div>
+            </div>
+            <div id="cart-items">
+                @foreach (var item in @Model.OrderItems)
+                {
+                    <div class="main-table-row table-row">
+                        <div class="main-a a">@item.MenuItem.Name</div><div class="main-b b">@item.Count</div><div class="main-c c">@item.Price₽</div>
+                    </div>
+                } 
+            </div>
+            <div class="main-table-row table-row">
+                <div class="main-a a bold">Итого: </div><div class="main-d d"></div><div class="main-c c bold" id="total-price">@Model.Price₽</div>
+            </div>
         </div>
-        <div class="information"><b>Комментарий:</b> @Model.Comment</div>
+        @if (!string.IsNullOrEmpty(Model.Comment)) {
+            <div class="information"><b>Комментарий:</b> @Model.Comment</div>
+        }
     </div>
 </div>
 </body>

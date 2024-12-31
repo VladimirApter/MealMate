@@ -34,7 +34,7 @@ function successCallback(position) {
     );
     console.log("Distance:", distance)
 
-    if (distance <= 0.5) {
+    if (distance <= 10000) {
         isUserInAllowedZone = true;
     } else {
         isUserInAllowedZone = false;
@@ -243,6 +243,7 @@ function showPopup(cellData) {
     const popupImage = document.getElementById('popup-image');
     const popupName = document.getElementById('popup-desc');
     const popupCost = document.getElementById('popup-cost');
+    const popupVolume = document.getElementById('popup-volume');
     const popupDesc = document.getElementById('popup-full-desc');
     const popupCtm = document.getElementById('popup-ctm');
 
@@ -256,6 +257,7 @@ function showPopup(cellData) {
     popupCost.textContent = parseFloat(cellData.price).toFixed(2) + "₽";
     popupName.textContent = cellData.name;
     popupDesc.textContent = cellData.desc;
+    popupVolume.textContent = cellData.volume;
     
     proteins = document.getElementById('proteins');
     if (cellData.nutrients.Proteins !== null) {
@@ -328,21 +330,35 @@ function updateCart() {
     let nowMaxTime = 0
 
     Object.values(cartItems).forEach(item => {
+
         const itemElement = document.createElement('div');
-        itemElement.className = 'desc bg';
-        const totalItemPrice = (item.price * item.count).toFixed(2); // Округляем до двух знаков после запятой
-        itemElement.innerHTML = item.name + " " + item.count + "шт." + " " + totalItemPrice + "₽";
+        itemElement.className = 'table-row main-table-row';
+
+        const name = document.createElement('div');
+        name.innerHTML = item.name;
+        name.className = 'main-a a'
+        const quantity = document.createElement('div');
+        quantity.innerHTML = item.count + " шт.";
+        quantity.className = 'main-b b'
+        const price = document.createElement('div');
+        price.innerHTML = (item.price * item.count).toFixed(2) + "₽";
+        price.className = 'main-c c'
+
+        itemElement.appendChild(name);
+        itemElement.appendChild(quantity);
+        itemElement.appendChild(price);
         cartElement.appendChild(itemElement);
-        totalPrice += parseFloat(totalItemPrice);
-        if(item.itemCookingTime > nowMaxTime){
+
+        totalPrice += parseFloat((item.price * item.count).toFixed(2));
+        if (item.itemCookingTime > nowMaxTime){
             nowMaxTime = item.itemCookingTime
         }
     });
 
     cartCookingTime = nowMaxTime;
 
-    document.getElementById('total-price').textContent = totalPrice.toFixed(2);// Округляем общую сумму до двух знаков после запятой
-    document.getElementById('total-time').textContent = cartCookingTime;
+    document.getElementById('total-price').textContent = totalPrice.toFixed(2) + "₽";// Округляем общую сумму до двух знаков после запятой
+    document.getElementById('total-time').textContent = cartCookingTime + " мин.";
 }
 
 

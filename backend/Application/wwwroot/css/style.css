@@ -106,6 +106,21 @@ body {
     }
 }
 
+.volume {
+    font-size: 16px;
+    user-select: none;
+    font-family: Yandex Sans Display;
+    font-weight: bold;
+    margin: 10px 6px;
+}
+
+@media screen and (max-width: 425px) {
+    .volume {
+        font-size: 12px;
+        margin: 4px 3px;
+    }
+}
+
 .desc {
     font-size: 18px;
     user-select: none;
@@ -268,7 +283,7 @@ body {
 #input {
     font-family: Yandex Sans Display;
     font-size: 18px;
-    padding: 10px;
+    padding: 20px;
     margin-top: 24px;
     resize: none;
     width: 100%;
@@ -315,8 +330,14 @@ body {
 .information {
     user-select: none;
     font-family: Yandex Sans Display;
-    font-size: 18;
+    font-size: 18px;
     margin: 24px;
+}
+
+@media screen and (max-width: 425px) {
+    .information {
+        font-size: 14px;
+    }
 }
 
 .information b {
@@ -337,12 +358,13 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    background-color: #D9D9D9;
     height: 50px;
 }
 
 .table-row .a {
     justify-content: start;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .table-row p {
@@ -361,6 +383,8 @@ body {
 
 .table-row .c {
     width: 115px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .table-row-bold p{
@@ -369,7 +393,6 @@ body {
 
 .table-row .d {
     width: 115px;
-    background-color: #D9D9D9;
 }
 
 .cooking-time {
@@ -455,11 +478,6 @@ table {
     width: 50%;
     margin: 20px 0;
     font-size: 18px;
-    border-collapse: separate; /* Используем separate для управления границами */
-    border-spacing: 0; /* Убираем промежутки между ячейками */
-    border: 2px solid #c2c2c2; /* Добавляем границу вокруг всей таблицы */
-    border-radius: 15px; /* Закругляем углы таблицы */
-    overflow: hidden; /* Чтобы содержимое не выходило за границы закругления */
 }
 
 @media screen and (max-width: 425px) {
@@ -469,11 +487,9 @@ table {
 }
 
 th, td {
-    /* Убираем границы ячеек, чтобы они не перекрывали закругленные углы */
-    border: none;
+    border: 1px solid #c2c2c2;
     text-align: center;
     padding: 8px;
-    outline: 1px solid #c2c2c2;
     text-align: center;
     padding: 8px;
 }
@@ -513,4 +529,49 @@ th {
 
 .status-default {
     color: black;
+}
+
+.mt {
+    margin-top: 6px;
+}
+
+.main-table-row {
+    height: 60px;
+    width: 100%;
+    user-select: none;
+    font-family: Yandex Sans Display;
+    font-size: 18px;
+    margin: 8px 0px;
+}
+
+@media screen and (max-width: 425px) {
+    .main-table-row {
+        font-size: 14px;
+    }
+}
+
+.main-table-row .a {
+    height: 60px;
+    padding-left: 24px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.main-table-row .c {
+    height: 60px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.main-table-row .d {
+    height: 60px;
+}
+
+.main-table-row div {
+    background-color: #fff;
+}
+
+.main-table-row .b {
+    height: 60px;
+    background-color: #eaeaea;
 }

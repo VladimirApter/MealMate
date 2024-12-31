@@ -54,7 +54,8 @@ public class MenuItem : ITakeRelatedData, IDeleteRelatedData
             price = Price,
             desc = Description,
             nutrients = NutrientsOf100grams ?? null,
-            cooking_time = CookingTimeMinutes
+            cooking_time = CookingTimeMinutes,
+            volume = this is Dish ? ((Dish)this).Weight.ToString() + "г" : ((Drink)this).Volume.ToString() + "мл",
         };
         
         return JsonSerializer.Serialize(jsonObj);
