@@ -3,6 +3,7 @@ import os
 import telebot
 
 menu_item_images_dir = os.getenv("MENUITEMIMAGES_PATH", os.path.join('..', '..', '..', 'Application', 'wwwroot', 'MenuItemImages'))
+excel_tables_dir = os.getenv("TABLES_PATH", os.path.join('..', '..', '..', 'DataBase', 'ExcelTables'))
 qr_images_dir = os.getenv("QRIMAGES_PATH", os.path.join('..', '..', '..', 'DataBase', 'QRCodeImages'))
 
 bot_token = "7449757271:AAF5uM4dBn9PHJ-ka5jEIp00Mt5-TR9Wqds"

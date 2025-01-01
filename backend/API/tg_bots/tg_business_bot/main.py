@@ -8,6 +8,9 @@ from excel_tables_work.create_menu_template import create_menu_template
 create_menu_template()
 register_commands()
 
+if not os.path.exists(excel_tables_dir):
+    os.makedirs(excel_tables_dir)
+
 
 @bot.message_handler(commands=['start'])
 def start(message: types.Message):

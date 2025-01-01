@@ -10,14 +10,16 @@ public class Menu : ITableDataBase, ITakeRelatedData, IDeleteRelatedData
 {
     public long? Id { get; set; }
     [JsonPropertyName("restaurant_id")] public long RestaurantId { get; set; }
+    [JsonPropertyName("excel_table_path")] public string? ExcelTablePath { get; set; }
     [JsonPropertyName("categories")] [NotMapped] public List<Category>? Categories { get; set; }
 
     public Menu(){}
-    public Menu(long? id, List<Category>? categories, long restaurantId)
+    public Menu(long? id, List<Category>? categories, long restaurantId, string? excelTablePath)
     {
         Id = id;
         RestaurantId = restaurantId;
         Categories = categories;
+        ExcelTablePath = excelTablePath;
     } 
     
 
