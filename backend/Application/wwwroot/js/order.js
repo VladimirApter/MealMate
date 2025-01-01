@@ -34,7 +34,7 @@ function successCallback(position) {
     );
     console.log("Distance:", distance)
 
-    if (distance <= 10000) {
+    if (distance <= 0.5) {
         isUserInAllowedZone = true;
     } else {
         isUserInAllowedZone = false;
