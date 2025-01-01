@@ -4,7 +4,6 @@ from telebot.types import ReplyKeyboardMarkup, KeyboardButton, \
     KeyboardButtonRequestUsers
 
 from DataValidationAndPost import *
-from excel_tables_work.fill_menu_template import *
 
 
 def get_update_part(message: types.Message, restaurant: Restaurant):
@@ -20,24 +19,18 @@ def get_update_part(message: types.Message, restaurant: Restaurant):
         bot.register_next_step_handler(message, validate_and_post_address, restaurant)
         return
     elif part == 'меню':
-        bot.send_chat_action(message.chat.id, 'typing')
+        bot.send_message(message.chat.id, 'Отправляю текущую версию меню...')
+        bot.send_chat_action(message.chat.id, 'upload_document')
 
-        tables_path = os.getenv("TABLES_PATH", None)
-        menu_template_path = os.path.join(current_dir, "excel_tables_work", "menu_template.xlsx") if tables_path == None else os.path.join(tables_path, "menu_template.xlsx")
+        excel_table_full_path = os.path.join(excel_tables_dir, restaurant.menu.excel_table_path)
 
-        filled_menu_temp_path = os.path.join(current_dir, f'excel_tables_work', f'{hash(message.chat.id) + hash(time())}.xlsx') if tables_path == None else os.path.join(tables_path, f'{hash(message.chat.id) + hash(time())}.xlsx')
-        fill_menu_template(menu_template_path, filled_menu_temp_path, restaurant.menu)
-
-        bot.send_message(message.chat.id, "Отправляю текущую версию меню...")
-        bot.send_chat_action(message.chat.id, 'typing')
-
-        with open(filled_menu_temp_path, 'rb') as file:
+        with open(excel_table_full_path, 'rb') as file:
             bot.send_document(message.chat.id, file, visible_file_name="меню.xlsx",
                               caption="В этом файле текущая версия вашего "
                                       "меню. Отредактируйте его и отправьте "
                                       "мне новую версию")
-        os.remove(filled_menu_temp_path)
         bot.register_next_step_handler(message, validate_and_post_menu, restaurant)
+        os.remove(excel_table_full_path)
         return
     elif part == 'столы':
         bot.send_message(message.chat.id, 'Введите новое число столов')

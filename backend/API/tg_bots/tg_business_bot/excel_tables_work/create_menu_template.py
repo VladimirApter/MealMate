@@ -31,7 +31,7 @@ def _create_menu_part_template(template_type, wb):
         "Категория",
         "Название",
         "Описание",
-        "Цена",
+        "Цена (₽)",
         weight_or_volume_header,
         "Ккал",
         f"Белки {grams_str}",

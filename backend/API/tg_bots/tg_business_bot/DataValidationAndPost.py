@@ -1,4 +1,6 @@
 import re
+import uuid
+
 from telebot import types
 
 import Geocoder
@@ -176,17 +178,19 @@ def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_
     file_info = bot.get_file(message.document.file_id)
     downloaded_file = bot.download_file(file_info.file_path)
 
-    tables_path = os.getenv("TABLES_PATH", None)
-    temp_excel_file_path = os.path.join(current_dir, "excel_tables_work", f'{message.chat.id}_temp.xlsx') if tables_path == None else os.path.join(tables_path, f'{message.chat.id}_temp.xlsx')
-    with open(temp_excel_file_path, 'wb') as new_file:
-        new_file.write(downloaded_file)
+    original_filename = message.document.file_name
+    excel_table_path = _get_unique_filename(original_filename)
+    excel_table_full_path = os.path.join(excel_tables_dir, excel_table_path)
+
+    with open(excel_table_full_path, 'wb') as file:
+        file.write(downloaded_file)
 
     try:
-        valid, invalid_cells_dishes, invalid_cells_drinks = validate_menu_template(temp_excel_file_path)
+        valid, invalid_cells_dishes, invalid_cells_drinks = validate_menu_template(excel_table_full_path)
     except:
         bot.send_message(message.chat.id, "Пожалуйста, заполните именно тот файл, который я высылал вам ранее. Я могу обработать только его", reply_markup=types.ReplyKeyboardRemove())
         bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
-        os.remove(temp_excel_file_path)
+        os.remove(excel_table_full_path)
         return
 
     if not valid:
@@ -194,15 +198,14 @@ def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_
         bot.send_message(message.chat.id, f"{text}\n\nПожалуйста, исправьте ошибки и отправьте корректную версию файла",
                          reply_markup=types.ReplyKeyboardRemove())
         bot.register_next_step_handler(message, validate_and_post_menu, restaurant, func_to_return_after_post, is_registration)
-        os.remove(temp_excel_file_path)
+        os.remove(excel_table_full_path)
         return
 
     menu = restaurant.menu
     if menu is None:
         menu = Menu(restaurant_id=restaurant.id)
-    restaurant.menu = parse_menu_from_excel(temp_excel_file_path, menu)
-
-    os.remove(temp_excel_file_path)
+    restaurant.menu = parse_menu_from_excel(excel_table_full_path, menu)
+    restaurant.menu.excel_table_path = excel_table_path
 
     api_client = ApiClient(Restaurant)
     api_client.post(restaurant)
@@ -212,6 +215,13 @@ def validate_and_post_menu(message: types.Message, restaurant: Restaurant, func_
     if func_to_return_after_post is not None:
         func_to_return_after_post(message, restaurant)
         return
+
+
+def _get_unique_filename(original_filename):
+    base, extension = os.path.splitext(original_filename)
+    unique_id = uuid.uuid4()
+    unique_filename = f"{unique_id}{extension}"
+    return unique_filename
 
 
 def validate_and_post_tables(message: types.Message, restaurant: Restaurant, func_to_return_after_post=None, is_registration=False):
