@@ -252,7 +252,12 @@ function showPopup(cellData) {
         popupImage.src = "/MenuItemImages/" + cellData.image;
     }
     else {
-        popupImage.src = "https://i.ebayimg.com/images/g/lbUAAOSw6DtmH8z0/s-l1600.png";
+        if (cellData.volume[cellData.volume.length - 1] === '.'){
+            popupImage.src = "https://avatars.mds.yandex.net/i?id=2806f2a606aff10c14183c5a9a6de434_l-5236455-images-thumbs&ref=rim&n=13&w=1440&h=1161";
+        }
+        else {
+            popupImage.src = "https://proza.ru/pics/2022/12/04/183.jpg";
+        }
     }
     popupCost.textContent = parseFloat(cellData.price).toFixed(2) + "₽";
     popupName.textContent = cellData.name;

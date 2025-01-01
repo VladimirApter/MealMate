@@ -307,9 +307,8 @@ body {
     right: 20px;
     width: 50px;
     height: 50px;
+    padding: 0px 0px;
     border-radius: 50%;
-    background-color: #747474;
-    color: white;
     border: none;
     cursor: pointer;
     display: flex;
@@ -382,7 +381,7 @@ body {
 }
 
 .table-row .c {
-    width: 115px;
+    width: 200px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
