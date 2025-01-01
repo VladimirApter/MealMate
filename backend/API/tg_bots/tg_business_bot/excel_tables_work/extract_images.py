@@ -3,12 +3,17 @@ import zipfile
 import os
 import shutil
 import re
+from PIL import Image
 from tg_business_bot.Config import menu_item_images_dir
+
+
+def compress_image(input_path, output_path, quality=75):
+    with Image.open(input_path) as img:
+        img.save(output_path, optimize=True, quality=quality)
 
 
 def extract_and_save_images(file_path):
     output_folder = menu_item_images_dir
-
     temp_folder = 'temp_extracted_files'
     image_paths = []
 
@@ -26,12 +31,14 @@ def extract_and_save_images(file_path):
 
         for file_info in image_files:
             z.extract(file_info, temp_folder)
+
             src_path = os.path.join(temp_folder, file_info.filename)
             file_extension = os.path.splitext(file_info.filename)[1]
+
             unique_filename = f"{uuid.uuid4()}{file_extension}"
             dst_path = os.path.join(output_folder, unique_filename)
-            shutil.move(src_path, dst_path)
 
+            compress_image(src_path, dst_path)
             image_paths.append(unique_filename)
 
     shutil.rmtree(temp_folder)
