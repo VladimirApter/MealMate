@@ -111,13 +111,14 @@ body {
     user-select: none;
     font-family: Yandex Sans Display;
     font-weight: bold;
-    margin: 10px 6px;
+    color: #575757;
+    margin: 10px 0px;
 }
 
 @media screen and (max-width: 425px) {
     .volume {
         font-size: 12px;
-        margin: 4px 3px;
+        margin: 4px 0px;
     }
 }
 
@@ -132,6 +133,16 @@ body {
 @media screen and (max-width: 425px) {
     .desc {
         font-size: 14px;
+    }
+}
+
+.main-desc {
+    margin: 10px 0px;
+}
+
+@media screen and (max-width: 425px) {
+    .main-desc {
+        margin: 5px 0px;
     }
 }
 

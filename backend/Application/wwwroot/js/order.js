@@ -252,7 +252,7 @@ function showPopup(cellData) {
         popupImage.src = "/MenuItemImages/" + cellData.image;
     }
     else {
-        if (cellData.volume[cellData.volume.length - 1] === '.'){
+        if (cellData.volume[cellData.volume.length - 1] === 'л'){
             popupImage.src = "https://avatars.mds.yandex.net/i?id=2806f2a606aff10c14183c5a9a6de434_l-5236455-images-thumbs&ref=rim&n=13&w=1440&h=1161";
         }
         else {

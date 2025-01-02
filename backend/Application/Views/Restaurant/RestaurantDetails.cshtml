@@ -89,16 +89,14 @@
                             <img src="/MenuItemImages/@cell.ImagePath" alt="image" class="image">
                         }
                         <div class="content">
-                            <div class="mt">
-                            <span class="cost">@cell.Price.ToString(CultureInfo.InvariantCulture)₽</span>
-                            @if (cell is Dish) {
-                                <span class="volume">@(((Dish)cell).Weight.ToString() + "г")</span>
+                            <div class="cost">@cell.Price.ToString(CultureInfo.InvariantCulture)₽</div>
+                            <div class="desc main-desc">@cell.Name</div>
+                             @if (cell is Dish) {
+                                <div class="volume">@(((Dish)cell).Weight.ToString() + "г")</div>
                             }
                             @if (cell is Drink) {
-                                <span class="volume">@(((Drink)cell).Volume.ToString() + "мл")</span>
+                                <div class="volume">@(((Drink)cell).Volume.ToString() + "мл")</div>
                             }
-                            </div>
-                            <p class="desc">@cell.Name</p>
                             <p class="cooking-time">@cell.CookingTimeMinutes</p>
                             <button class="add-button" data-item-id="@cell.Id" data-count="0">
                                 <span class="plus">+</span>
@@ -149,9 +147,10 @@
     <img src="#" alt="image" class="image popup-image" id="popup-image">
     <img src="/img/x.svg" alt="x" class="close-button" onclick="hidePopup()">
     <div class="content popup-content">
-        <div class="mt"><span id="popup-cost" class="cost"></span><span id="popup-volume" class="volume"></span></div>
+        <div id="popup-cost" class="cost"></div>
         <div id="popup-desc" class="desc bold"></div>
         <div id="popup-full-desc" class="desc"></div>
+        <div id="popup-volume" class="volume"></div>
         <table>
             <tr>
                 <th id="proteins">-</th>
