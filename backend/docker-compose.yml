@@ -24,7 +24,8 @@ services:
     ports:
       - "443:5011"
     volumes:
-      - ./data/application/images:/app/wwwroot/MenuItemImages
+      - ./data/application/wwwroot/MenuItemImages:/app/wwwroot/MenuItemImages
+      - ./data/application/wwwroot/img:/app/wwwroot/img
       - ./data/application/certs:/app/certs
     environment:
       API_URL: "http://api:5051"
@@ -54,12 +55,12 @@ services:
       dockerfile: ./DockerfileBot
     volumes:
       - ./data/bot/tables:/tables
-      - ./data/application/images:/images
+      - ./data/application/wwwroot/MenuItemImages:/app/wwwroot/MenuItemImages
       - ./data/api/database/QRCodeImages:/qrcodes
     environment:
       API_URL: "http://api:5051"
       TABLES_PATH: "/tables"
-      MENUITEMIMAGES_PATH: "/images"
+      MENUITEMIMAGES_PATH: "/wwwroot/MenuItemImages"
       QRIMAGES_PATH: "/qrcodes"
     logging:
       driver: "json-file"
