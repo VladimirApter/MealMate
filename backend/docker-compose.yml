@@ -24,7 +24,8 @@ services:
     ports:
       - "443:5011"
     volumes:
-      - ./data/application/images:/app/wwwroot/MenuItemImages
+      - ./data/application/wwwroot/MenuItemImages:/app/wwwroot/MenuItemImages
+      - ./data/application/wwwroot/img:/app/wwwroot/img
       - ./data/application/certs:/app/certs
     environment:
       API_URL: "http://api:5051"
