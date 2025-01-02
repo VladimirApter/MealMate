@@ -55,12 +55,12 @@ services:
       dockerfile: ./DockerfileBot
     volumes:
       - ./data/bot/tables:/tables
-      - ./data/application/wwwroot/MenuItemImages:/app/wwwroot/MenuItemImages
+      - ./data/application/wwwroot/MenuItemImages:/images
       - ./data/api/database/QRCodeImages:/qrcodes
     environment:
       API_URL: "http://api:5051"
       TABLES_PATH: "/tables"
-      MENUITEMIMAGES_PATH: "/wwwroot/MenuItemImages"
+      MENUITEMIMAGES_PATH: "/images"
       QRIMAGES_PATH: "/qrcodes"
     logging:
       driver: "json-file"
