@@ -1,7 +1,5 @@
 # MealMate
 
----
-
 MealMate - это сервис для заказа в ресторанах по qr-коду.
 Больше не нужно ждать официанта, с MealMate вы сделаете заказ самостоятельно.
 
@@ -34,6 +32,5 @@ MealMate - это сервис для заказа в ресторанах по 
 - telegram: [@VladimirApter](https://t.me/VladimirApter)
 - email: [vova.apter@yandex.ru](mailto:vova.apter@yandex.ru)
 
----
 
 MealMate 2025.
